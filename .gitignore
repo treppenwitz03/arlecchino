@@ -1,0 +1,11 @@
+controllers/__pycache__/
+views/__pycache__/
+resources/__pycache__/
+model/__pycache__/
+__pycache__/
+repository/credentials.json
+repository/database.json
+repository/secrets.py
+Morax_Installer.exe
+main.exe
+main.zip
