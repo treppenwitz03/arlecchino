@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0.00 0.00 128.00 128.00">
-<path fill="#AE8948" d="
+<path fill="#4d9a67" d="
   M 69.30 38.27
   C 62.69 41.47 56.48 33.98 61.32 28.31
   Q 64.29 24.84 69.39 26.91
@@ -87,9 +87,9 @@
   Q 77.06 45.09 79.74 44.97
   Z"
 />
-<rect fill="#AE8948" x="-1.87" y="-6.34" transform="translate(56.56,17.70) rotate(-0.2)" width="3.74" height="12.68" rx="1.79"/>
-<rect fill="#AE8948" x="-1.87" y="-6.34" transform="translate(32.94,24.03) rotate(-30.1)" width="3.74" height="12.68" rx="1.81"/>
-<path fill="#AE8948" d="
+<rect fill="#4d9a67" x="-1.87" y="-6.34" transform="translate(56.56,17.70) rotate(-0.2)" width="3.74" height="12.68" rx="1.79"/>
+<rect fill="#4d9a67" x="-1.87" y="-6.34" transform="translate(32.94,24.03) rotate(-30.1)" width="3.74" height="12.68" rx="1.81"/>
+<path fill="#4d9a67" d="
   M 70.68 116.30
   C 66.55 130.66 46.14 130.65 42.17 116.23
   Q 42.03 115.71 41.49 115.64
@@ -171,9 +171,9 @@
   Q 45.98 115.69 46.16 116.19
   Z"
 />
-<rect fill="#AE8948" x="-6.35" y="-1.87" transform="translate(15.65,41.31) rotate(30.0)" width="12.70" height="3.74" rx="1.82"/>
-<rect fill="#AE8948" x="2.99" y="63.05" width="12.70" height="3.72" rx="1.79"/>
-<rect fill="#AE8948" x="-6.34" y="-1.86" transform="translate(103.76,64.92) rotate(-0.2)" width="12.68" height="3.72" rx="1.79"/>
-<rect fill="#AE8948" x="-6.34" y="-1.87" transform="translate(15.66,88.53) rotate(-30.0)" width="12.68" height="3.74" rx="1.82"/>
-<rect fill="#AE8948" x="-6.34" y="-1.87" transform="translate(97.43,88.53) rotate(29.9)" width="12.68" height="3.74" rx="1.81"/>
+<rect fill="#4d9a67" x="-6.35" y="-1.87" transform="translate(15.65,41.31) rotate(30.0)" width="12.70" height="3.74" rx="1.82"/>
+<rect fill="#4d9a67" x="2.99" y="63.05" width="12.70" height="3.72" rx="1.79"/>
+<rect fill="#4d9a67" x="-6.34" y="-1.86" transform="translate(103.76,64.92) rotate(-0.2)" width="12.68" height="3.72" rx="1.79"/>
+<rect fill="#4d9a67" x="-6.34" y="-1.87" transform="translate(15.66,88.53) rotate(-30.0)" width="12.68" height="3.74" rx="1.82"/>
+<rect fill="#4d9a67" x="-6.34" y="-1.87" transform="translate(97.43,88.53) rotate(29.9)" width="12.68" height="3.74" rx="1.81"/>
 </svg>

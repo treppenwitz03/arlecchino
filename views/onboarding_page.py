@@ -1,5 +1,6 @@
 import flet as ft
-from flet_route import Params, Basket
+from fletroute import Params, Basket
+from views.abstract_page import AbstractPage
 
 class OnboardingPage():
     def __init__(self):

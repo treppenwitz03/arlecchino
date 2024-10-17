@@ -1,5 +1,6 @@
 import flet as ft
-from flet_route import Params, Basket
+from fletroute import Params, Basket
+from views.abstract_page import AbstractPage
 
 from views.group_listview import GroupListView
 from views.settings_view import SettingsView
@@ -13,7 +14,7 @@ from views.show_receivable_info_dialog import ShowReceivableInfoDialog
 from views.account_settings_dialogs import *
 from views.settings_view_dialogs import *
 
-class HomePage():
+class HomePage(AbstractPage):
     def __init__(self):
         ########################################################
         ## Make the Home Page UI containing the different views
@@ -41,7 +42,7 @@ class HomePage():
         )
         
         logo = ft.Image(
-            src = "/logo_filled.png",
+            src = "/logo.png",
             width=50,
             height=50
         )

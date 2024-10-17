@@ -1,4 +1,4 @@
-from repository import Repository
+from repository import Repository, get_colors
 from views import LoginPage
 import flet as ft
 

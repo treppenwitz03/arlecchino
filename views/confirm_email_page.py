@@ -1,7 +1,8 @@
 import flet as ft
-from flet_route import Params, Basket
+from fletroute import Params, Basket
+from views.abstract_page import AbstractPage
 
-class ConfirmEmailPage():
+class ConfirmEmailPage(AbstractPage):
     def __init__(self):
         #################################
         ## Make the email confirmation page

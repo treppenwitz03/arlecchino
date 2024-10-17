@@ -1,7 +1,8 @@
 import flet as ft
-from flet_route import Params, Basket
+from fletroute import Params, Basket
+from views.abstract_page import AbstractPage
 
-class ForgotPasswordPage():
+class ForgotPasswordPage(AbstractPage):
     def __init__(self):
         #######################################
         ## MAke the forgot password UI

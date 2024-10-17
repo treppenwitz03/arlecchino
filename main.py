@@ -1,6 +1,6 @@
 import flet as ft
 
-from flet_route import Routing, path
+from fletroute import Routing, path
 from views import *
 from controllers import *
 from models import *
@@ -19,7 +19,7 @@ def main(page: ft.Page):
     # Set window parameters
     page.window.width = 1024
     page.window.height = 768
-    page.title = "Morax"
+    page.title = "Screwllum"
     
     # Set dark mode from prefs
     if bool(page.client_storage.get("dark_mode")):
@@ -56,6 +56,7 @@ def main(page: ft.Page):
     
     # Upload colors when page changes
     def handle_route_changed(event: ft.RouteChangeEvent):
+        colors = get_colors(page.client_storage.get("dark_mode"))
         for current in main_pages:
             if current.route_address == event.route:
                 current.update_colors(colors)
