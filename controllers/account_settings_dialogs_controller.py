@@ -74,8 +74,8 @@ class AccountSettingsDialogsController:
         self.change_gcash_dialog.update_colors(colors)
         
         for user in self.repository.users:
-            if user.email == self.email.replace(".", ","):
-                self.change_gcash_dialog.number_textfield.value = user.gcash_number
+            if user.email == self.email:
+                self.change_gcash_dialog.number_textfield.value = self.repository.decrypt(user.gcash_number)
                 image_bytes = self.repository.download_image(user.qr_image_id)
                 self.change_gcash_dialog.qr_image.src_base64 = utils.convert_to_base64(image_bytes)       
 
@@ -139,8 +139,8 @@ class AccountSettingsDialogsController:
     def save_changed_dp(self, event: ft.ControlEvent):
         if self.dp_image_path != "":
             for user in self.repository.users:
-                if user.email == self.email.replace(".", ","):
-                    id = self.repository.upload_image(f"{user.email}|DP.png", self.dp_image_buffer)
+                if user.email == self.email:
+                    id = self.repository.upload_image(self.dp_image_buffer)
                     user.picture_link = id
                     
                     self.repository.update_user(user)
@@ -162,8 +162,8 @@ class AccountSettingsDialogsController:
     def save_changed_username(self, event: ft.ControlEvent):
         replacement = self.change_username_dialog.new_username_textfield.value
         for user in self.repository.users:
-            if user.email == self.email.replace(".", ","):
-                user.username = replacement
+            if user.email == self.email:
+                user.username = self.repository.encrypt(replacement)
                 self.repository.update_user(user)
                 self.home_page.trigger_reload_account_view()
                 self.home_page.group_listview.top_text.value = f"Hello, {replacement}!"
@@ -181,8 +181,8 @@ class AccountSettingsDialogsController:
         password = self.change_password_dialog.new_password_textfield.value
         
         for user in self.repository.users:
-            if user.email == self.email.replace(".", ","):
-                user.password = password
+            if user.email == self.email:
+                user.password = self.repository.encrypt(password)
                 self.repository.update_user(user)
                 
                 self.home_page.close_dialog(event)
@@ -200,27 +200,26 @@ class AccountSettingsDialogsController:
             self.qr_image_path = event.files[0].path
             image = cv2.imread(self.qr_image_path)
             detector = cv2.QRCodeDetector()
-            data, _, _ = detector.detectAndDecode(image)
+            retval, data, points, _ = detector.detectAndDecodeMulti(image)
             
-            if data == "" or data == None:
+            if "com.p2pqrpay" not in data:
                 self.gcash_qr_base64 = ""
                 self.page.snack_bar = ft.SnackBar(ft.Text("The QR Code image is invalid"), duration=3000)
                 self.page.snack_bar.open = True
                 self.page.update()
                 return
             
-            qr = qrcode.QRCode(
-                version = 1,
-                error_correction=qrcode.constants.ERROR_CORRECT_L,
-                box_size = 10,
-                border = 4
-            )
-            
-            qr.add_data(data)
-            qr.make(fit=True)
-            image = qr.make_image()
+            x, y, w, h = cv2.boundingRect(points[0])
+            cropped_image = image[y: y+h, x: x+w]
+            bordered_image = Image.fromarray(cv2.copyMakeBorder(
+                cropped_image,
+                10, 10, 10, 10,
+                cv2.BORDER_CONSTANT,
+                value=[255,255,255]
+            ))
+
             self.qr_buffer = BytesIO()
-            image.save(self.qr_buffer, format="JPEG")
+            bordered_image.save(self.qr_buffer, format="JPEG")
             self.gcash_qr_base64 = base64.b64encode(self.qr_buffer.getvalue()).decode("utf-8")
             self.change_gcash_dialog.qr_image.src_base64 = self.gcash_qr_base64
             self.change_gcash_dialog.qr_image.update()
@@ -244,10 +243,10 @@ class AccountSettingsDialogsController:
     # save the changed gcash infos
     def save_changed_gcash_infos(self, event: ft.ControlEvent):
         for user in self.repository.users:
-            if user.email == self.email.replace(".", ","):
-                id = self.repository.upload_image(f"{user.email}|QRCode.png", self.qr_buffer)
+            if user.email == self.email:
+                id = self.repository.upload_image(self.qr_buffer)
                 user.qr_image_id = id
-                user.gcash_number = self.change_gcash_dialog.number_textfield.value
+                user.gcash_number = self.repository.encrypt(self.change_gcash_dialog.number_textfield.value)
                 self.repository.update_user(user)
                 self.home_page.close_dialog(event)
                 

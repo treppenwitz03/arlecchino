@@ -54,9 +54,9 @@ class ItemInfoDialogController:
             self.item_info_dialog.pay_button.update()
         else:
             # show the payment request page
-            group_name = self.item_info_dialog.group_name
+            group_name = self.repository.encrypt(self.item_info_dialog.group_name)
             current_email = self.page.client_storage.get("email")
-            item_name = self.item_info_dialog.item_name.value
+            item_name = self.repository.encrypt(self.item_info_dialog.item_name.value)
             
             self.item_info_dialog.open = False
             self.page.update()
@@ -66,7 +66,7 @@ class ItemInfoDialogController:
             image = image.resize((200, 200))
             image.save(image_bytes, format="PNG")
             
-            paid_proof_id = self.repository.upload_image(f"PROOF|{group_name}|{item_name}.png", image_bytes)
+            paid_proof_id = self.repository.upload_image(image_bytes)
             
             for group in self.repository.groups:
                 if group.group_name == group_name:

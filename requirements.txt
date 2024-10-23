@@ -1,0 +1,7 @@
+flet
+flet-route
+firebase_admin
+pillow
+google-auth
+opencv-python
+pycryptodome

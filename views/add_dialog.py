@@ -136,7 +136,6 @@ class AddDialog(ft.AlertDialog):
             self.close_button
         ]
         self.actions_alignment=ft.MainAxisAlignment.SPACE_BETWEEN
-        self.on_dismiss=lambda e: print("Modal dialog dismissed!")
     
     # get the entered group code
     def get_group_code_entry(self):

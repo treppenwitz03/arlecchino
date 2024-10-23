@@ -20,8 +20,8 @@ class ReceivableInfoDialogController:
     
     # mark the receivable as completed regardless of conditions
     def mark_receivable_completed(self, event: ft.ControlEvent):
-        item_name = self.receivable_info_dialog.title.value
-        group_name = self.receivable_info_dialog.group_name
+        item_name = self.repository.encrypt(self.receivable_info_dialog.title.value)
+        group_name = self.repository.encrypt(self.receivable_info_dialog.group_name)
         
         for group in self.repository.groups:
             if group.group_name == group_name:

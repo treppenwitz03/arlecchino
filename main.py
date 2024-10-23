@@ -1,6 +1,6 @@
 import flet as ft
 
-from fletroute import Routing, path
+from flet_route import Routing, path
 from views import *
 from controllers import *
 from models import *
@@ -86,7 +86,7 @@ def main(page: ft.Page):
     ReceivableInfoDialogController(page, repository, home_page)
     AppearanceDialogController(page, repository, home_page)
     CurrencyDialogController(page, repository, home_page)
-    OpeningController(page, opening_page)
+    OpeningController(page, repository, opening_page)
     OnboardingController(page, repository, onboarding_page)
     LoginController(page, repository, login_page)
     SignupController(page, repository, signup_page)

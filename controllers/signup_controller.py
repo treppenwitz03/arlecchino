@@ -36,12 +36,20 @@ class SignupController:
     # register the user if confirmed
     def register(self, event):
         code = self.repository.get_email_confirmation_code(self.signup_page.get_email_entry())
+
+        if not code:
+            self.page.snack_bar = ft.SnackBar(ft.Text(f"Cannot send code..."), action="Try again")
+            self.page.snack_bar.open = True
+            self.page.snack_bar.on_action = lambda e: self.register(event)
+            self.page.update()
+            return
+
         command = [
             "COMMAND_REGISTER",
             code,
-            self.signup_page.get_email_entry(),
-            self.signup_page.get_username_entry(),
-            self.signup_page.get_password_entry(),
+            self.repository.encrypt(self.signup_page.get_email_entry()),
+            self.repository.encrypt(self.signup_page.get_username_entry()),
+            self.repository.encrypt(self.signup_page.get_password_entry()),
         ]
         self.signup_page.basket.command = command
         self.page.go("/confirm_email")

@@ -25,12 +25,12 @@ class LoginController:
     
     # verify the credentials and login
     def login(self, event):
-        email = self.login_page.get_email_entry().replace(".", ",")
-        password = self.login_page.get_password_entry()
+        email = self.login_page.get_email_entry()
+        password = self.repository.encrypt(self.login_page.get_password_entry())
         
         for user in self.repository.users:
-            if user.email == email and user.password == password:
-                self.page.client_storage.set("email", email)
+            if self.repository.decrypt(user.email) == email and user.password == password:
+                self.page.client_storage.set("email", self.repository.encrypt(email))
                 if user.first_run:
                     self.page.go("/onboarding")
                 else:

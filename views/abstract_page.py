@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from fletroute import Params, Basket
+from flet_route import Params, Basket
 import flet as ft
 
 class AbstractPage(ABC):

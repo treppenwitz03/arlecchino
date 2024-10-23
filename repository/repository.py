@@ -3,17 +3,21 @@ import random
 import smtplib
 import ssl
 import io
+import base64
 
+from Crypto.Cipher import AES
+from Crypto.Util.Padding import pad, unpad
 from email.message import EmailMessage
-from firebase_admin import db, credentials
+from firebase_admin import db, credentials, storage
 from google.oauth2 import service_account
+from google.auth.exceptions import TransportError
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaIoBaseDownload, MediaIoBaseUpload
 from googleapiclient.errors import HttpError
+from socket import gaierror
+from . import utils
 
 from models import User, Group, Member, Transaction
-
-from .secrets import *
 
 from typing import List
 
@@ -25,23 +29,50 @@ class Repository:
     users: List[User] = []
     groups: List[Group] = []
     def __init__(self):
-        cred = credentials.Certificate("repository/database.json")
-        firebase_admin.initialize_app(cred, {"databaseURL" : "https://morax-ea133-default-rtdb.asia-southeast1.firebasedatabase.app/"})
-        scope = ['https://www.googleapis.com/auth/drive']
-        drive_credentials = service_account.Credentials.from_service_account_file(filename="repository/database.json", scopes=scope)
-        self.service = build('drive', 'v3', credentials=drive_credentials)
+        pass
+    
+    def load(self):
+        try:
+            cred = credentials.Certificate("repository/database.json")
+            firebase_admin.initialize_app(cred, {
+                "databaseURL" : "https://morax-ea133-default-rtdb.asia-southeast1.firebasedatabase.app/",
+                "storageBucket": "morax-ea133.appspot.com"
+            })
 
-        self.update_refs()
-        
-        self.load_users()
-        self.load_groups()
+            self.bucket = storage.bucket()
+            blob = self.bucket.blob("ap7t10co.isus")
+            self.key = base64.b64decode(blob.download_as_bytes())
+
+            mail_blob = self.bucket.blob("gapword")
+            self.pw, self.em = mail_blob.download_as_text().split("\n")
+
+            self.update_refs()
+            
+            self.load_users()
+            self.load_groups()
+            return True
+        except:
+            return False
     
     # update the references so that when the groups and users are retrieved all changes are reflected
     def update_refs(self):
         ref = db.reference("/")
         self.dictionary = dict(ref.get())
-        results = self.service.files().list(pageSize=1000, fields="nextPageToken, files(id, name, mimeType)", q='name contains "de"').execute()
-        self.drive_files = results.get('files', [])
+        self.files = self.bucket.list_blobs()
+    
+    def encrypt(self, text: str):
+        cipher = AES.new(self.key, AES.MODE_ECB)
+        padded_text = pad(text.encode(), AES.block_size)
+        ciphertext = cipher.encrypt(padded_text)
+
+        return ciphertext.hex()
+
+    def decrypt(self, ciphertext: str):
+        ciphertext = bytes.fromhex(ciphertext)
+        cipher = AES.new(self.key, AES.MODE_ECB)
+        decrypted_text = unpad(cipher.decrypt(ciphertext), AES.block_size)
+        
+        return decrypted_text.decode()
         
     # load the list of users
     def load_users(self):
@@ -127,7 +158,7 @@ class Repository:
         
         member: Member = None
         for member in group.members:
-            members.update({member.username : member.email})
+            members.update({str(member.username) : str(member.email)})
             
         transaction: Transaction = None
         for transaction in group.transactions:
@@ -138,16 +169,16 @@ class Repository:
             else:
                 paid_user: tuple = None
                 for paid_user in transaction.paid_by:
-                    paid_users.update({paid_user[0] : paid_user[1]})
+                    paid_users.update({str(paid_user[0]) : str(paid_user[1])})
             
             transactions.update({
-                transaction.name : {
-                    "Description" : transaction.description,
-                    "Image id" : transaction.image_id,
-                    "Price" : transaction.price,
-                    "Time created": transaction.time_created,
+                str(transaction.name) : {
+                    "Description" : str(transaction.description),
+                    "Image id" : str(transaction.image_id),
+                    "Price" : str(transaction.price),
+                    "Time created": str(transaction.time_created),
                     "Paid by": paid_users,
-                    "Posted by": { "Email" : transaction.posted_by },
+                    "Posted by": { "Email" : str(transaction.posted_by) },
                 }
             })
         
@@ -156,10 +187,10 @@ class Repository:
         
         db.reference('/Groups/').update({
             group.group_name: {
-                "Created by": group.created_by,
-                "Description": group.description,
-                "Picture id": group.picture_id,
-                "Unique code": group.unique_code,
+                "Created by": str(group.created_by),
+                "Description": str(group.description),
+                "Picture id": str(group.picture_id),
+                "Unique code": str(group.unique_code),
                 "Members": members,
                 "Transactions": transactions
             }
@@ -173,11 +204,11 @@ class Repository:
         db.reference('/Users/').update({
             user.email: {
                 "First Run": user.first_run,
-                "GCash": user.gcash_number,
-                "Password": user.password,
-                "Picture Link": user.picture_link,
-                "QR Image id": user.qr_image_id,
-                "Username": user.username
+                "GCash": str(user.gcash_number),
+                "Password": str(user.password),
+                "Picture Link": str(user.picture_link),
+                "QR Image id": str(user.qr_image_id),
+                "Username": str(user.username)
             }
         })
         
@@ -185,32 +216,25 @@ class Repository:
         self.load_users()
     
     # function to upload image to the database
-    def upload_image(self, file_name: str, buffer: io.BytesIO) -> str:
+    def upload_image(self, buffer: io.BytesIO) -> str:
         try:
-            media = MediaIoBaseUpload(buffer, mimetype='image/png')
-            uploaded_file = self.service.files().create(body={'name': file_name}, media_body=media, fields='id').execute()
-            id = uploaded_file.get('id')
-
+            id = utils.generate_random_name()
+            buffer.seek(0)
+            self.bucket.blob(id).upload_from_file(buffer, content_type='application/octet-stream')
             return id
-            
         except HttpError as error:
             print(f'An error occurred: {error}')
-            
             return
     
     # function to download image
     def download_image(self, image_id: str) -> io.BytesIO:
         if image_id == "":
             return
-        
+
         try:
-            request_file = self.service.files().get_media(fileId = image_id)
+            blob = self.bucket.blob(image_id)
             file = io.BytesIO()
-            downloader = MediaIoBaseDownload(file, request_file)
-            done = False
-            while done is False:
-                status, done = downloader.next_chunk()
-            
+            blob.download_to_file(file)
             return file
         except HttpError as error:
             print(F'An error occurred: {error}')
@@ -223,12 +247,12 @@ class Repository:
         self.update_refs()
         self.load_groups()
     
-    # send an email confirmation code and returns what is sent
-    def get_email_confirmation_code(self, email):
+    # send an email confirmation code and returns what is sent for forgot password
+    def get_email_confirmation_code_forgot(self, email):
         code = random.randrange(100000, 999999)
-        subject = "Do you want to reset your password with Morax? "
+        subject = "Do you want to reset your password with Screwllum? "
         body = f"""
-Someone is trying to change your password within the Morax Application.
+Someone is trying to change your password within Screwllum.
 
 If this is you, enter the following code on the app prompt:
 
@@ -238,15 +262,49 @@ Ignore this message if not.
         """
 
         email_message = EmailMessage()
-        email_message["From"] = email_sender
+        email_message["From"] = self.em
         email_message["To"] = email
         email_message["Subject"] = subject
         email_message.set_content(body)
 
-        context = ssl.create_default_context()
-
-        with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as smtp:
-            smtp.login(email_sender, app_password)
-            smtp.sendmail(email_sender, email, email_message.as_string())
+        if not self.send_mail(email, email_message):
+            return False
 
         return code
+    
+    # Confirm account with Screwllum
+    def get_email_confirmation_code(self, email):
+        code = random.randrange(100000, 999999)
+        subject = "Confirm your account with Screwllum"
+        body = f"""
+Greetings! Welcome to Screwllum. To continue, please confirm your email.
+
+If this is you, enter the following code on the app prompt:
+
+    {code}
+
+Ignore this message if not.
+        """
+
+        email_message = EmailMessage()
+        email_message["From"] = self.em
+        email_message["To"] = email
+        email_message["Subject"] = subject
+        email_message.set_content(body)
+
+        if not self.send_mail(email, email_message):
+            return False
+
+        return code
+    
+    def send_mail(self, email, message: EmailMessage):
+        try:
+            context = ssl.create_default_context()
+
+            with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as smtp:
+                smtp.login(self.em, self.pw)
+                smtp.sendmail(self.em, email, message.as_string())
+            
+            return True
+        except gaierror:
+            return False

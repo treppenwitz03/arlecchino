@@ -96,7 +96,6 @@ class HomeController:
 
     # fills the group list view
     def fill_groups(self, email: str):
-        email = email.replace(".", ",")
         self.repository.update_refs()
         colors = get_colors(self.page.client_storage.get("dark_mode"))
         
@@ -113,7 +112,7 @@ class HomeController:
         username = ""
         for user in self.repository.users:
             if user.email == email:
-                username = user.username
+                username = self.repository.decrypt(user.username)
                 break
         
         # set the username inside the greeter
@@ -140,7 +139,7 @@ class HomeController:
         group_object: Group = None
         group_image: str = ""
         for group_object, group_image in joined_groups:
-            group_button = GroupButton(group_object.group_name, group_image)
+            group_button = GroupButton(self.repository.decrypt(group_object.group_name), group_image)
             group_button.update_colors(colors)
             group_button.group = group_object
             group_button.activate = lambda button, group_name, image_string: self.open_group(group_name, image_string, button.group, False)
@@ -182,23 +181,33 @@ class HomeController:
         gcash_infos = dict()
         
         # get the current email
-        email = str(self.page.client_storage.get("email")).replace(".", ",")
+        email = str(self.page.client_storage.get("email"))
 
         # get the current usernames, images and gcash infos
         current_user = ""
         current_user_image = ""
         for user in self.repository.users:
             user_image = utils.convert_to_base64(self.repository.download_image(user.picture_link))
-            user_images.update({user.email: user_image})
-            usernames.update({user.email : user.username})
+            user_images.update({
+                self.repository.decrypt(user.email): user_image
+            })
+
+            usernames.update({
+                self.repository.decrypt(user.email) : self.repository.decrypt(user.username)
+            })
             
             qr_image = utils.convert_to_base64(self.repository.download_image(user.qr_image_id))
-            gcash_number = user.gcash_number
+            gcash_number = self.repository.decrypt(user.gcash_number)
             
-            gcash_infos.update({user.email : {"QR Image" : qr_image, "GCash number": gcash_number}})
+            gcash_infos.update({
+                self.repository.decrypt(user.email) : {
+                    "QR Image" : qr_image, 
+                    "GCash number": gcash_number
+                }
+            })
             
             if user.email == email:
-                current_user = user.username
+                current_user = self.repository.decrypt(user.username)
                 current_user_image = user_image
         
         # set the items view indicators
@@ -208,7 +217,7 @@ class HomeController:
         self.items_view.username.value = current_user
         self.items_view.group_code_text.spans[0].text = group.unique_code
         self.items_view.group: Group = group
-        self.items_view.set_creator(group.created_by)
+        self.items_view.set_creator(self.repository.decrypt(group.created_by))
         self.items_view.set_user_image(current_user_image)
         
         #clear the payable and receivable lists
@@ -227,16 +236,38 @@ class HomeController:
                 continue
             elif transaction.posted_by == email: # if poster, show in rececivable
                 receivables += 1
-                total_receivable += float(transaction.price)
-                item  = ItemButton(group, self.items_view.username.value, user_images[transaction.posted_by], transaction.name, transaction.description, transaction.time_created, f"{utils.currency_symbols[self.page.client_storage.get('currency')]} {transaction.price}", item_image, True)
+                total_receivable += float(self.repository.decrypt(transaction.price))
+                item  = ItemButton(
+                    group,
+                    self.items_view.username.value,
+                    user_images[self.repository.decrypt(transaction.posted_by)],
+                    self.repository.decrypt(transaction.name),
+                    self.repository.decrypt(transaction.description),
+                    self.repository.decrypt(transaction.time_created),
+                    f"{utils.currency_symbols[self.page.client_storage.get('currency')]} {self.repository.decrypt(transaction.price)}",
+                    item_image,
+                    True
+                )
+
                 item.update_colors(colors)
                 item.transaction: Transaction = transaction
                 self.items_view.receivable_list.controls.append(item)
             else: # if neither, must pay through payables
                 payables += 1
-                total_payable += float(transaction.price)
+                total_payable += float(self.repository.decrypt(transaction.price))
                 
-                item = ItemButton(group, usernames[transaction.posted_by], user_images[transaction.posted_by], transaction.name,transaction.description, transaction.time_created, f"{utils.currency_symbols[self.page.client_storage.get('currency')]} {transaction.price}", item_image, False)
+                item = ItemButton(
+                    group,
+                    usernames[self.repository.decrypt(transaction.posted_by)],
+                    user_images[self.repository.decrypt(transaction.posted_by)],
+                    self.repository.decrypt(transaction.name),
+                    self.repository.decrypt(transaction.description),
+                    self.repository.decrypt(transaction.time_created),
+                    f"{utils.currency_symbols[self.page.client_storage.get('currency')]} {self.repository.decrypt(transaction.price)}",
+                    item_image,
+                    False
+                )
+
                 item.update_colors(colors)
                 item.transaction: Transaction = transaction
                 self.items_view.payable_list.controls.append(item)
@@ -284,7 +315,7 @@ class HomeController:
         self.repository.update_refs()
         self.repository.load_groups()
         for group in self.repository.groups:
-            if group.group_name == self.items_view.group.group_name:
+            if group.group_name == self.repository.encrypt(self.items_view.group.group_name):
                 self.open_group(group_name, image_string, group, True)
                 break
     
@@ -311,7 +342,9 @@ class HomeController:
         
         user: User = None
         for user in self.repository.users:
-            usernames.update({user.username : user.email})
+            usernames.update({
+                self.repository.decrypt(user.username) : self.repository.decrypt(user.email)
+            })
         
         self.home_page.item_infos_dialog.switcher.content = self.home_page.item_infos_dialog.main_row
         self.home_page.item_infos_dialog.title.visible = True
@@ -323,17 +356,17 @@ class HomeController:
         qr_image_string = ""
         gcash_number = ""
         for username in usernames:
-            if usernames[username] == button.transaction.posted_by:
+            if usernames[username] == self.repository.decrypt(button.transaction.posted_by):
                 qr_image_string = gcash_infos[usernames[username]]["QR Image"]
                 gcash_number = gcash_infos[usernames[username]]["GCash number"]
                 user = username
 
         self.home_page.item_infos_dialog.item_name.value = self.home_page.item_infos_dialog.payment_item_name.spans[0].text = item_name
-        self.home_page.item_infos_dialog.price.value = self.home_page.item_infos_dialog.item_price.spans[0].text = f"{utils.currency_symbols[self.page.client_storage.get('currency')]} {button.transaction.price}"
+        self.home_page.item_infos_dialog.price.value = self.home_page.item_infos_dialog.item_price.spans[0].text = f"{utils.currency_symbols[self.page.client_storage.get('currency')]} {self.repository.decrypt(button.transaction.price)}"
         self.home_page.item_infos_dialog.item_image.src_base64 = button.item_image.src_base64
-        self.home_page.item_infos_dialog.item_post_time.spans[0].text = button.transaction.time_created
+        self.home_page.item_infos_dialog.item_post_time.spans[0].text = self.repository.decrypt(button.transaction.time_created)
         self.home_page.item_infos_dialog.account_name_info.value = self.home_page.item_infos_dialog.account_name_payment.value = user
-        self.home_page.item_infos_dialog.description.value = button.transaction.description
+        self.home_page.item_infos_dialog.description.value = self.repository.decrypt(button.transaction.description)
         self.home_page.item_infos_dialog.qr_code.src_base64 = qr_image_string
         self.home_page.item_infos_dialog.gcash_number.spans[0].text = gcash_number
         
@@ -399,9 +432,9 @@ class HomeController:
 
         # add paid users to view
         self.home_page.receivable_info_dialog.paid_list.controls = []
-        if transaction.paid_by != "None":
+        if self.repository.decrypt(transaction.paid_by) != "None":
             for user in transaction.paid_by:
-                paid_user_button = PaidUserButton(user[0])
+                paid_user_button = PaidUserButton(self.repository.decrypt(user[0]))
                 paid_user_button.update_colors(colors)
                 
                 paid_user_button.show_proof_button.on_click = lambda e: self.home_page.receivable_info_dialog.show_proof(user[1])
@@ -409,7 +442,7 @@ class HomeController:
                 
                 self.home_page.receivable_info_dialog.paid_list.controls.append(paid_user_button)
 
-        if len(transaction.paid_by) == 0 or transaction.paid_by == "None":
+        if len(transaction.paid_by) == 0 or self.repository.decrypt(transaction.paid_by) == "None":
             self.home_page.receivable_info_dialog.content = self.home_page.receivable_info_dialog.no_paid_label
         else:
             self.home_page.receivable_info_dialog.content = self.home_page.receivable_info_dialog.paid_list
@@ -421,13 +454,13 @@ class HomeController:
         transaction.paid_by.remove(user)
         
         if len(transaction.paid_by) == 0:
-            transaction.paid_by = "None"
+            transaction.paid_by = self.repository.encrypt("None")
         
         self.repository.update_group(group)
         
         self.home_page.receivable_info_dialog.paid_list.controls.remove(button)
         
-        if len(transaction.paid_by) == 0 or transaction.paid_by == "None":
+        if len(transaction.paid_by) == 0 or self.repository.decrypt(transaction.paid_by) == "None":
             self.home_page.receivable_info_dialog.content = self.home_page.receivable_info_dialog.no_paid_label
         else:
             self.home_page.receivable_info_dialog.content = self.home_page.receivable_info_dialog.paid_list
@@ -436,16 +469,16 @@ class HomeController:
     
     # update the account view with the new infos
     def update_account_view(self):
-        email = str(self.page.client_storage.get("email")).replace(".", ",")
+        email = self.page.client_storage.get("email")
         
         user_image = ""
         username = ""
         for user in self.repository.users:
             if user.email == email:
                 user_image = utils.convert_to_base64(self.repository.download_image(user.picture_link))
-                username = user.username
+                username = self.repository.decrypt(user.username)
                 break
 
         self.account_view.user_picture.src_base64 = user_image
         self.account_view.username_text.value = username
-        self.account_view.email_text.value = email.replace(",", ".")
+        self.account_view.email_text.value = self.repository.decrypt(email)

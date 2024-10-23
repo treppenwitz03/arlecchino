@@ -2,6 +2,7 @@ import flet as ft
 
 class ItemButton(ft.ElevatedButton):
     transaction = None
+    group = None
     def __init__(self, group_name: str, username: str, image_string: str, transaction_name: str, transaction_description: str, transaction_creation: str, transaction_price: str, item_image_string: str, has_amount_received: bool):
         super().__init__(
             expand=True,

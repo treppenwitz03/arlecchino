@@ -58,14 +58,14 @@ class AddReceivableDialogController:
     # add the receivable
     def add_receivable(self, event: ft.ControlEvent):
         email: str = self.page.client_storage.get("email")
-        group_name = self.add_receivable_dialog.group
-        item_name = self.add_receivable_dialog.get_item_name()
-        item_month = self.add_receivable_dialog.get_item_creation_month()
-        item_day = self.add_receivable_dialog.get_item_creation_day()
-        item_year = self.add_receivable_dialog.get_item_creation_year()
-        item_date = f"{item_month} {item_day}, {item_year}"
-        item_amount = self.add_receivable_dialog.get_item_amount()
-        item_description = self.add_receivable_dialog.get_item_description()
+        group_name = self.repository.encrypt(self.add_receivable_dialog.group)
+        item_name = self.repository.encrypt(self.add_receivable_dialog.get_item_name())
+        item_month = self.repository.encrypt(self.add_receivable_dialog.get_item_creation_month())
+        item_day = self.repository.encrypt(self.add_receivable_dialog.get_item_creation_day())
+        item_year = self.repository.encrypt(self.add_receivable_dialog.get_item_creation_year())
+        item_date = self.repository.encrypt(f"{item_month} {item_day}, {item_year}")
+        item_amount = self.repository.encrypt(self.add_receivable_dialog.get_item_amount())
+        item_description = self.repository.encrypt(self.add_receivable_dialog.get_item_description())
         
         # convert the image to bytes
         image_bytes = io.BytesIO()
@@ -74,7 +74,7 @@ class AddReceivableDialogController:
         image.save(image_bytes, format="PNG")
         
         # upload the receivable image
-        receivable_image_id = self.repository.upload_image(f"{group_name}|{item_name}.png", image_bytes)
+        receivable_image_id = self.repository.upload_image(image_bytes)
         
         # create a new transaction object for the receivable
         new_transaction = Transaction(
@@ -82,7 +82,7 @@ class AddReceivableDialogController:
             description=item_description,
             image_id=receivable_image_id,
             paid_by="None",
-            posted_by=email.replace(".", ","),
+            posted_by=email,
             price=item_amount,
             time_created=item_date
         )

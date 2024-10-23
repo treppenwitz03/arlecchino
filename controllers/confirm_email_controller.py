@@ -45,19 +45,21 @@ class ConfirmEmailController:
     
     # register
     def register(self, argument_list: list):
+        email = str(argument_list[2])
+
         for user in self.repository.users:
-            if user.email == str(argument_list[2]).replace(".", ","):
+            if user.email == email:
                 self.confirm_email_page.display_on_dialog("Can't Register", "An account is already linked to the credentials given.")
                 return
 
         new_user = User(
-            email=str(argument_list[2]).replace(".", ","),
+            email=email,
             first_run=True,
             gcash_number="",
-            password=argument_list[4],
+            password=str(argument_list[4]),
             picture_link="",
             qr_image_id="",
-            username=argument_list[3]
+            username=str(argument_list[3])
         )
 
         self.repository.update_user(new_user)
@@ -65,9 +67,10 @@ class ConfirmEmailController:
     
     # change the password
     def change_password(self, argument_list: list):
+        email = str(argument_list[2])
         for user in self.repository.users:
-            if user.email == str(argument_list[2]).replace(".", ","):
-                user.password = argument_list[3]
+            if user.email == email:
+                user.password = str(argument_list[3])
                 self.repository.update_user(user)
                 
                 self.confirm_email_page.display_on_dialog("Success!", "Your password has been updated. You may now log in again.")

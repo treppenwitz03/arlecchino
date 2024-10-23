@@ -6,7 +6,6 @@ from io import BytesIO
 from PIL import Image
 
 import flet as ft
-import qrcode
 import cv2
 import base64
 
@@ -82,27 +81,26 @@ class OnboardingController:
             self.qr_image_path = event.files[0].path
             image = cv2.imread(self.qr_image_path)
             detector = cv2.QRCodeDetector()
-            data, _, _ = detector.detectAndDecode(image)
+            retval, data, points, _ = detector.detectAndDecodeMulti(image)
             
-            if data == "" or data == None:
+            if "com.p2pqrpay" not in data[0]:
                 self.gcash_qr_base64 = ""
                 self.page.snack_bar = ft.SnackBar(ft.Text("The QR Code image is invalid"), duration=3000)
                 self.page.snack_bar.open = True
                 self.page.update()
                 return
             
-            qr = qrcode.QRCode(
-                version = 1,
-                error_correction=qrcode.constants.ERROR_CORRECT_L,
-                box_size = 10,
-                border = 4
-            )
-            
-            qr.add_data(data)
-            qr.make(fit=True)
-            image = qr.make_image()
+            x, y, w, h = cv2.boundingRect(points[0])
+            cropped_image = image[y: y+h, x: x+w]
+            bordered_image = Image.fromarray(cv2.copyMakeBorder(
+                cropped_image,
+                10, 10, 10, 10,
+                cv2.BORDER_CONSTANT,
+                value=[255,255,255]
+            ))
+
             self.buffered = BytesIO()
-            image.save(self.buffered, format="JPEG")
+            bordered_image.save(self.buffered, format="JPEG")
             self.gcash_qr_base64 = base64.b64encode(self.buffered.getvalue()).decode("utf-8")
             self.onboarding_page.qr_image.src_base64 = self.gcash_qr_base64
             self.onboarding_page.qr_image.update()
@@ -112,11 +110,11 @@ class OnboardingController:
     
     # handle progression of onboarding
     def switch_view(self, event: ft.ControlEvent):
-        email: str = self.page.client_storage.get("email")
+        email = self.page.client_storage.get("email")
         
         current_user: User = None
         for user in self.repository.users:
-            if user.email == email.replace(".", ","):
+            if user.email == email:
                 current_user = user
         
         if self.current == 0: # the introduction page
@@ -137,26 +135,26 @@ class OnboardingController:
             self.onboarding_page.profile_column.offset = ft.transform.Offset(0, 0)
             self.onboarding_page.profile_column.update()
             
-            id = self.repository.upload_image(f"{current_user.email}|QRCode.png", self.buffered)
+            id = self.repository.upload_image(self.buffered)
             
             current_user.qr_image_id = id
-            current_user.gcash_number = self.onboarding_page.number_textfield.value
+            current_user.gcash_number = self.repository.encrypt(self.onboarding_page.number_textfield.value)
             
             self.repository.update_user(current_user)
             
-            self.onboarding_page.next_button.text = "Start Morax"
+            self.onboarding_page.next_button.text = "Start Screwllum"
             self.onboarding_page.next_button.update()
             self.current = 2
         elif self.current == 2: # the profile page
             if hasattr(self, "dp_image_path"):
-                id = self.repository.upload_image(f"{current_user.email}|DP.png", self.dp_image_buffer)
+                id = self.repository.upload_image(self.dp_image_buffer)
                 current_user.picture_link = id
             else:
                 image = Image.open("assets/empty_user_image.png").convert("RGBA")
                 pil_img = image.resize((200, 200))
                 buff = BytesIO()
                 pil_img.save(buff, format="PNG")
-                id = self.repository.upload_image(f"{current_user.email}|DP.png", buff)
+                id = self.repository.upload_image(buff)
                 current_user.picture_link = id
             
             # the first run is set to false after completion

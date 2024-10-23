@@ -1,5 +1,5 @@
 import flet as ft
-from fletroute import Params, Basket
+from flet_route import Params, Basket
 from views.abstract_page import AbstractPage
 
 class LoginPage():

@@ -2,6 +2,7 @@ import flet as ft
 from views.item_button import ItemButton
 
 class ItemInfoDialog(ft.AlertDialog):
+    group_name = None
     def __init__(self):
         super().__init__()
         #################################################

@@ -37,12 +37,20 @@ class ForgotController:
     
     # reflect password change on database
     def change_password(self, event):
-        code = self.repository.get_email_confirmation_code(self.forgot_password_page.get_email_to_send_entry())
+        code = self.repository.get_email_confirmation_code_forgot(self.forgot_password_page.get_email_to_send_entry())
+
+        if not code:
+            self.page.snack_bar = ft.SnackBar(ft.Text(f"Cannot send code..."), action="Try again")
+            self.page.snack_bar.open = True
+            self.page.snack_bar.on_action = lambda e: self.register(event)
+            self.page.update()
+            return
+
         command = [
             "COMMAND_CHANGE_PASSWORD",
             code,
-            self.forgot_password_page.get_email_to_send_entry(),
-            self.forgot_password_page.get_new_password_entry(),
+            self.repository.encrypt(self.forgot_password_page.get_email_to_send_entry()),
+            self.repository.encrypt(self.forgot_password_page.get_new_password_entry()),
         ]
         self.forgot_password_page.basket.command = command
         self.page.go("/confirm_email")
