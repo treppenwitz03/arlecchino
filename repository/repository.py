@@ -242,8 +242,15 @@ class Repository:
     
     # deletes a transaction from the database
     def delete_transaction(self, group_name: str, transaction: Transaction):
-        db.reference(f"/Groups/{group_name}/Transactions/{transaction.name}").delete()
-        
+        for group in self.groups:
+            if group.group_name == group_name:
+                if len(group.transactions) > 1:
+                    db.reference(f"/Groups/{group_name}/Transactions/{transaction.name}").delete()
+                else:
+                    db.reference(f"/Groups/{group_name}").update({
+                        "Transactions": "None"
+                    })
+
         self.update_refs()
         self.load_groups()
     

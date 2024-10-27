@@ -181,12 +181,13 @@ class HomeController:
         gcash_infos = dict()
         
         # get the current email
-        email = str(self.page.client_storage.get("email"))
+        email = self.page.client_storage.get("email")
 
         # get the current usernames, images and gcash infos
         current_user = ""
         current_user_image = ""
         for user in self.repository.users:
+            #TODO: CHECK IF THE USER IS IN THE GROUP
             user_image = utils.convert_to_base64(self.repository.download_image(user.picture_link))
             user_images.update({
                 self.repository.decrypt(user.email): user_image
@@ -216,7 +217,7 @@ class HomeController:
         self.items_view.group_description.value = group.description
         self.items_view.username.value = current_user
         self.items_view.group_code_text.spans[0].text = group.unique_code
-        self.items_view.group: Group = group
+        self.items_view.group = group
         self.items_view.set_creator(self.repository.decrypt(group.created_by))
         self.items_view.set_user_image(current_user_image)
         
@@ -237,7 +238,7 @@ class HomeController:
             elif transaction.posted_by == email: # if poster, show in rececivable
                 receivables += 1
                 total_receivable += float(self.repository.decrypt(transaction.price))
-                item  = ItemButton(
+                item = ItemButton(
                     group,
                     self.items_view.username.value,
                     user_images[self.repository.decrypt(transaction.posted_by)],
@@ -250,7 +251,7 @@ class HomeController:
                 )
 
                 item.update_colors(colors)
-                item.transaction: Transaction = transaction
+                item.transaction = transaction
                 self.items_view.receivable_list.controls.append(item)
             else: # if neither, must pay through payables
                 payables += 1
@@ -269,7 +270,7 @@ class HomeController:
                 )
 
                 item.update_colors(colors)
-                item.transaction: Transaction = transaction
+                item.transaction = transaction
                 self.items_view.payable_list.controls.append(item)
         
         # show rundown
@@ -315,7 +316,7 @@ class HomeController:
         self.repository.update_refs()
         self.repository.load_groups()
         for group in self.repository.groups:
-            if group.group_name == self.repository.encrypt(self.items_view.group.group_name):
+            if group.group_name == self.items_view.group.group_name:
                 self.open_group(group_name, image_string, group, True)
                 break
     
@@ -432,7 +433,7 @@ class HomeController:
 
         # add paid users to view
         self.home_page.receivable_info_dialog.paid_list.controls = []
-        if self.repository.decrypt(transaction.paid_by) != "None":
+        if transaction.paid_by != "None":
             for user in transaction.paid_by:
                 paid_user_button = PaidUserButton(self.repository.decrypt(user[0]))
                 paid_user_button.update_colors(colors)
@@ -442,7 +443,7 @@ class HomeController:
                 
                 self.home_page.receivable_info_dialog.paid_list.controls.append(paid_user_button)
 
-        if len(transaction.paid_by) == 0 or self.repository.decrypt(transaction.paid_by) == "None":
+        if len(transaction.paid_by) == 0 or transaction.paid_by == "None":
             self.home_page.receivable_info_dialog.content = self.home_page.receivable_info_dialog.no_paid_label
         else:
             self.home_page.receivable_info_dialog.content = self.home_page.receivable_info_dialog.paid_list
@@ -454,13 +455,13 @@ class HomeController:
         transaction.paid_by.remove(user)
         
         if len(transaction.paid_by) == 0:
-            transaction.paid_by = self.repository.encrypt("None")
+            transaction.paid_by = "None"
         
         self.repository.update_group(group)
         
         self.home_page.receivable_info_dialog.paid_list.controls.remove(button)
         
-        if len(transaction.paid_by) == 0 or self.repository.decrypt(transaction.paid_by) == "None":
+        if len(transaction.paid_by) == 0 or transaction.paid_by == "None":
             self.home_page.receivable_info_dialog.content = self.home_page.receivable_info_dialog.no_paid_label
         else:
             self.home_page.receivable_info_dialog.content = self.home_page.receivable_info_dialog.paid_list

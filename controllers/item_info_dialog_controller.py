@@ -54,7 +54,7 @@ class ItemInfoDialogController:
             self.item_info_dialog.pay_button.update()
         else:
             # show the payment request page
-            group_name = self.repository.encrypt(self.item_info_dialog.group_name)
+            group_name = self.item_info_dialog.group_name
             current_email = self.page.client_storage.get("email")
             item_name = self.repository.encrypt(self.item_info_dialog.item_name.value)
             

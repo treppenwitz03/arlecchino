@@ -3,6 +3,7 @@ from views.item_button import ItemButton
 from views.group_button import AddGroupButton
 
 class ItemsView(ft.Column):
+    group = None
     def __init__(self):
         super().__init__(
             expand=True,

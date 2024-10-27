@@ -75,7 +75,7 @@ class AddDialogController:
                 new_group = Group(
                     group_name=self.repository.encrypt(self.add_group_dialog.get_created_group_name()),
                     created_by=creator,
-                    description=self.add_group_dialog.get_created_group_desc(),
+                    description=self.repository.encrypt(self.add_group_dialog.get_created_group_desc()),
                     members=[Member(creator, email)],
                     picture_id=group_image_id,
                     unique_code=unique_code,
@@ -106,12 +106,12 @@ class AddDialogController:
         
         else: # if the current shown is joining, then proceed with joining
             if self.code_validated:
-                email = str(self.page.client_storage.get("email"))
+                email = self.page.client_storage.get("email")
                 
                 username = ""
                 for user in self.repository.users:
                     if user.email == email:
-                        username = self.repository.decrypt(user.username)
+                        username = user.username
                 
                 for group in self.repository.groups:
                     if group.unique_code == self.add_group_dialog.get_group_code_entry():

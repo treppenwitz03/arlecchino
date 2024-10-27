@@ -6,7 +6,6 @@ from io import BytesIO
 import flet as ft
 import base64
 import cv2
-import qrcode
 
 class AccountSettingsDialogsController:
     def __init__(self, page: ft.Page, repository: Repository, home_page: HomePage):
