@@ -82,18 +82,21 @@ class OpeningPage(AbstractPage):
                         self.sub_text,
                         self.login_button
                     ], spacing=32),
-                    ft.Lottie(
+                    ft.Column([ft.Lottie(
                         src="https://raw.githubusercontent.com/treppenwitz03/Mink/refs/heads/master/arle.json",
                         animate=True,
                         width=620,
-                    )
+                    )])
                 ],
                 expand=True,
-                alignment=ft.MainAxisAlignment.SPACE_BETWEEN
+                alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
+                vertical_alignment=ft.CrossAxisAlignment.CENTER,
+                spacing=50
             ),
             padding=ft.padding.all(50),
             bgcolor="#8c8d93",
-            expand=True
+            expand=True,
+            height=720
         )
         
         main_column = ft.Column(
@@ -103,6 +106,7 @@ class OpeningPage(AbstractPage):
         self.route_address = "/"
         self.view = ft.View(
             route = self.route_address,
+            padding=ft.padding.all(0),
             controls = [main_column]
         )
     

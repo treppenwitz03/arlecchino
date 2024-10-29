@@ -17,7 +17,7 @@ class RouteManager(Routing):
 
 def main(page: ft.Page):
     # Set window parameters
-    page.window.width = 1024
+    page.window.width = 1100
     page.window.height = 768
     page.title = "Arlecchino"
     
