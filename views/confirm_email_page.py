@@ -8,10 +8,9 @@ class ConfirmEmailPage(AbstractPage):
         ## Make the email confirmation page
         ################################
 
-        lock_icon = ft.Image(
-            src = "/lock.svg",
-            width = 200,
-            height = 200
+        lock_icon = ft.Lottie(
+            src = "https://lottie.host/ca4eb929-dd79-427f-883e-7b4a4929ebb0/gsPrmKK8Ir.json",
+            width = 640
         )
         
         image_container = ft.Container(

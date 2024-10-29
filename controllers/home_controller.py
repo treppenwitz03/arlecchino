@@ -52,7 +52,7 @@ class HomeController:
         
         # handle feedback view events
         self.feedback_view.button_contact_us.on_click = lambda e: webbrowser.open_new("https://mail.google.com/mail/u/0/#inbox?compose=GTvVlcRzCMtQddshVRjPCKJRGfFwDxvWqJcNftmXFMFqqpdvrXXBpGsrfGGNTnSswPqHpChKdBRJG")
-        self.feedback_view.button_contribute.on_click = lambda e: webbrowser.open_new("https://github.com/neverbdneverw/morax/issues/new")
+        self.feedback_view.button_contribute.on_click = lambda e: webbrowser.open_new("https://github.com/neverbdneverw/screwllum/issues/new")
         
         # handle logout request
         self.account_view.logout_button.on_click = self.logout_account
@@ -214,7 +214,7 @@ class HomeController:
         # set the items view indicators
         self.items_view.group_name.value = self.items_view.group_name_text.value = group_name
         self.items_view.group_image.src_base64 = image_string
-        self.items_view.group_description.value = group.description
+        self.items_view.group_description.value = self.repository.decrypt(group.description)
         self.items_view.username.value = current_user
         self.items_view.group_code_text.spans[0].text = group.unique_code
         self.items_view.group = group

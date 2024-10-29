@@ -1,6 +1,7 @@
 from repository import Repository
 from views import SignupPage
 import flet as ft
+import webbrowser
 
 class SignupController:
     def __init__(self, page: ft.Page, repository: Repository, signup_page: SignupPage):
@@ -16,6 +17,8 @@ class SignupController:
         self.signup_page.agree_eula_check.on_change = self.validate
         self.signup_page.login_button.on_click = self.go_to_login
         self.signup_page.register_btn.on_click = self.register
+
+        self.signup_page.agree_eula_indicator_button.on_click = lambda e: webbrowser.open_new("https://github.com/treppenwitz03/screwllum/blob/main/LICENSE")
     
     # validate the fields before enabling proceed
     def validate(self, event):

@@ -1,5 +1,6 @@
 from views import OpeningPage
 import flet as ft
+import webbrowser
 from repository import Repository
 
 class OpeningController():
@@ -13,6 +14,9 @@ class OpeningController():
         
         self.opening_page.login_button.on_click = self.login_clicked
         self.opening_page.signup_button.on_click = self.signup_clicked
+
+        self.opening_page.about_button.on_click = lambda e: webbrowser.open_new("https://github.com/treppenwitz03/screwllum/blob/main/README.md")
+        self.opening_page.support_button.on_click = lambda e: webbrowser.open_new("https://github.com/treppenwitz03/screwllum/issues/new")
     
     def load_repo(self, activity: str):
         self.page.snack_bar = ft.SnackBar(ft.Text(f"Loading..."))

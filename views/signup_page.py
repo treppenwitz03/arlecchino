@@ -2,16 +2,15 @@ import flet as ft
 from flet_route import Params, Basket
 from views.abstract_page import AbstractPage
 
-class SignupPage():
+class SignupPage(AbstractPage):
     def __init__(self):
         #####################################
         ## Make the Signup UI
         #####################################
 
-        query_icon = ft.Image(
-            src = "/question_mark.svg",
-            width = 200,
-            height = 200
+        query_icon = ft.Lottie(
+            src = "https://lottie.host/6cc07241-1a2e-4d42-8e29-f58dd320eb87/RvVs4V1MYu.json",
+            width = 640
         )
         
         image_container = ft.Container(
@@ -110,15 +109,22 @@ class SignupPage():
             value=False
         )
         
-        agree_eula_indicator_text = ft.Text(
-            value="I agree to the Terms and Conditions of using this service.",
+        self.agree_eula_indicator_button = ft.TextButton(
+            content=ft.Text(
+                "I agree to the ",
+                spans=[
+                    ft.TextSpan("Terms and Conditions", style=ft.TextStyle(decoration=ft.TextDecoration.UNDERLINE)),
+                    ft.TextSpan(" of using this service.")
+                ],
+                size=14
+            ),
             expand=True
         )
         
         agree_eula_check_row = ft.Row(
             alignment=ft.MainAxisAlignment.CENTER,
             vertical_alignment=ft.CrossAxisAlignment.CENTER,
-            controls=[ self.agree_eula_check,  agree_eula_indicator_text]
+            controls=[ self.agree_eula_check,  self.agree_eula_indicator_button]
         )
         
         self.register_btn = ft.ElevatedButton(
@@ -296,6 +302,8 @@ class SignupPage():
         self.confirm_password_textfield.bgcolor = colors["d6d6d6"]
         self.confirm_password_textfield.color = colors["black"]
         self.confirm_password_textfield.label_style.color = colors["black"]
+
+        self.agree_eula_indicator_button.content.color = colors["black"]
         
         self.agree_eula_check.fill_color = colors["d6d6d6"]
         self.agree_eula_check.check_color = colors["ae8948"]

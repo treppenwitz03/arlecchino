@@ -2,16 +2,15 @@ import flet as ft
 from flet_route import Params, Basket
 from views.abstract_page import AbstractPage
 
-class LoginPage():
+class LoginPage(AbstractPage):
     def __init__(self):
         #####################################
         ## Make the Login UI
         #####################################
 
-        lock_icon = ft.Image(
-            src = "/lock.svg",
-            width = 200,
-            height = 200
+        lock_icon = ft.Lottie(
+            src = "https://lottie.host/6cc07241-1a2e-4d42-8e29-f58dd320eb87/RvVs4V1MYu.json",
+            width = 640
         )
         
         image_container = ft.Container(

@@ -2,7 +2,7 @@ import flet as ft
 from flet_route import Params, Basket
 from views.abstract_page import AbstractPage
 
-class OnboardingPage():
+class OnboardingPage(AbstractPage):
     def __init__(self):
         ###########################################
         ## MAke the onboarding UI
@@ -30,8 +30,8 @@ class OnboardingPage():
         self.main_column = ft.Column(
             controls = [
                 logo_row,
-                ft.Text("Welcome to Morax", weight=ft.FontWeight.BOLD, size=44),
-                ft.Text("A shared financial manager", weight=ft.FontWeight.W_400, size=20, color="#4d4d4d"),
+                ft.Text("Welcome to Screwllum", weight=ft.FontWeight.BOLD, size=44),
+                ft.Text("A special service appointment system", weight=ft.FontWeight.W_400, size=20, color="#4d4d4d"),
                 ft.Container(options_column, padding=ft.padding.only(30, 100, 30, 100))
             ],
             horizontal_alignment=ft.CrossAxisAlignment.CENTER,
@@ -171,6 +171,7 @@ class OnboardingPage():
             vertical_alignment=ft.CrossAxisAlignment.END
         )
         
+        self.should_clear = False
         self.route_address = "/onboarding"
         self.view = ft.View(
             route = self.route_address,

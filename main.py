@@ -31,25 +31,19 @@ def main(page: ft.Page):
     colors = get_colors(page.client_storage.get("dark_mode"))
     
     # Initialize Pages
-    confirm_email_page = ConfirmEmailPage()
-    opening_page = OpeningPage()
-    signup_page = SignupPage()
-    login_page = LoginPage()
-    forgot_password_page = ForgotPasswordPage()
-    onboarding_page = OnboardingPage()    
-    home_page = HomePage()
-    
-    main_pages = [confirm_email_page, opening_page, signup_page, login_page, forgot_password_page, onboarding_page, home_page]
-    
-    app_routes = [
-        path(url="/", clear=True, view=opening_page.get_view),
-        path(url="/login", clear=True, view=login_page.get_view),
-        path(url="/signup", clear=True, view=signup_page.get_view), 
-        path(url="/forgot_password", clear=True, view=forgot_password_page.get_view),
-        path(url="/confirm_email", clear=True, view=confirm_email_page.get_view),
-        path(url="/home", clear=True, view=home_page.get_view),
-        path(url="/onboarding", clear=False, view=onboarding_page.get_view)
-    ]
+    main_pages = list()
+    main_pages.append(HomePage())
+    main_pages.append(OpeningPage())
+    main_pages.append(OnboardingPage())
+    main_pages.append(LoginPage())
+    main_pages.append(SignupPage())
+    main_pages.append(ForgotPasswordPage())
+    main_pages.append(ConfirmEmailPage())
+
+    app_routes = list()
+    iter_page: AbstractPage = None
+    for iter_page in main_pages:
+        app_routes.append(path(url=iter_page.route_address, clear=iter_page.should_clear, view=iter_page.get_view))
     
     routing = RouteManager(page = page, app_routes = app_routes)
     page.go(page.route)
@@ -64,7 +58,7 @@ def main(page: ft.Page):
 
     routing.route_changed = handle_route_changed
     
-    opening_page.update_colors(colors)
+    main_pages[1].update_colors(colors)
     
     # page.client_storage.clear()
     
@@ -78,20 +72,7 @@ def main(page: ft.Page):
     repository = Repository()
 
     #Initialize the controllers
-    HomeController(page, repository, home_page)
-    AddDialogController(page, repository, home_page)
-    ItemInfoDialogController(page, repository, home_page)
-    AddReceivableDialogController(page, repository, home_page)
-    AccountSettingsDialogsController(page, repository, home_page)
-    ReceivableInfoDialogController(page, repository, home_page)
-    AppearanceDialogController(page, repository, home_page)
-    CurrencyDialogController(page, repository, home_page)
-    OpeningController(page, repository, opening_page)
-    OnboardingController(page, repository, onboarding_page)
-    LoginController(page, repository, login_page)
-    SignupController(page, repository, signup_page)
-    ForgotController(page, repository, forgot_password_page)
-    ConfirmEmailController(page, repository, confirm_email_page)
+    initialize_controllers(page, repository, main_pages)
 
 if __name__ == "__main__":
     # Run the app with flet's method

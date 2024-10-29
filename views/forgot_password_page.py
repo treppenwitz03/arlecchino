@@ -8,10 +8,9 @@ class ForgotPasswordPage(AbstractPage):
         ## MAke the forgot password UI
         #######################################
 
-        query_icon = ft.Image(
-            src = "/question_mark.svg",
-            width = 200,
-            height = 200
+        query_icon = ft.Lottie(
+            src = "https://lottie.host/bfe86450-2c5b-4ec2-bfe5-3d05e28a85f7/y8UFnI7Ksb.json",
+            width = 640
         )
         
         image_container = ft.Container(
