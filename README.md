@@ -1,12 +1,12 @@
 <div>
-    <h1 align="center">Screwllum</h1>
+    <h1 align="center">Arlecchino</h1>
     <h3 align="center">Service Tracking, Simplified</h3>
 </div>
 
 ![screenshot](assets/app_screenshot.png)
 
 <br>
-Screwllum is a special service appointment system that blends ease of use with functionality, written in Flet and Python
+Arlecchino is a special service appointment system that blends ease of use with functionality, written in Flet and Python
 
 ## Try
 Install the following dependencies using pip
