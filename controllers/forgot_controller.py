@@ -42,7 +42,7 @@ class ForgotController:
         if not code:
             self.page.snack_bar = ft.SnackBar(ft.Text(f"Cannot send code..."), action="Try again")
             self.page.snack_bar.open = True
-            self.page.snack_bar.on_action = lambda e: self.register(event)
+            self.page.snack_bar.on_action = lambda e: self.change_password(event)
             self.page.update()
             return
 

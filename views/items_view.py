@@ -81,13 +81,24 @@ class ItemsView(ft.Column):
             size=20
         )
         
-        empty_warning_text_row = ft.Row(
-            controls=[self.empty_warning_text]
+        empty_warning_text_row = ft.Column(
+            controls=[
+                ft.Lottie(
+                    "https://lottie.host/78439950-e4f0-46c9-aba1-8c0e959fed9e/XDIN6eRr0L.json",
+                    width=640,
+                    animate=True,
+                    expand=True
+                ),
+                self.empty_warning_text
+            ],
+            expand=True,
+            alignment=ft.MainAxisAlignment.CENTER,
+            horizontal_alignment=ft.CrossAxisAlignment.CENTER
         )
         
         self.empty_warning_text_container = ft.Container(
             content = empty_warning_text_row,
-            padding = ft.padding.only(30, 10, 30, 0)
+            padding = ft.padding.only(30, 10, 30, 0),
         )
         
         self.cont = ft.AnimatedSwitcher(
@@ -120,14 +131,21 @@ class ItemsView(ft.Column):
         
         self.add_receivable_button = AddGroupButton()
         
-        self.list_switcher = ft.AnimatedSwitcher(
-            transition = ft.AnimatedSwitcherTransition.SCALE,
-            duration = 300,
-            reverse_duration = 300,
-            switch_in_curve = ft.AnimationCurve.EASE_OUT,
-            switch_out_curve = ft.AnimationCurve.EASE_IN,
+        self.list_switcher = ft.Tabs(
+            selected_index=0,
+            animation_duration=300,
+            indicator_tab_size=True,
             expand=True,
-            content = self.payable_column
+            tabs=[
+                ft.Tab(
+                    "My Payables",
+                    content = self.payable_column
+                ),
+                ft.Tab(
+                    "My Receivables",
+                    content = self.receivable_column
+                )
+            ]
         )
         
         self.group_name_text = ft.Text(
@@ -172,11 +190,6 @@ class ItemsView(ft.Column):
             "Owen David"
         )
         
-        self.receivables_button = ft.ElevatedButton(
-            "My Receivables",
-            color="white"
-        )
-        
         self.financial_recap_text = ft.Text(
             "Financial Recap: ",
             italic=True,
@@ -194,7 +207,7 @@ class ItemsView(ft.Column):
         )
         
         info_column = ft.Column(
-            controls=[self.user_image, self.username, self.receivables_button],
+            controls=[self.user_image, self.username],
             horizontal_alignment=ft.CrossAxisAlignment.CENTER
         )
         
@@ -267,7 +280,6 @@ class ItemsView(ft.Column):
         self.group_name_text.color = colors["ae8948"]
         self.created_by_text.color = colors["ae8948"]
         self.group_code_text.color = colors["ae8948"]
-        self.receivables_button.bgcolor = colors["ae8948"]
         
         self.financial_recap_text.color = colors["ae8948"]
         self.total_payable_text.color = colors["ae8948"]

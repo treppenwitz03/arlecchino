@@ -30,7 +30,6 @@ class HomeController:
         # Handle group items view events
         self.items_view.return_button.on_click = self.return_to_grid
         self.items_view.reload_button.on_click = self.reload_listview
-        self.items_view.receivables_button.on_click = self.show_receivables
         self.items_view.add_receivable_button.on_click = self.open_receivable_adding_dialog
         
         # handle reload requests
@@ -85,6 +84,8 @@ class HomeController:
         self.page.client_storage.set("keep_signed_in", False)
         self.page.client_storage.set("recent_set_keep_signed_in", False)
         self.group_listview.grid.controls = []
+        self.location_change(ft.ControlEvent('', '', '', self.home_page.home_button, ''))
+        self.return_to_grid(ft.ControlEvent('','','','',''))
         self.page.go("/login")
         self.page.update()
     
@@ -398,21 +399,6 @@ class HomeController:
             self.update_account_view()
         
         self.page.update()
-    
-    # switch between payables and receivables
-    def show_receivables(self, event: ft.ControlEvent):
-        if self.items_view.list_switcher.content == self.items_view.payable_column:
-            self.items_view.receivables_button.text = "My Payables"
-            self.items_view.list_switcher.content = self.items_view.receivable_column
-        else:
-            self.items_view.receivables_button.text = "My Receivables"
-            self.items_view.list_switcher.content = self.items_view.payable_column
-        
-        if self.items_view.add_receivable_button not in self.items_view.receivable_list.controls:
-            self.items_view.receivable_list.controls.append(self.items_view.add_receivable_button)
-        
-        self.items_view.receivables_button.update()
-        self.items_view.list_switcher.update()
     
     # when add receivable_button is clicked
     def open_receivable_adding_dialog(self, event: ft.ControlEvent):
