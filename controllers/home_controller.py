@@ -55,6 +55,27 @@ class HomeController:
         
         # handle logout request
         self.account_view.logout_button.on_click = self.logout_account
+
+        # initalize the add/join group button
+        self.add_button = AddGroupButton()
+        self.add_button.on_join_group = self.show_join_group_dialog
+        self.add_button.on_create_group = self.show_create_group_dialog
+        self.add_button.on_search_groups = self.show_search_groups_dialog
+        self.group_listview.grid.controls.append(self.add_button)
+    
+     # shows the group adding/joining dialog
+    def show_join_group_dialog(self, event: ft.ControlEvent):
+        colors = get_colors(self.page.client_storage.get("dark_mode"))
+        self.home_page.join_dialog.update_colors(colors)
+        self.home_page.show_join_group_dialog()
+    
+    def show_create_group_dialog(self, event: ft.ControlEvent):
+        colors = get_colors(self.page.client_storage.get("dark_mode"))
+        self.home_page.create_new_dialog.update_colors(colors)
+        self.home_page.show_create_group_dialog()
+    
+    def show_search_groups_dialog(self, event: ft.ControlEvent):
+        self.home_page.show_search_groups_dialog()
     
     # reapplies the theme althroughout the homepage
     def reapply_theme(self):
@@ -83,7 +104,11 @@ class HomeController:
     def logout_account(self, event: ft.ControlEvent):
         self.page.client_storage.set("keep_signed_in", False)
         self.page.client_storage.set("recent_set_keep_signed_in", False)
-        self.group_listview.grid.controls = []
+
+        for control in self.group_listview.grid.controls:
+            if control is GroupButton:
+                self.group_listview.grid.controls.remove(control)
+
         self.location_change(ft.ControlEvent('', '', '', self.home_page.home_button, ''))
         self.return_to_grid(ft.ControlEvent('','','','',''))
         self.page.go("/login")
@@ -91,7 +116,9 @@ class HomeController:
     
     # reload the group listview
     def reload_groups(self, email: str):
-        self.group_listview.grid.controls = []
+        for control in self.group_listview.grid.controls:
+            if hasattr(control, "image_string"):
+                self.group_listview.grid.controls.remove(control)
         self.group_listview.update()
         self.fill_groups(email)
 
@@ -144,19 +171,7 @@ class HomeController:
             group_button.update_colors(colors)
             group_button.group = group_object
             group_button.activate = lambda button, group_name, image_string: self.open_group(group_name, image_string, button.group, False)
-            self.group_listview.grid.controls.append(group_button)
-        
-        # initalize the add/join group button
-        add_button = AddGroupButton()
-        add_button.update_colors(colors)
-        add_button.on_click = self.show_add_group_dialog
-        self.group_listview.grid.controls.append(add_button)
-    
-    # shows the group adding/joining dialog
-    def show_add_group_dialog(self, event: ft.ControlEvent):
-        colors = get_colors(self.page.client_storage.get("dark_mode"))
-        self.home_page.add_group_dialog.update_colors(colors)
-        self.home_page.show_add_group_dialog()
+            self.group_listview.grid.controls.insert(len(self.group_listview.grid.controls) - 2, group_button)
     
     # shows the listview for the group
     def open_group(self, group_name: str, image_string: str, group: Group, from_reload: bool):

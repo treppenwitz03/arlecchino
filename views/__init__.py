@@ -17,7 +17,7 @@ from .settings_view import *
 # Dialogs
 
 from .account_settings_dialogs import *
-from .add_dialog import AddDialog
+from .group_addition_dialogs import JoinGroupDialog, CreateGroupDialog, SearchGroupsDialog
 from .add_receivable_dialog import AddReceivableDialog
 from .item_info_dialog import ItemInfoDialog
 from .settings_view_dialogs import *

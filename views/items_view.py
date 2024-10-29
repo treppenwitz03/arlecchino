@@ -1,6 +1,6 @@
 import flet as ft
 from views.item_button import ItemButton
-from views.group_button import AddGroupButton
+from views.group_button import AddReceivableButton
 
 class ItemsView(ft.Column):
     group = None
@@ -129,7 +129,7 @@ class ItemsView(ft.Column):
             controls=[self.receivable_list]
         )
         
-        self.add_receivable_button = AddGroupButton()
+        self.add_receivable_button = AddReceivableButton()
         
         self.list_switcher = ft.Tabs(
             selected_index=0,

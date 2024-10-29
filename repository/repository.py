@@ -26,8 +26,6 @@ from typing import List
 ###########################################################################
 
 class Repository:
-    users: List[User] = []
-    groups: List[Group] = []
     def __init__(self):
         pass
     
@@ -50,9 +48,13 @@ class Repository:
             
             self.load_users()
             self.load_groups()
+            self.done_loading()
             return True
-        except:
+        except ValueError:
             return False
+    
+    def done_loading(self):
+        pass
     
     # update the references so that when the groups and users are retrieved all changes are reflected
     def update_refs(self):

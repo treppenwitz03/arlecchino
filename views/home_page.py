@@ -7,7 +7,7 @@ from views.settings_view import SettingsView
 from views.feedback_view import FeedbackView
 from views.account_view import AccountView
 
-from views.add_dialog import AddDialog
+from views.group_addition_dialogs import *
 from views.item_info_dialog import ItemInfoDialog
 from views.add_receivable_dialog import AddReceivableDialog
 from views.show_receivable_info_dialog import ShowReceivableInfoDialog
@@ -153,7 +153,10 @@ class HomePage(AbstractPage):
             controls = [main_row]
         )
         
-        self.add_group_dialog = AddDialog()
+        self.join_dialog = JoinGroupDialog()
+        self.create_new_dialog = CreateGroupDialog()
+        self.search_groups_dialog = SearchGroupsDialog()
+
         self.item_infos_dialog = ItemInfoDialog()
         self.add_receivable_dialog = AddReceivableDialog()
         self.receivable_info_dialog = ShowReceivableInfoDialog()
@@ -191,9 +194,19 @@ class HomePage(AbstractPage):
         self.page.update()
     
     ##################### show dialogs ###############################
-    def show_add_group_dialog(self):
-        self.page.dialog = self.add_group_dialog
-        self.add_group_dialog.open = True
+    def show_join_group_dialog(self):
+        self.page.dialog = self.join_dialog
+        self.join_dialog.open = True
+        self.page.update()
+    
+    def show_create_group_dialog(self):
+        self.page.dialog = self.create_new_dialog
+        self.create_new_dialog.open = True
+        self.page.update()
+    
+    def show_search_groups_dialog(self):
+        self.page.dialog = self.search_groups_dialog
+        self.search_groups_dialog.open = True
         self.page.update()
     
     def show_info_dialog(self):
