@@ -1,22 +1,22 @@
 <div>
-    <h1 align="center">Morax</h1>
-    <h3 align="center">A Shared Financial Manager</h3>
+    <h1 align="center">Screwllum</h1>
+    <h3 align="center">Service Tracking, Simplified</h3>
 </div>
 
 ![screenshot](assets/app_screenshot.png)
 
 <br>
-Morax is a shared financial manager application for groups written in Flet and Python
+Screwllum is a special service appointment system that blends ease of use with functionality, written in Flet and Python
 
 ## Try
 Install the following dependencies using pip
 ```
-pip install flet flet_route firebase_admin pillow google-auth opencv-python qrcode cairosvg
+pip install flet flet_route firebase_admin pillow google-auth opencv-python 
 ```
 Clone repository and change directory
 ```
-git clone https://github.com/neverbdneverw/morax.git
-cd morax
+git clone https://github.com/treppenwitz03/screwllum.git
+cd screwllum
 ```
 
 Start Morax on your system
@@ -34,9 +34,6 @@ Feel free to send pull requests to this repository with your code.
 <br>
 <sup><b>License</b>: GNU GPLv3</sup>
 
-## A project by:
+## Developed by:
 ### Malicsi, Owen David P.
-### Paña, Ralph John H.
-### Torino, Tristan Kirby E.
-### Fernandez, Achilles Maximus M.
-### Comprendio, Emmanuel James H.
+## based on https://github.com/neverbdneverw/morax
