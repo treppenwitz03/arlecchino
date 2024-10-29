@@ -259,9 +259,9 @@ class Repository:
     # send an email confirmation code and returns what is sent for forgot password
     def get_email_confirmation_code_forgot(self, email):
         code = random.randrange(100000, 999999)
-        subject = "Do you want to reset your password with Screwllum? "
+        subject = "Do you want to reset your password with Arlecchino? "
         body = f"""
-Someone is trying to change your password within Screwllum.
+Someone is trying to change your password within Arlecchino.
 
 If this is you, enter the following code on the app prompt:
 
@@ -281,12 +281,12 @@ Ignore this message if not.
 
         return code
     
-    # Confirm account with Screwllum
+    # Confirm account with Arlecchino
     def get_email_confirmation_code(self, email):
         code = random.randrange(100000, 999999)
-        subject = "Confirm your account with Screwllum"
+        subject = "Confirm your account with Arlecchino"
         body = f"""
-Greetings! Welcome to Screwllum. To continue, please confirm your email.
+Greetings! Welcome to Arlecchino. To continue, please confirm your email.
 
 If this is you, enter the following code on the app prompt:
 

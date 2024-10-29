@@ -30,7 +30,7 @@ class OnboardingPage(AbstractPage):
         self.main_column = ft.Column(
             controls = [
                 logo_row,
-                ft.Text("Welcome to Screwllum", weight=ft.FontWeight.BOLD, size=44),
+                ft.Text("Welcome to Arlecchino", weight=ft.FontWeight.BOLD, size=44),
                 ft.Text("A special service appointment system", weight=ft.FontWeight.W_400, size=20, color="#4d4d4d"),
                 ft.Container(options_column, padding=ft.padding.only(30, 100, 30, 100))
             ],

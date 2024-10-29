@@ -19,7 +19,7 @@ def main(page: ft.Page):
     # Set window parameters
     page.window.width = 1024
     page.window.height = 768
-    page.title = "Screwllum"
+    page.title = "Arlecchino"
     
     # Set dark mode from prefs
     if bool(page.client_storage.get("dark_mode")):

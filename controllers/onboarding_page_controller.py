@@ -142,7 +142,7 @@ class OnboardingController:
             
             self.repository.update_user(current_user)
             
-            self.onboarding_page.next_button.text = "Start Screwllum"
+            self.onboarding_page.next_button.text = "Start Arlecchino"
             self.onboarding_page.next_button.update()
             self.current = 2
         elif self.current == 2: # the profile page

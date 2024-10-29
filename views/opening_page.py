@@ -15,7 +15,7 @@ class OpeningPage(AbstractPage):
         )
 
         app_name = ft.Text(
-            "Screwllum",
+            "Arlecchino",
             weight=ft.FontWeight.W_700,
             size=24
         )
@@ -68,7 +68,7 @@ class OpeningPage(AbstractPage):
         )
 
         self.sub_text = ft.Text(
-            "Screwllum is a special service appointment system that blends ease of use with functionality.",
+            "Arlecchino is a special service appointment system that blends ease of use with functionality.",
             size=16,
             width=300,
             color="black"
@@ -83,16 +83,16 @@ class OpeningPage(AbstractPage):
                         self.login_button
                     ], spacing=32),
                     ft.Lottie(
-                        src="https://lottie.host/53a2afd7-dce6-442a-a174-486a61479fe3/5YSr4u8v83.json",
+                        src="https://raw.githubusercontent.com/treppenwitz03/Mink/refs/heads/master/arle.json",
                         animate=True,
-                        width=640,
+                        width=620,
                     )
                 ],
                 expand=True,
                 alignment=ft.MainAxisAlignment.SPACE_BETWEEN
             ),
             padding=ft.padding.all(50),
-            bgcolor="#c0edd1",
+            bgcolor="#8c8d93",
             expand=True
         )
         
