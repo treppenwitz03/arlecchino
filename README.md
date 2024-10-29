@@ -15,11 +15,11 @@ pip install flet flet_route firebase_admin pillow google-auth opencv-python
 ```
 Clone repository and change directory
 ```
-git clone https://github.com/treppenwitz03/screwllum.git
+git clone https://github.com/treppenwitz03/arlecchino.git
 cd screwllum
 ```
 
-Start Morax on your system
+Start Arlecchino on your system
 ```
 python main.py
 ```
