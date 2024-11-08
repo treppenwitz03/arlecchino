@@ -5,14 +5,8 @@ import ssl
 import io
 import base64
 
-from Crypto.Cipher import AES
-from Crypto.Util.Padding import pad, unpad
 from email.message import EmailMessage
 from firebase_admin import db, credentials, storage
-from google.oauth2 import service_account
-from google.auth.exceptions import TransportError
-from googleapiclient.discovery import build
-from googleapiclient.http import MediaIoBaseDownload, MediaIoBaseUpload
 from googleapiclient.errors import HttpError
 from socket import gaierror
 from . import utils
