@@ -55,17 +55,7 @@ class ItemsView(ft.Column):
         self.header_container = ft.Container(
             padding = ft.padding.only(10, 10, 10, 10),
             border_radius=ft.BorderRadius(0, 0, 15, 15),
-            content=header_row,
-            gradient=ft.LinearGradient(
-                begin=ft.alignment.center_left,
-                end=ft.alignment.center_right,
-                colors=[
-                    "#9a6e32",
-                    "#c7ac65",
-                    "#c7ac65",
-                    "#c7ac65"
-                ]
-            )
+            content=header_row
         )
         
         self.payable_list = ft.ListView(
@@ -228,7 +218,7 @@ class ItemsView(ft.Column):
             border_radius=ft.BorderRadius(15, 15, 15, 15),
             expand=True,
             padding = 20,
-            border=ft.border.all(1, "#d6d6d6")
+            border=ft.border.all(1)
         )
         
         self.group_info_column = ft.Column(
@@ -265,28 +255,3 @@ class ItemsView(ft.Column):
     # make a callback to trigger reload
     def on_trigger_reload(self, event: ft.ControlEvent):
         pass
-    
-    # update color with scheme
-    def update_colors(self, colors):
-        self.group_name.color = colors["white"]
-        self.header_container.gradient.colors=[
-            colors["9a6e32"],
-            colors["c7ac65"],
-            colors["c7ac65"],
-            colors["c7ac65"]
-        ]
-        
-        self.empty_warning_text.color = colors["black"]
-        self.group_name_text.color = colors["ae8948"]
-        self.created_by_text.color = colors["ae8948"]
-        self.group_code_text.color = colors["ae8948"]
-        
-        self.financial_recap_text.color = colors["ae8948"]
-        self.total_payable_text.color = colors["ae8948"]
-        self.total_receivable_text.color = colors["ae8948"]
-        
-        self.personal_info_container.bgcolor = colors["fcffff"]
-        self.personal_info_container.border = ft.border.all(1, colors["d6d6d6"])
-        
-        self.info_sidebar.bgcolor = colors["f6f7f8"]
-        

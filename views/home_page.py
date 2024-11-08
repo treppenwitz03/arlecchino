@@ -43,8 +43,8 @@ class HomePage(AbstractPage):
         
         logo = ft.Image(
             src = "/logo.png",
-            width=50,
-            height=50
+            width=48,
+            height=48
         )
         
         logo_row = ft.Row(
@@ -134,7 +134,7 @@ class HomePage(AbstractPage):
         
         self.sidebar_container = ft.Container(
             content=sidebar,
-            padding=0
+            padding=ft.padding.only(0, 16, 0, 0)
         )
         
         main_row = ft.Row(
@@ -254,23 +254,3 @@ class HomePage(AbstractPage):
         self.currency_dialog.open = True
         self.page.update()
     ###########################################################
-    
-    # set colors with scheme
-    def update_colors(self, colors):
-        self.home_button.style.color={"selected": colors["black"], "": colors["d6d6d6"]}
-        self.settings_button.style.color={"selected": colors["black"], "": colors["d6d6d6"]}
-        self.feedback_button.style.color={"selected": colors["black"], "": colors["d6d6d6"]}
-        self.profile_button.style.color={"selected": colors["black"], "": colors["d6d6d6"]}
-        
-        self.sidebar_container.bgcolor = colors["white"]
-        
-        self.view.bgcolor = colors["f8fafc"]
-        self.update_subviews(colors)
-    
-    # create an update subview callback
-    def update_subviews(self, colors):
-        pass
-    
-    # create a reapply theme callback
-    def reapply_theme(self):
-        pass

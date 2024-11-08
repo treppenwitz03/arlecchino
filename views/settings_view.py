@@ -27,6 +27,23 @@ class SettingsView(ft.Column):
             padding=ft.padding.only(30, 30, 30, 0),
             content=top_text_row
         )
+
+        self.subtitle_text = ft.Text(
+            expand=True,
+            value="Modify the application's appearance and behavior through the settings below.",
+            weight=ft.FontWeight.W_400,
+            size=20
+        )
+
+        subtitle_text_row = ft.Row(
+            expand=True,
+            controls=[self.subtitle_text]
+        )
+
+        self.subtitle_text_container = ft.Container(
+            padding=ft.padding.only(30, 0, 30, 0),
+            content=subtitle_text_row
+        )
         
         self.appearance_setting = SettingButton("Appearance", "Customize the app's visual style and layout to suit your preferences", "")
         self.currency_setting = SettingButton("Currency", "Adjust the currency settings to specify your preferred currency for transactions and display.", "Currently set to: P")
@@ -46,26 +63,12 @@ class SettingsView(ft.Column):
         )
         
         self.controls.append(self.top_text_container)
+        self.controls.append(self.subtitle_text_container)
         self.controls.append(self.setting_container)
     
     # dictate whether to show or hide settings
     def show(self, delta):
         self.offset = ft.transform.Offset(0, delta)
-        self.update()
-    
-    # update the colors with scheme
-    def update_colors(self, colors):
-        self.top_text.color = colors["black"]
-        self.setting_container.bgcolor = colors["ebebeb"]
-        self.appearance_setting.update_colors(colors)
-        self.currency_setting.update_colors(colors)
-        
-        self.appearance_setting.on_hover = lambda e: self.change_color(e, colors)
-        self.currency_setting.on_hover = lambda e: self.change_color(e, colors)
-    
-    # change the colors
-    def change_color(self, event: ft.ControlEvent, colors):
-        self.bgcolor = colors["d6d6d6"] if event.data == "true" else colors["fcffff"]
         self.update()
 
 class SettingButton(ft.Container):
@@ -121,10 +124,3 @@ class SettingButton(ft.Container):
         self.padding = 20
         self.margin = ft.margin.only(40, 0, 40, 0)
         self.border_radius = 15
-    
-    ## update the colors
-    def update_colors(self, colors):
-        self.colors = colors
-        self.setting_with_current.color = colors["a6a6a6"]
-        self.setting_description.color = colors["a6a6a6"]
-        self.bgcolor = colors["fcffff"]

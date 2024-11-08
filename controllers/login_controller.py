@@ -1,5 +1,6 @@
-from repository import Repository, get_colors
+from repository import Repository
 from views import LoginPage
+from .controller_connector import ControllerConnector
 import flet as ft
 
 class LoginController:
@@ -30,7 +31,8 @@ class LoginController:
         
         for user in self.repository.users:
             if self.repository.decrypt(user.email) == email and user.password == password:
-                self.page.client_storage.set("email", self.repository.encrypt(email))
+                # self.page.client_storage.set("email", self.repository.encrypt(email))
+                ControllerConnector.set_email(self.page, self.repository.encrypt(email))
                 if user.first_run:
                     self.page.go("/onboarding")
                 else:

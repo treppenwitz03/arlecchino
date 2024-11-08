@@ -31,7 +31,7 @@ class OnboardingPage(AbstractPage):
             controls = [
                 logo_row,
                 ft.Text("Welcome to Arlecchino", weight=ft.FontWeight.BOLD, size=44),
-                ft.Text("A special service appointment system", weight=ft.FontWeight.W_400, size=20, color="#4d4d4d"),
+                ft.Text("A special service appointment system", weight=ft.FontWeight.W_400, size=20),
                 ft.Container(options_column, padding=ft.padding.only(30, 100, 30, 100))
             ],
             horizontal_alignment=ft.CrossAxisAlignment.CENTER,
@@ -101,7 +101,7 @@ class OnboardingPage(AbstractPage):
             controls = [
                 gcash_logo_row,
                 ft.Text("Update your Profile Picture", weight=ft.FontWeight.BOLD, size=44),
-                ft.Text("Profile pictures allow you to be easily", weight=ft.FontWeight.W_400, size=20, color="#4d4d4d"),
+                ft.Text("Profile pictures allow you to be easily", weight=ft.FontWeight.W_400, size=20),
                 ft.Container(options_row, padding=ft.padding.only(30, 100, 30, 100))
             ],
             horizontal_alignment=ft.CrossAxisAlignment.CENTER,
@@ -146,7 +146,7 @@ class OnboardingPage(AbstractPage):
             controls = [
                 profile_logo_row,
                 ft.Text("Update your Profile Picture", weight=ft.FontWeight.BOLD, size=44),
-                ft.Text("Profile pictures allow you to be easily recognizable.", weight=ft.FontWeight.W_400, size=20, color="#4d4d4d"),
+                ft.Text("Profile pictures allow you to be easily recognizable.", weight=ft.FontWeight.W_400, size=20),
                 ft.Container(profile_upload_column, padding=ft.padding.only(30, 100, 30, 100))
             ],
             horizontal_alignment=ft.CrossAxisAlignment.CENTER,
@@ -185,39 +185,14 @@ class OnboardingPage(AbstractPage):
         self.basket = basket
         self.page = page
         return self.view
-    
-    # update the colors with the scheme
-    def update_colors(self, colors):
-        self.main_column.controls[1].color = colors["4d4d4d"]
-        self.profile_column.controls[1].color = colors["4d4d4d"]
-        self.profile_upload_button.bgcolor = colors["d6d6d6"]
-        self.profile_upload_button.content.color = colors["ae8948"]
-        self.qr_upload_button.bgcolor = colors["d6d6d6"]
-        self.qr_upload_button.content.color = colors["ae8948"]
-        self.next_button.bgcolor = colors["d6d6d6"]
-        self.next_button.color = colors["ae8948"]
-        self.view.bgcolor = colors["fafafa"]
-        
-        self.number_textfield.border_color = colors["d6d6d6"]
-        self.number_textfield.cursor_color = colors["black"]
-        self.number_textfield.bgcolor = colors["d6d6d6"]
-        self.number_textfield.color = colors["black"]
-        self.number_textfield.label_style.color = colors["black"]
-        
-        self.help_button.update_colors(colors)
-        self.contribute_button.update_colors(colors)
 
 class SupportButton(ft.Container):
     def __init__(self, icon_name: ft.icons, button_name: str):
         super().__init__()
-        self.icon = ft.Icon(icon_name, color="#ae8948", size=32)
-        self.text = ft.Text(button_name, color="#ae8948", weight=ft.FontWeight.W_400, size=16, width=200)
+        self.icon = ft.Icon(icon_name, size=32)
+        self.text = ft.Text(button_name, weight=ft.FontWeight.W_400, size=16, width=200)
         
         self.content = ft.Row(
             controls = [self.icon, self.text],
             alignment=ft.MainAxisAlignment.CENTER
         )
-    
-    def update_colors(self, colors):
-        self.icon.color = colors["ae8948"]
-        self.text.color = colors["ae8948"]

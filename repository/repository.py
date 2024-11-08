@@ -26,9 +26,6 @@ from typing import List
 ###########################################################################
 
 class Repository:
-    def __init__(self):
-        pass
-    
     def load(self):
         try:
             cred = credentials.Certificate("repository/database.json")

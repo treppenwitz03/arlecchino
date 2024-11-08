@@ -2,6 +2,8 @@ from models import Transaction
 from repository import Repository
 from views import HomePage
 
+from .controller_connector import ControllerConnector
+
 from PIL import Image
 
 import flet as ft
@@ -55,7 +57,7 @@ class ItemInfoDialogController:
         else:
             # show the payment request page
             group_name = self.item_info_dialog.group_name
-            current_email = self.page.client_storage.get("email")
+            current_email: str = ControllerConnector.get_email(self.page)
             item_name = self.repository.encrypt(self.item_info_dialog.item_name.value)
             
             self.item_info_dialog.open = False

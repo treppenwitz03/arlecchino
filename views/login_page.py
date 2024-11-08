@@ -187,17 +187,7 @@ class LoginPage(AbstractPage):
         
         self.main_container = ft.Container(
             expand=True,
-            content=main_row,
-            gradient=ft.LinearGradient(
-                begin=ft.alignment.center_left,
-                end=ft.alignment.center_right,
-                colors=[
-                    "#9a6e32",
-                    "#c7ac65",
-                    "#c7ac65",
-                    "#c7ac65"
-                ]
-            )
+            content=main_row
         )
         
         self.route_address = "/login"
@@ -248,45 +238,3 @@ class LoginPage(AbstractPage):
         self.page.dialog = self.warning_dialog
         self.warning_dialog.open = True
         self.page.update()
-    
-    # Update colors when color scheme changes
-    def update_colors(self, colors):
-        self.login_indicator_text.color = colors["black"]
-        
-        self.welcome_back_text.color = colors["black"]
-        
-        self.email_textfield.border_color = colors["d6d6d6"]
-        self.email_textfield.cursor_color = colors["black"]
-        self.email_textfield.bgcolor = colors["d6d6d6"]
-        self.email_textfield.color = colors["black"]
-        self.email_textfield.label_style.color = colors["black"]
-        
-        self.password_textfield.border_color = colors["d6d6d6"]
-        self.password_textfield.cursor_color = colors["black"]
-        self.password_textfield.bgcolor = colors["d6d6d6"]
-        self.password_textfield.color = colors["black"]
-        self.password_textfield.label_style.color = colors["black"]
-        
-        self.keep_logged_check.fill_color = colors["d6d6d6"]
-        self.keep_logged_check.check_color = colors["ae8948"]
-        
-        self.forgot_password_text.color = colors["9a6e32"]
-        
-        self.login_btn.bgcolor = colors["d6d6d6"]
-        self.login_btn.content.color = colors["ae8948"]
-        
-        self.signup_indicator_text.color = colors["black"]
-        
-        self.signup_button.bgcolor = colors["d6d6d6"]
-        self.signup_button.content.color = colors["ae8948"]
-        
-        self.sidebar_container.bgcolor = colors["fafafa"]
-        
-        self.main_container.gradient.colors = [
-            colors["9a6e32"],
-            colors["c7ac65"],
-            colors["c7ac65"],
-            colors["c7ac65"]
-        ]
-        
-        self.view.bgcolor = colors["9a6e32"]

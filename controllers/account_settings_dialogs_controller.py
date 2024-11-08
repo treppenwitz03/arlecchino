@@ -1,5 +1,7 @@
 from views import HomePage, ProfilePictureChangeDialog, EditGcashDialog, EditUsernameDialog, EditPasswordDialog, AccountView
-from repository import Repository, utils, get_colors
+from repository import Repository, utils
+
+from .controller_connector import ControllerConnector
 
 from PIL import Image
 from io import BytesIO
@@ -22,7 +24,7 @@ class AccountSettingsDialogsController:
         self.account_view: AccountView = home_page.account_view
         
         # retrieve the saved email
-        self.email: str = self.page.client_storage.get("email")
+        self.email: str = ControllerConnector.get_email(self.page)
         
         #################### set the file pickers ##################################
         self.qr_picker = ft.FilePicker()
@@ -69,9 +71,6 @@ class AccountSettingsDialogsController:
     
     # shows the gcash dialog with preliminary settings
     def show_change_gcash_dialog(self, event: ft.ControlEvent):
-        colors = get_colors(self.page.client_storage.get("dark_mode"))
-        self.change_gcash_dialog.update_colors(colors)
-        
         for user in self.repository.users:
             if user.email == self.email:
                 self.change_gcash_dialog.number_textfield.value = self.repository.decrypt(user.gcash_number)

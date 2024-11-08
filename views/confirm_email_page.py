@@ -145,17 +145,7 @@ class ConfirmEmailPage(AbstractPage):
         
         self.main_container = ft.Container(
             expand=True,
-            content=main_row,
-            gradient=ft.LinearGradient(
-                begin=ft.alignment.center_left,
-                end=ft.alignment.center_right,
-                colors=[
-                    "#9a6e32",
-                    "#c7ac65",
-                    "#c7ac65",
-                    "#c7ac65"
-                ]
-            )
+            content=main_row
         )
         
         self.route_address = "/confirm_email"
@@ -199,33 +189,3 @@ class ConfirmEmailPage(AbstractPage):
         self.page.dialog = self.warning_dialog
         self.warning_dialog.open = True
         self.page.update()
-    
-    # update the app colors
-    def update_colors(self, colors):
-        self.confirm_email_indicator_text.color = colors["black"]
-        self.code_sent_indicator_text.color = colors["black"]
-        
-        self.code_sent_textfield.border_color = colors["d6d6d6"]
-        self.code_sent_textfield.cursor_color = colors["black"]
-        self.code_sent_textfield.bgcolor = colors["d6d6d6"]
-        self.code_sent_textfield.color = colors["black"]
-        self.code_sent_textfield.label_style.color = colors["black"]
-        
-        self.confirm_email_button.bgcolor = colors["d6d6d6"]
-        self.confirm_email_button.content.color = colors["ae8948"]
-        
-        self.login_indicator_text.color = colors["black"]
-        
-        self.login_button.bgcolor = colors["d6d6d6"]
-        self.login_button.content.color = colors["ae8948"]
-        
-        self.sidebar_container.bgcolor = colors["fafafa"]
-        
-        self.main_container.gradient.colors=[
-            colors["9a6e32"],
-            colors["c7ac65"],
-            colors["c7ac65"],
-            colors["c7ac65"]
-        ]
-        
-        self.view.bgcolor = colors["9a6e32"]

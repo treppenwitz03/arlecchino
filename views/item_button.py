@@ -136,12 +136,3 @@ class ItemButton(ft.ElevatedButton):
     # make a callback for when this button is clicked
     def activate(self, event: ft.ControlEvent, item_name: str):
         pass
-    
-    # update the colors with scheme
-    def update_colors(self, colors):
-        self.user_name.color = colors["ae8948"]
-        self.item_name.color = colors["ae8948"]
-        self.item_description.color = colors["black"]
-        self.item_post_time.color = colors["ae8948"]
-        self.amount_received.color = colors["ae8948"]
-        self.amount.color = colors["ae8948"]

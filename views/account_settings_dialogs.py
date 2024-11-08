@@ -199,6 +199,3 @@ class EditGcashDialog(ft.AlertDialog):
         )
         
         self.content = self.content_container
-    
-    def update_colors(self, colors):
-        self.content_container.bgcolor = colors["f6f7f8"]

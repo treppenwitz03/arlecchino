@@ -28,8 +28,8 @@ class GroupButton(ft.ElevatedButton):
             
         group_image = ft.Image(
             "/default_image.png",
-            width=130,
-            height=130
+            width=150,
+            height=150
         )
         
         if image_string != "":
@@ -44,7 +44,9 @@ class GroupButton(ft.ElevatedButton):
         column = ft.Column(
             controls=[self.text_row, ft.Container(content=self.image, padding=10)],
             alignment=ft.MainAxisAlignment.CENTER,
-            spacing=0
+            spacing=0,
+            width=256,
+            height=256
         )
         
         self.content = column
@@ -56,15 +58,12 @@ class GroupButton(ft.ElevatedButton):
     # make a callback for when this button is clicked
     def activate(self, this, group_name: str, image_string: str):
         pass
-    
-    def update_colors(self, colors):
-        self.text.content.color = colors["ae8948"]
 
 class AddReceivableButton(GroupButton):
     def __init__(self):
         super().__init__("Add", "")
         # create a groupbutton specifically for opening the group addition/creation dialog
-        
+        self.content.height = 175
         self.image.controls[0].src = "/add_icon.svg"
         self.text_row.visible = False
 

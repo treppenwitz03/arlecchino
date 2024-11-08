@@ -11,6 +11,7 @@ from .onboarding_page_controller import OnboardingController
 from .account_settings_dialogs_controller import AccountSettingsDialogsController
 from .receivable_info_dialog_controller import ReceivableInfoDialogController
 from .settings_view_dialog_controller import *
+from .controller_connector import *
 from repository import Repository
 
 def initialize_controllers(page: ft.Page, repository: Repository, main_pages):

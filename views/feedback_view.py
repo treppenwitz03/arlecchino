@@ -73,7 +73,7 @@ class FeedbackView(ft.Column):
 
         self.describe_issue_container = ft.Container(
             content=contact_describeissue_row,
-            border = ft.border.all(width=1, color="#D6D6D6"),
+            border = ft.border.all(width=1),
             width=275,
             padding=8
         )
@@ -89,7 +89,7 @@ class FeedbackView(ft.Column):
 
         self.send_report_container = ft.Container(
             content=contact_send_report_row,
-            border=ft.border.all(width=1, color="#D6D6D6"),
+            border=ft.border.all(width=1),
             width = 275,
             padding=8
         )
@@ -105,7 +105,7 @@ class FeedbackView(ft.Column):
 
         self.get_help_container = ft.Container(
             content=contact_get_help_row,
-            border=ft.border.all(width=1, color="#D6D6D6"),
+            border=ft.border.all(width=1),
             width=275,
             padding=8
         )
@@ -131,7 +131,7 @@ class FeedbackView(ft.Column):
             padding=ft.padding.only(30, 0, 30, 30),
             margin=40,
             border_radius=15,
-            border=ft.border.all(width=1, color="#D6D6D6")
+            border=ft.border.all(width=1)
         )
 
         contribute_image = ft.Image(
@@ -161,7 +161,7 @@ class FeedbackView(ft.Column):
 
         self.helpproject_container_container = ft.Container(
             content=contribute_helpproject_row,
-            border = ft.border.all(width=1, color="#D6D6D6"),
+            border = ft.border.all(width=1),
             width=275,
             padding=8
         )
@@ -176,7 +176,7 @@ class FeedbackView(ft.Column):
 
         self.contributecode_container_container = ft.Container(
             content=contribute_contributecode_row,
-            border=ft.border.all(width=1, color="#D6D6D6"),
+            border=ft.border.all(width=1),
             width=275,
             padding=8
         )
@@ -191,7 +191,7 @@ class FeedbackView(ft.Column):
 
         self.involve_container_container = ft.Container(
             content=contribute_involved_row,
-            border=ft.border.all(width=1, color="#D6D6D6"),
+            border=ft.border.all(width=1),
             width=275,
             padding=8
         )
@@ -217,7 +217,7 @@ class FeedbackView(ft.Column):
             padding=ft.padding.only(30, 0, 30, 30),
             margin=40,
             border_radius=15,
-            border=ft.border.all(width=1, color="#D6D6D6")
+            border=ft.border.all(width=1)
         )
 
         contact_row = ft.Row(
@@ -235,28 +235,3 @@ class FeedbackView(ft.Column):
     def show(self, delta):
         self.offset = ft.transform.Offset(0, delta)
         self.update()
-    
-    # update the colors with scheme
-    def update_colors(self, colors):
-        self.top_text.color = colors["black"]
-        self.subtitle_text.color = colors["black"]
-        self.describe_issue_container.bgcolor = colors["f6f7f8"]
-        self.describe_issue_container.border = ft.border.all(width=1, color=colors["d6d6d6"])
-        self.send_report_container.bgcolor = colors["f6f7f8"]
-        self.send_report_container.border = ft.border.all(width=1, color=colors["d6d6d6"])
-        self.get_help_container.bgcolor = colors["f6f7f8"]
-        self.get_help_container.border = ft.border.all(width=1, color=colors["d6d6d6"])
-        self.button_contact_us.color = colors["white"]
-        self.button_contact_us.bgcolor = colors["ae8948"]
-        self.background_contact_container.bgcolor = colors["f6f7f8"]
-        self.background_contact_container.border = ft.border.all(width=1, color=colors["d6d6d6"])
-        self.helpproject_container_container.bgcolor = colors["f6f7f8"]
-        self.helpproject_container_container.border = ft.border.all(width=1, color=colors["d6d6d6"])
-        self.contributecode_container_container.bgcolor = colors["f6f7f8"]
-        self.contributecode_container_container.border = ft.border.all(width=1, color=colors["d6d6d6"])
-        self.involve_container_container.bgcolor = colors["f6f7f8"]
-        self.involve_container_container.border = ft.border.all(width=1, color=colors["d6d6d6"])
-        self.button_contribute.color = colors["white"]
-        self.button_contribute.bgcolor = colors["ae8948"]
-        self.background_contribute_container.bgcolor = colors["f6f7f8"]
-        self.background_contribute_container.border = ft.border.all(width=1, color=colors["d6d6d6"])

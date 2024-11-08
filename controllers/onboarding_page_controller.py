@@ -2,6 +2,8 @@ from models import User
 from repository import Repository
 from views import OnboardingPage
 
+from .controller_connector import *
+
 from io import BytesIO
 from PIL import Image
 
@@ -110,7 +112,7 @@ class OnboardingController:
     
     # handle progression of onboarding
     def switch_view(self, event: ft.ControlEvent):
-        email = self.page.client_storage.get("email")
+        email = ControllerConnector.get_email(self.page)
         
         current_user: User = None
         for user in self.repository.users:

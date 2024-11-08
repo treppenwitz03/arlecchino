@@ -149,7 +149,6 @@ class SignupPage(AbstractPage):
         
         self.login_indicator_text = ft.Text(
             value="Already have an account?",
-            color = ft.colors.BLACK,
             size=16
         )
         
@@ -222,17 +221,7 @@ class SignupPage(AbstractPage):
         
         self.main_container = ft.Container(
             expand=True,
-            content=main_row,
-            gradient=ft.LinearGradient(
-                begin=ft.alignment.center_left,
-                end=ft.alignment.center_right,
-                colors=[
-                    "#9a6e32",
-                    "#c7ac65",
-                    "#c7ac65",
-                    "#c7ac65"
-                ]
-            )
+            content=main_row
         )
         
         self.route_address = "/signup"
@@ -272,57 +261,3 @@ class SignupPage(AbstractPage):
     def allow_register(self, allow: bool):
         self.register_btn.disabled = (allow == False)
         self.page.update()
-    
-    # update colors with color scheme
-    def update_colors(self, colors):
-        self.signup_indicator_text.color = colors["black"]
-        
-        self.welcome_back_text.color = colors["black"]
-        
-        self.email_textfield.border_color = colors["d6d6d6"]
-        self.email_textfield.cursor_color = colors["black"]
-        self.email_textfield.bgcolor = colors["d6d6d6"]
-        self.email_textfield.color = colors["black"]
-        self.email_textfield.label_style.color = colors["black"]
-        
-        self.username_textfield.border_color = colors["d6d6d6"]
-        self.username_textfield.cursor_color = colors["black"]
-        self.username_textfield.bgcolor = colors["d6d6d6"]
-        self.username_textfield.color = colors["black"]
-        self.username_textfield.label_style.color = colors["black"]
-        
-        self.password_textfield.border_color = colors["d6d6d6"]
-        self.password_textfield.cursor_color = colors["black"]
-        self.password_textfield.bgcolor = colors["d6d6d6"]
-        self.password_textfield.color = colors["black"]
-        self.password_textfield.label_style.color = colors["black"]
-        
-        self.confirm_password_textfield.border_color = colors["d6d6d6"]
-        self.confirm_password_textfield.cursor_color = colors["black"]
-        self.confirm_password_textfield.bgcolor = colors["d6d6d6"]
-        self.confirm_password_textfield.color = colors["black"]
-        self.confirm_password_textfield.label_style.color = colors["black"]
-
-        self.agree_eula_indicator_button.content.color = colors["black"]
-        
-        self.agree_eula_check.fill_color = colors["d6d6d6"]
-        self.agree_eula_check.check_color = colors["ae8948"]
-        
-        self.register_btn.bgcolor = colors["d6d6d6"]
-        self.register_btn.content.color = colors["ae8948"]
-        
-        self.login_button.bgcolor = colors["d6d6d6"]
-        self.login_button.content.color = colors["ae8948"]
-        
-        self.login_indicator_text.color = colors["black"]
-        
-        self.sidebar_container.bgcolor = colors["fafafa"]
-        
-        self.main_container.gradient.colors = [
-            colors["9a6e32"],
-            colors["c7ac65"],
-            colors["c7ac65"],
-            colors["c7ac65"]
-        ]
-        
-        self.view.bgcolor = colors["9a6e32"]

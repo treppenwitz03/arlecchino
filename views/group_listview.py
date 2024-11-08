@@ -36,6 +36,23 @@ class GroupListView(ft.AnimatedSwitcher):
             padding = ft.padding.only(30, 30, 30, 0),
             content=top_text_row
         )
+
+        self.subtitle_text = ft.Text(
+            expand=True,
+            value="Click on your joined group to see its transactions. If you don't have any, add one.",
+            weight=ft.FontWeight.W_400,
+            size=20
+        )
+
+        subtitle_text_row = ft.Row(
+            expand=True,
+            controls=[self.subtitle_text]
+        )
+
+        self.subtitle_text_container = ft.Container(
+            padding=ft.padding.only(30, 0, 30, 0),
+            content=subtitle_text_row
+        )
         
         self.empty_warning_text = ft.Text(
             expand=True,
@@ -58,7 +75,7 @@ class GroupListView(ft.AnimatedSwitcher):
         self.grid = ft.GridView(
             expand = True,
             runs_count=5,
-            max_extent=200,
+            max_extent=256,
             child_aspect_ratio=1.0,
             spacing=20,
             run_spacing=20,
@@ -68,7 +85,7 @@ class GroupListView(ft.AnimatedSwitcher):
         self.items_view = ItemsView()
         
         self.grid_view = ft.Column(
-            controls=[self.top_text_container, self.empty_warning_text_container, self.grid]
+            controls=[self.top_text_container, self.subtitle_text_container, self.empty_warning_text_container, self.grid]
         )
         
         self.content = self.grid_view
@@ -81,8 +98,3 @@ class GroupListView(ft.AnimatedSwitcher):
     # make a callback for triggering reload
     def trigger_reload(self, email: str):
         pass
-    
-    # update the colors with scheme
-    def update_colors(self, colors):
-        self.top_text.color = colors["black"]
-        self.empty_warning_text = colors["black"]

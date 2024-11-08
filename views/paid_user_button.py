@@ -28,8 +28,3 @@ class PaidUserButton(ft.Container):
         self.padding = 10
         self.border_radius = 15
         self.tooltip = "Show proof of payment"
-    
-    # update the colors with scheme
-    def update_colors(self, colors):
-        self.reject_button.icon_color = colors["ae8948"]
-        self.bgcolor = colors["white"]

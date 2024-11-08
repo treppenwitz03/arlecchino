@@ -39,3 +39,29 @@ currency_symbols = {
     "USD": "$",
     "EU" : "€"
 }
+
+def generate_greeting():
+    greetings = [
+        "Hello", "Hi", "Hey", 
+        "Greetings", "Howdy", "Welcome", 
+        "My Salutations", "Yo", "Ahoy", 
+        "Bonjour", "Hola", "Namaste",
+        "Konnichiwa", "Kumusta", "Nihao",
+        "Salaam", "Cheers", "Howzit", 
+        "Sup", "Ciao", "Howdy-do", 
+        "Heya", "G'day", "Peace", 
+        "Shalom", "Hallo", "Let's do this", 
+        "Good times", "Blessings be yours", "Aloha", 
+        "Heyo", "Hiya", "Fun day's ahead", 
+        "Hola mi amigo", "Warm greetings", 
+        "Many welcomes to you", "Kind regards to you", 
+        "Hi my friend", "Hey my buddy", "Yo mate", 
+        "Glad tidings", "Hello there", "Hey there", 
+        "Big welcome", "Much greetings", "High five", 
+        "Heartfelt hello", "Mighty greetings", "Infinite welcomes", 
+        "Vast hellos", "Cheers", "Good to see you", 
+        "Warm regards", "Felicitations", "Best wishes",
+        "Pleased to see you", "Pleased to have you", "Annyeonghaseyo",
+    ]
+
+    return random.choice(greetings)

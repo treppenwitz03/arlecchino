@@ -40,9 +40,6 @@ class AppearanceDialog(ft.AlertDialog):
     # MAke the callback when the settings are changed
     def on_change(self, event):
         pass
-    
-    def update_colors(self, colors):
-        self.subtitle.color = colors["a6a6a6"]
         
 class CurrencyDialog(ft.AlertDialog):
     def __init__(self):
@@ -83,10 +80,6 @@ class CurrencyDialog(ft.AlertDialog):
     # Call on_change when settings is changed
     def on_change(self, currency):
         pass
-    
-    # update color with scheme
-    def update_colors(self, colors):
-        self.subtitle.color = colors["a6a6a6"]
 
 class ChoiceButton(ft.Column):
     def __init__(self, label: str, source: str):

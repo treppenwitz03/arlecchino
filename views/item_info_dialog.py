@@ -194,19 +194,3 @@ class ItemInfoDialog(ft.AlertDialog):
     def show_payment_details(self):
         self.switcher.content = self.payment_row
         self.switcher.update()
-    
-    # update color with scheme
-    def update_colors(self, colors):
-        self.item_name.color = colors["ae8948"]
-        self.price.color = colors["ae8948"]
-        self.account_name_info.color = colors["ae8948"]
-        self.item_post_time.color = colors["ae8948"]
-        
-        self.gcash_number.color = colors["black"]
-        self.item_price.color = colors["ae8948"]
-        self.payment_item_name.color = colors["ae8948"]
-        
-        self.gcash_container.bgcolor = colors["f6f7f8"]
-        
-        self.upload_proof_button.bgcolor = colors["d6d6d6"]
-        self.upload_proof_button.content.color = colors["black"]

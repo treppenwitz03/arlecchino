@@ -23,7 +23,6 @@ class OpeningPage(AbstractPage):
         self.signup_button = ft.ElevatedButton(
             width = 200,
             height = 32,
-            bgcolor="white",
             content = ft.Text(
                 value = "Create Account",
                 size = 16
@@ -40,13 +39,14 @@ class OpeningPage(AbstractPage):
         
         logo_row = ft.Row(
             alignment = ft.MainAxisAlignment.SPACE_BETWEEN,
+            vertical_alignment=ft.CrossAxisAlignment.CENTER,
             controls=[
                 ft.Row([
                     logo, 
                     app_name, 
                     self.about_button,
                     self.support_button
-                ]),
+                ], vertical_alignment=ft.CrossAxisAlignment.CENTER),
                 self.signup_button]
         )
 
@@ -63,15 +63,13 @@ class OpeningPage(AbstractPage):
             "Service Tracking, Simplified",
             weight=ft.FontWeight.W_900,
             size=48,
-            width=300,
-            color="black"
+            width=300
         )
 
         self.sub_text = ft.Text(
             "Arlecchino is a special service appointment system that blends ease of use with functionality.",
             size=16,
-            width=300,
-            color="black"
+            width=300
         )
 
         main_row = ft.Container(
@@ -94,13 +92,19 @@ class OpeningPage(AbstractPage):
                 spacing=50
             ),
             padding=ft.padding.all(50),
-            bgcolor="#8c8d93",
+            bgcolor="#3E2C31",
             expand=True,
-            height=720
+            height=2160
         )
         
         main_column = ft.Column(
-            controls = [logo_row, main_row]
+            controls = [
+                ft.Container(
+                    logo_row,
+                    padding=ft.padding.only(16, 16, 16, 8)
+                ), 
+                main_row
+            ]
         )
         
         self.route_address = "/"
@@ -114,21 +118,6 @@ class OpeningPage(AbstractPage):
         self.basket = basket
         self.page = page
         return self.view
-    
-    def update_colors(self, colors):
-        # Update the colors when update_colors is called
-        self.login_button.bgcolor = colors["d6d6d6"]
-        
-        self.login_button.content.color = colors["ae8948"]
-
-        self.about_button.style = ft.ButtonStyle(color = colors["ae8948"])
-        self.support_button.style = ft.ButtonStyle(color = colors["ae8948"])
-        
-        self.signup_button.bgcolor = colors["d6d6d6"]
-        
-        self.signup_button.content.color = colors["ae8948"]
-        
-        self.view.bgcolor = colors["fafafa"]
     
     def update(self):
         self.login_button.update()

@@ -2,6 +2,8 @@ from models import Group, Member
 from repository import Repository, utils
 from views import HomePage, JoinGroupDialog, CreateGroupDialog, SearchGroupsDialog
 
+from .controller_connector import ControllerConnector
+
 from PIL import Image
 
 import flet as ft
@@ -31,7 +33,7 @@ class JoinDialogController:
 
     def join_group(self, event):
         if self.code_validated:
-            email = self.page.client_storage.get("email")
+            email: str = ControllerConnector.get_email(self.page)
             
             username = ""
             for user in self.repository.users:
@@ -97,7 +99,7 @@ class CreateGroupDialogController:
     # create a new group
     def create_new(self, event):
         if self.create_group_dialog.get_created_group_name() != "" and self.create_group_dialog.get_created_group_desc() != "":
-            email: str = self.page.client_storage.get("email")
+            email: str = ControllerConnector.get_email(self.page)
             
             creator = ""
             for user in self.repository.users:
@@ -215,7 +217,7 @@ class SearchGroupsDialogController:
             self.search_groups_dialog.update()
     
     def join_group(self, event):
-        email = self.page.client_storage.get("email")
+        email: str = ControllerConnector.get_email(self.page)
             
         username = ""
         for user in self.repository.users:
