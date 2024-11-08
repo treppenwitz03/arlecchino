@@ -48,6 +48,8 @@ class HomeController:
             self.home_page.feedback_button,
             self.home_page.profile_button
         ]
+
+        self.active_button = self.sidebar_buttons[0]
         
         # handle feedback view events
         self.feedback_view.button_contact_us.on_click = lambda e: webbrowser.open_new("https://mail.google.com/mail/u/0/#inbox?compose=GTvVlcRzCMtQddshVRjPCKJRGfFwDxvWqJcNftmXFMFqqpdvrXXBpGsrfGGNTnSswPqHpChKdBRJG")
@@ -359,6 +361,9 @@ class HomeController:
     
     # handle when the current subview is changed
     def location_change(self, event: ft.ControlEvent):
+        if self.active_button == self.home_page.home_button:
+            self.return_to_grid(ft.ControlEvent('','','','',''))
+
         new_button = event.control
         
         if new_button == self.home_page.settings_button:
@@ -377,6 +382,8 @@ class HomeController:
             
         if new_button == self.home_page.profile_button:
             self.update_account_view()
+        
+        self.active_button = new_button
         
         self.page.update()
     
