@@ -2,6 +2,10 @@ from io import BytesIO
 import base64
 import random
 import string
+from Crypto.Cipher import AES
+from Crypto.Util.Padding import pad, unpad
+
+key: str = None
 
 # convert a given image byte to base64
 def convert_to_base64(file: BytesIO):
@@ -65,3 +69,23 @@ def generate_greeting():
     ]
 
     return random.choice(greetings)
+
+def encrypt(data: str):
+    if key:
+        cipher = AES.new(key, AES.MODE_ECB)
+        padded_text = pad(data.encode(), AES.block_size)
+        ciphertext = cipher.encrypt(padded_text)
+
+        return ciphertext.hex()
+
+def decrypt(ciphertext: str):
+    if key:
+        ciphertext = bytes.fromhex(ciphertext)
+        cipher = AES.new(key, AES.MODE_ECB)
+        decrypted_text = unpad(cipher.decrypt(ciphertext), AES.block_size)
+        
+        return decrypted_text.decode()
+
+def set_key(_key):
+    global key
+    key = _key

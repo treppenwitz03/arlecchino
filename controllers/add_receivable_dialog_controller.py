@@ -60,14 +60,14 @@ class AddReceivableDialogController:
     # add the receivable
     def add_receivable(self, event: ft.ControlEvent):
         email: str = ControllerConnector.get_email(self.page)
-        group_name = self.repository.encrypt(self.add_receivable_dialog.group)
-        item_name = self.repository.encrypt(self.add_receivable_dialog.get_item_name())
+        group_name = utils.encrypt(self.add_receivable_dialog.group)
+        item_name = utils.encrypt(self.add_receivable_dialog.get_item_name())
         item_month = self.add_receivable_dialog.get_item_creation_month()
         item_day = self.add_receivable_dialog.get_item_creation_day()
         item_year = self.add_receivable_dialog.get_item_creation_year()
-        item_date = self.repository.encrypt(f"{item_month} {item_day}, {item_year}")
-        item_amount = self.repository.encrypt(self.add_receivable_dialog.get_item_amount())
-        item_description = self.repository.encrypt(self.add_receivable_dialog.get_item_description())
+        item_date = utils.encrypt(f"{item_month} {item_day}, {item_year}")
+        item_amount = utils.encrypt(self.add_receivable_dialog.get_item_amount())
+        item_description = utils.encrypt(self.add_receivable_dialog.get_item_description())
         
         # convert the image to bytes
         image_bytes = io.BytesIO()

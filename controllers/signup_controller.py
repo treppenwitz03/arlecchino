@@ -1,4 +1,4 @@
-from repository import Repository
+from repository import Repository, utils
 from views import SignupPage
 import flet as ft
 import webbrowser
@@ -50,9 +50,9 @@ class SignupController:
         command = [
             "COMMAND_REGISTER",
             code,
-            self.repository.encrypt(self.signup_page.get_email_entry()),
-            self.repository.encrypt(self.signup_page.get_username_entry()),
-            self.repository.encrypt(self.signup_page.get_password_entry()),
+            utils.encrypt(self.signup_page.get_email_entry()),
+            utils.encrypt(self.signup_page.get_username_entry()),
+            utils.encrypt(self.signup_page.get_password_entry()),
         ]
         self.signup_page.basket.command = command
         self.page.go("/confirm_email")

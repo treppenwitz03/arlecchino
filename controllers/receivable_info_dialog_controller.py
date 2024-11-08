@@ -1,5 +1,5 @@
 from models import Transaction
-from repository import Repository
+from repository import Repository, utils
 from views import HomePage, ShowReceivableInfoDialog
 from PIL import Image, ImageTk
 
@@ -20,7 +20,7 @@ class ReceivableInfoDialogController:
     
     # mark the receivable as completed regardless of conditions
     def mark_receivable_completed(self, event: ft.ControlEvent):
-        item_name = self.repository.encrypt(self.receivable_info_dialog.title.value)
+        item_name = utils.encrypt(self.receivable_info_dialog.title.value)
         group_name = self.receivable_info_dialog.group_name
         
         for group in self.repository.groups:

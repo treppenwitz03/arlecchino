@@ -1,4 +1,4 @@
-from repository import Repository
+from repository import Repository, utils
 from views import ForgotPasswordPage
 import flet as ft
 
@@ -49,8 +49,8 @@ class ForgotController:
         command = [
             "COMMAND_CHANGE_PASSWORD",
             code,
-            self.repository.encrypt(self.forgot_password_page.get_email_to_send_entry()),
-            self.repository.encrypt(self.forgot_password_page.get_new_password_entry()),
+            utils.encrypt(self.forgot_password_page.get_email_to_send_entry()),
+            utils.encrypt(self.forgot_password_page.get_new_password_entry()),
         ]
         self.forgot_password_page.basket.command = command
         self.page.go("/confirm_email")

@@ -1,5 +1,6 @@
-from repository import Repository
+from repository import Repository, utils
 from views import LoginPage
+from models import User
 from .controller_connector import ControllerConnector
 import flet as ft
 
@@ -27,12 +28,13 @@ class LoginController:
     # verify the credentials and login
     def login(self, event):
         email = self.login_page.get_email_entry()
-        password = self.repository.encrypt(self.login_page.get_password_entry())
+        password = utils.encrypt(self.login_page.get_password_entry())
         
+        user: User = None
         for user in self.repository.users:
-            if self.repository.decrypt(user.email) == email and user.password == password:
-                self.page.client_storage.set("email", self.repository.encrypt(email))
-                ControllerConnector.set_email(self.page, self.repository.encrypt(email))
+            if utils.decrypt(user.email) == email and user.password == password:
+                self.page.client_storage.set("email", utils.encrypt(email))
+                ControllerConnector.set_email(self.page, utils.encrypt(email))
                 if user.first_run:
                     self.page.go("/onboarding")
                 else:

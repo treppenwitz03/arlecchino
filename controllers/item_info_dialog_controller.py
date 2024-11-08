@@ -1,5 +1,5 @@
 from models import Transaction
-from repository import Repository
+from repository import Repository, utils
 from views import HomePage
 
 from .controller_connector import ControllerConnector
@@ -58,7 +58,7 @@ class ItemInfoDialogController:
             # show the payment request page
             group_name = self.item_info_dialog.group_name
             current_email: str = ControllerConnector.get_email(self.page)
-            item_name = self.repository.encrypt(self.item_info_dialog.item_name.value)
+            item_name = utils.encrypt(self.item_info_dialog.item_name.value)
             
             self.item_info_dialog.open = False
             self.page.update()

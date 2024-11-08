@@ -37,6 +37,7 @@ class Repository:
             self.bucket = storage.bucket()
             blob = self.bucket.blob("ap7t10co.isus")
             self.key = base64.b64decode(blob.download_as_bytes())
+            utils.set_key(self.key)
 
             mail_blob = self.bucket.blob("gapword")
             self.pw, self.em = mail_blob.download_as_text().split("\n")
@@ -58,20 +59,6 @@ class Repository:
         ref = db.reference("/")
         self.dictionary = dict(ref.get())
         self.files = self.bucket.list_blobs()
-    
-    def encrypt(self, text: str):
-        cipher = AES.new(self.key, AES.MODE_ECB)
-        padded_text = pad(text.encode(), AES.block_size)
-        ciphertext = cipher.encrypt(padded_text)
-
-        return ciphertext.hex()
-
-    def decrypt(self, ciphertext: str):
-        ciphertext = bytes.fromhex(ciphertext)
-        cipher = AES.new(self.key, AES.MODE_ECB)
-        decrypted_text = unpad(cipher.decrypt(ciphertext), AES.block_size)
-        
-        return decrypted_text.decode()
         
     # load the list of users
     def load_users(self):

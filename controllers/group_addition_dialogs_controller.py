@@ -118,9 +118,9 @@ class CreateGroupDialogController:
             group_image_id = self.repository.upload_image(image_bytes)
             
             new_group = Group(
-                group_name=self.repository.encrypt(self.create_group_dialog.get_created_group_name()),
+                group_name=utils.encrypt(self.create_group_dialog.get_created_group_name()),
                 created_by=creator,
-                description=self.repository.encrypt(self.create_group_dialog.get_created_group_desc()),
+                description=utils.encrypt(self.create_group_dialog.get_created_group_desc()),
                 members=[Member(creator, email)],
                 picture_id=group_image_id,
                 unique_code=unique_code,
@@ -183,13 +183,13 @@ class SearchGroupsDialogController:
         for group in self.repository.groups:
             tile = ft.ListTile(
                 ft.padding.all(8),
-                data=self.repository.decrypt(group.group_name),
+                data=utils.decrypt(group.group_name),
                 leading=ft.Icon(ft.icons.ALBUM_OUTLINED),
-                title = ft.Text(self.repository.decrypt(group.group_name)),
-                subtitle = ft.Text(self.repository.decrypt(group.description)),
+                title = ft.Text(utils.decrypt(group.group_name)),
+                subtitle = ft.Text(utils.decrypt(group.description)),
                 on_click = self.item_clicked
             )
-            tile.created_by = self.repository.decrypt(group.created_by)
+            tile.created_by = utils.decrypt(group.created_by)
             tile.picture_link = group.picture_id
 
             self.search_groups_dialog.search_bar.controls.append(tile)
@@ -226,7 +226,7 @@ class SearchGroupsDialogController:
         
         group: Group = None
         for group in self.repository.groups:
-            if self.repository.decrypt(group.group_name) == self.chosen_group_tile.title.value:
+            if utils.decrypt(group.group_name) == self.chosen_group_tile.title.value:
 
                 member: Member = None
                 for member in group.members:

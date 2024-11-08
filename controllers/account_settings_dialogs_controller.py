@@ -1,5 +1,6 @@
 from views import HomePage, ProfilePictureChangeDialog, EditGcashDialog, EditUsernameDialog, EditPasswordDialog, AccountView
 from repository import Repository, utils
+from models import User
 
 from .controller_connector import ControllerConnector
 
@@ -73,7 +74,7 @@ class AccountSettingsDialogsController:
     def show_change_gcash_dialog(self, event: ft.ControlEvent):
         for user in self.repository.users:
             if user.email == self.email:
-                self.change_gcash_dialog.number_textfield.value = self.repository.decrypt(user.gcash_number)
+                self.change_gcash_dialog.number_textfield.value = utils.decrypt(user.gcash_number)
                 image_bytes = self.repository.download_image(user.qr_image_id)
                 self.change_gcash_dialog.qr_image.src_base64 = utils.convert_to_base64(image_bytes)       
 
@@ -160,8 +161,9 @@ class AccountSettingsDialogsController:
     def save_changed_username(self, event: ft.ControlEvent):
         replacement = self.change_username_dialog.new_username_textfield.value
         for user in self.repository.users:
+            user: User = None
             if user.email == self.email:
-                user.username = self.repository.encrypt(replacement)
+                user.username = utils.encrypt(replacement)
                 self.repository.update_user(user)
                 self.home_page.trigger_reload_account_view()
                 self.home_page.group_listview.top_text.value = f"Hello, {replacement}!"
@@ -180,7 +182,7 @@ class AccountSettingsDialogsController:
         
         for user in self.repository.users:
             if user.email == self.email:
-                user.password = self.repository.encrypt(password)
+                user.password = utils.encrypt(password)
                 self.repository.update_user(user)
                 
                 self.home_page.close_dialog(event)
@@ -244,7 +246,7 @@ class AccountSettingsDialogsController:
             if user.email == self.email:
                 id = self.repository.upload_image(self.qr_buffer)
                 user.qr_image_id = id
-                user.gcash_number = self.repository.encrypt(self.change_gcash_dialog.number_textfield.value)
+                user.gcash_number = utils.encrypt(self.change_gcash_dialog.number_textfield.value)
                 self.repository.update_user(user)
                 self.home_page.close_dialog(event)
                 

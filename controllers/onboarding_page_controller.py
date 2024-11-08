@@ -1,5 +1,5 @@
 from models import User
-from repository import Repository
+from repository import Repository, utils
 from views import OnboardingPage
 
 from .controller_connector import *
@@ -140,7 +140,7 @@ class OnboardingController:
             id = self.repository.upload_image(self.buffered)
             
             current_user.qr_image_id = id
-            current_user.gcash_number = self.repository.encrypt(self.onboarding_page.number_textfield.value)
+            current_user.gcash_number = utils.encrypt(self.onboarding_page.number_textfield.value)
             
             self.repository.update_user(current_user)
             
