@@ -36,10 +36,10 @@ class HomeController:
         
         # handle reload requests
         self.items_view.on_trigger_reload = self.reload_listview
-        self.group_listview.trigger_reload = self.reload_groups
+        self.group_listview.trigger_reload = self.fill_groups
         
         # handle other homepage requests
-        self.home_page.on_email_retrieved = self.fill_groups
+        self.home_page.on_homepage_drawn = self.start_filling_groups
         self.home_page.trigger_reload_account_view = self.update_account_view
         
         self.sidebar_buttons = [
@@ -65,6 +65,10 @@ class HomeController:
         self.add_button.on_search_groups = self.show_search_groups_dialog
         self.group_listview.grid.controls.append(self.add_button)
     
+    def start_filling_groups(self):
+        email: str = ControllerConnector.get_email(self.page)
+        self.fill_groups(email)
+    
      # shows the group adding/joining dialog
     def show_join_group_dialog(self, event: ft.ControlEvent):
         self.home_page.show_join_group_dialog()
@@ -85,21 +89,16 @@ class HomeController:
                 self.group_listview.grid.controls.remove(control)
 
         self.location_change(ft.ControlEvent('', '', '', self.home_page.home_button, ''))
-        self.return_to_grid(ft.ControlEvent('','','','',''))
+        self.return_to_grid()
         self.page.go("/login")
         self.page.update()
-    
-    # reload the group listview
-    def reload_groups(self, email: str):
-        for control in self.group_listview.grid.controls:
-            if hasattr(control, "image_string"):
-                self.group_listview.grid.controls.remove(control)
-        self.group_listview.update()
-        self.fill_groups(email)
 
     # fills the group list view
     def fill_groups(self, email: str):
         self.repository.update_refs()
+
+        self.group_listview.grid.controls = []
+        self.group_listview.grid.controls.append(self.add_button)
         
         # if keep_signed_in, notify the user of autologin
         if self.page.client_storage.get("keep_signed_in") is True and self.page.client_storage.get("recent_set_keep_signed_in") is False and self.page.client_storage.get("just_opened") is True:
@@ -307,7 +306,7 @@ class HomeController:
                 break
     
     # returns to group_listview
-    def return_to_grid(self, event: ft.ControlEvent):
+    def return_to_grid(self, event: ft.ControlEvent = None):
         self.items_view.payable_list.controls = []
         self.items_view.receivable_list.controls = []
         
@@ -362,7 +361,7 @@ class HomeController:
     # handle when the current subview is changed
     def location_change(self, event: ft.ControlEvent):
         if self.active_button == self.home_page.home_button:
-            self.return_to_grid(ft.ControlEvent('','','','',''))
+            self.return_to_grid()
 
         new_button = event.control
         

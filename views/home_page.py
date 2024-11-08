@@ -172,12 +172,11 @@ class HomePage(AbstractPage):
     # get the view for the page
     def get_view(self, page: ft.Page, params: Params, basket: Basket):
         self.page = page
-        self.email = self.page.client_storage.get("email")
-        self.on_email_retrieved(self.email)
+        self.on_homepage_drawn()
         return self.view
     
     # make a callback when email is retrieved
-    def on_email_retrieved(self, email: str):
+    def on_homepage_drawn(self):
         pass
     
     # make a callback to check autologin

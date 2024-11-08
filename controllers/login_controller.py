@@ -31,7 +31,7 @@ class LoginController:
         
         for user in self.repository.users:
             if self.repository.decrypt(user.email) == email and user.password == password:
-                # self.page.client_storage.set("email", self.repository.encrypt(email))
+                self.page.client_storage.set("email", self.repository.encrypt(email))
                 ControllerConnector.set_email(self.page, self.repository.encrypt(email))
                 if user.first_run:
                     self.page.go("/onboarding")

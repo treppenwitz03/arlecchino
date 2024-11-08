@@ -1,4 +1,5 @@
 from views import OpeningPage
+from .controller_connector import ControllerConnector
 import flet as ft
 import webbrowser
 from repository import Repository
@@ -46,6 +47,7 @@ class OpeningController():
     def handle_automatic_login(self):
         automatic_login = self.page.client_storage.get("keep_signed_in")
         email = self.page.client_storage.get("email")
+        ControllerConnector.set_email(self.page, email)
         
         if all([automatic_login, email, email != ""]):
             self.page.snack_bar = ft.SnackBar(ft.Text(f"You will be automatically logged in."))
