@@ -110,6 +110,9 @@ class GroupListView(ft.AnimatedSwitcher):
     
     def request_open_group(self, group_name: str, group_image: str, from_reload: bool):
         pass
+
+    def start_group_filling(self):
+        pass
     
     def refresh_grid(self):
         self.grid.controls = []

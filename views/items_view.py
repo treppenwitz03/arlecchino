@@ -255,3 +255,15 @@ class ItemsView(ft.Column):
     # make a callback to trigger reload
     def on_trigger_reload(self, event: ft.ControlEvent):
         pass
+
+    def set_informations(self, informations: dict):
+        self.group_name.value = self.group_name_text.value = informations["group_name"]
+        self.group_image.src_base64 = informations["group_image"]
+        self.group_description.value = informations["group_desc"]
+        self.username.value = informations["username"]
+        self.group_code_text.spans[0].text = informations["group_code"]
+        self.set_creator(informations["creator"])
+        self.set_user_image(informations["user_image"])
+    
+    def request_open_group(self, group_name: str, group_image: str, from_reload: bool):
+        pass

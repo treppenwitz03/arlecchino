@@ -2,6 +2,8 @@ from repository import Repository, utils
 from views import ForgotPasswordPage
 import flet as ft
 
+from .controller_connector import ControllerConnector
+
 class ForgotController:
     def __init__(self, page: ft.Page, repository: Repository, forgot_password_page: ForgotPasswordPage):
         self.page = page
@@ -52,5 +54,5 @@ class ForgotController:
             utils.encrypt(self.forgot_password_page.get_email_to_send_entry()),
             utils.encrypt(self.forgot_password_page.get_new_password_entry()),
         ]
-        self.forgot_password_page.basket.command = command
+        ControllerConnector.set_command_for_email_confirmation(self.page, command)
         self.page.go("/confirm_email")

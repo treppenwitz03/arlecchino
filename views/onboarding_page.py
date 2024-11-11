@@ -170,7 +170,7 @@ class OnboardingPage(AbstractPage):
         
         self.next_button = ft.ElevatedButton(
             "Next",
-            width=150
+            width=400
         )
         
         navigation_row = ft.Row(

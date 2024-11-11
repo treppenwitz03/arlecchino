@@ -3,6 +3,8 @@ from views import SignupPage
 import flet as ft
 import webbrowser
 
+from .controller_connector import ControllerConnector
+
 class SignupController:
     def __init__(self, page: ft.Page, repository: Repository, signup_page: SignupPage):
         self.page = page
@@ -54,7 +56,7 @@ class SignupController:
             utils.encrypt(self.signup_page.get_username_entry()),
             utils.encrypt(self.signup_page.get_password_entry()),
         ]
-        self.signup_page.basket.command = command
+        ControllerConnector.set_command_for_email_confirmation(self.page, command)
         self.page.go("/confirm_email")
 
     # go to login

@@ -47,7 +47,7 @@ class JoinDialogController:
                     self.repository.update_group(group)
             
                     self.page.client_storage.set("just_opened", False)
-                    self.home_page.group_listview.trigger_reload(email)
+                    self.home_page.group_listview.trigger_reload()
                     self.home_page.close_dialog(None)
                     self.page.update()
     
@@ -129,7 +129,7 @@ class CreateGroupDialogController:
             
             self.repository.update_group(new_group)
             self.page.client_storage.set("just_opened", False)
-            self.home_page.group_listview.trigger_reload(email)
+            self.home_page.group_listview.trigger_reload()
             self.home_page.close_dialog(None)
             self.new_image_string == ""
             
@@ -189,8 +189,8 @@ class SearchGroupsDialogController:
                 subtitle = ft.Text(utils.decrypt(group.description)),
                 on_click = self.item_clicked
             )
-            tile.__setattr__("created_by", group.created_by)
-            tile.__setattr__("picture_link", group.picture_id)
+            tile._set_attr("created_by", group.created_by)
+            tile._set_attr("picture_link", group.picture_id)
 
             self.search_groups_dialog.search_bar.controls.append(tile)
     
@@ -209,7 +209,7 @@ class SearchGroupsDialogController:
 
             self.search_groups_dialog.group_name_text.value = group_name
             self.search_groups_dialog.group_desc_text.value = "Group Description: " + group_description
-            self.search_groups_dialog.group_creator_text.value = "Creator: " + group_creator
+            self.search_groups_dialog.group_creator_text.value = "Creator: " + utils.decrypt(group_creator)
 
             self.search_groups_dialog.image_preview.src_base64 = utils.convert_to_base64(self.repository.download_image(picture_link))
             self.search_groups_dialog.switch_to_has_value()
@@ -243,6 +243,6 @@ class SearchGroupsDialogController:
                 self.repository.update_group(group)
         
                 self.page.client_storage.set("just_opened", False)
-                self.home_page.group_listview.trigger_reload(email)
+                self.home_page.group_listview.trigger_reload()
                 self.home_page.close_dialog(None)
                 self.page.update()

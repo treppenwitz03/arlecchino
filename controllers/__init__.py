@@ -13,6 +13,8 @@ from .receivable_info_dialog_controller import ReceivableInfoDialogController
 from .feedback_view_controller import FeedbackViewController
 from .account_view_controller import AccountViewController
 from .add_group_button_controller import AddGroupButtonController
+from .group_listview_controller import GroupListViewController
+from .items_view_controller import ItemsViewController
 from .settings_view_dialog_controller import *
 from .controller_connector import *
 from views import Pages
@@ -21,7 +23,9 @@ from repository import Repository
 def initialize_controllers(page: ft.Page, repository: Repository, main_pages: Pages):
     HomeController(page, repository, main_pages.get("HomePage"))
     JoinDialogController(page, repository, main_pages.get("HomePage"))
+    GroupListViewController(page, repository, main_pages.get("HomePage"))
     AddGroupButtonController(page, repository, main_pages.get("HomePage"))
+    ItemsViewController(page, repository, main_pages.get("HomePage"))
     FeedbackViewController(page, repository, main_pages.get("HomePage"))
     AccountViewController(page, repository, main_pages.get("HomePage"))
     CreateGroupDialogController(page, repository, main_pages.get("HomePage"))

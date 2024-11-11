@@ -3,6 +3,8 @@ from repository import Repository
 from views import ConfirmEmailPage
 import flet as ft
 
+from .controller_connector import ControllerConnector
+
 class ConfirmEmailController:
     def __init__(self, page: ft.Page, repository: Repository, confirm_email_page: ConfirmEmailPage):
         self.page = page
@@ -27,7 +29,7 @@ class ConfirmEmailController:
     
     # confirm the email
     def confirm_email(self, event):
-        argument_list = list(self.confirm_email_page.basket.command)
+        argument_list = ControllerConnector.get_command_for_email_confirmation(self.page)
         command_type = argument_list[0]
         code = argument_list[1]
         if code == int(self.confirm_email_page.code_sent_textfield.value): # if the confirmation is requested by register
