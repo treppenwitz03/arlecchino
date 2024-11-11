@@ -1,4 +1,4 @@
-from .abstract_page import AbstractPage
+from .abstract_page import AbstractPage, Pages
 from .opening_page import OpeningPage
 from .login_page import LoginPage
 from .signup_page import SignupPage

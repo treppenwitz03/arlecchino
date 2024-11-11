@@ -3,7 +3,13 @@ from flet_route import Params, Basket
 from views.abstract_page import AbstractPage
 
 class ConfirmEmailPage(AbstractPage):
-    def __init__(self):
+    def __init__(self, page: ft.Page):
+        super().__init__(
+            route="/confirm_email",
+            padding = 0
+        )
+
+        self.page = page
         #################################
         ## Make the email confirmation page
         ################################
@@ -147,13 +153,8 @@ class ConfirmEmailPage(AbstractPage):
             expand=True,
             content=main_row
         )
-        
-        self.route_address = "/confirm_email"
-        self.view = ft.View(
-            route=self.route_address,
-            padding = 0,
-            controls = [self.main_container]
-        )
+
+        self.controls = [self.main_container]
         
         self.dialog_text = ft.Text(
             size=12
@@ -169,9 +170,7 @@ class ConfirmEmailPage(AbstractPage):
     
     # get the view for the page
     def get_view(self, page: ft.Page, params: Params, basket: Basket):
-        self.basket = basket
-        self.page = page
-        return self.view
+        return self
     
     # get the code entered
     def get_code_input(self):

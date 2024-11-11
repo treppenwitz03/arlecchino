@@ -3,7 +3,13 @@ from flet_route import Params, Basket
 from views.abstract_page import AbstractPage
 
 class LoginPage(AbstractPage):
-    def __init__(self):
+    def __init__(self, page: ft.Page):
+        super().__init__(
+            route="/login",
+            padding = 0
+        )
+
+        self.page = page
         #####################################
         ## Make the Login UI
         #####################################
@@ -189,13 +195,8 @@ class LoginPage(AbstractPage):
             expand=True,
             content=main_row
         )
-        
-        self.route_address = "/login"
-        self.view = ft.View(
-            route=self.route_address,
-            padding = 0,
-            controls = [self.main_container]
-        )
+
+        self.controls = [self.main_container]
         
         ###### DIALOGS ######
         self.dialog_text = ft.Text(
@@ -211,9 +212,7 @@ class LoginPage(AbstractPage):
         )
     
     def get_view(self, page: ft.Page, params: Params, basket: Basket):
-        self.basket = basket
-        self.page = page
-        return self.view
+        return self
     
     # Returns the state of keep_logged_in
     def get_keep_signed_in(self):

@@ -3,7 +3,13 @@ from flet_route import Params, Basket
 from views.abstract_page import AbstractPage
 
 class ForgotPasswordPage(AbstractPage):
-    def __init__(self):
+    def __init__(self, page: ft.Page):
+        super().__init__(
+            route="/forgot_password",
+            padding = 0
+        )
+
+        self.page = page
         #######################################
         ## MAke the forgot password UI
         #######################################
@@ -185,19 +191,13 @@ class ForgotPasswordPage(AbstractPage):
             expand=True,
             content=main_row
         )
-        
-        self.route_address = "/forgot_password"
-        self.view = ft.View(
-            route=self.route_address,
-            padding = 0,
-            controls = [self.main_container]
-        )
+
+        self.controls = [self.main_container]
+
     
     # Make the view for the page
     def get_view(self, page: ft.Page, params: Params, basket: Basket):
-        self.basket = basket
-        self.page = page
-        return self.view
+        return self
     
     # get entered email
     def get_email_to_send_entry(self):

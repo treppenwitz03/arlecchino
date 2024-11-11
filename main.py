@@ -20,21 +20,16 @@ def main(page: ft.Page):
         page.theme_mode = ft.ThemeMode.LIGHT
     
     # Initialize Pages
-    main_pages = list()
-    main_pages.append(HomePage())
-    main_pages.append(OpeningPage())
-    main_pages.append(OnboardingPage())
-    main_pages.append(LoginPage())
-    main_pages.append(SignupPage())
-    main_pages.append(ForgotPasswordPage())
-    main_pages.append(ConfirmEmailPage())
-
-    app_routes = list()
-    iter_page: AbstractPage = None
-    for iter_page in main_pages:
-        app_routes.append(path(url=iter_page.route_address, clear=iter_page.should_clear, view=iter_page.get_view))
+    main_pages = Pages(page)
+    main_pages.add_page(HomePage)
+    main_pages.add_page(OpeningPage)
+    main_pages.add_page(OnboardingPage)
+    main_pages.add_page(LoginPage)
+    main_pages.add_page(SignupPage)
+    main_pages.add_page(ForgotPasswordPage)
+    main_pages.add_page(ConfirmEmailPage)
     
-    Routing(page = page, app_routes = app_routes)
+    Routing(page = page, app_routes = main_pages.routes)
     page.go(page.route)
     
     if page.client_storage.get("currency") is None:

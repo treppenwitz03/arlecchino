@@ -3,7 +3,13 @@ from flet_route import Params, Basket
 from views.abstract_page import AbstractPage
 
 class OpeningPage(AbstractPage):
-    def __init__(self):
+    def __init__(self, page):
+        super().__init__(
+            route = "/",
+            padding=ft.padding.all(0)
+        )
+
+        self.page = page
         ############################################
         ## Initialize the Opening Page
         ############################################
@@ -81,7 +87,7 @@ class OpeningPage(AbstractPage):
                         self.login_button
                     ], spacing=32),
                     ft.Column([ft.Lottie(
-                        src="https://raw.githubusercontent.com/treppenwitz03/Mink/refs/heads/master/arle.json",
+                        src="https://lottie.host/53a2afd7-dce6-442a-a174-486a61479fe3/5YSr4u8v83.json",
                         animate=True,
                         width=620,
                     )])
@@ -96,30 +102,14 @@ class OpeningPage(AbstractPage):
             expand=True,
             height=2160
         )
-        
-        main_column = ft.Column(
-            controls = [
-                ft.Container(
-                    logo_row,
-                    padding=ft.padding.only(16, 16, 16, 8)
-                ), 
-                main_row
-            ]
-        )
-        
-        self.route_address = "/"
-        self.view = ft.View(
-            route = self.route_address,
-            padding=ft.padding.all(0),
-            controls = [main_column]
-        )
+
+        self.controls = [
+            ft.Container(
+                logo_row,
+                padding=ft.padding.only(16, 16, 16, 8)
+            ), 
+            main_row
+        ]
     
     def get_view(self, page: ft.Page, params: Params, basket: Basket):
-        self.basket = basket
-        self.page = page
-        return self.view
-    
-    def update(self):
-        self.login_button.update()
-        self.signup_button.update()
-        self.view.update()
+        return self

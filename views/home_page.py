@@ -15,7 +15,13 @@ from views.account_settings_dialogs import *
 from views.settings_view_dialogs import *
 
 class HomePage(AbstractPage):
-    def __init__(self):
+    def __init__(self, page: ft.Page):
+        super().__init__(
+            route = "/home",
+            padding=0
+        )
+
+        self.page = page
         ########################################################
         ## Make the Home Page UI containing the different views
         ########################################################
@@ -146,12 +152,7 @@ class HomePage(AbstractPage):
                 content_area]
         )
 
-        self.route_address = "/home"
-        self.view = ft.View(
-            route = self.route_address,
-            padding=0,
-            controls = [main_row]
-        )
+        self.controls = [main_row]
         
         self.join_dialog = JoinGroupDialog()
         self.create_new_dialog = CreateGroupDialog()
@@ -171,9 +172,8 @@ class HomePage(AbstractPage):
     
     # get the view for the page
     def get_view(self, page: ft.Page, params: Params, basket: Basket):
-        self.page = page
         self.on_homepage_drawn()
-        return self.view
+        return self
     
     # make a callback when email is retrieved
     def on_homepage_drawn(self):

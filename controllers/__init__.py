@@ -12,22 +12,23 @@ from .account_settings_dialogs_controller import AccountSettingsDialogsControlle
 from .receivable_info_dialog_controller import ReceivableInfoDialogController
 from .settings_view_dialog_controller import *
 from .controller_connector import *
+from views import Pages
 from repository import Repository
 
-def initialize_controllers(page: ft.Page, repository: Repository, main_pages):
-    HomeController(page, repository, main_pages[0])
-    JoinDialogController(page, repository, main_pages[0])
-    CreateGroupDialogController(page, repository, main_pages[0])
-    SearchGroupsDialogController(page, repository, main_pages[0])
-    ItemInfoDialogController(page, repository, main_pages[0])
-    AddReceivableDialogController(page, repository, main_pages[0])
-    AccountSettingsDialogsController(page, repository, main_pages[0])
-    ReceivableInfoDialogController(page, repository, main_pages[0])
-    AppearanceDialogController(page, repository, main_pages[0])
-    CurrencyDialogController(page, repository, main_pages[0])
-    OpeningController(page, repository, main_pages[1])
-    OnboardingController(page, repository, main_pages[2])
-    LoginController(page, repository, main_pages[3])
-    SignupController(page, repository, main_pages[4])
-    ForgotController(page, repository, main_pages[5])
-    ConfirmEmailController(page, repository, main_pages[6])
+def initialize_controllers(page: ft.Page, repository: Repository, main_pages: Pages):
+    HomeController(page, repository, main_pages.get("HomePage"))
+    JoinDialogController(page, repository, main_pages.get("HomePage"))
+    CreateGroupDialogController(page, repository, main_pages.get("HomePage"))
+    SearchGroupsDialogController(page, repository, main_pages.get("HomePage"))
+    ItemInfoDialogController(page, repository, main_pages.get("HomePage"))
+    AddReceivableDialogController(page, repository, main_pages.get("HomePage"))
+    AccountSettingsDialogsController(page, repository, main_pages.get("HomePage"))
+    ReceivableInfoDialogController(page, repository, main_pages.get("HomePage"))
+    AppearanceDialogController(page, repository, main_pages.get("HomePage"))
+    CurrencyDialogController(page, repository, main_pages.get("HomePage"))
+    OpeningController(page, repository, main_pages.get("OpeningPage"))
+    OnboardingController(page, repository, main_pages.get("OnboardingPage"))
+    LoginController(page, repository, main_pages.get("LoginPage"))
+    SignupController(page, repository, main_pages.get("SignupPage"))
+    ForgotController(page, repository, main_pages.get("ForgotPasswordPage"))
+    ConfirmEmailController(page, repository, main_pages.get("ConfirmEmailPage"))

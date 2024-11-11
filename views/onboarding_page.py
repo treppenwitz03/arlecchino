@@ -3,7 +3,15 @@ from flet_route import Params, Basket
 from views.abstract_page import AbstractPage
 
 class OnboardingPage(AbstractPage):
-    def __init__(self):
+    def __init__(self, page: ft.Page):
+        super().__init__(
+            route = "/onboarding",
+            vertical_alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
+            padding=30
+        )
+
+        self.should_clear = False
+        self.page = page
         ###########################################
         ## MAke the onboarding UI
         ###########################################
@@ -171,20 +179,11 @@ class OnboardingPage(AbstractPage):
             vertical_alignment=ft.CrossAxisAlignment.END
         )
         
-        self.should_clear = False
-        self.route_address = "/onboarding"
-        self.view = ft.View(
-            route = self.route_address,
-            controls = [switcher, navigation_row],
-            vertical_alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
-            padding=30
-        )
+        self.controls = [switcher, navigation_row]
     
     # get view for the page
     def get_view(self, page: ft.Page, params: Params, basket: Basket):
-        self.basket = basket
-        self.page = page
-        return self.view
+        return self
 
 class SupportButton(ft.Container):
     def __init__(self, icon_name: ft.icons, button_name: str):

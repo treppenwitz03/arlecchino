@@ -3,7 +3,13 @@ from flet_route import Params, Basket
 from views.abstract_page import AbstractPage
 
 class SignupPage(AbstractPage):
-    def __init__(self):
+    def __init__(self, page: ft.Page):
+        super().__init__(
+            route="/signup",
+            padding = 0
+        )
+
+        self.page = page
         #####################################
         ## Make the Signup UI
         #####################################
@@ -223,13 +229,8 @@ class SignupPage(AbstractPage):
             expand=True,
             content=main_row
         )
-        
-        self.route_address = "/signup"
-        self.view = ft.View(
-            route=self.route_address,
-            padding = 0,
-            controls = [self.main_container]
-        )
+
+        self.controls = [self.main_container]
     
     # Get the email entered
     def get_email_entry(self):
@@ -253,9 +254,7 @@ class SignupPage(AbstractPage):
     
     # get the view for the page
     def get_view(self, page: ft.Page, params: Params, basket: Basket):
-        self.basket = basket
-        self.page = page
-        return self.view
+        return self
     
     # sets whether registration is allowed
     def allow_register(self, allow: bool):
