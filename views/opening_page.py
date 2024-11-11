@@ -100,7 +100,7 @@ class OpeningPage(AbstractPage):
             padding=ft.padding.all(50),
             bgcolor="#3E2C31",
             expand=True,
-            height=2160
+            height=720
         )
 
         self.controls = [

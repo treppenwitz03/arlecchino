@@ -47,6 +47,7 @@ class ConfirmEmailController:
     def register(self, argument_list: list):
         email = str(argument_list[2])
 
+        user: User = None
         for user in self.repository.users:
             if user.email == email:
                 self.confirm_email_page.display_on_dialog("Can't Register", "An account is already linked to the credentials given.")
@@ -68,6 +69,8 @@ class ConfirmEmailController:
     # change the password
     def change_password(self, argument_list: list):
         email = str(argument_list[2])
+
+        user: User = None
         for user in self.repository.users:
             if user.email == email:
                 user.password = str(argument_list[3])

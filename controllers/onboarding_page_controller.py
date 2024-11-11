@@ -115,9 +115,9 @@ class OnboardingController:
         email = ControllerConnector.get_email(self.page)
         
         current_user: User = None
-        for user in self.repository.users:
-            if user.email == email:
-                current_user = user
+        for current_user in self.repository.users:
+            if current_user.email == email:
+                break
         
         if self.current == 0: # the introduction page
             self.onboarding_page.main_column.offset = ft.transform.Offset(-1, 0)

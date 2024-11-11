@@ -182,9 +182,8 @@ class HomePage(AbstractPage):
     # make a callback to check autologin
     def check_if_autologin(self):
         pass
-    
-    # make a callback to trigger reload
-    def trigger_reload_account_view(self):
+
+    def prepare_exit(self):
         pass
     
     # close the currently opened dialog

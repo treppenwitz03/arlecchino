@@ -24,9 +24,6 @@ class AccountSettingsDialogsController:
         
         self.account_view: AccountView = home_page.account_view
         
-        # retrieve the saved email
-        self.email: str = ControllerConnector.get_email(self.page)
-        
         #################### set the file pickers ##################################
         self.qr_picker = ft.FilePicker()
         self.qr_picker.on_result = self.set_qr_image
@@ -72,6 +69,9 @@ class AccountSettingsDialogsController:
     
     # shows the gcash dialog with preliminary settings
     def show_change_gcash_dialog(self, event: ft.ControlEvent):
+        self.email: str = ControllerConnector.get_email(self.page)
+
+        user: User = None
         for user in self.repository.users:
             if user.email == self.email:
                 self.change_gcash_dialog.number_textfield.value = utils.decrypt(user.gcash_number)
@@ -136,7 +136,9 @@ class AccountSettingsDialogsController:
     
     # save the changed dp
     def save_changed_dp(self, event: ft.ControlEvent):
+        self.email: str = ControllerConnector.get_email(self.page)
         if self.dp_image_path != "":
+            user: User = None
             for user in self.repository.users:
                 if user.email == self.email:
                     id = self.repository.upload_image(self.dp_image_buffer)
@@ -144,7 +146,7 @@ class AccountSettingsDialogsController:
                     
                     self.repository.update_user(user)
                     
-                    self.home_page.trigger_reload_account_view()
+                    self.account_view.trigger_reload()
                     self.account_view.user_picture.update()
                     self.account_view.username_text.update()
                     self.account_view.email_text.update()
@@ -159,13 +161,15 @@ class AccountSettingsDialogsController:
     
     # save the changed username
     def save_changed_username(self, event: ft.ControlEvent):
+        self.email: str = ControllerConnector.get_email(self.page)
         replacement = self.change_username_dialog.new_username_textfield.value
+        
+        user: User = None
         for user in self.repository.users:
-            user: User = None
             if user.email == self.email:
                 user.username = utils.encrypt(replacement)
                 self.repository.update_user(user)
-                self.home_page.trigger_reload_account_view()
+                self.account_view.trigger_reload()
                 self.home_page.group_listview.top_text.value = f"Hello, {replacement}!"
                 self.home_page.group_listview.top_text.update()
                 self.account_view.user_picture.update()
@@ -178,8 +182,10 @@ class AccountSettingsDialogsController:
     
     # save the changed password
     def save_changed_password(self, event: ft.ControlEvent):
+        self.email: str = ControllerConnector.get_email(self.page)
         password = self.change_password_dialog.new_password_textfield.value
         
+        user: User = None
         for user in self.repository.users:
             if user.email == self.email:
                 user.password = utils.encrypt(password)
@@ -242,6 +248,9 @@ class AccountSettingsDialogsController:
     
     # save the changed gcash infos
     def save_changed_gcash_infos(self, event: ft.ControlEvent):
+        self.email: str = ControllerConnector.get_email(self.page)
+        
+        user: User = None
         for user in self.repository.users:
             if user.email == self.email:
                 id = self.repository.upload_image(self.qr_buffer)

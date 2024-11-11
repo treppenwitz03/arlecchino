@@ -1,4 +1,4 @@
-from models import Transaction
+from models import Transaction, Group
 from repository import Repository, utils
 from views import HomePage, ShowReceivableInfoDialog
 from PIL import Image, ImageTk
@@ -23,6 +23,7 @@ class ReceivableInfoDialogController:
         item_name = utils.encrypt(self.receivable_info_dialog.title.value)
         group_name = self.receivable_info_dialog.group_name
         
+        group: Group = None
         for group in self.repository.groups:
             if group.group_name == group_name:
                 transaction: Transaction = None

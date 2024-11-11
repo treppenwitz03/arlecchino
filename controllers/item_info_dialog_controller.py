@@ -1,4 +1,4 @@
-from models import Transaction
+from models import Transaction, Group, User
 from repository import Repository, utils
 from views import HomePage
 
@@ -70,6 +70,7 @@ class ItemInfoDialogController:
             
             paid_proof_id = self.repository.upload_image(image_bytes)
             
+            group: Group = None
             for group in self.repository.groups:
                 if group.group_name == group_name:
                     transaction: Transaction = None

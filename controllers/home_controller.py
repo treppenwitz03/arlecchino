@@ -23,10 +23,10 @@ class HomeController:
         self.items_view: ItemsView = self.group_listview.items_view
         
         # Handle sidebutton events
-        self.home_page.home_button.on_click = self.location_change
-        self.home_page.settings_button.on_click = self.location_change
-        self.home_page.feedback_button.on_click = self.location_change
-        self.home_page.profile_button.on_click = self.location_change
+        self.home_page.home_button.on_click = lambda _: self.location_change(self.home_page.home_button)
+        self.home_page.settings_button.on_click = lambda _: self.location_change(self.home_page.settings_button)
+        self.home_page.feedback_button.on_click = lambda _: self.location_change(self.home_page.feedback_button)
+        self.home_page.profile_button.on_click = lambda _: self.location_change(self.home_page.profile_button)
         
         # Handle group items view events
         self.items_view.return_button.on_click = self.return_to_grid
@@ -39,7 +39,7 @@ class HomeController:
         
         # handle other homepage requests
         self.home_page.on_homepage_drawn = self.start_filling_groups
-        self.home_page.trigger_reload_account_view = self.update_account_view
+        self.home_page.prepare_exit = self.prepare_home_page_exit
         
         self.sidebar_buttons = [
             self.home_page.home_button,
@@ -49,32 +49,18 @@ class HomeController:
         ]
 
         self.active_button = self.sidebar_buttons[0]
-        
-        # handle logout request
-        self.account_view.logout_button.on_click = self.logout_account
+    
+    def prepare_home_page_exit(self):
+        self.location_change(self.home_page.home_button)
+        self.return_to_grid()
     
     def start_filling_groups(self):
         email: str = ControllerConnector.get_email(self.page)
         self.fill_groups(email)
-    
-    # logs current user out of the account
-    def logout_account(self, event: ft.ControlEvent):
-        self.page.client_storage.set("keep_signed_in", False)
-        self.page.client_storage.set("recent_set_keep_signed_in", False)
-
-        for control in self.group_listview.grid.controls:
-            if control is GroupButton:
-                self.group_listview.grid.controls.remove(control)
-
-        self.location_change(ft.ControlEvent('', '', '', self.home_page.home_button, ''))
-        self.return_to_grid()
-        self.page.go("/login")
-        self.page.update()
 
     # fills the group list view
     def fill_groups(self, email: str):
         self.repository.update_refs()
-
         self.group_listview.refresh_grid()
         
         # if keep_signed_in, notify the user of autologin
@@ -88,16 +74,18 @@ class HomeController:
 
         # retrieve usernames
         username = ""
+        user: User = None
         for user in self.repository.users:
             if user.email == email:
                 username = utils.decrypt(user.username)
                 break
         
         # set the username inside the greeter
-        self.group_listview.top_text.value = f"{utils.generate_greeting()}, {username}!"
+        self.group_listview.set_greeting(f"{utils.generate_greeting()}, {username}!")
         
         # get the joined groups of current member
         joined_groups = []
+        group: Group = None
         for group in self.repository.groups:
             member: Member = None
             for member in group.members:
@@ -120,7 +108,6 @@ class HomeController:
             group_button = GroupButton(utils.decrypt(group_object.group_name), group_image)
             group_button.group = group_object
             group_button.activate = lambda button, group_name, image_string: self.open_group(group_name, image_string, button.group, False)
-            # self.group_listview.grid.controls.insert(len(self.group_listview.grid.controls) - 2, group_button)
             self.group_listview.add_group_button(group_button)
     
     # shows the listview for the group
@@ -337,11 +324,9 @@ class HomeController:
         self.home_page.show_info_dialog()
     
     # handle when the current subview is changed
-    def location_change(self, event: ft.ControlEvent):
+    def location_change(self, new_button):
         if self.active_button == self.home_page.home_button:
             self.return_to_grid()
-
-        new_button = event.control
         
         if new_button == self.home_page.settings_button:
             self.home_page.settings_view.currency_setting.setting_with_current.value = f"Currently set to: {self.page.client_storage.get('currency')}"
@@ -358,7 +343,7 @@ class HomeController:
             view.show(iter - new_index)
             
         if new_button == self.home_page.profile_button:
-            self.update_account_view()
+            self.account_view.update_informations()
         
         self.active_button = new_button
         
@@ -413,19 +398,3 @@ class HomeController:
             self.home_page.receivable_info_dialog.content = self.home_page.receivable_info_dialog.paid_list
         
         self.home_page.receivable_info_dialog.update()
-    
-    # update the account view with the new infos
-    def update_account_view(self):
-        email: str = ControllerConnector.get_email(self.page)
-        
-        user_image = ""
-        username = ""
-        for user in self.repository.users:
-            if user.email == email:
-                user_image = utils.convert_to_base64(self.repository.download_image(user.picture_link))
-                username = utils.decrypt(user.username)
-                break
-
-        self.account_view.user_picture.src_base64 = user_image
-        self.account_view.username_text.value = username
-        self.account_view.email_text.value = utils.decrypt(email)

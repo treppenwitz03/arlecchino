@@ -1,4 +1,4 @@
-from models import Transaction
+from models import Transaction, Group
 from repository import Repository, utils
 from views import HomePage, AddReceivableDialog
 
@@ -89,6 +89,7 @@ class AddReceivableDialogController:
             time_created=item_date
         )
         
+        group: Group = None
         for group in self.repository.groups:
             if group.group_name == group_name:
                 group.transactions.append(new_transaction)

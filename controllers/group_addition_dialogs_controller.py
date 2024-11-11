@@ -1,4 +1,4 @@
-from models import Group, Member
+from models import Group, Member, User
 from repository import Repository, utils
 from views import HomePage, JoinGroupDialog, CreateGroupDialog, SearchGroupsDialog
 
@@ -189,13 +189,13 @@ class SearchGroupsDialogController:
                 subtitle = ft.Text(utils.decrypt(group.description)),
                 on_click = self.item_clicked
             )
-            tile.created_by = utils.decrypt(group.created_by)
-            tile.picture_link = group.picture_id
+            tile.__setattr__("created_by", group.created_by)
+            tile.__setattr__("picture_link", group.picture_id)
 
             self.search_groups_dialog.search_bar.controls.append(tile)
     
     def item_clicked(self, event: ft.ControlEvent):
-        self.chosen_group_tile = event.control
+        self.chosen_group_tile: ft.ListTile = event.control
         self.search_groups_dialog.search_bar.close_view(event.control.data)
         self.search_groups_dialog.load_group_button.disabled = False
         self.search_groups_dialog.load_group_button.update()
@@ -204,8 +204,8 @@ class SearchGroupsDialogController:
         if self.chosen_group_tile:
             group_name = self.chosen_group_tile.title.value
             group_description = self.chosen_group_tile.subtitle.value
-            group_creator = self.chosen_group_tile.created_by
-            picture_link = self.chosen_group_tile.picture_link
+            group_creator = self.chosen_group_tile._get_attr("created_by")
+            picture_link = self.chosen_group_tile._get_attr("picture_link")
 
             self.search_groups_dialog.group_name_text.value = group_name
             self.search_groups_dialog.group_desc_text.value = "Group Description: " + group_description
@@ -220,6 +220,7 @@ class SearchGroupsDialogController:
         email: str = ControllerConnector.get_email(self.page)
             
         username = ""
+        user: User = None
         for user in self.repository.users:
             if user.email == email:
                 username = user.username

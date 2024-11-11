@@ -106,3 +106,6 @@ class GroupListView(ft.AnimatedSwitcher):
     def refresh_grid(self):
         self.grid.controls = []
         self.grid.controls.append(self.add_button)
+    
+    def set_greeting(self, greeting):
+        self.top_text.value = greeting

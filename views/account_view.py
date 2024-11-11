@@ -58,13 +58,13 @@ class AccountView(ft.Container):
         )
         
         self.username_text = ft.Text(
-            "sf",
+            " ",
             size=42,
             weight=ft.FontWeight.BOLD,
         )
         
         self.email_text = ft.Text(
-            "f",
+            " ",
             size=28,
         )
         
@@ -217,3 +217,10 @@ class AccountView(ft.Container):
     def show(self, delta):
         self.offset = ft.transform.Offset(0, delta)
         self.update()
+    
+    def update_informations(self):
+        pass
+
+    # make a callback to trigger reload
+    def trigger_reload(self):
+        pass
