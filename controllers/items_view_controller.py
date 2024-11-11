@@ -3,6 +3,7 @@ from repository import Repository, utils
 from models import User, Group, Member, Transaction
 from .controller_connector import ControllerConnector
 import flet as ft
+import clipboard
 
 class ItemsViewController:
     def __init__(self, page: ft.Page, repository: Repository, home_page: HomePage):
@@ -14,9 +15,18 @@ class ItemsViewController:
 
         self.items_view.request_open_group = self.open_group
         self.items_view.reload_button.on_click = self.reload_listview
+        self.items_view.copy_group_code = self.copy_code_to_clipboard
 
         # handle reload requests
         self.items_view.on_trigger_reload = self.reload_listview
+    
+    def copy_code_to_clipboard(self):
+        code = self.items_view.group_code_text.spans[0].text
+        clipboard.copy(code)
+
+        self.page.snack_bar = ft.SnackBar(ft.Text("Group code is now copied to clipboard."))
+        self.page.snack_bar.open = True
+        self.page.update()
     
     # clear and  reload the listview
     def reload_listview(self, event: ft.ControlEvent):

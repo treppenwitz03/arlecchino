@@ -66,7 +66,10 @@ class ConfirmEmailController:
         )
 
         self.repository.update_user(new_user)
-        self.confirm_email_page.display_on_dialog("Success!", "Your account has been created. You may now log in.")
+        self.page.go("/login")
+        self.page.snack_bar = ft.SnackBar(ft.Text("Success! Your account has been created. You may now log in."))
+        self.page.snack_bar.open = True
+        self.page.update()
     
     # change the password
     def change_password(self, argument_list: list):
@@ -77,8 +80,11 @@ class ConfirmEmailController:
             if user.email == email:
                 user.password = str(argument_list[3])
                 self.repository.update_user(user)
-                
-                self.confirm_email_page.display_on_dialog("Success!", "Your password has been updated. You may now log in again.")
+
+                self.page.go("/login")
+                self.page.snack_bar = ft.SnackBar(ft.Text("Success! Your password has been updated. You may now log in again."))
+                self.page.snack_bar.open = True
+                self.page.update()
                 return
 
         self.confirm_email_page.display_on_dialog("Can't Change Password", "An account bound to the email doesn't exist.")

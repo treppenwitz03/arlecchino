@@ -40,7 +40,7 @@ class OnboardingPage(AbstractPage):
                 logo_row,
                 ft.Text("Welcome to Arlecchino", weight=ft.FontWeight.BOLD, size=44),
                 ft.Text("A special service appointment system", weight=ft.FontWeight.W_400, size=20),
-                ft.Container(options_column, padding=ft.padding.only(30, 100, 30, 100))
+                ft.Container(options_column, padding=ft.padding.only(30, 60, 30, 60))
             ],
             horizontal_alignment=ft.CrossAxisAlignment.CENTER,
             alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
@@ -89,8 +89,7 @@ class OnboardingPage(AbstractPage):
         self.number_textfield = ft.TextField(
             label="Enter your number here",
             border_radius = 25,
-            content_padding=10,
-            label_style = ft.TextStyle()
+            content_padding=10
         )
         
         number_column = ft.Column(
@@ -110,7 +109,7 @@ class OnboardingPage(AbstractPage):
                 gcash_logo_row,
                 ft.Text("Update your Profile Picture", weight=ft.FontWeight.BOLD, size=44),
                 ft.Text("Profile pictures allow you to be easily", weight=ft.FontWeight.W_400, size=20),
-                ft.Container(options_row, padding=ft.padding.only(30, 100, 30, 100))
+                ft.Container(options_row, padding=ft.padding.only(30, 60, 30, 60))
             ],
             horizontal_alignment=ft.CrossAxisAlignment.CENTER,
             alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
@@ -155,7 +154,7 @@ class OnboardingPage(AbstractPage):
                 profile_logo_row,
                 ft.Text("Update your Profile Picture", weight=ft.FontWeight.BOLD, size=44),
                 ft.Text("Profile pictures allow you to be easily recognizable.", weight=ft.FontWeight.W_400, size=20),
-                ft.Container(profile_upload_column, padding=ft.padding.only(30, 100, 30, 100))
+                ft.Container(profile_upload_column, padding=ft.padding.only(30, 60, 30, 60))
             ],
             horizontal_alignment=ft.CrossAxisAlignment.CENTER,
             alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
@@ -170,13 +169,14 @@ class OnboardingPage(AbstractPage):
         
         self.next_button = ft.ElevatedButton(
             "Next",
-            width=400
+            width=200,
         )
         
         navigation_row = ft.Row(
-            controls=[self.next_button],
-            alignment=ft.MainAxisAlignment.END,
-            vertical_alignment=ft.CrossAxisAlignment.END
+            controls=[
+                ft.Container(self.next_button, padding=16)
+            ],
+            alignment=ft.MainAxisAlignment.END
         )
         
         self.controls = [switcher, navigation_row]

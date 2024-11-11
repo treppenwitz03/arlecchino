@@ -21,7 +21,7 @@ class ItemsView(ft.Column):
         
         self.group_name = ft.Text(
             expand=True,
-            value="School",
+            value=" ",
             weight=ft.FontWeight.W_600,
             size=44
         )
@@ -139,21 +139,23 @@ class ItemsView(ft.Column):
         )
         
         self.group_name_text = ft.Text(
-            "School",
+            " ",
             weight=ft.FontWeight.W_600,
-            size=24
+            size=28
         )
         
         self.group_description = ft.Text(
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+            " ",
             weight=ft.FontWeight.W_400,
-            size = 12
+            size = 20,
+            max_lines = 3,
+            overflow=ft.TextOverflow.ELLIPSIS
         )
         
         self.created_by_text = ft.Text(
             value = "Created by: ",
             spans = [ft.TextSpan(
-                "Owen David",
+                " ",
                 style=ft.TextStyle(italic=True, weight=ft.FontWeight.W_300)
             )],
             weight=ft.FontWeight.W_500,
@@ -163,21 +165,29 @@ class ItemsView(ft.Column):
         self.group_code_text = ft.Text(
             value = "Group Code: ",
             spans = [ft.TextSpan(
-                "haihfass",
+                " ",
                 style=ft.TextStyle(italic=True, weight=ft.FontWeight.W_300)
             )],
             weight=ft.FontWeight.W_500,
             italic=True
         )
+
+        self.group_code_copy_button = ft.Container(
+            ft.Icon(ft.icons.COPY_OUTLINED, size=16),
+            width=16,
+            height=16,
+            on_click=lambda _: self.copy_group_code()
+        )
         
         self.user_image = ft.Image(
             "/empty_user_image.png",
-            width=75,
-            height=75
+            width=150,
+            height=150
         )
         
         self.username = ft.Text(
-            "Owen David"
+            " ",
+            size=20
         )
         
         self.financial_recap_text = ft.Text(
@@ -222,7 +232,15 @@ class ItemsView(ft.Column):
         )
         
         self.group_info_column = ft.Column(
-            controls=[self.group_name_text, self.group_description, self.created_by_text, self.group_code_text]
+            controls=[
+                self.group_name_text, 
+                self.group_description, 
+                self.created_by_text, 
+                ft.Row([
+                    self.group_code_text,
+                    self.group_code_copy_button
+                ], alignment=ft.MainAxisAlignment.START, vertical_alignment=ft.CrossAxisAlignment.CENTER)
+            ]
         )
         
         self.info_sidebar_column = ft.Column(
@@ -266,4 +284,7 @@ class ItemsView(ft.Column):
         self.set_user_image(informations["user_image"])
     
     def request_open_group(self, group_name: str, group_image: str, from_reload: bool):
+        pass
+
+    def copy_group_code(self):
         pass

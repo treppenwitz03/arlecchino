@@ -53,28 +53,22 @@ class AddReceivableDialog(ft.AlertDialog):
             ],
             border_radius = 15,
             width=85,
-            height=44,
-            autofocus=True,
-            label_style = ft.TextStyle(),
-            hint_style = ft.TextStyle()
+            height=54,
+            autofocus=True
         )
         
         self.item_day_dropdown = ft.Dropdown(
             hint_text = "Day",
             border_radius = 15,
             width=60,
-            height=44,
-            label_style = ft.TextStyle(),
-            hint_style = ft.TextStyle()
+            height=54
         )
         
         self.item_year_dropdown = ft.Dropdown(
             hint_text = "Year",
             border_radius = 15,
             width=65,
-            height=44,
-            label_style = ft.TextStyle(),
-            hint_style = ft.TextStyle()
+            height=54
         )
         
         item_date_row = ft.Row(
@@ -87,7 +81,6 @@ class AddReceivableDialog(ft.AlertDialog):
             border_radius = 15,
             width=230,
             height=44,
-            label_style = ft.TextStyle(),
             input_filter=ft.NumbersOnlyInputFilter()
         )
         
@@ -95,7 +88,7 @@ class AddReceivableDialog(ft.AlertDialog):
             label = "Description",
             border_radius = 15,
             width = 230,
-            height = 300,
+            height = 290,
             multiline=True,
             min_lines=5,
             max_lines=5,
@@ -118,7 +111,7 @@ class AddReceivableDialog(ft.AlertDialog):
         for day in range(31):
             self.item_day_dropdown.options.append(ft.dropdown.Option(day + 1))
         
-        for year in range(1999, 2050):
+        for year in range(2020, 2024):
             self.item_year_dropdown.options.append(ft.dropdown.Option(year + 1))
     
     # get entered item name
