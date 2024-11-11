@@ -51,10 +51,6 @@ class HomeController:
 
         self.active_button = self.sidebar_buttons[0]
         
-        # handle feedback view events
-        self.feedback_view.button_contact_us.on_click = lambda e: webbrowser.open_new("https://mail.google.com/mail/u/0/#inbox?compose=GTvVlcRzCMtQddshVRjPCKJRGfFwDxvWqJcNftmXFMFqqpdvrXXBpGsrfGGNTnSswPqHpChKdBRJG")
-        self.feedback_view.button_contribute.on_click = lambda e: webbrowser.open_new("https://github.com/neverbdneverw/arlecchino/issues/new")
-        
         # handle logout request
         self.account_view.logout_button.on_click = self.logout_account
 

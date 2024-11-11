@@ -10,6 +10,7 @@ from .add_receivable_dialog_controller import AddReceivableDialogController
 from .onboarding_page_controller import OnboardingController
 from .account_settings_dialogs_controller import AccountSettingsDialogsController
 from .receivable_info_dialog_controller import ReceivableInfoDialogController
+from .feedback_view_controller import FeedbackViewController
 from .settings_view_dialog_controller import *
 from .controller_connector import *
 from views import Pages
@@ -18,6 +19,7 @@ from repository import Repository
 def initialize_controllers(page: ft.Page, repository: Repository, main_pages: Pages):
     HomeController(page, repository, main_pages.get("HomePage"))
     JoinDialogController(page, repository, main_pages.get("HomePage"))
+    FeedbackViewController(page, repository, main_pages.get("HomePage"))
     CreateGroupDialogController(page, repository, main_pages.get("HomePage"))
     SearchGroupsDialogController(page, repository, main_pages.get("HomePage"))
     ItemInfoDialogController(page, repository, main_pages.get("HomePage"))
