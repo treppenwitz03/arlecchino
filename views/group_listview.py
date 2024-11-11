@@ -89,6 +89,7 @@ class GroupListView(ft.AnimatedSwitcher):
         )
         
         self.content = self.grid_view
+        self.add_button = AddGroupButton()
 
     # dictates whether the show or hide the group list view
     def show(self, delta):
@@ -98,3 +99,10 @@ class GroupListView(ft.AnimatedSwitcher):
     # make a callback for triggering reload
     def trigger_reload(self, email: str):
         pass
+
+    def add_group_button(self, button: GroupButton):
+        self.grid.controls.insert(len(self.grid.controls) -2, button)
+    
+    def refresh_grid(self):
+        self.grid.controls = []
+        self.grid.controls.append(self.add_button)

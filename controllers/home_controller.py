@@ -5,7 +5,6 @@ from views import *
 from .controller_connector import ControllerConnector
 
 import flet as ft
-import webbrowser
 
 class HomeController:
     code_validated = False
@@ -53,27 +52,10 @@ class HomeController:
         
         # handle logout request
         self.account_view.logout_button.on_click = self.logout_account
-
-        # initalize the add/join group button
-        self.add_button = AddGroupButton()
-        self.add_button.on_join_group = self.show_join_group_dialog
-        self.add_button.on_create_group = self.show_create_group_dialog
-        self.add_button.on_search_groups = self.show_search_groups_dialog
-        self.group_listview.grid.controls.append(self.add_button)
     
     def start_filling_groups(self):
         email: str = ControllerConnector.get_email(self.page)
         self.fill_groups(email)
-    
-     # shows the group adding/joining dialog
-    def show_join_group_dialog(self, event: ft.ControlEvent):
-        self.home_page.show_join_group_dialog()
-    
-    def show_create_group_dialog(self, event: ft.ControlEvent):
-        self.home_page.show_create_group_dialog()
-    
-    def show_search_groups_dialog(self, event: ft.ControlEvent):
-        self.home_page.show_search_groups_dialog()
     
     # logs current user out of the account
     def logout_account(self, event: ft.ControlEvent):
@@ -93,8 +75,7 @@ class HomeController:
     def fill_groups(self, email: str):
         self.repository.update_refs()
 
-        self.group_listview.grid.controls = []
-        self.group_listview.grid.controls.append(self.add_button)
+        self.group_listview.refresh_grid()
         
         # if keep_signed_in, notify the user of autologin
         if self.page.client_storage.get("keep_signed_in") is True and self.page.client_storage.get("recent_set_keep_signed_in") is False and self.page.client_storage.get("just_opened") is True:
@@ -139,7 +120,8 @@ class HomeController:
             group_button = GroupButton(utils.decrypt(group_object.group_name), group_image)
             group_button.group = group_object
             group_button.activate = lambda button, group_name, image_string: self.open_group(group_name, image_string, button.group, False)
-            self.group_listview.grid.controls.insert(len(self.group_listview.grid.controls) - 2, group_button)
+            # self.group_listview.grid.controls.insert(len(self.group_listview.grid.controls) - 2, group_button)
+            self.group_listview.add_group_button(group_button)
     
     # shows the listview for the group
     def open_group(self, group_name: str, image_string: str, group: Group, from_reload: bool):
