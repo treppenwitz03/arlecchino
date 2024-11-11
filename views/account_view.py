@@ -89,7 +89,8 @@ class AccountView(ft.Container):
             profile_info_column,
             border=ft.border.all(1),
             border_radius=16,
-            margin=ft.margin.symmetric(36, 50)
+            margin=ft.margin.symmetric(36, 50),
+            bgcolor=ft.colors.SURFACE_VARIANT
         )
         
         account_labeler = ft.Text(

@@ -64,7 +64,10 @@ class AddReceivableButton(GroupButton):
         super().__init__("Add", "")
         # create a groupbutton specifically for opening the group addition/creation dialog
         self.content.height = 175
-        self.image.controls[0].src = "/add_icon.svg"
+        self.image.controls[0] = ft.Icon(
+            ft.icons.ADD_ROUNDED,
+            size = 150
+        )
         self.text_row.visible = False
 
 class AddGroupButton(ft.PopupMenuButton):
@@ -72,10 +75,9 @@ class AddGroupButton(ft.PopupMenuButton):
         super().__init__()
         # create a button specifically for opening the group addition/creation dialog
             
-        group_image = ft.Image(
-            "/add_icon.svg",
-            width=130,
-            height=130
+        group_image = ft.Icon(
+            ft.icons.ADD_ROUNDED,
+            size = 130
         )
             
         

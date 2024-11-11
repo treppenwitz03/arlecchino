@@ -45,10 +45,9 @@ class FeedbackView(ft.Column):
             content=subtitle_text_row
         )
 
-        contact_image = ft.Image(
-            src="/contact_icon.svg",
-            width = 200,
-            height = 200
+        contact_image = ft.Icon(
+            ft.icons.PERM_CONTACT_CAL_SHARP,
+            size = 200
         )
 
         contact_image_container = ft.Container(
@@ -56,10 +55,9 @@ class FeedbackView(ft.Column):
             padding=30
         )
 
-        contact_checkicon = ft.Image(
-            src="/check_icon.svg",
-            width=24,
-            height=24
+        contact_checkicon = ft.Icon(
+            ft.icons.CHECK_ROUNDED,
+            size = 24
         )
 
         contact_describeissue_text = ft.Text(
@@ -131,13 +129,13 @@ class FeedbackView(ft.Column):
             padding=ft.padding.only(30, 0, 30, 30),
             margin=40,
             border_radius=15,
-            border=ft.border.all(width=1)
+            border=ft.border.all(width=1),
+            bgcolor=ft.colors.SURFACE_VARIANT
         )
 
-        contribute_image = ft.Image(
-            src="/contribute_icon.svg",
-            width=200,
-            height=200
+        contribute_image = ft.Icon(
+            ft.icons.CODE_OUTLINED,
+            size = 200
         )
 
         contribute_image_container = ft.Container(
@@ -145,10 +143,9 @@ class FeedbackView(ft.Column):
             padding=30
         )
 
-        contribute_checkicon = ft.Image(
-            src="/check_icon.svg",
-            width=24,
-            height=24
+        contribute_checkicon = ft.Icon(
+            ft.icons.CHECK_ROUNDED,
+            size = 24
         )
 
         contribute_helpproject_text = ft.Text(
@@ -217,7 +214,8 @@ class FeedbackView(ft.Column):
             padding=ft.padding.only(30, 0, 30, 30),
             margin=40,
             border_radius=15,
-            border=ft.border.all(width=1)
+            border=ft.border.all(width=1),
+            bgcolor=ft.colors.SURFACE_VARIANT
         )
 
         contact_row = ft.Row(

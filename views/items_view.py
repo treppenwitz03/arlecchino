@@ -33,13 +33,13 @@ class ItemsView(ft.Column):
             spacing=20
         )
         
-        self.reload_button = ft.Container(
-            content=ft.Image("/refresh.svg", width=48, height=48),
-            padding=ft.padding.only(15, 15, 0, 15)
+        self.reload_button = ft.IconButton(
+            ft.icons.RESTART_ALT_OUTLINED, icon_size=48,
+            padding=15
         )
         
-        self.return_button = ft.Container(
-            content=ft.Image("/return.svg", width=48, height=48),
+        self.return_button = ft.IconButton(
+            ft.icons.EXIT_TO_APP, icon_size=48,
             padding=15
         )
         
@@ -228,7 +228,8 @@ class ItemsView(ft.Column):
             border_radius=ft.BorderRadius(15, 15, 15, 15),
             expand=True,
             padding = 20,
-            border=ft.border.all(1)
+            border=ft.border.all(1),
+            bgcolor=ft.colors.SURFACE_VARIANT
         )
         
         self.group_info_column = ft.Column(

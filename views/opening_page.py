@@ -98,7 +98,7 @@ class OpeningPage(AbstractPage):
                 spacing=50
             ),
             padding=ft.padding.all(50),
-            bgcolor="#3E2C31",
+            bgcolor=ft.colors.SURFACE_VARIANT,
             expand=True,
             height=720
         )

@@ -9,7 +9,10 @@ def main(page: ft.Page):
     page.window.width = 1100
     page.window.height = 768
     page.title = "Arlecchino"
-    page.theme = ft.Theme(color_scheme_seed="#8C161E")
+
+    utils.initialize_settings(page)
+
+    page.theme = ft.Theme(color_scheme_seed=page.client_storage.get("accent_color"))
     
     # Initialize Pages
     main_pages = Pages(page)
@@ -20,8 +23,6 @@ def main(page: ft.Page):
     ])
 
     page.go(page.route)
-    
-    utils.initialize_settings(page)
     
     # Initialize the Repository
     repository = Repository()

@@ -22,8 +22,29 @@ class AppearanceDialog(ft.AlertDialog):
             controls=[dark_mode_text, self.dark_mode_switch],
             alignment=ft.MainAxisAlignment.SPACE_BETWEEN
         )
+
+        accent_color_text = ft.Text("Accent Color", weight=ft.FontWeight.W_700)
+        self.accent_color_radio = ft.RadioGroup(
+            content=ft.Row([
+                ft.Radio(value="#8C161E", width=48, height=48, fill_color="#8C161E"),
+                ft.Radio(value="#61A7C7", width=48, height=48, fill_color="#61A7C7"),
+                ft.Radio(value="#4C64BC", width=48, height=48, fill_color="#4C64BC"),
+                ft.Radio(value="#E6B6F1", width=48, height=48, fill_color="#E6B6F1"),
+                ft.Radio(value="#2D3E89", width=48, height=48, fill_color="#2D3E89"),
+                ft.Radio(value="#E29A21", width=48, height=48, fill_color="#E29A21"),
+                ft.Radio(value="#99CE43", width=48, height=48, fill_color="#99CE43")
+            ])
+        )
+
+        accent_row = ft.Row([
+            accent_color_text,
+            self.accent_color_radio
+        ])
         
-        self.content = dark_mode_row
+        self.content = ft.Column([
+            dark_mode_row,
+            accent_row
+        ], height=100)
         
         def close(event: ft.ControlEvent):
             self.open = False
@@ -36,9 +57,13 @@ class AppearanceDialog(ft.AlertDialog):
         self.actions_alignment = ft.MainAxisAlignment.END
         
         self.dark_mode_switch.on_change = lambda e: self.on_change(e)
+        self.accent_color_radio.on_change = lambda e: self.accent_change(e)
     
     # MAke the callback when the settings are changed
     def on_change(self, event):
+        pass
+
+    def accent_change(self, event):
         pass
         
 class CurrencyDialog(ft.AlertDialog):

@@ -96,7 +96,11 @@ def initialize_settings(page: ft.Page):
         page.client_storage.set("currency", "PHP")
     if page.client_storage.get("dark_mode") is None:
         page.client_storage.set("dark_mode", False)
+
     if bool(page.client_storage.get("dark_mode")):
         page.theme_mode = ft.ThemeMode.DARK
     else:
         page.theme_mode = ft.ThemeMode.LIGHT
+
+    if page.client_storage.get("accent_color") is None:
+        page.client_storage.set("accent_color", "#8C161E")

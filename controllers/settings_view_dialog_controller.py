@@ -15,6 +15,14 @@ class AppearanceDialogController:
         
         # handle dark mode change
         self.appearance_dialog.on_change = self.change_darkmode
+        self.appearance_dialog.accent_change = self.accent_color_changed
+    
+    def accent_color_changed(self, event: ft.ControlEvent):
+        color = event.control.value
+        self.page.client_storage.set("accent_color", color)
+
+        self.page.theme = ft.Theme(color_scheme_seed=color)
+        self.page.update()
     
     # change the dark mode setting
     def change_darkmode(self, event: ft.ControlEvent):
@@ -32,6 +40,7 @@ class AppearanceDialogController:
     
     # open the dialog
     def handle_dialog_open(self, event):
+        self.appearance_dialog.accent_color_radio.value = self.page.client_storage.get("accent_color")
         self.appearance_dialog.dark_mode_switch.value = bool(self.page.client_storage.get("dark_mode"))
         self.home_page.show_appearance_dialog()
 
