@@ -100,8 +100,16 @@ class GroupListView(ft.AnimatedSwitcher):
     def trigger_reload(self, email: str):
         pass
 
-    def add_group_button(self, button: GroupButton):
-        self.grid.controls.insert(len(self.grid.controls) -2, button)
+    def add_group_button(self, group_name: str, group_image: str):
+        group_button = GroupButton(group_name, group_image)
+        group_button.activate = lambda group_name, group_image: self.request_open_group(group_name, group_image, False)
+        self.grid.controls.insert(len(self.grid.controls) -2, group_button)
+
+        button_id = str(group_name.__hash__())
+        return button_id
+    
+    def request_open_group(self, group_name: str, group_image: str, from_reload: bool):
+        pass
     
     def refresh_grid(self):
         self.grid.controls = []

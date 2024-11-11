@@ -71,9 +71,11 @@ class SettingsView(ft.Column):
         self.offset = ft.transform.Offset(0, delta)
         self.update()
 
-class SettingButton(ft.Container):
+class SettingButton(ft.ElevatedButton):
     def __init__(self, setting_name: str, setting_description: str, additonal_state: str):
-        super().__init__()
+        super().__init__(
+            style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(16))
+        )
         #########################################
         ## Make the UI for the buttons in settings
         #########################################
@@ -120,7 +122,5 @@ class SettingButton(ft.Container):
             spacing=10
         )
         
-        self.content = main_column
-        self.padding = 20
+        self.content = ft.Container(main_column, padding=20)
         self.margin = ft.margin.only(40, 0, 40, 0)
-        self.border_radius = 15

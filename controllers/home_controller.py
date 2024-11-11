@@ -17,8 +17,6 @@ class HomeController:
         ################### Initialize controller for home page and all its subviews ##################
         
         self.group_listview: GroupListView = self.home_page.group_listview
-        self.feedback_view: FeedbackView = self.home_page.feedback_view
-        self.account_view: AccountView = self.home_page.account_view
 
         self.items_view: ItemsView = self.group_listview.items_view
         
@@ -36,6 +34,7 @@ class HomeController:
         # handle reload requests
         self.items_view.on_trigger_reload = self.reload_listview
         self.group_listview.trigger_reload = self.fill_groups
+        self.group_listview.request_open_group = self.open_group
         
         # handle other homepage requests
         self.home_page.on_homepage_drawn = self.start_filling_groups
@@ -57,12 +56,8 @@ class HomeController:
     def start_filling_groups(self):
         email: str = ControllerConnector.get_email(self.page)
         self.fill_groups(email)
+        self.home_page.account_view.update_informations()
 
-    # fills the group list view
-    def fill_groups(self, email: str):
-        self.repository.update_refs()
-        self.group_listview.refresh_grid()
-        
         # if keep_signed_in, notify the user of autologin
         if self.page.client_storage.get("keep_signed_in") is True and self.page.client_storage.get("recent_set_keep_signed_in") is False and self.page.client_storage.get("just_opened") is True:
             self.page.snack_bar = ft.SnackBar(ft.Text(f"You are automatically logged in."), duration=1000)
@@ -71,6 +66,13 @@ class HomeController:
         elif self.page.client_storage.get("recent_set_keep_signed_in") is True:
             self.page.client_storage.set("recent_set_keep_signed_in", False)
             self.page.client_storage.set("just_opened", True)
+        
+        self.home_page.settings_view.currency_setting.setting_with_current.value = f"Currently set to: {self.page.client_storage.get('currency')}"
+
+    # fills the group list view
+    def fill_groups(self, email: str):
+        self.repository.update_refs()
+        self.group_listview.refresh_grid()
 
         # retrieve usernames
         username = ""
@@ -84,35 +86,29 @@ class HomeController:
         self.group_listview.set_greeting(f"{utils.generate_greeting()}, {username}!")
         
         # get the joined groups of current member
-        joined_groups = []
+        self.group_buttons = dict()
         group: Group = None
         for group in self.repository.groups:
             member: Member = None
             for member in group.members:
                 if member.email == email:
                     image_string = utils.convert_to_base64(self.repository.download_image(group.picture_id))
-                    joined_groups.append((group, image_string))
+                    id = self.group_listview.add_group_button(utils.decrypt(group.group_name), image_string)
+                    self.group_buttons[id] = group
         
         # if joined_groups is 0, show warning
-        if len(joined_groups) == 0:
+        if len(self.group_buttons.values()) == 0:
             self.group_listview.empty_warning_text_container.visible = True
             self.group_listview.empty_warning_text_container.offset = ft.transform.Offset(0, 0)
         else:
             self.group_listview.empty_warning_text_container.offset = ft.transform.Offset(-1, 0)
             self.group_listview.empty_warning_text_container.visible = False
-
-        # handle group button events
-        group_object: Group = None
-        group_image: str = ""
-        for group_object, group_image in joined_groups:
-            group_button = GroupButton(utils.decrypt(group_object.group_name), group_image)
-            group_button.group = group_object
-            group_button.activate = lambda button, group_name, image_string: self.open_group(group_name, image_string, button.group, False)
-            self.group_listview.add_group_button(group_button)
     
     # shows the listview for the group
-    def open_group(self, group_name: str, image_string: str, group: Group, from_reload: bool):
+    def open_group(self, group_name: str, image_string: str, from_reload: bool):
         self.repository.update_refs()
+
+        group: Group = self.group_buttons[str(group_name.__hash__())]
         
         # if the call is from reload, update the buttons
         button: GroupButton = None
@@ -265,9 +261,11 @@ class HomeController:
         
         self.repository.update_refs()
         self.repository.load_groups()
+
+        group: Group = None
         for group in self.repository.groups:
             if group.group_name == self.items_view.group.group_name:
-                self.open_group(group_name, image_string, group, True)
+                self.open_group(group_name, image_string, True)
                 break
     
     # returns to group_listview
@@ -328,9 +326,6 @@ class HomeController:
         if self.active_button == self.home_page.home_button:
             self.return_to_grid()
         
-        if new_button == self.home_page.settings_button:
-            self.home_page.settings_view.currency_setting.setting_with_current.value = f"Currently set to: {self.page.client_storage.get('currency')}"
-        
         new_index = 0
         for index, button in enumerate(self.sidebar_buttons):
             if new_button == button:
@@ -341,9 +336,6 @@ class HomeController:
         
         for iter, view in enumerate(self.home_page.slider_stack.controls):
             view.show(iter - new_index)
-            
-        if new_button == self.home_page.profile_button:
-            self.account_view.update_informations()
         
         self.active_button = new_button
         
