@@ -1,6 +1,4 @@
 import flet as ft
-
-from flet_route import Routing, path
 from views import *
 from controllers import *
 from models import *
@@ -13,29 +11,17 @@ def main(page: ft.Page):
     page.title = "Arlecchino"
     page.theme = ft.Theme(color_scheme_seed="#8C161E")
     
-    # Set dark mode from prefs
-    if bool(page.client_storage.get("dark_mode")):
-        page.theme_mode = ft.ThemeMode.DARK
-    else:
-        page.theme_mode = ft.ThemeMode.LIGHT
-    
     # Initialize Pages
     main_pages = Pages(page)
-    main_pages.add_page(HomePage)
-    main_pages.add_page(OpeningPage)
-    main_pages.add_page(OnboardingPage)
-    main_pages.add_page(LoginPage)
-    main_pages.add_page(SignupPage)
-    main_pages.add_page(ForgotPasswordPage)
-    main_pages.add_page(ConfirmEmailPage)
-    
-    Routing(page = page, app_routes = main_pages.routes)
+    main_pages.add_pages([
+        HomePage, OpeningPage,
+        OnboardingPage, LoginPage,
+        SignupPage, ForgotPasswordPage, ConfirmEmailPage
+    ])
+
     page.go(page.route)
     
-    if page.client_storage.get("currency") is None:
-        page.client_storage.set("currency", "PHP")
-    if page.client_storage.get("dark_mode") is None:
-        page.client_storage.set("dark_mode", False)
+    utils.initialize_settings(page)
     
     # Initialize the Repository
     repository = Repository()

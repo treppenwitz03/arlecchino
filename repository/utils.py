@@ -2,6 +2,7 @@ from io import BytesIO
 import base64
 import random
 import string
+import flet as ft
 from Crypto.Cipher import AES
 from Crypto.Util.Padding import pad, unpad
 
@@ -89,3 +90,13 @@ def decrypt(ciphertext: str):
 def set_key(_key):
     global key
     key = _key
+
+def initialize_settings(page: ft.Page):
+    if page.client_storage.get("currency") is None:
+        page.client_storage.set("currency", "PHP")
+    if page.client_storage.get("dark_mode") is None:
+        page.client_storage.set("dark_mode", False)
+    if bool(page.client_storage.get("dark_mode")):
+        page.theme_mode = ft.ThemeMode.DARK
+    else:
+        page.theme_mode = ft.ThemeMode.LIGHT

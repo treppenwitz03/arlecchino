@@ -1,5 +1,7 @@
-from flet_route import Params, Basket, path
+from flet_route import Params, Basket, Routing, path
 import flet as ft
+
+from typing import List
 
 class AbstractPage(ft.View):
     route: str = ""
@@ -13,10 +15,16 @@ class Pages:
         self.flet_page = page
         self.routes = []
     
-    def add_page(self, page: AbstractPage):
+    def __add_page__(self, page: AbstractPage):
         current_page = page(self.flet_page)
         self.routes.append(path(url=current_page.route, clear=current_page.should_clear, view=current_page.get_view))
         self.__pages[current_page.__class__.__name__] = current_page
+    
+    def add_pages(self, pages):
+        for page in pages:
+            self.__add_page__(page)
+        
+        Routing(page = self.flet_page, app_routes = self.routes)
     
     def get(self, page_name: str):
         return self.__pages[page_name]
