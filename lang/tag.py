@@ -162,5 +162,31 @@ text_values = {
     #sridia
     "mark_completed": "Markahan bilang tapos",
     "no_payment_made": "Wala pang natanggap na bayad.",
-
+    #conconemail
+    "cant_do_operation": "Hindi maisagawa ang operasyon",
+    "process_unexpected": "Ang proseso ay hindi inaasahan.",
+    "code_mismatch": "Ang ipinadalang code ay dapat tumugma sa ipinasok na code.",
+    "cant_change_pw": "Hindi mabago ang password",
+    "account_exists": "May account na nakalink sa mga ibinigay na kredensyal.",
+    "success_account_reg": "Tagumpay! Nalikhang iyong account. Maaari ka nang mag-login.",
+    "success_pw_change": "Tagumpay! Na-update ang iyong password. Maaari ka nang muling mag-login.",
+    "account_doesnt_exist": "Walang account na naka-link sa email.",
+    #conforpa
+    "code_not_sent": "Hindi maipadala ang code...",
+    "try_again": "Subukang muli",
+    #conhome
+    "autologged_in": "Ikaw ay awtomatikong naka-log in.",
+    "current_currency_setting": "Kasalukuyang naka-set sa: {}",
+    #conlogin
+    "password_wrong": "Mali ang password. Pakisubukang muli.",
+    "uname_pw_wrong": "Ang username o password ay maaaring mali. Pakisubukang muli.",
+    #cononboard
+    "gcash_choose_text": "Piliin ang GCash QR Code na Larawan",
+    "image_choose_text": "Piliin ang Larawan ng User",
+    "qr_invalid": "Ang QR Code na larawan ay hindi wasto",
+    "start_arle": "Simulan ang Arlecchino",
+    #conopening
+    "loading": "Naglo-load...",
+    "internet_error": "Hindi ma-{} dahil sa mabagal na koneksyon sa internet...",
+    "autolog_notice": "Awtomatiko kang mai-log in."
 }

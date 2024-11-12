@@ -1,12 +1,13 @@
 from views import HomePage, GroupButton, ItemButton, PaidUserButton
 from repository import Repository, utils
 from models import User, Group, Member, Transaction
+from lang import Language
 from ..controller_connector import ControllerConnector
 import flet as ft
 import clipboard
 
 class ItemsViewController:
-    def __init__(self, page: ft.Page, repository: Repository, home_page: HomePage):
+    def __init__(self, page: ft.Page, repository: Repository, home_page: HomePage, text_values: dict):
         self.page = page
         self.repository = repository
         self.home_page = home_page

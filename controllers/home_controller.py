@@ -1,6 +1,7 @@
 from models import Member, Group, User, Transaction
 from repository import Repository, utils
 from views import *
+from lang import Language
 
 from .controller_connector import ControllerConnector
 
@@ -9,10 +10,11 @@ import flet as ft
 class HomeController:
     code_validated = False
     image_path = ""
-    def __init__(self, page: ft.Page, repository: Repository, home_page: HomePage):
+    def __init__(self, page: ft.Page, repository: Repository, home_page: HomePage, text_values: dict):
         self.page = page
         self.repository = repository
         self.home_page = home_page
+        self.text_values = text_values
         
         ################### Initialize controller for home page and all its subviews ##################
         
@@ -53,14 +55,14 @@ class HomeController:
 
         # if keep_signed_in, notify the user of autologin
         if self.page.client_storage.get("keep_signed_in") is True and self.page.client_storage.get("recent_set_keep_signed_in") is False and self.page.client_storage.get("just_opened") is True:
-            self.page.snack_bar = ft.SnackBar(ft.Text(f"You are automatically logged in."), duration=1000)
+            self.page.snack_bar = ft.SnackBar(ft.Text(self.text_values["autologged_in"]), duration=1000)
             self.page.snack_bar.open = True
             self.page.update()
         elif self.page.client_storage.get("recent_set_keep_signed_in") is True:
             self.page.client_storage.set("recent_set_keep_signed_in", False)
             self.page.client_storage.set("just_opened", True)
         
-        self.home_page.settings_view.currency_setting.setting_with_current.value = f"Currently set to: {self.page.client_storage.get('currency')}"
+        self.home_page.settings_view.currency_setting.setting_with_current.value = self.text_values["current_currency_setting"].format(self.page.client_storage.get('currency'))
     
     # returns to group_listview
     def return_to_grid(self, event: ft.ControlEvent = None):

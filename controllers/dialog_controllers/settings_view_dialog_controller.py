@@ -2,11 +2,12 @@ import flet as ft
 
 from repository import Repository
 from views import HomePage
+from lang import Language
 
 import os
 
 class AppearanceDialogController:
-    def __init__(self, page: ft.Page, repository: Repository, home_page: HomePage):
+    def __init__(self, page: ft.Page, repository: Repository, home_page: HomePage, text_values: dict):
         self.page = page
         self.repository = repository
         self.home_page = home_page
@@ -47,7 +48,7 @@ class AppearanceDialogController:
         self.home_page.show_appearance_dialog()
 
 class CurrencyDialogController:
-    def __init__(self, page: ft.Page, repository: Repository, home_page: HomePage):
+    def __init__(self, page: ft.Page, repository: Repository, home_page: HomePage, text_values: dict):
         self.page = page
         self.repository = repository
         self.home_page = home_page
@@ -70,7 +71,7 @@ class CurrencyDialogController:
         self.home_page.show_currency_dialog()
 
 class LanguageDialogController:
-    def __init__(self, page: ft.Page, repository: Repository, home_page: HomePage):
+    def __init__(self, page: ft.Page, repository: Repository, home_page: HomePage, text_values: dict):
         self.page = page
         self.repository = repository
         self.home_page = home_page

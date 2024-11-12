@@ -13,11 +13,12 @@ def main(page: ft.Page):
 
     utils.initialize_settings(page)
     lang = Language(page)
+    text_values = lang.get_text_values()
 
     page.theme = ft.Theme(color_scheme_seed=page.client_storage.get("accent_color"))
     
     # Initialize Pages
-    main_pages = Pages(page, lang)
+    main_pages = Pages(page, text_values)
     main_pages.add_pages([
         HomePage, OpeningPage,
         OnboardingPage, LoginPage,
@@ -30,7 +31,7 @@ def main(page: ft.Page):
     repository = Repository()
 
     #Initialize the controllers
-    initialize_controllers(page, repository, main_pages)
+    initialize_controllers(page, repository, main_pages, text_values)
 
 if __name__ == "__main__":
     # Run the app with flet's method

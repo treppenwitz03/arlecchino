@@ -1,14 +1,16 @@
 from repository import Repository, utils
 from views import LoginPage
 from models import User
+from lang import Language
 from .controller_connector import ControllerConnector
 import flet as ft
 
 class LoginController:
-    def __init__(self, page: ft.Page, repository: Repository, login_page: LoginPage):
+    def __init__(self, page: ft.Page, repository: Repository, login_page: LoginPage, text_values: dict):
         self.page = page
         self.repository = repository
         self.login_page = login_page
+        self.text_values = text_values
         
         # handle login page events
         self.login_page.email_textfield.on_change = self.validate
@@ -45,10 +47,10 @@ class LoginController:
                 
                 return
             elif user.email == email and user.password != password:
-                self.login_page.display_on_dialog("Password is wrong. Please Try Again.")
+                self.login_page.display_on_dialog(self.text_values["password_wrong"])
                 return
         
-        self.login_page.display_on_dialog("Username or Password might be wrong. Please Try Again.")
+        self.login_page.display_on_dialog(self.text_values["uname_pw_wrong"])
     
     # handle if autologin is enabled
     def handle_automatic_login(self, event):

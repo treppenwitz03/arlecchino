@@ -1,6 +1,7 @@
 from models import User
 from repository import Repository, utils
 from views import OnboardingPage
+from lang import Language
 
 from .controller_connector import *
 
@@ -12,11 +13,12 @@ import cv2
 import base64
 
 class OnboardingController:
-    def __init__(self, page: ft.Page, repository: Repository, onboarding_page: OnboardingPage):
+    def __init__(self, page: ft.Page, repository: Repository, onboarding_page: OnboardingPage, text_values: dict):
         self.page = page
         self.repository = repository
         self.onboarding_page = onboarding_page
-        
+        self.text_values = text_values
+
         # set preliminary variables
         self.current = 0
         self.gcash_qr_base64 = ""
@@ -43,11 +45,11 @@ class OnboardingController:
     
     # open qr code chooser
     def open_qr_chooser(self, event):
-        self.qr_picker.pick_files("Choose GCash QR Code Image", allowed_extensions = ["png", "jpg", "jpeg", "PNG", "JPG"], file_type = ft.FilePickerFileType.CUSTOM)
+        self.qr_picker.pick_files(self.text_values["gcash_choose_text"], allowed_extensions = ["png", "jpg", "jpeg", "PNG", "JPG"], file_type = ft.FilePickerFileType.CUSTOM)
     
     # open profile picture chooser
     def open_profile_image_chooser(self, event):
-        self.dp_picker.pick_files("Choose a User Image", allowed_extensions = ["png", "jpg", "jpeg", "PNG", "JPG"], file_type = ft.FilePickerFileType.CUSTOM)
+        self.dp_picker.pick_files(self.text_values["image_choose_text"], allowed_extensions = ["png", "jpg", "jpeg", "PNG", "JPG"], file_type = ft.FilePickerFileType.CUSTOM)
     
     # set enablement of next_button through field check
     def handle_next_button(self):
@@ -83,11 +85,11 @@ class OnboardingController:
             self.qr_image_path = event.files[0].path
             image = cv2.imread(self.qr_image_path)
             detector = cv2.QRCodeDetector()
-            retval, data, points, _ = detector.detectAndDecodeMulti(image)
+            _, data, points, _ = detector.detectAndDecodeMulti(image)
             
             if "com.p2pqrpay" not in data[0]:
                 self.gcash_qr_base64 = ""
-                self.page.snack_bar = ft.SnackBar(ft.Text("The QR Code image is invalid"), duration=3000)
+                self.page.snack_bar = ft.SnackBar(ft.Text(self.text_values["qr_invalid"]), duration=3000)
                 self.page.snack_bar.open = True
                 self.page.update()
                 return
@@ -145,7 +147,7 @@ class OnboardingController:
             
             self.repository.update_user(current_user)
             
-            self.onboarding_page.next_button.text = "Start Arlecchino"
+            self.onboarding_page.next_button.text = self.text_values["start_arle"]
             self.onboarding_page.next_button.update()
             self.current = 2
         elif self.current == 2: # the profile page

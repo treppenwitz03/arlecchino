@@ -161,5 +161,32 @@ text_values = {
     "save_reload": "Guardar y recargar",
     #sridia
     "mark_completed": "Marcar como completado",
-    "no_payment_made": "No se ha recibido ningún pago."
+    "no_payment_made": "No se ha recibido ningún pago.",
+    #conconemail
+    "cant_do_operation": "No se puede realizar la operación",
+    "process_unexpected": "El proceso a realizar no es el esperado.",
+    "code_mismatch": "El código enviado debe coincidir con el código ingresado.",
+    "cant_change_pw": "No se puede cambiar la contraseña",
+    "account_exists": "Ya hay una cuenta vinculada a las credenciales dadas.",
+    "success_account_reg": "¡Éxito! Tu cuenta ha sido creada. Ahora puedes iniciar sesión.",
+    "success_pw_change": "¡Éxito! Tu contraseña ha sido actualizada. Ahora puedes iniciar sesión nuevamente.",
+    "account_doesnt_exist": "No existe una cuenta vinculada al correo electrónico.",
+    #conforpa
+    "code_not_sent": "No se puede enviar el código...",
+    "try_again": "Intenta de nuevo",
+    #conhome
+    "autologged_in": "Has iniciado sesión automáticamente.",
+    "current_currency_setting": "Actualmente configurado en: {}",
+    #conlogin
+    "password_wrong": "Contraseña incorrecta. Inténtalo de nuevo.",
+    "uname_pw_wrong": "El nombre de usuario o contraseña puede ser incorrecto. Inténtalo de nuevo.",
+    #cononboard
+    "gcash_choose_text": "Elige la Imagen del Código QR de GCash",
+    "image_choose_text": "Elige una Imagen de Usuario",
+    "qr_invalid": "La imagen del código QR es inválida",
+    "start_arle": "Iniciar Arlecchino",
+    #conopening
+    "loading": "Cargando...",
+    "internet_error": "No se puede {} debido a una conexión lenta...",
+    "autolog_notice": "Se iniciará sesión automáticamente."
 }

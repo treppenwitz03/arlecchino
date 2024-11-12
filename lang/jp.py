@@ -161,5 +161,32 @@ text_values = {
     "save_reload": "保存して再読み込み",
     #sridia
     "mark_completed": "完了としてマーク",
-    "no_payment_made": "まだ支払いが受け取られていません。"
+    "no_payment_made": "まだ支払いが受け取られていません。",
+    #conconemail
+    "cant_do_operation": "操作を実行できません",
+    "process_unexpected": "実行されるプロセスが予期されていません。",
+    "code_mismatch": "送信されたコードは入力されたコードと一致する必要があります。",
+    "cant_change_pw": "パスワードを変更できません",
+    "account_exists": "入力された資格情報にリンクされたアカウントが既に存在します。",
+    "success_account_reg": "成功！アカウントが作成されました。ログインできます。",
+    "success_pw_change": "成功！パスワードが更新されました。再度ログインできます。",
+    "account_doesnt_exist": "メールに関連するアカウントが存在しません。",
+    #conforpa
+    "code_not_sent": "コードを送信できません...",
+    "try_again": "再試行",
+    #conhome
+    "autologged_in": "自動的にログインしました。",
+    "current_currency_setting": "現在の設定通貨：{}",
+    #conlogin
+    "password_wrong": "パスワードが間違っています。もう一度やり直してください。",
+    "uname_pw_wrong": "ユーザー名またはパスワードが間違っている可能性があります。もう一度やり直してください。",
+    #cononboard
+    "gcash_choose_text": "GCash QRコード画像を選択",
+    "image_choose_text": "ユーザー画像を選択",
+    "qr_invalid": "QRコード画像が無効です",
+    "start_arle": "Arlecchinoを開始",
+    #conopening
+    "loading": "読み込み中...",
+    "internet_error": "インターネット接続が遅いため、{}できません...",
+    "autolog_notice": "自動的にログインします。"
 }

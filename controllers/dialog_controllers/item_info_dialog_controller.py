@@ -1,6 +1,7 @@
 from models import Transaction, Group, User
 from repository import Repository, utils
 from views import HomePage
+from lang import Language
 
 from ..controller_connector import ControllerConnector
 
@@ -13,7 +14,7 @@ import base64
 # Initialize the Payable Info Dialog
 class ItemInfoDialogController:
     image_path = ""
-    def __init__(self, page: ft.Page, repository: Repository, home_page: HomePage):
+    def __init__(self, page: ft.Page, repository: Repository, home_page: HomePage, text_values: dict):
         self.page = page
         self.repository = repository
         self.home_page = home_page

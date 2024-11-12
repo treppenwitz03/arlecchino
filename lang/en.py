@@ -161,5 +161,32 @@ text_values = {
     "save_reload": "Save and reload",
     #sridia
     "mark_completed": "Mark as completed",
-    "no_payment_made": "No payment has yet been received."
+    "no_payment_made": "No payment has yet been received.",
+    #conconemail
+    "cant_do_operation": "Can't Do operation",
+    "process_unexpected": "The process to be done is not expected.",
+    "code_mismatch": "The code sent must match the entered code.",
+    "cant_change_pw": "Can't Change Password",
+    "account_exists": "An account is already linked to the credentials given.",
+    "success_account_reg": "Success! Your account has been created. You may now log in.",
+    "success_pw_change": "Success! Your password has been updated. You may now log in again.",
+    "account_doesnt_exist": "An account bound to the email doesn't exist.",
+    #conforpa
+    "code_not_sent": "Cannot send code...",
+    "try_again": "Try again",
+    #conhome
+    "autologged_in": "You are automatically logged in.",
+    "current_currency_setting": "Currently set to: {}",
+    #conlogin
+    "password_wrong": "Password is wrong. Please Try Again.",
+    "uname_pw_wrong": "Username or Password might be wrong. Please Try Again.",
+    #cononboard
+    "gcash_choose_text": "Choose GCash QR Code Image",
+    "image_choose_text": "Choose a User Image",
+    "qr_invalid": "The QR Code image is invalid",
+    "start_arle": "Start Arlecchino",
+    #conopening
+    "loading": "Loading...",
+    "internet_error": "Unable to {} due to slow internet connection...",
+    "autolog_notice": "You will be automatically logged in.",
 }

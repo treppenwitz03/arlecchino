@@ -1,6 +1,7 @@
 from models import Transaction, Group
 from repository import Repository, utils
 from views import HomePage, AddReceivableDialog
+from lang import Language
 
 from ..controller_connector import ControllerConnector
 
@@ -12,7 +13,7 @@ import datetime
 
 class AddReceivableDialogController:
     image_path = ""
-    def __init__(self, page: ft.Page, repository: Repository, home_page: HomePage):
+    def __init__(self, page: ft.Page, repository: Repository, home_page: HomePage, text_values: dict):
         self.page = page
         self.repository = repository
         self.home_page = home_page

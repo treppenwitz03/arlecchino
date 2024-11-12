@@ -1,14 +1,16 @@
 from repository import Repository, utils
 from views import ForgotPasswordPage
 import flet as ft
+from lang import Language
 
 from .controller_connector import ControllerConnector
 
 class ForgotController:
-    def __init__(self, page: ft.Page, repository: Repository, forgot_password_page: ForgotPasswordPage):
+    def __init__(self, page: ft.Page, repository: Repository, forgot_password_page: ForgotPasswordPage, text_values: dict):
         self.page = page
         self.repository = repository
         self.forgot_password_page = forgot_password_page
+        self.text_values = text_values
         
         ##### COntroller for the Forgot Password Page #############
         
@@ -42,7 +44,7 @@ class ForgotController:
         code = self.repository.get_email_confirmation_code_forgot(self.forgot_password_page.get_email_to_send_entry())
 
         if not code:
-            self.page.snack_bar = ft.SnackBar(ft.Text(f"Cannot send code..."), action="Try again")
+            self.page.snack_bar = ft.SnackBar(ft.Text(self.text_values["code_not_send"]), action=self.text_values["try_again"])
             self.page.snack_bar.open = True
             self.page.snack_bar.on_action = lambda e: self.change_password(event)
             self.page.update()

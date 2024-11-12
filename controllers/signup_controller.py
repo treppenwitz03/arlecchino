@@ -1,4 +1,5 @@
 from repository import Repository, utils
+from lang import Language
 from views import SignupPage
 import flet as ft
 import webbrowser
@@ -6,10 +7,11 @@ import webbrowser
 from .controller_connector import ControllerConnector
 
 class SignupController:
-    def __init__(self, page: ft.Page, repository: Repository, signup_page: SignupPage):
+    def __init__(self, page: ft.Page, repository: Repository, signup_page: SignupPage, text_values: dict):
         self.page = page
         self.repository = repository
         self.signup_page = signup_page
+        self.text_values = text_values
         
         # handle signup fields
         self.signup_page.email_textfield.on_change = self.validate
@@ -43,7 +45,7 @@ class SignupController:
         code = self.repository.get_email_confirmation_code(self.signup_page.get_email_entry().strip())
 
         if not code:
-            self.page.snack_bar = ft.SnackBar(ft.Text(f"Cannot send code..."), action="Try again")
+            self.page.snack_bar = ft.SnackBar(ft.Text(self.text_values["code_not_sent"]), action=self.text_values["try_again"])
             self.page.snack_bar.open = True
             self.page.snack_bar.on_action = lambda e: self.register(event)
             self.page.update()

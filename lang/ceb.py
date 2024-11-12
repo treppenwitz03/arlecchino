@@ -162,4 +162,31 @@ text_values = {
     #sridia
     "mark_completed": "Markahi nga natapos na",
     "no_payment_made": "Wala pay natanggap nga bayad.",
+    #conconemail
+    "cant_do_operation": "Dili mahimo ang operasyon",
+    "process_unexpected": "Ang proseso wala damha.",
+    "code_mismatch": "Ang gihatag nga code kinahanglan motakdo sa nasulod nga code.",
+    "cant_change_pw": "Dili mabag-o ang password",
+    "account_exists": "Anaa na’y account nga nalink sa gihatag nga kredensyal.",
+    "success_account_reg": "Malampuson! Naluwas ang imong account. Mahimo ka nang mag-log in.",
+    "success_pw_change": "Malampuson! Na-update ang imong password. Mahimo ka nang mag-log in usab.",
+    "account_doesnt_exist": "Walay account nga natakdo sa email.",
+    #conforpa
+    "code_not_sent": "Dili mapadala ang code...",
+    "try_again": "Sulayi pag-usab",
+    #conhome
+    "autologged_in": "Awtomatiko kang naka-log in.",
+    "current_currency_setting": "Trenched na sa: {}",
+    #conlogin
+    "password_wrong": "Sayop ang password. Palihug pagsulay pag-usab.",
+    "uname_pw_wrong": "Ang username o password basin sayop. Palihug pagsulay pag-usab.",
+    #cononboard
+    "gcash_choose_text": "Pili-a ang GCash QR Code na Imahe",
+    "image_choose_text": "Pili-a ang User Image",
+    "qr_invalid": "Dili balido ang QR Code na imahe",
+    "start_arle": "Sugdi ang Arlecchino",
+    #conopening
+    "loading": "Nag-load...",
+    "internet_error": "Dili mahimo ang {} tungod sa hinay nga koneksyon...",
+    "autolog_notice": "Awtomatiko kang maka-log in."
 }

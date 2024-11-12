@@ -1,11 +1,12 @@
 from views import HomePage, GroupButton, ItemButton
 from repository import Repository, utils
+from lang import Language
 from models import User, Group, Member, Transaction
 from ..controller_connector import ControllerConnector
 import flet as ft
 
 class GroupListViewController:
-    def __init__(self, page: ft.Page, repository: Repository, home_page: HomePage):
+    def __init__(self, page: ft.Page, repository: Repository, home_page: HomePage, text_values: dict):
         self.page = page
         self.repository = repository
         self.home_page = home_page

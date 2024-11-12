@@ -1,6 +1,7 @@
 from views import HomePage, ProfilePictureChangeDialog, EditGcashDialog, EditUsernameDialog, EditPasswordDialog, AccountView
 from repository import Repository, utils
 from models import User
+from lang import Language
 
 from ..controller_connector import ControllerConnector
 
@@ -11,7 +12,7 @@ import base64
 import cv2
 
 class AccountSettingsDialogsController:
-    def __init__(self, page: ft.Page, repository: Repository, home_page: HomePage):
+    def __init__(self, page: ft.Page, repository: Repository, home_page: HomePage, text_values: dict):
         self.page = page
         self.repository = repository
         self.home_page = home_page

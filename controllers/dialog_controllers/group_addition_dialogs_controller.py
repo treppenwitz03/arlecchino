@@ -1,6 +1,7 @@
 from models import Group, Member, User
 from repository import Repository, utils
 from views import HomePage, JoinGroupDialog, CreateGroupDialog, SearchGroupsDialog
+from lang import Language
 
 from ..controller_connector import ControllerConnector
 
@@ -12,7 +13,7 @@ import base64
     
 class JoinDialogController:
     code_validated = False
-    def __init__(self, page: ft.Page, repository: Repository, home_page: HomePage):
+    def __init__(self, page: ft.Page, repository: Repository, home_page: HomePage, text_values: dict):
         self.page = page
         self.repository = repository
         self.home_page = home_page
@@ -77,7 +78,7 @@ class JoinDialogController:
             self.page.update()
 
 class CreateGroupDialogController:
-    def __init__(self, page: ft.Page, repository: Repository, home_page: HomePage):
+    def __init__(self, page: ft.Page, repository: Repository, home_page: HomePage, text_values: dict):
         self.page = page
         self.repository = repository
         self.home_page = home_page
@@ -165,7 +166,7 @@ class CreateGroupDialogController:
 
 class SearchGroupsDialogController:
     chosen_group_tile: ft.ListTile = None
-    def __init__(self, page: ft.Page, repository: Repository, home_page: HomePage):
+    def __init__(self, page: ft.Page, repository: Repository, home_page: HomePage, text_values: dict):
         self.page = page
         self.repository = repository
         self.home_page = home_page
