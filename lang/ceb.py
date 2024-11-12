@@ -92,5 +92,9 @@ text_values = {
     "group_code": "Kodigo sa Grupo: ",
     "financial_recap": "Pinansyal nga Pagbalik: ",
     "total_payable": "Total nga Bayranan: ",
-    "total_receivable": "Total nga Madawat: "
+    "total_receivable": "Total nga Madawat: ",
+    #grbtn
+    "search_groups": "Pangitaa ang mga Grupo",
+    "create_new": "Maghimo og Bag-o",
+    "join_group": "Mojoin sa Grupo"
 }

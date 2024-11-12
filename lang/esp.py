@@ -92,5 +92,9 @@ text_values = {
     "group_code": "Código de Grupo: ",
     "financial_recap": "Resumen Financiero: ",
     "total_payable": "Total a Pagar: ",
-    "total_receivable": "Total a Recibir: "
+    "total_receivable": "Total a Recibir: ",
+    #grbtn
+    "search_groups": "Buscar Grupos",
+    "create_new": "Crear Nuevo",
+    "join_group": "Unirse al Grupo"
 }

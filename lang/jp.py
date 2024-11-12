@@ -92,5 +92,9 @@ text_values = {
     "group_code": "グループコード: ",
     "financial_recap": "財務概要: ",
     "total_payable": "合計支払額: ",
-    "total_receivable": "合計受取額: "
+    "total_receivable": "合計受取額: ",
+    #grbtn
+    "search_groups": "グループを検索",
+    "create_new": "新しく作成",
+    "join_group": "グループに参加"
 }

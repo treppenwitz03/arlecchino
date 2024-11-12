@@ -92,5 +92,9 @@ text_values = {
     "group_code": "Kode ng Grupo: ",
     "financial_recap": "Pangkalahatang Pagbabalik: ",
     "total_payable": "Kabuuang Kailangang Bayaran: ",
-    "total_receivable": "Kabuuang Tatanggapin: "
+    "total_receivable": "Kabuuang Tatanggapin: ",
+    #grbtn
+    "search_groups": "Maghanap ng mga Grupo",
+    "create_new": "Lumikha ng Bago",
+    "join_group": "Sumali sa Grupo"
 }

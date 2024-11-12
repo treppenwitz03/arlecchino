@@ -92,7 +92,7 @@ class GroupListView(ft.AnimatedSwitcher):
         )
         
         self.content = self.grid_view
-        self.add_button = AddGroupButton()
+        self.add_button = AddGroupButton(text_values)
 
     # dictates whether the show or hide the group list view
     def show(self, delta):

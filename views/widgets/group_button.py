@@ -71,7 +71,7 @@ class AddReceivableButton(GroupButton):
         self.text_row.visible = False
 
 class AddGroupButton(ft.PopupMenuButton):
-    def __init__(self):
+    def __init__(self, text_values: dict):
         super().__init__()
         # create a button specifically for opening the group addition/creation dialog
             
@@ -98,9 +98,9 @@ class AddGroupButton(ft.PopupMenuButton):
         )
 
         self.items = [
-            ft.PopupMenuItem("Search Groups", ft.icons.SEARCH_OUTLINED, on_click = lambda e: self.on_search_groups(e)),
-            ft.PopupMenuItem("Create New", ft.icons.CREATE_OUTLINED, on_click = lambda e: self.on_create_group(e)),
-            ft.PopupMenuItem("Join Group", ft.icons.JOIN_LEFT_OUTLINED, on_click = lambda e: self.on_join_group(e))
+            ft.PopupMenuItem(text_values["search_groups"], ft.icons.SEARCH_OUTLINED, on_click = lambda e: self.on_search_groups(e)),
+            ft.PopupMenuItem(text_values["create_new"], ft.icons.CREATE_OUTLINED, on_click = lambda e: self.on_create_group(e)),
+            ft.PopupMenuItem(text_values["join_group"], ft.icons.JOIN_LEFT_OUTLINED, on_click = lambda e: self.on_join_group(e))
         ]
 
     def on_search_groups(self, event):
