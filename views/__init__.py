@@ -9,23 +9,23 @@ from .onboarding_page import OnboardingPage
 
 # Homepage views
 
-from .account_view import AccountView
-from .group_listview import GroupListView
-from .feedback_view import FeedbackView
-from .settings_view import *
+from .subviews.account_view import AccountView
+from .subviews.group_listview import GroupListView
+from .subviews.feedback_view import FeedbackView
+from .subviews.settings_view import *
 
 # Dialogs
 
-from .account_settings_dialogs import *
-from .group_addition_dialogs import JoinGroupDialog, CreateGroupDialog, SearchGroupsDialog
-from .add_receivable_dialog import AddReceivableDialog
-from .item_info_dialog import ItemInfoDialog
-from .settings_view_dialogs import *
-from .show_receivable_info_dialog import *
+from .dialogs.account_settings_dialogs import *
+from .dialogs.group_addition_dialogs import JoinGroupDialog, CreateGroupDialog, SearchGroupsDialog
+from .dialogs.add_receivable_dialog import AddReceivableDialog
+from .dialogs.item_info_dialog import ItemInfoDialog
+from .dialogs.settings_view_dialogs import *
+from .dialogs.show_receivable_info_dialog import *
 
 # Special Widgets
 
-from .item_button import *
-from .items_view import *
-from .group_button import *
-from .paid_user_button import PaidUserButton
+from .widgets.item_button import *
+from .subviews.items_view import *
+from .widgets.group_button import *
+from .widgets.paid_user_button import PaidUserButton

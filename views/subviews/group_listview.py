@@ -1,6 +1,6 @@
 import flet as ft
-from views.group_button import GroupButton, AddGroupButton
-from views.items_view import ItemsView
+from views.widgets.group_button import GroupButton, AddGroupButton
+from views.subviews.items_view import ItemsView
 
 class GroupListView(ft.AnimatedSwitcher):
     def __init__(self, homepage):

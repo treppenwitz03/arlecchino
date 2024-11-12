@@ -1,5 +1,5 @@
 import flet as ft
-from views.settings_view_dialogs import *
+from views.dialogs.settings_view_dialogs import *
 
 class SettingsView(ft.Column):
     def __init__(self):

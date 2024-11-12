@@ -2,17 +2,17 @@ import flet as ft
 from flet_route import Params, Basket
 from views.abstract_page import AbstractPage
 
-from views.group_listview import GroupListView
-from views.settings_view import SettingsView
-from views.feedback_view import FeedbackView
-from views.account_view import AccountView
+from views.subviews.group_listview import GroupListView
+from views.subviews.settings_view import SettingsView
+from views.subviews.feedback_view import FeedbackView
+from views.subviews.account_view import AccountView
 
-from views.group_addition_dialogs import *
-from views.item_info_dialog import ItemInfoDialog
-from views.add_receivable_dialog import AddReceivableDialog
-from views.show_receivable_info_dialog import ShowReceivableInfoDialog
-from views.account_settings_dialogs import *
-from views.settings_view_dialogs import *
+from views.dialogs.group_addition_dialogs import *
+from views.dialogs.item_info_dialog import ItemInfoDialog
+from views.dialogs.add_receivable_dialog import AddReceivableDialog
+from views.dialogs.show_receivable_info_dialog import ShowReceivableInfoDialog
+from views.dialogs.account_settings_dialogs import *
+from views.dialogs.settings_view_dialogs import *
 
 class HomePage(AbstractPage):
     def __init__(self, text_values: dict):
