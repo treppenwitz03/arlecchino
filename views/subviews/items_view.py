@@ -4,7 +4,7 @@ from views.widgets.group_button import AddReceivableButton
 
 class ItemsView(ft.Column):
     group = None
-    def __init__(self):
+    def __init__(self, text_values: dict):
         super().__init__(
             expand=True,
             spacing=0
@@ -66,7 +66,7 @@ class ItemsView(ft.Column):
         
         self.empty_warning_text = ft.Text(
             expand=True,
-            value="Your group has no payables yet.",
+            value=text_values["no_payables"],
             weight=ft.FontWeight.W_400,
             size=20
         )
@@ -128,11 +128,11 @@ class ItemsView(ft.Column):
             expand=True,
             tabs=[
                 ft.Tab(
-                    "My Payables",
+                    text_values["my_payables"],
                     content = self.payable_column
                 ),
                 ft.Tab(
-                    "My Receivables",
+                    text_values["my_receivables"],
                     content = self.receivable_column
                 )
             ]
@@ -153,7 +153,7 @@ class ItemsView(ft.Column):
         )
         
         self.created_by_text = ft.Text(
-            value = "Created by: ",
+            value = text_values["created_by"],
             spans = [ft.TextSpan(
                 " ",
                 style=ft.TextStyle(italic=True, weight=ft.FontWeight.W_300)
@@ -163,7 +163,7 @@ class ItemsView(ft.Column):
         )
         
         self.group_code_text = ft.Text(
-            value = "Group Code: ",
+            value = text_values["group_code"],
             spans = [ft.TextSpan(
                 " ",
                 style=ft.TextStyle(italic=True, weight=ft.FontWeight.W_300)
@@ -191,18 +191,18 @@ class ItemsView(ft.Column):
         )
         
         self.financial_recap_text = ft.Text(
-            "Financial Recap: ",
+            text_values["financial_recap"],
             italic=True,
             weight=ft.FontWeight.W_400
         )
         
         self.total_payable_text = ft.Text(
-            "Total Payable: ",
+            text_values["total_payable"],
             weight=ft.FontWeight.W_600
         )
         
         self.total_receivable_text = ft.Text(
-            "Total Receivable: ",
+            text_values["total_receivable"],
             weight=ft.FontWeight.W_600
         )
         

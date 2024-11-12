@@ -80,7 +80,7 @@ class GroupListView(ft.AnimatedSwitcher):
             padding = 30
         )
         
-        self.items_view = ItemsView()
+        self.items_view = ItemsView(text_values)
         
         self.grid_view = ft.Column(
             controls=[

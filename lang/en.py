@@ -73,5 +73,14 @@ text_values = {
     "get_involved": "Get involved with the project",
     #grouplistview
     "grouplistview_subtitle": "Click on your joined group to see its transactions. If you don't have any, add one.",
-    "group_empty_warning": "You have not joined a group as of yet. Click the box to create one."
+    "group_empty_warning": "You have not joined a group as of yet. Click the box to create one.",
+    #itemsview
+    "no_payables": "Your group has no payables yet.",
+    "my_payables": "My Payables",
+    "my_receivables": "My Receivables",
+    "created_by": "Created by: ",
+    "group_code": "Group Code: ",
+    "financial_recap": "Financial Recap: ",
+    "total_payable": "Total Payable: ",
+    "total_receivable": "Total Receivable: "
 }
