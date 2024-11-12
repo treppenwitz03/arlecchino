@@ -129,5 +129,26 @@ text_values = {
     "day": "Adlaw",
     "year": "Tuig",
     "amount": "Kantidad",
-    "description": "Deskripsyon"
+    "description": "Deskripsyon",
+    #gradia
+    "join_a_group": "Apil sa grupo",
+    "enter_8_digit": "Ibutang ang 8-digit nga code sa grupo",
+    "verify_code": "I-verify ang code sa grupo",
+    "join_group": "Apil",
+    "create_group": "Paghimo og grupo",
+    "group_name": "Ngalan sa Grupo",
+    "group_desc": "Deskripsyon sa Grupo",
+    "create_new": "Paghimo og Bag-o",
+    "search_groups_dia": "Pangita ug mga grupo...",
+    "choose_group": "Pili ug grupo gikan sa mga sugyot...",
+    "created": "Gihimo: Tigbuhat",
+    "join": "Apil",
+    #itidia
+    "date_posted": "Petsa sa Pag-post: ",
+    "pay_with_qr": "Bayad gamit ang QR Code",
+    "gcash_field": "Numero sa GCash: ",
+    "item_field": "Item: ",
+    "amount_2b_paid": "Kantidad nga bayaran: ",
+    "upload_proof": "I-upload ang patunay sa bayad",
+    "pay_now": "Bayad karon"
 }

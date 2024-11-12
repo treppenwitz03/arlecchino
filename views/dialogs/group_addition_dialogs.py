@@ -6,10 +6,10 @@ class JoinGroupDialog(ft.AlertDialog):
         ###################################################
         ## Make the UI for joining dialog
         ###################################################
-        self.title = ft.Text("Join a group")
+        self.title = ft.Text(text_values["join_a_group"])
         
         self.group_code_textfield = ft.TextField(
-            label = "Enter 8 digit group code",
+            label = text_values["enter_8_digit"],
             border_radius = 15,
             expand = True,
             height=44,
@@ -25,7 +25,7 @@ class JoinGroupDialog(ft.AlertDialog):
         self.check_if_exists_button = ft.ElevatedButton(
             disabled=True,
             content=ft.Text(
-                value="Verify group code",
+                value=text_values["verify_code"],
             )
         )
         
@@ -46,8 +46,8 @@ class JoinGroupDialog(ft.AlertDialog):
             height=100
         )
         
-        self.join_button = ft.TextButton("Join", disabled=True)
-        self.close_button = ft.TextButton("Cancel")
+        self.join_button = ft.TextButton(text_values["join_group"], disabled=True)
+        self.close_button = ft.TextButton(text_values["cancel"])
         
         self.content = self.join_column
         self.actions = [
@@ -77,7 +77,7 @@ class CreateGroupDialog(ft.AlertDialog):
         ###################################################
         ## Make the UI for group adding and joining dialog
         ###################################################
-        self.title = ft.Text("Create group")
+        self.title = ft.Text(text_values["create_group"])
         
         self.image_preview = ft.Image(
             "/default_image.png",
@@ -94,7 +94,7 @@ class CreateGroupDialog(ft.AlertDialog):
             height=30,
             width=160,
             content=ft.Text(
-                value="Upload image",
+                value=text_values["upload"],
             )
         )
         
@@ -109,7 +109,7 @@ class CreateGroupDialog(ft.AlertDialog):
         )
         
         self.group_name_textfield = ft.TextField(
-            label = "Group Name",
+            label = text_values["group_name"],
             border_radius = 15,
             width=220,
             height=44,
@@ -122,7 +122,7 @@ class CreateGroupDialog(ft.AlertDialog):
         )
         
         self.group_desc_textfield = ft.TextField(
-            label = "Group Description",
+            label = text_values["group_desc"],
             border_radius = 15,
             width = 220,
             height = 300,
@@ -151,8 +151,8 @@ class CreateGroupDialog(ft.AlertDialog):
             height=200
         )
         
-        self.create_new_button = ft.TextButton("Create New", disabled=True)
-        self.close_button = ft.TextButton("Cancel")
+        self.create_new_button = ft.TextButton(text_values["create_new"], disabled=True)
+        self.close_button = ft.TextButton(text_values["cancel"])
         
         self.content = self.creation_row
         self.actions = [
@@ -196,8 +196,8 @@ class SearchGroupsDialog(ft.AlertDialog):
         
         self.search_bar = ft.SearchBar(
             width=300,
-            bar_hint_text="Search groups...",
-            view_hint_text="Choose a group from the suggestions..."
+            bar_hint_text=text_values["search_groups_dia"],
+            view_hint_text=text_values["choose_group"]
         )
 
         self.load_group_button = ft.IconButton(icon=ft.icons.SEARCH, disabled=True)
@@ -220,21 +220,21 @@ class SearchGroupsDialog(ft.AlertDialog):
         )
         
         self.group_name_text = ft.Text(
-            "Group Name",
+            text_values["group_name"],
             size=16,
             weight=ft.FontWeight.W_700,
             width=220
         )
         
         self.group_desc_text = ft.Text(
-            "Group Description: ",
+            text_values["group_desc"],
             size=12,
             weight=ft.FontWeight.W_400,
             width=220
         )
 
         self.group_creator_text = ft.Text(
-            "Created: Creator",
+            text_values["created"],
             size=12,
             weight=ft.FontWeight.W_400,
             width=220
@@ -270,8 +270,8 @@ class SearchGroupsDialog(ft.AlertDialog):
             self.switcher
         ], height=200)
         
-        self.join_button = ft.TextButton("Join", disabled = True)
-        self.close_button = ft.TextButton("Cancel")
+        self.join_button = ft.TextButton(text_values["join"], disabled = True)
+        self.close_button = ft.TextButton(text_values["cancel"])
         
         self.content = self.main_column
         self.actions = [

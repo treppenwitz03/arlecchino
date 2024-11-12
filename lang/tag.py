@@ -129,5 +129,26 @@ text_values = {
     "day": "Araw",
     "year": "Taon",
     "amount": "Halaga",
-    "description": "Deskripsyon"
+    "description": "Deskripsyon",
+    #gradia
+    "join_a_group": "Sumali sa grupo",
+    "enter_8_digit": "Ilagay ang 8-digit na code ng grupo",
+    "verify_code": "Beripikahin ang code ng grupo",
+    "join_group": "Sumali",
+    "create_group": "Lumikha ng grupo",
+    "group_name": "Pangalan ng Grupo",
+    "group_desc": "Deskripsyon ng Grupo",
+    "create_new": "Lumikha ng Bago",
+    "search_groups_dia": "Maghanap ng mga grupo...",
+    "choose_group": "Pumili ng grupo mula sa mga mungkahi...",
+    "created": "Nilikha: Tagalikha",
+    "join": "Sumali",
+    #itidia
+    "date_posted": "Petsa ng Pag-post: ",
+    "pay_with_qr": "Magbayad gamit ang QR Code",
+    "gcash_field": "Numero ng GCash: ",
+    "item_field": "Item: ",
+    "amount_2b_paid": "Halagang babayaran: ",
+    "upload_proof": "I-upload ang patunay ng bayad",
+    "pay_now": "Magbayad ngayon"
 }

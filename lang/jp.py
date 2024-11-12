@@ -129,5 +129,26 @@ text_values = {
     "day": "日",
     "year": "年",
     "amount": "金額",
-    "description": "説明"
+    "description": "説明",
+    #gradia
+    "join_a_group": "グループに参加",
+    "enter_8_digit": "8桁のグループコードを入力",
+    "verify_code": "グループコードを確認",
+    "join_group": "参加",
+    "create_group": "グループを作成",
+    "group_name": "グループ名",
+    "group_desc": "グループの説明",
+    "create_new": "新規作成",
+    "search_groups_dia": "グループを検索...",
+    "choose_group": "提案からグループを選択...",
+    "created": "作成者: クリエーター",
+    "join": "参加",
+    #itidia
+    "date_posted": "投稿日: ",
+    "pay_with_qr": "QRコードで支払う",
+    "gcash_field": "GCash番号: ",
+    "item_field": "アイテム: ",
+    "amount_2b_paid": "支払う金額: ",
+    "upload_proof": "支払いの証明をアップロード",
+    "pay_now": "今すぐ支払う",
 }

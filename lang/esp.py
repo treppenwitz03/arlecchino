@@ -129,5 +129,26 @@ text_values = {
     "day": "Día",
     "year": "Año",
     "amount": "Cantidad",
-    "description": "Descripción"
+    "description": "Descripción",
+    #gradia
+    "join_a_group": "Unirse a un grupo",
+    "enter_8_digit": "Ingresa el código de grupo de 8 dígitos",
+    "verify_code": "Verificar código de grupo",
+    "join_group": "Unirse",
+    "create_group": "Crear grupo",
+    "group_name": "Nombre del Grupo",
+    "group_desc": "Descripción del Grupo",
+    "create_new": "Crear Nuevo",
+    "search_groups_dia": "Buscar grupos...",
+    "choose_group": "Elige un grupo de las sugerencias...",
+    "created": "Creado: Creador",
+    "join": "Unirse",
+    #itidia
+    "date_posted": "Fecha de Publicación: ",
+    "pay_with_qr": "Pagar con Código QR",
+    "gcash_field": "Número de GCash: ",
+    "item_field": "Artículo: ",
+    "amount_2b_paid": "Monto a pagar: ",
+    "upload_proof": "Subir prueba de pago",
+    "pay_now": "Pagar ahora"
 }

@@ -9,12 +9,12 @@ class ItemInfoDialog(ft.AlertDialog):
         ## Make the UI when payable/receivable is clicked
         #################################################
         self.item_name = ft.Text(
-            "Gatas",
+            " ",
             weight=ft.FontWeight.W_700,
         )
         
         self.price = ft.Text(
-            "₱ 450",
+            " ",
             weight=ft.FontWeight.W_700,
         )
         
@@ -36,7 +36,7 @@ class ItemInfoDialog(ft.AlertDialog):
         )
         
         self.account_name_info = ft.Text(
-            "Owen David"
+            " "
         )
         
         account_row = ft.Row(
@@ -45,7 +45,7 @@ class ItemInfoDialog(ft.AlertDialog):
         )
         
         self.description = ft.Text(
-            "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available.",
+            " ",
             weight=ft.FontWeight.W_400
         )
         
@@ -56,9 +56,9 @@ class ItemInfoDialog(ft.AlertDialog):
         )
         
         self.item_post_time = ft.Text(
-            value = "Date Posted: ",
+            value = text_values["date_posted"],
             spans = [ft.TextSpan(
-                f"October 30, 2023 - 12:00 am",
+                f" ",
                 style=ft.TextStyle(italic=True, weight=ft.FontWeight.W_300)
             )],
             weight=ft.FontWeight.W_500,
@@ -76,7 +76,7 @@ class ItemInfoDialog(ft.AlertDialog):
         )
         
         qr_indicator = ft.Text(
-            "Pay with QR Code"
+            text_values["pay_with_qr"]
         )
         
         self.qr_code = ft.Image(
@@ -97,7 +97,7 @@ class ItemInfoDialog(ft.AlertDialog):
         )
         
         self.account_name_payment = ft.Text(
-            "Owen David",
+            " ",
             size=12
         )
         
@@ -108,10 +108,10 @@ class ItemInfoDialog(ft.AlertDialog):
         )
         
         self.gcash_number = ft.Text(
-            value = "Gcash number: ",
+            value = text_values["gcash_field"],
             size=14,
             spans = [ft.TextSpan(
-                f"09999999999",
+                f" ",
             )],
         )
         
@@ -121,16 +121,16 @@ class ItemInfoDialog(ft.AlertDialog):
         )
         
         self.payment_item_name = ft.Text(
-            value = "Item: ",
+            value = text_values["item_field"],
             spans = [ft.TextSpan(
-                f"Gatas",
+                f" ",
             )],
         )
         
         self.item_price = ft.Text(
-            value = "Amount to be paid: ",
+            value = text_values["amount_2b_paid"],
             spans = [ft.TextSpan(
-                "₱ 450",
+                " ",
             )],
         )
         
@@ -160,7 +160,7 @@ class ItemInfoDialog(ft.AlertDialog):
         
         self.upload_proof_button = ft.ElevatedButton(
             content=ft.Text(
-                value="Upload proof of payment"
+                value=text_values["upload_proof"]
             )
         )
         
@@ -180,8 +180,8 @@ class ItemInfoDialog(ft.AlertDialog):
             switch_out_curve=ft.AnimationCurve.LINEAR,
         )
         
-        self.pay_button = ft.TextButton("Pay now")
-        self.cancel_button = ft.TextButton("Cancel")
+        self.pay_button = ft.TextButton(text_values["pay_now"])
+        self.cancel_button = ft.TextButton(text_values["cancel"])
         
         self.content=self.switcher
         self.actions=[

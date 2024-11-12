@@ -129,5 +129,27 @@ text_values = {
     "day": "Day",
     "year": "Year",
     "amount": "Amount",
-    "description": "Description"
+    "description": "Description",
+    #gradia
+    "join_a_group": "Join a group",
+    "enter_8_digit": "Enter 8 digit group code",
+    "verify_code": "Verify group code",
+    "join_group": "Join",
+    "create_group": "Create group",
+    "group_name": "Group Name",
+    "group_desc": "Group Description",
+    "create_new": "Create New",
+    "search_groups_dia": "Search groups...",
+    "choose_group": "Choose a group from the suggestions...",
+    "created": "Created: Creator",
+    "join": "Join",
+    #itidia
+    "date_posted": "Date Posted: ",
+    "pay_with_qr": "Pay with QR Code",
+    "gcash_field": "Gcash number: ",
+    "item_field": "Item: ",
+    "amount_2b_paid": "Amount to be paid: ",
+    "upload_proof": "Upload proof of payment",
+    "pay_now": "Pay now",
+
 }
