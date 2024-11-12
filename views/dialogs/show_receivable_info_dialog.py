@@ -7,8 +7,8 @@ class ShowReceivableInfoDialog(ft.AlertDialog):
         ###########################################################
         ## Make the UI for when receivable button is clicked
         ###########################################################
-        self.completed_button = ft.TextButton("Mark as completed")
-        self.cancel_button = ft.TextButton("Cancel")
+        self.completed_button = ft.TextButton(text_values["mark_completed"])
+        self.cancel_button = ft.TextButton(text_values["cancel"])
         
         self.actions = [
             self.completed_button,
@@ -20,9 +20,9 @@ class ShowReceivableInfoDialog(ft.AlertDialog):
         
         self.content = self.paid_list
         
-        self.no_paid_label = ft.Text("No payment has yet been received.", width=400, height=200)
+        self.no_paid_label = ft.Text(text_values["no_payment_made"], width=400, height=200)
         
-        self.title = ft.Text("HAHA", weight = ft.FontWeight.W_700)
+        self.title = ft.Text(" ", weight = ft.FontWeight.W_700)
     
     # make a callback to show proof
     def show_proof(self, id: str):

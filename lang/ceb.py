@@ -150,5 +150,16 @@ text_values = {
     "item_field": "Item: ",
     "amount_2b_paid": "Kantidad nga bayaran: ",
     "upload_proof": "I-upload ang patunay sa bayad",
-    "pay_now": "Bayad karon"
+    "pay_now": "Bayad karon",
+    #sevidia
+    "appearance_diasub": "I-personalize ang estilo ug layout sa app aron mohaom sa imong gusto.",
+    "dark_mode": "Madulum nga Mode",
+    "accent_color": "Kolor sa Diin",
+    "currency_diasub": "Pag-amping sa pag-usab sa salapi sa app kay kini makadala og mga isyu sa presyo ug pagbag-o sa imong mga transaksyon.",
+    "lang": "Pinulongan",
+    "lang_diasub": "Pag-amping sa pag-usab sa pinulongan sa app kay lisod mahimong ibalik ang imong gipangita nga pinulongan.",
+    "save_reload": "I-save ug i-reload",
+    #sridia
+    "mark_completed": "Markahi nga natapos na",
+    "no_payment_made": "Wala pay natanggap nga bayad.",
 }

@@ -150,5 +150,17 @@ text_values = {
     "item_field": "Item: ",
     "amount_2b_paid": "Halagang babayaran: ",
     "upload_proof": "I-upload ang patunay ng bayad",
-    "pay_now": "Magbayad ngayon"
+    "pay_now": "Magbayad ngayon",
+    #sevidia
+    "appearance_diasub": "I-customize ang istilo at layout ng app upang umangkop sa iyong mga kagustuhan.",
+    "dark_mode": "Madilim na Mode",
+    "accent_color": "Kulay ng Pagdiin",
+    "currency_diasub": "Mag-ingat sa pagpalit ng pera ng app, dahil maaari itong magdulot ng mga isyu sa pagpepresyo at pagkakakuwenta sa iyong mga transaksyon.",
+    "lang": "Wika",
+    "lang_diasub": "Mag-ingat sa pagpapalit ng wika ng app dahil maaaring mahirapan kang bumalik sa nais na wika.",
+    "save_reload": "I-save at i-reload",
+    #sridia
+    "mark_completed": "Markahan bilang tapos",
+    "no_payment_made": "Wala pang natanggap na bayad.",
+
 }

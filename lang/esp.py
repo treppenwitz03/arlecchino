@@ -150,5 +150,16 @@ text_values = {
     "item_field": "Artículo: ",
     "amount_2b_paid": "Monto a pagar: ",
     "upload_proof": "Subir prueba de pago",
-    "pay_now": "Pagar ahora"
+    "pay_now": "Pagar ahora",
+    #sevidia
+    "appearance_diasub": "Personaliza el estilo visual y el diseño de la aplicación según tus preferencias.",
+    "dark_mode": "Modo Oscuro",
+    "accent_color": "Color de Acento",
+    "currency_diasub": "Por favor, tenga cuidado al cambiar la moneda de la aplicación, ya que esta acción puede provocar problemas de precios y conversión en sus transacciones.",
+    "lang": "Idioma",
+    "lang_diasub": "Por favor, tenga cuidado al cambiar el idioma de la aplicación ya que puede tener dificultades para regresar a su idioma deseado.",
+    "save_reload": "Guardar y recargar",
+    #sridia
+    "mark_completed": "Marcar como completado",
+    "no_payment_made": "No se ha recibido ningún pago."
 }

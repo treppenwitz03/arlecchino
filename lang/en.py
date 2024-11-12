@@ -151,5 +151,15 @@ text_values = {
     "amount_2b_paid": "Amount to be paid: ",
     "upload_proof": "Upload proof of payment",
     "pay_now": "Pay now",
-
+    #sevidia
+    "appearance_diasub": "Customize the app's visual style and layout to suit your preferences.",
+    "dark_mode": "Dark Mode",
+    "accent_color": "Accent Color",
+    "currency_diasub": "Please be cautious when changing the app's currency, as this action may result in potential pricing and conversion issues for your transactions.",
+    "lang": "Language",
+    "lang_diasub": "Please be cautious in changing the application language as you may have difficulty in returning to your needed language.",
+    "save_reload": "Save and reload",
+    #sridia
+    "mark_completed": "Mark as completed",
+    "no_payment_made": "No payment has yet been received."
 }

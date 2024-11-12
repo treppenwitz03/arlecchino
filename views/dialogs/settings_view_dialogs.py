@@ -6,8 +6,8 @@ class AppearanceDialog(ft.AlertDialog):
         ###############################################
         ## Make the Ui for changing the app appearance
         ###############################################
-        title = ft.Text("Appearance", weight=ft.FontWeight.BOLD)
-        self.subtitle = ft.Text("Customize the app's visual style and layout to suit your preferences.", size=12)
+        title = ft.Text(text_values["appearance"], weight=ft.FontWeight.BOLD)
+        self.subtitle = ft.Text(text_values["appearance_diasub"], size=12)
         
         title_column = ft.Column(
             controls = [title, self.subtitle]
@@ -15,7 +15,7 @@ class AppearanceDialog(ft.AlertDialog):
         
         self.title = title_column
         
-        dark_mode_text = ft.Text("Dark Mode", weight=ft.FontWeight.W_700)
+        dark_mode_text = ft.Text(text_values["dark_mode"], weight=ft.FontWeight.W_700)
         self.dark_mode_switch = ft.Switch()
         
         dark_mode_row = ft.Row(
@@ -23,7 +23,7 @@ class AppearanceDialog(ft.AlertDialog):
             alignment=ft.MainAxisAlignment.SPACE_BETWEEN
         )
 
-        accent_color_text = ft.Text("Accent Color", weight=ft.FontWeight.W_700)
+        accent_color_text = ft.Text(text_values["accent_color"], weight=ft.FontWeight.W_700)
         self.accent_color_radio = ft.RadioGroup(
             content=ft.Row([
                 ft.Radio(value="#8C161E", width=48, height=48, fill_color="#8C161E"),
@@ -50,7 +50,7 @@ class AppearanceDialog(ft.AlertDialog):
             self.open = False
             self.page.update()
         
-        close_button = ft.TextButton("Close")
+        close_button = ft.TextButton(text_values["cancel"])
         close_button.on_click = close
         
         self.actions = [close_button]
@@ -72,8 +72,8 @@ class CurrencyDialog(ft.AlertDialog):
         #################################
         ## Make the UI for currency setting
         #################################
-        title = ft.Text("Currency", weight=ft.FontWeight.BOLD)
-        self.subtitle = ft.Text("Please be cautious when changing the app's currency, as this action may result in potential pricing and conversion issues for your transactions.", width=400, size=12)
+        title = ft.Text(text_values["currency"], weight=ft.FontWeight.BOLD)
+        self.subtitle = ft.Text(text_values["currency_diasub"], width=400, size=12)
         
         title_column = ft.Column(
             controls = [title, self.subtitle]
@@ -95,7 +95,7 @@ class CurrencyDialog(ft.AlertDialog):
             self.open = False
             self.page.update()
         
-        close_button = ft.TextButton("Close")
+        close_button = ft.TextButton(text_values["cancel"])
         close_button.on_click = close
         
         self.actions = [close_button]
@@ -112,8 +112,8 @@ class LanguageDialog(ft.AlertDialog):
         #################################
         ## Make the UI for currency setting
         #################################
-        title = ft.Text("Language", weight=ft.FontWeight.BOLD)
-        self.subtitle = ft.Text("Please be cautious in changing the application language as you may have difficulty in returning to your needed language.", width=400, size=12)
+        title = ft.Text(text_values["lang"], weight=ft.FontWeight.BOLD)
+        self.subtitle = ft.Text(text_values["lang_diasub"], width=400, size=12)
         
         title_column = ft.Column(
             controls = [title, self.subtitle]
@@ -137,10 +137,10 @@ class LanguageDialog(ft.AlertDialog):
             self.open = False
             self.page.update()
         
-        close_button = ft.TextButton("Close")
+        close_button = ft.TextButton(text_values["cancel"])
         close_button.on_click = close
 
-        reload = ft.FilledButton("Save and reload", style=ft.ButtonStyle(color=ft.colors.ON_ERROR, bgcolor=ft.colors.ERROR))
+        reload = ft.FilledButton(text_values["save_reload"], style=ft.ButtonStyle(color=ft.colors.ON_ERROR, bgcolor=ft.colors.ERROR))
         reload.on_click = lambda e: self.on_change(self.language_choices.value)
         
         self.actions = [reload, close_button]
