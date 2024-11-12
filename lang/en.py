@@ -1,4 +1,3 @@
-# Dictionary for text values
 text_values = {
     "app_name": "Arlecchino",
     "signup_button_text": "Create Account",

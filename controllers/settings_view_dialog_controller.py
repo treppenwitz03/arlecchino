@@ -1,7 +1,7 @@
 import flet as ft
 
 from repository import Repository
-from views import HomePage
+from views import HomePage, Pages
 
 class AppearanceDialogController:
     def __init__(self, page: ft.Page, repository: Repository, home_page: HomePage):
@@ -66,3 +66,24 @@ class CurrencyDialogController:
     def handle_dialog_open(self, event: ft.ControlEvent):
         self.currency_dialog.currency_choices.value = self.page.client_storage.get("currency")
         self.home_page.show_currency_dialog()
+
+class LanguageDialogController:
+    def __init__(self, page: ft.Page, repository: Repository, home_page: HomePage):
+        self.page = page
+        self.repository = repository
+        self.home_page = home_page
+        self.language_dialog = home_page.language_dialog
+
+        self.home_page.settings_view.language_setting.on_click = self.handle_dialog_open
+        self.language_dialog.on_change = self.change_language
+    
+    def handle_dialog_open(self, event):
+        self.language_dialog.language_choices.value = self.page.client_storage.get("lang")
+        self.home_page.show_language_dialog()
+    
+    def change_language(self, language):
+        self.page.client_storage.set("lang", language)
+        Pages.update_texts(self.page)
+        self.page.snack_bar = ft.SnackBar(ft.Text("A full application reload is required for the change to take effect..."))
+        self.page.snack_bar.open = True
+        self.page.update()

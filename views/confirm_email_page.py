@@ -3,13 +3,13 @@ from flet_route import Params, Basket
 from views.abstract_page import AbstractPage
 
 class ConfirmEmailPage(AbstractPage):
-    def __init__(self, page: ft.Page):
+    def __init__(self, text_values: dict):
         super().__init__(
             route="/confirm_email",
             padding = 0
         )
 
-        self.page = page
+        self.text_values = text_values
         #################################
         ## Make the email confirmation page
         ################################

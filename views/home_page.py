@@ -15,13 +15,13 @@ from views.account_settings_dialogs import *
 from views.settings_view_dialogs import *
 
 class HomePage(AbstractPage):
-    def __init__(self, page: ft.Page):
+    def __init__(self, text_values: dict):
         super().__init__(
             route = "/home",
             padding=0
         )
 
-        self.page = page
+        self.text_values = text_values
         ########################################################
         ## Make the Home Page UI containing the different views
         ########################################################
@@ -169,6 +169,7 @@ class HomePage(AbstractPage):
         
         self.appearance_dialog = AppearanceDialog()
         self.currency_dialog = CurrencyDialog()
+        self.language_dialog = LanguageDialog()
     
     # get the view for the page
     def get_view(self, page: ft.Page, params: Params, basket: Basket):
@@ -250,5 +251,10 @@ class HomePage(AbstractPage):
     def show_currency_dialog(self):
         self.page.dialog = self.currency_dialog
         self.currency_dialog.open = True
+        self.page.update()
+    
+    def show_language_dialog(self):
+        self.page.dialog = self.language_dialog
+        self.language_dialog.open = True
         self.page.update()
     ###########################################################

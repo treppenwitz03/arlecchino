@@ -1,0 +1,36 @@
+from .en import text_values as en_val
+from .tag import text_values as tag_val
+from .ceb import text_values as ceb_val
+from .jp import text_values as jp_val
+from .esp import text_values as span_val
+
+import flet as ft
+
+class Language:
+    def __init__(self, page: ft.Page):
+        self.page = page
+        if self.page.client_storage.get("lang") is None:
+            self.page.client_storage.set("lang", "en")
+        
+        self.language: str = self.page.client_storage.get("lang")
+    
+    def get_text_values(self):
+        match self.language:
+            case "en":
+                return en_val
+            case "tag":
+                return tag_val
+            case "ceb":
+                return ceb_val
+            case "jp":
+                return jp_val
+            case "esp":
+                return span_val
+            case _:
+                return None
+    
+    def __new__(cls, page):
+        if not hasattr(cls, "instance"):
+            cls.instance = super(Language, cls).__new__(cls)
+        
+        return cls.instance

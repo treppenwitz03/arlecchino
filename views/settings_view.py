@@ -47,11 +47,13 @@ class SettingsView(ft.Column):
         
         self.appearance_setting = SettingButton("Appearance", "Customize the app's visual style and layout to suit your preferences", "")
         self.currency_setting = SettingButton("Currency", "Adjust the currency settings to specify your preferred currency for transactions and display.", "Currently set to: P")
+        self.language_setting = SettingButton("Language", "Modify the application language to fill your needs.", "")
         
         setting_list = ft.Column(
             controls=[
                 self.appearance_setting,
                 self.currency_setting,
+                self.language_setting
             ]
         )
         

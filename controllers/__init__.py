@@ -36,6 +36,7 @@ def initialize_controllers(page: ft.Page, repository: Repository, main_pages: Pa
     ReceivableInfoDialogController(page, repository, main_pages.get("HomePage"))
     AppearanceDialogController(page, repository, main_pages.get("HomePage"))
     CurrencyDialogController(page, repository, main_pages.get("HomePage"))
+    LanguageDialogController(page, repository, main_pages.get("HomePage"))
     OpeningController(page, repository, main_pages.get("OpeningPage"))
     OnboardingController(page, repository, main_pages.get("OnboardingPage"))
     LoginController(page, repository, main_pages.get("LoginPage"))

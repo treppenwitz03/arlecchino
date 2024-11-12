@@ -3,6 +3,7 @@ from views import *
 from controllers import *
 from models import *
 from repository import *
+from lang import Language
 
 def main(page: ft.Page):
     # Set window parameters
@@ -11,11 +12,12 @@ def main(page: ft.Page):
     page.title = "Arlecchino"
 
     utils.initialize_settings(page)
+    lang = Language(page)
 
     page.theme = ft.Theme(color_scheme_seed=page.client_storage.get("accent_color"))
     
     # Initialize Pages
-    main_pages = Pages(page)
+    main_pages = Pages(page, lang)
     main_pages.add_pages([
         HomePage, OpeningPage,
         OnboardingPage, LoginPage,

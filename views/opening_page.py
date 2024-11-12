@@ -1,17 +1,15 @@
 import flet as ft
 from flet_route import Params, Basket
 from views.abstract_page import AbstractPage
-from lang.en import text_values
 
 class OpeningPage(AbstractPage):
-    def __init__(self, page):
+    def __init__(self, text_values: dict):
         super().__init__(
             route="/",
             padding=ft.padding.all(0)
         )
 
-        self.page = page
-
+        self.text_values = text_values
         ############################################
         ## Initialize the Opening Page
         ############################################

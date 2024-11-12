@@ -106,6 +106,48 @@ class CurrencyDialog(ft.AlertDialog):
     def on_change(self, currency):
         pass
 
+class LanguageDialog(ft.AlertDialog):
+    def __init__(self):
+        super().__init__()
+        #################################
+        ## Make the UI for currency setting
+        #################################
+        title = ft.Text("Language", weight=ft.FontWeight.BOLD)
+        self.subtitle = ft.Text("Please be cautious in changing the application language as you may have difficulty in returning to your needed language.", width=400, size=12)
+        
+        title_column = ft.Column(
+            controls = [title, self.subtitle]
+        )
+        
+        self.title = title_column
+        
+        self.language_choices = ft.RadioGroup(
+            content=ft.Row([
+                ft.Radio("ENGLISH", value="en"),
+                ft.Radio("TAGALOG", value="tag"),
+                ft.Radio("CEBUANO", value="ceb"),
+                ft.Radio("ESPAÑOL", value="esp"),
+                ft.Radio("日本語", value="jp")
+            ], alignment=ft.MainAxisAlignment.CENTER, vertical_alignment=ft.CrossAxisAlignment.START, height=50, spacing=50),
+        )
+        
+        self.content = self.language_choices
+        
+        def close(event: ft.ControlEvent):
+            self.open = False
+            self.page.update()
+        
+        close_button = ft.TextButton("Close")
+        close_button.on_click = close
+        
+        self.actions = [close_button]
+        self.actions_alignment = ft.MainAxisAlignment.END
+        self.language_choices.on_change = lambda event: self.on_change(self.language_choices.value)
+    
+    # Call on_change when settings is changed
+    def on_change(self, language):
+        pass
+
 class ChoiceButton(ft.Column):
     def __init__(self, label: str, source: str):
         super().__init__()

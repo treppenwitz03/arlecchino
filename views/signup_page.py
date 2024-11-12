@@ -3,13 +3,13 @@ from flet_route import Params, Basket
 from views.abstract_page import AbstractPage
 
 class SignupPage(AbstractPage):
-    def __init__(self, page: ft.Page):
+    def __init__(self, text_values: dict):
         super().__init__(
             route="/signup",
             padding = 0
         )
 
-        self.page = page
+        self.text_values = text_values
         #####################################
         ## Make the Signup UI
         #####################################
