@@ -258,6 +258,3 @@ class HomePage(AbstractPage):
         self.language_dialog.open = True
         self.page.update()
     ###########################################################
-
-    def update_texts(self, texts):
-        return super().update_texts(texts)

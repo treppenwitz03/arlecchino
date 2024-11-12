@@ -114,23 +114,3 @@ class OpeningPage(AbstractPage):
     
     def get_view(self, page: ft.Page, params: Params, basket: Basket):
         return self
-    
-    def update_texts(self, texts: dict):
-        try:
-            self.app_name.value = texts["app_name"]
-            self.signup_button.content.value = texts["signup_button_text"]
-            self.about_button.text = texts["about_button_text"]
-            self.support_button.text = texts["support_button_text"]
-            self.login_button.content.value = texts["login_button_text"]
-            self.motto_text.value = texts["motto_text"]
-            self.sub_text.value = texts["sub_text"]
-            
-            self.app_name.update()
-            self.signup_button.content.update()
-            self.about_button.update()
-            self.support_button.update()
-            self.login_button.content.update()
-            self.motto_text.update()
-            self.sub_text.update()
-        except:
-            pass

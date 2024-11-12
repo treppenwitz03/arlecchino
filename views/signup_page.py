@@ -261,6 +261,3 @@ class SignupPage(AbstractPage):
     def allow_register(self, allow: bool):
         self.register_btn.disabled = (allow == False)
         self.page.update()
-    
-    def update_texts(self, texts):
-        return super().update_texts(texts)

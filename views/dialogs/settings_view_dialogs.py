@@ -122,13 +122,13 @@ class LanguageDialog(ft.AlertDialog):
         self.title = title_column
         
         self.language_choices = ft.RadioGroup(
-            content=ft.Row([
-                ft.Radio("ENGLISH", value="en"),
-                ft.Radio("TAGALOG", value="tag"),
-                ft.Radio("CEBUANO", value="ceb"),
-                ft.Radio("ESPAÑOL", value="esp"),
+            content=ft.Column([
+                ft.Radio("English", value="en"),
+                ft.Radio("Tagalog", value="tag"),
+                ft.Radio("Cebuano", value="ceb"),
+                ft.Radio("Español", value="esp"),
                 ft.Radio("日本語", value="jp")
-            ], alignment=ft.MainAxisAlignment.CENTER, vertical_alignment=ft.CrossAxisAlignment.START, height=50, spacing=50),
+            ], height=250, spacing=16)
         )
         
         self.content = self.language_choices
@@ -139,10 +139,12 @@ class LanguageDialog(ft.AlertDialog):
         
         close_button = ft.TextButton("Close")
         close_button.on_click = close
+
+        reload = ft.FilledButton("Save and reload", style=ft.ButtonStyle(color=ft.colors.ON_ERROR, bgcolor=ft.colors.ERROR))
+        reload.on_click = lambda e: self.on_change(self.language_choices.value)
         
-        self.actions = [close_button]
-        self.actions_alignment = ft.MainAxisAlignment.END
-        self.language_choices.on_change = lambda event: self.on_change(self.language_choices.value)
+        self.actions = [reload, close_button]
+        self.actions_alignment = ft.MainAxisAlignment.SPACE_BETWEEN
     
     # Call on_change when settings is changed
     def on_change(self, language):

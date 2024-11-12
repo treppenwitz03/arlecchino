@@ -22,6 +22,7 @@ text_values = {
     #login
     "login_indicator_text": "Mag-login",
     "welcome_back_text": "Malipayong pagbalik, user",
+    "email_username_label": "Email/Pangalan sa User",
     "email_label": "Email",
     "password_label": "Password",
     "keep_logged_text": "Panatilihing naka-sign in",

@@ -216,6 +216,3 @@ class ForgotPasswordPage(AbstractPage):
     def allow_password_change(self, allow: bool):
         self.change_password_btn.disabled = (allow == False)
         self.page.update()
-    
-    def update_texts(self, texts):
-        return super().update_texts(texts)

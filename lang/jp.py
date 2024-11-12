@@ -22,6 +22,7 @@ text_values = {
     #login
     "login_indicator_text": "ログイン",
     "welcome_back_text": "お帰りなさい、ユーザー",
+    "email_username_label": "メール/ユーザー名",
     "email_label": "メールアドレス",
     "password_label": "パスワード",
     "keep_logged_text": "サインインしたままにする",

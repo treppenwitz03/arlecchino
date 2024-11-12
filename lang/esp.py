@@ -22,6 +22,7 @@ text_values = {
     #login
     "login_indicator_text": "Iniciar sesión",
     "welcome_back_text": "Bienvenido de nuevo, usuario",
+    "email_username_label": "Correo electrónico/Nombre de usuario",
     "email_label": "Correo electrónico",
     "password_label": "Contraseña",
     "keep_logged_text": "Mantenerme conectado",

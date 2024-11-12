@@ -32,7 +32,10 @@ class LoginController:
         
         user: User = None
         for user in self.repository.users:
-            if utils.decrypt(user.email) == email and user.password == password:
+            if (utils.decrypt(user.username) == email or utils.decrypt(user.email) == email) and user.password == password:
+                if utils.decrypt(user.username) == email:
+                    email = utils.decrypt(user.email)
+
                 self.page.client_storage.set("email", utils.encrypt(email))
                 ControllerConnector.set_email(self.page, utils.encrypt(email))
                 if user.first_run:

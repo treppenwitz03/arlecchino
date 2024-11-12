@@ -48,7 +48,7 @@ class LoginPage(AbstractPage):
         welcome_back_row.controls.append(self.welcome_back_text)
         
         self.email_textfield = ft.TextField(
-            label = self.text_values["email_label"],
+            label = self.text_values["email_username_label"],
             border_radius = 25,
             expand=True,
             label_style = ft.TextStyle()
@@ -238,24 +238,3 @@ class LoginPage(AbstractPage):
         self.page.dialog = self.warning_dialog
         self.warning_dialog.open = True
         self.page.update()
-    
-    def update_texts(self, texts):
-        try:
-            # Update the text values directly using the dictionary
-            self.login_indicator_text.value = texts["login_indicator_text"]
-            self.welcome_back_text.value = texts["welcome_back_text"]
-            self.email_textfield.label = texts["email_label"]
-            self.password_textfield.label = texts["password_label"]
-            self.keep_logged_check.label = texts["keep_logged_text"]
-            self.forgot_password_text.value = texts["forgot_password_text"]
-            self.login_btn.content.value = texts["login_btn_text"]
-            self.signup_indicator_text.value = texts["signup_indicator_text"]
-            self.signup_button.content.value = texts["signup_button_text"]
-            self.dialog_text.value = texts["dialog_message"]
-
-            # Update the dialog title
-            self.warning_dialog.title.value = texts["dialog_title"]
-            
-            self.page.update()  # Ensure the page is updated after text changes
-        except:
-            pass

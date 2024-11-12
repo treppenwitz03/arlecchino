@@ -22,6 +22,7 @@ text_values = {
     # Login page
     "login_indicator_text": "Log in",
     "welcome_back_text": "Welcome back user",
+    "email_username_label": "Email/Username",
     "email_label": "Email",
     "password_label": "Password",
     "keep_logged_text": "Keep me signed in",
