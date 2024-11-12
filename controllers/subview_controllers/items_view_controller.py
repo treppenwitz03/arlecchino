@@ -1,7 +1,7 @@
 from views import HomePage, GroupButton, ItemButton, PaidUserButton
 from repository import Repository, utils
 from models import User, Group, Member, Transaction
-from .controller_connector import ControllerConnector
+from ..controller_connector import ControllerConnector
 import flet as ft
 import clipboard
 

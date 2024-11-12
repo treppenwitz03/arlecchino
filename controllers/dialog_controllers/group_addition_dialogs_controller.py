@@ -2,7 +2,7 @@ from models import Group, Member, User
 from repository import Repository, utils
 from views import HomePage, JoinGroupDialog, CreateGroupDialog, SearchGroupsDialog
 
-from .controller_connector import ControllerConnector
+from ..controller_connector import ControllerConnector
 
 from PIL import Image
 

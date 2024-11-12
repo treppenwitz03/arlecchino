@@ -2,7 +2,7 @@ from models import Transaction, Group, User
 from repository import Repository, utils
 from views import HomePage
 
-from .controller_connector import ControllerConnector
+from ..controller_connector import ControllerConnector
 
 from PIL import Image
 

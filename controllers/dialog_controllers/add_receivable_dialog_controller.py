@@ -2,7 +2,7 @@ from models import Transaction, Group
 from repository import Repository, utils
 from views import HomePage, AddReceivableDialog
 
-from .controller_connector import ControllerConnector
+from ..controller_connector import ControllerConnector
 
 import flet as ft
 from PIL import Image

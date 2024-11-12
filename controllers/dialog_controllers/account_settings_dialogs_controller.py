@@ -2,7 +2,7 @@ from views import HomePage, ProfilePictureChangeDialog, EditGcashDialog, EditUse
 from repository import Repository, utils
 from models import User
 
-from .controller_connector import ControllerConnector
+from ..controller_connector import ControllerConnector
 
 from PIL import Image
 from io import BytesIO
