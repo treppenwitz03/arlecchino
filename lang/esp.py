@@ -71,7 +71,26 @@ text_values = {
     "help_this_project": "Ayuda a mejorar este proyecto",
     "contribute_code": "Contribuir Código",
     "get_involved": "Participar en el proyecto",
+    #setting
+    "settings": "Configuración",
+    "settingsview_subtitle": "Modifica la apariencia y el comportamiento de la aplicación a través de la configuración a continuación.",
+    "appearance": "Apariencia",
+    "appearance_subtitle": "Personaliza el estilo visual y el diseño de la aplicación según tus preferencias",
+    "currency": "Moneda",
+    "currency_subtitle": "Ajusta la configuración de la moneda para especificar tu moneda preferida para las transacciones y la visualización.",
+    "currency_state": "Actualmente configurado en: P",
+    "language": "Idioma",
+    "language_subtitle": "Modifica el idioma de la aplicación para adaptarlo a tus necesidades.",
     #glv
     "grouplistview_subtitle": "Haz clic en el grupo al que te has unido para ver sus transacciones. Si no tienes ninguno, añade uno.",
-    "group_empty_warning": "Aún no te has unido a ningún grupo. Haz clic en el cuadro para crear uno."
+    "group_empty_warning": "Aún no te has unido a ningún grupo. Haz clic en el cuadro para crear uno.",
+    #ilv
+    "no_payables": "Tu grupo no tiene pagos pendientes aún.",
+    "my_payables": "Mis Pagos Pendientes",
+    "my_receivables": "Mis Recibos",
+    "created_by": "Creado por: ",
+    "group_code": "Código de Grupo: ",
+    "financial_recap": "Resumen Financiero: ",
+    "total_payable": "Total a Pagar: ",
+    "total_receivable": "Total a Recibir: "
 }

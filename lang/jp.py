@@ -71,7 +71,26 @@ text_values = {
     "help_this_project": "このプロジェクトを改善する手助けをする",
     "contribute_code": "コードを貢献",
     "get_involved": "プロジェクトに参加",
+    #setting
+    "settings": "設定",
+    "settingsview_subtitle": "以下の設定でアプリケーションの外観と動作を変更します。",
+    "appearance": "外観",
+    "appearance_subtitle": "アプリのビジュアルスタイルとレイアウトをお好みに合わせてカスタマイズします",
+    "currency": "通貨",
+    "currency_subtitle": "取引や表示のために好みの通貨を指定するために通貨設定を調整します。",
+    "currency_state": "現在設定されている通貨: P",
+    "language": "言語",
+    "language_subtitle": "アプリケーションの言語を変更してニーズに合わせます。",
     #glv
     "grouplistview_subtitle": "参加しているグループをクリックして、取引を見ることができます。まだグループがない場合は、1つ追加してください。",
-    "group_empty_warning": "まだグループに参加していません。作成するにはボックスをクリックしてください。"
+    "group_empty_warning": "まだグループに参加していません。作成するにはボックスをクリックしてください。",
+    #ilv
+    "no_payables": "あなたのグループにはまだ支払いがありません。",
+    "my_payables": "私の支払い",
+    "my_receivables": "私の受取金",
+    "created_by": "作成者: ",
+    "group_code": "グループコード: ",
+    "financial_recap": "財務概要: ",
+    "total_payable": "合計支払額: ",
+    "total_receivable": "合計受取額: "
 }

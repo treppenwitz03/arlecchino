@@ -71,7 +71,26 @@ text_values = {
     "help_this_project": "Tabangi ang proyekto nga mahimong mas maayo",
     "contribute_code": "Mag-ambag og Code",
     "get_involved": "Makig-ambit sa proyekto",
+    #setting
+    "settings": "Mga Setting",
+    "settingsview_subtitle": "Usba ang hitsura ug paglihok sa aplikasyon pinaagi sa mga setting sa ubos.",
+    "appearance": "Hitsura",
+    "appearance_subtitle": "I-customize ang visual nga estilo ug layout sa app aron mohaom sa imong gusto",
+    "currency": "Salapi",
+    "currency_subtitle": "I-adjust ang mga setting sa salapi aron ipakita ang imong gustong kwarta alang sa mga transaksyon ug display.",
+    "currency_state": "Kasalukuyang nakaset sa: P",
+    "language": "Wika",
+    "language_subtitle": "I-usab ang wika sa aplikasyon aron matugma sa imong mga panginahanglan.",
     #glv
     "grouplistview_subtitle": "I-klik ang imong gi-apilan nga grupo aron makita ang mga transaksyon niini. Kung wala pa kay grupo, magdugang og usa.",
-    "group_empty_warning": "Wala ka pa mag-apil og grupo. I-klik ang kahon aron maghimo og usa."
+    "group_empty_warning": "Wala ka pa mag-apil og grupo. I-klik ang kahon aron maghimo og usa.",
+    #ilv
+    "no_payables": "Walay mga bayranan sa imong grupo.",
+    "my_payables": "Mga Bayranan Ko",
+    "my_receivables": "Mga Madawat Ko",
+    "created_by": "Gihimo ni: ",
+    "group_code": "Kodigo sa Grupo: ",
+    "financial_recap": "Pinansyal nga Pagbalik: ",
+    "total_payable": "Total nga Bayranan: ",
+    "total_receivable": "Total nga Madawat: "
 }

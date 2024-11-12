@@ -13,7 +13,7 @@ class SettingsView(ft.Column):
         
         self.top_text = ft.Text(
             expand=True,
-            value="Settings",
+            value=text_values["settings"],
             weight=ft.FontWeight.W_600,
             size=54
         )
@@ -30,7 +30,7 @@ class SettingsView(ft.Column):
 
         self.subtitle_text = ft.Text(
             expand=True,
-            value="Modify the application's appearance and behavior through the settings below.",
+            value=text_values["settingsview_subtitle"],
             weight=ft.FontWeight.W_400,
             size=20
         )
@@ -45,9 +45,9 @@ class SettingsView(ft.Column):
             content=subtitle_text_row
         )
         
-        self.appearance_setting = SettingButton("Appearance", "Customize the app's visual style and layout to suit your preferences", "")
-        self.currency_setting = SettingButton("Currency", "Adjust the currency settings to specify your preferred currency for transactions and display.", "Currently set to: P")
-        self.language_setting = SettingButton("Language", "Modify the application language to fill your needs.", "")
+        self.appearance_setting = SettingButton(text_values["appearance"], text_values["appearance_subtitle"], "")
+        self.currency_setting = SettingButton(text_values["currency"], text_values["currency_subtitle"], text_values["currency_state"])
+        self.language_setting = SettingButton(text_values["language"], text_values["language_subtitle"], "")
         
         setting_list = ft.Column(
             controls=[

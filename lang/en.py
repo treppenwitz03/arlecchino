@@ -71,6 +71,16 @@ text_values = {
     "help_this_project": "Help this project become better",
     "contribute_code": "Contribute Code",
     "get_involved": "Get involved with the project",
+    #settings
+    "settings": "Settings",
+    "settingsview_subtitle": "Modify the application's appearance and behavior through the settings below.",
+    "appearance": "Appearance",
+    "appearance_subtitle": "Customize the app's visual style and layout to suit your preferences",
+    "currency": "Currency",
+    "currency_subtitle": "Adjust the currency settings to specify your preferred currency for transactions and display.",
+    "currency_state": "Currently set to: P",
+    "language": "Language",
+    "language_subtitle": "Modify the application language to fill your needs.",
     #grouplistview
     "grouplistview_subtitle": "Click on your joined group to see its transactions. If you don't have any, add one.",
     "group_empty_warning": "You have not joined a group as of yet. Click the box to create one.",

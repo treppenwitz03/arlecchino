@@ -71,8 +71,26 @@ text_values = {
     "help_this_project": "Tulungan ang proyektong ito na maging mas mahusay",
     "contribute_code": "Mag-ambag ng Code",
     "get_involved": "Makilahok sa proyekto",
+    #settings
+    "settings": "Mga Setting",
+    "settingsview_subtitle": "Baguhin ang hitsura at pag-uugali ng application gamit ang mga setting sa ibaba.",
+    "appearance": "Hitsura",
+    "appearance_subtitle": "I-customize ang visual na estilo at layout ng app ayon sa iyong mga kagustuhan",
+    "currency": "Pananalapi",
+    "currency_subtitle": "I-adjust ang mga setting ng pananalapi upang itakda ang iyong nais na pera para sa mga transaksyon at pagpapakita.",
+    "currency_state": "Kasalukuyang nakaset sa: P",
+    "language": "Wika",
+    "language_subtitle": "Baguhin ang wika ng application upang umangkop sa iyong pangangailangan.",
     #grouplistview
     "grouplistview_subtitle": "I-click ang iyong sinalihang grupo upang makita ang mga transaksyon nito. Kung wala ka pang grupo, magdagdag ng isa.",
-    "group_empty_warning": "Wala ka pang sinalihang grupo. I-click ang kahon upang makalikha ng isa."
-
+    "group_empty_warning": "Wala ka pang sinalihang grupo. I-click ang kahon upang makalikha ng isa.",
+    #ilv
+    "no_payables": "Wala pang mga kailangang bayaran sa iyong grupo.",
+    "my_payables": "Mga Kailangang Bayaran Ko",
+    "my_receivables": "Mga Tatanggapin Ko",
+    "created_by": "Nilikha ni: ",
+    "group_code": "Kode ng Grupo: ",
+    "financial_recap": "Pangkalahatang Pagbabalik: ",
+    "total_payable": "Kabuuang Kailangang Bayaran: ",
+    "total_receivable": "Kabuuang Tatanggapin: "
 }
