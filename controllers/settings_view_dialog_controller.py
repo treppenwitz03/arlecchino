@@ -83,7 +83,9 @@ class LanguageDialogController:
     
     def change_language(self, language):
         self.page.client_storage.set("lang", language)
-        Pages.update_texts(self.page)
+        pages: Pages = self.page._get_attr("pages_object")
+        pages.update_texts()
+
         self.page.snack_bar = ft.SnackBar(ft.Text("A full application reload is required for the change to take effect..."))
         self.page.snack_bar.open = True
         self.page.update()

@@ -13,7 +13,7 @@ class OnboardingPage(AbstractPage):
         self.should_clear = False
         self.text_values = text_values
         ###########################################
-        ## MAke the onboarding UI
+        ## Make the onboarding UI
         ###########################################
 
         logo = ft.Image(
@@ -27,8 +27,8 @@ class OnboardingPage(AbstractPage):
             controls=[logo]
         )
         
-        self.help_button = SupportButton(ft.icons.HELP_OUTLINED, "Get Help...")
-        self.contribute_button = SupportButton(ft.icons.SETTINGS_ACCESSIBILITY, "Contribute to the Project...")
+        self.help_button = SupportButton(ft.icons.HELP_OUTLINED, text_values["help_button"])
+        self.contribute_button = SupportButton(ft.icons.SETTINGS_ACCESSIBILITY, text_values["contribute_button"])
         
         options_column = ft.Column(
             controls=[self.help_button, self.contribute_button],
@@ -38,8 +38,8 @@ class OnboardingPage(AbstractPage):
         self.main_column = ft.Column(
             controls = [
                 logo_row,
-                ft.Text("Welcome to Arlecchino", weight=ft.FontWeight.BOLD, size=44),
-                ft.Text("A special service appointment system", weight=ft.FontWeight.W_400, size=20),
+                ft.Text(text_values["welcome_message"], weight=ft.FontWeight.BOLD, size=44),
+                ft.Text(text_values["description_message"], weight=ft.FontWeight.W_400, size=20),
                 ft.Container(options_column, padding=ft.padding.only(30, 60, 30, 60))
             ],
             horizontal_alignment=ft.CrossAxisAlignment.CENTER,
@@ -72,7 +72,7 @@ class OnboardingPage(AbstractPage):
             width = 200,
             height = 44,
             content=ft.Text(
-                value="Upload QR Code",
+                value=text_values["upload_qr_button"],
                 size=12
             )
         )
@@ -84,12 +84,12 @@ class OnboardingPage(AbstractPage):
         )
         
         number_label = ft.Text(
-            "GCash Mobile Number",
+            text_values["gcash_mobile_number_label"],
             weight=ft.FontWeight.W_600
         )
         
         self.number_textfield = ft.TextField(
-            label="Enter your number here",
+            label=text_values["enter_number_placeholder"],
             border_radius = 25,
             content_padding=10
         )
@@ -109,8 +109,8 @@ class OnboardingPage(AbstractPage):
         self.gcash_column = ft.Column(
             controls = [
                 gcash_logo_row,
-                ft.Text("Update your Profile Picture", weight=ft.FontWeight.BOLD, size=44),
-                ft.Text("Profile pictures allow you to be easily", weight=ft.FontWeight.W_400, size=20),
+                ft.Text(text_values["update_profile_title"], weight=ft.FontWeight.BOLD, size=44),
+                ft.Text(text_values["profile_picture_instruction_1"], weight=ft.FontWeight.W_400, size=20),
                 ft.Container(options_row, padding=ft.padding.only(30, 60, 30, 60))
             ],
             horizontal_alignment=ft.CrossAxisAlignment.CENTER,
@@ -141,7 +141,7 @@ class OnboardingPage(AbstractPage):
             width = 150,
             height = 32,
             content=ft.Text(
-                value="Upload Photo",
+                value=text_values["upload_photo_button"],
                 size=12
             )
         )
@@ -154,8 +154,8 @@ class OnboardingPage(AbstractPage):
         self.profile_column = ft.Column(
             controls = [
                 profile_logo_row,
-                ft.Text("Update your Profile Picture", weight=ft.FontWeight.BOLD, size=44),
-                ft.Text("Profile pictures allow you to be easily recognizable.", weight=ft.FontWeight.W_400, size=20),
+                ft.Text(text_values["update_profile_title"], weight=ft.FontWeight.BOLD, size=44),
+                ft.Text(text_values["profile_picture_instruction_2"], weight=ft.FontWeight.W_400, size=20),
                 ft.Container(profile_upload_column, padding=ft.padding.only(30, 60, 30, 60))
             ],
             horizontal_alignment=ft.CrossAxisAlignment.CENTER,
@@ -170,7 +170,7 @@ class OnboardingPage(AbstractPage):
         )
         
         self.next_button = ft.ElevatedButton(
-            "Next",
+            text_values["next_button"],
             width=200,
         )
         
@@ -186,6 +186,54 @@ class OnboardingPage(AbstractPage):
     # get view for the page
     def get_view(self, page: ft.Page, params: Params, basket: Basket):
         return self
+    
+    def update_texts(self, texts):
+        try:
+            # Update the texts for the main onboarding section
+            self.help_button.text = texts["help_button"]
+            self.contribute_button.text = texts["contribute_button"]
+            self.main_column.controls[1].value = texts["welcome_message"]
+            self.main_column.controls[2].value = texts["description_message"]
+            
+            # Update the GCash section texts
+            self.gcash_column.controls[1].value = texts["update_profile_title"]
+            self.gcash_column.controls[2].value = texts["profile_picture_instruction_1"]
+            
+            # Update the profile section texts
+            self.profile_column.controls[1].value = texts["update_profile_title"]
+            self.profile_column.controls[2].value = texts["profile_picture_instruction_2"]
+            
+            # Update the text on the "Upload QR Code" button
+            self.qr_upload_button.content.value = texts["upload_qr_button"]
+            
+            # Update the text for the GCash mobile number label
+            self.gcash_column.controls[3].controls[0].value = texts["gcash_mobile_number_label"]
+            
+            # Update the "Enter your number here" placeholder text
+            self.number_textfield.label = texts["enter_number_placeholder"]
+            
+            # Update the "Upload Photo" button
+            self.profile_upload_button.content.value = texts["upload_photo_button"]
+            
+            # Update the "Next" button
+            self.next_button.content.value = texts["next_button"]
+            
+            # Call update() to refresh the UI elements
+            self.help_button.update()
+            self.contribute_button.update()
+            self.main_column.controls[1].update()
+            self.main_column.controls[2].update()
+            self.gcash_column.controls[1].update()
+            self.gcash_column.controls[2].update()
+            self.profile_column.controls[1].update()
+            self.profile_column.controls[2].update()
+            self.qr_upload_button.content.update()
+            self.gcash_column.controls[3].controls[0].update()
+            self.number_textfield.update()
+            self.profile_upload_button.content.update()
+            self.next_button.content.update()
+        except:
+            pass
 
 class SupportButton(ft.Container):
     def __init__(self, icon_name: ft.icons, button_name: str):

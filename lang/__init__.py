@@ -7,6 +7,7 @@ from .esp import text_values as span_val
 import flet as ft
 
 class Language:
+    instance = None
     def __init__(self, page: ft.Page):
         self.page = page
         if self.page.client_storage.get("lang") is None:
@@ -28,9 +29,3 @@ class Language:
                 return span_val
             case _:
                 return None
-    
-    def __new__(cls, page):
-        if not hasattr(cls, "instance"):
-            cls.instance = super(Language, cls).__new__(cls)
-        
-        return cls.instance

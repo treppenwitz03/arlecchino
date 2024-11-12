@@ -10,6 +10,9 @@ class AbstractPage(ft.View):
     def get_view(self, page: ft.Page, params: Params, basket: Basket):
         pass
 
+    def update_texts(self, texts: dict):
+        pass
+
 class Pages(object):
     def __init__(self, page: ft.Page, lang: Language):
         self.__pages = dict()
@@ -27,20 +30,14 @@ class Pages(object):
             self.__add_page__(page)
         
         Routing(page = self.flet_page, app_routes = self.routes)
+        self.flet_page._set_attr("pages_object", self)
     
     def get(self, page_name: str):
         return self.__pages[page_name]
-
-    def __new__(cls, page: ft.Page, lang: Language):
-        if not hasattr(cls, "instance"):
-            cls.instance = super(Pages, cls).__new__(cls)
-        
-        return cls.instance
     
-    @staticmethod
-    def update_texts(page: ft.Page):
-        language = Language(page)
-        pages = Pages(page, language)
+    def update_texts(self):
+        new_texts = self.lang.get_text_values()
 
-        for page in pages.__pages.values():
-            print(page.route)
+        page: AbstractPage = None
+        for page in self.__pages.values():
+            page.update_texts(new_texts)

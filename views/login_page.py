@@ -25,7 +25,7 @@ class LoginPage(AbstractPage):
         )
         
         self.login_indicator_text = ft.Text(
-            value="Log in",
+            value=self.text_values["login_indicator_text"],
             weight=ft.FontWeight.W_700,
             size=54
         )
@@ -37,7 +37,7 @@ class LoginPage(AbstractPage):
         login_indicator_row.controls.append(self.login_indicator_text)
         
         self.welcome_back_text = ft.Text(
-            "Welcome back user",
+            self.text_values["welcome_back_text"],
             size = 24
         )
         
@@ -48,7 +48,7 @@ class LoginPage(AbstractPage):
         welcome_back_row.controls.append(self.welcome_back_text)
         
         self.email_textfield = ft.TextField(
-            label = "Email",
+            label = self.text_values["email_label"],
             border_radius = 25,
             expand=True,
             label_style = ft.TextStyle()
@@ -62,7 +62,7 @@ class LoginPage(AbstractPage):
         
         # Make sure the password field is hidden
         self.password_textfield = ft.TextField(
-            label = "Password",
+            label = self.text_values["password_label"],
             border_radius = 25,
             expand=True,
             password=True,
@@ -81,12 +81,12 @@ class LoginPage(AbstractPage):
         )
         
         keep_logged_indicator_text = ft.Text(
-            value="Keep me signed in",
+            value=self.text_values["keep_logged_text"],
             expand=True
         )
         
         self.forgot_password_text = ft.Text(
-            "Forgot Password?"
+            self.text_values["forgot_password_text"]
         )
         
         self.forgot_password_btn = ft.Container(
@@ -104,7 +104,7 @@ class LoginPage(AbstractPage):
             height = 44,
             disabled=True,
             content=ft.Text(
-                value="Log in",
+                value=self.text_values["login_btn_text"],
                 size=24
             )
         )
@@ -121,7 +121,7 @@ class LoginPage(AbstractPage):
         )
         
         self.signup_indicator_text = ft.Text(
-            value="Don't have an account yet?",
+            value=self.text_values["signup_indicator_text"],
             weight=ft.FontWeight.W_200,
             size=16
         )
@@ -136,7 +136,7 @@ class LoginPage(AbstractPage):
             width = 200,
             height = 44,
             content=ft.Text(
-                value="Register",
+                value=self.text_values["signup_button_text"],
                 size=24
             )
         )
@@ -206,7 +206,7 @@ class LoginPage(AbstractPage):
         
         self.warning_dialog = ft.AlertDialog(
             title=ft.Text(
-                value="Can't Log in.",
+                value=self.text_values["dialog_title"],
                 size=20
             ),
             content=self.dialog_text
@@ -238,3 +238,24 @@ class LoginPage(AbstractPage):
         self.page.dialog = self.warning_dialog
         self.warning_dialog.open = True
         self.page.update()
+    
+    def update_texts(self, texts):
+        try:
+            # Update the text values directly using the dictionary
+            self.login_indicator_text.value = texts["login_indicator_text"]
+            self.welcome_back_text.value = texts["welcome_back_text"]
+            self.email_textfield.label = texts["email_label"]
+            self.password_textfield.label = texts["password_label"]
+            self.keep_logged_check.label = texts["keep_logged_text"]
+            self.forgot_password_text.value = texts["forgot_password_text"]
+            self.login_btn.content.value = texts["login_btn_text"]
+            self.signup_indicator_text.value = texts["signup_indicator_text"]
+            self.signup_button.content.value = texts["signup_button_text"]
+            self.dialog_text.value = texts["dialog_message"]
+
+            # Update the dialog title
+            self.warning_dialog.title.value = texts["dialog_title"]
+            
+            self.page.update()  # Ensure the page is updated after text changes
+        except:
+            pass

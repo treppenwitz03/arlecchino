@@ -25,7 +25,7 @@ class ForgotPasswordPage(AbstractPage):
         )
         
         self.fg_pass_indicator_text = ft.Text(
-            value="Oh no!",
+            value=text_values["oh_no"],
             weight=ft.FontWeight.W_700,
             size=54
         )
@@ -37,7 +37,7 @@ class ForgotPasswordPage(AbstractPage):
         fg_pass_indicator_row.controls.append(self.fg_pass_indicator_text)
         
         self.fg_pass_reminder_text = ft.Text(
-            "Create a memorable password next time.",
+            text_values["create_memorable"],
             size = 24
         )
         
@@ -48,7 +48,7 @@ class ForgotPasswordPage(AbstractPage):
         fg_pass_reminder_row.controls.append(self.fg_pass_reminder_text)
         
         self.email_textfield = ft.TextField(
-            label = "Email",
+            label = text_values["email_label"],
             border_radius = 25,
             expand=True,
             height=44,
@@ -63,7 +63,7 @@ class ForgotPasswordPage(AbstractPage):
         email_textfield_row.controls.append(self.email_textfield)
         
         self.new_password_textfield = ft.TextField(
-            label = "New Password",
+            label = text_values["new_password"],
             border_radius = 25,
             cursor_height=20,
             expand = True,
@@ -80,7 +80,7 @@ class ForgotPasswordPage(AbstractPage):
         new_password_textfield_row.controls.append(self.new_password_textfield)
         
         self.confirm_new_password_textfield = ft.TextField(
-            label = "Confirm Password",
+            label = text_values["confirm_password_label"],
             border_radius = 25,
             expand = True,
             height=44,
@@ -101,7 +101,7 @@ class ForgotPasswordPage(AbstractPage):
             height = 44,
             disabled=True,
             content=ft.Text(
-                value="Change your password",
+                value=text_values["change_your_password"],
                 size=18
             )
         )
@@ -117,7 +117,7 @@ class ForgotPasswordPage(AbstractPage):
         )
         
         self.signup_indicator_text = ft.Text(
-            value="Don't have an account yet?",
+            value=text_values["dont_have_account"],
             weight=ft.FontWeight.W_200,
             size=16
         )
@@ -132,7 +132,7 @@ class ForgotPasswordPage(AbstractPage):
             width = 200,
             height = 44,
             content=ft.Text(
-                value="Sign up",
+                value=text_values["signup_button_text"],
                 size=24
             )
         )
@@ -216,3 +216,6 @@ class ForgotPasswordPage(AbstractPage):
     def allow_password_change(self, allow: bool):
         self.change_password_btn.disabled = (allow == False)
         self.page.update()
+    
+    def update_texts(self, texts):
+        return super().update_texts(texts)

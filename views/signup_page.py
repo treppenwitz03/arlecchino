@@ -25,7 +25,7 @@ class SignupPage(AbstractPage):
         )
         
         self.signup_indicator_text = ft.Text(
-            value="Sign up",
+            value=text_values["signup_button_text"],
             weight=ft.FontWeight.W_700,
             size=54
         )
@@ -37,7 +37,7 @@ class SignupPage(AbstractPage):
         signup_indicator_row.controls.append(self.signup_indicator_text)
         
         self.welcome_back_text = ft.Text(
-            "Fill your information below",
+            text_values["fill_info_text"],
             size = 24
         )
         
@@ -48,7 +48,7 @@ class SignupPage(AbstractPage):
         welcome_back_row.controls.append(self.welcome_back_text)
         
         self.email_textfield = ft.TextField(
-            label = "Email",
+            label = text_values["email_label"],
             border_radius = 25,
             cursor_height=20,
             expand = True,
@@ -63,7 +63,7 @@ class SignupPage(AbstractPage):
         email_textfield_row.controls.append(self.email_textfield)
         
         self.username_textfield = ft.TextField(
-            label = "Username",
+            label = text_values["username_label"],
             border_radius = 25,
             cursor_height=20,
             expand = True,
@@ -78,7 +78,7 @@ class SignupPage(AbstractPage):
         username_textfield_row.controls.append(self.username_textfield)
         
         self.password_textfield = ft.TextField(
-            label = "Password",
+            label = text_values["password_label"],
             border_radius = 25,
             cursor_height=20,
             expand = True,
@@ -95,7 +95,7 @@ class SignupPage(AbstractPage):
         password_textfield_row.controls.append(self.password_textfield)
         
         self.confirm_password_textfield = ft.TextField(
-            label = "Confirm Password",
+            label = text_values["confirm_password_label"],
             border_radius = 25,
             expand = True,
             height=44,
@@ -117,10 +117,10 @@ class SignupPage(AbstractPage):
         
         self.agree_eula_indicator_button = ft.TextButton(
             content=ft.Text(
-                "I agree to the ",
+                text_values["i_agree"],
                 spans=[
-                    ft.TextSpan("Terms and Conditions", style=ft.TextStyle(decoration=ft.TextDecoration.UNDERLINE)),
-                    ft.TextSpan(" of using this service.")
+                    ft.TextSpan(text_values["terms_and_conditions"], style=ft.TextStyle(decoration=ft.TextDecoration.UNDERLINE)),
+                    ft.TextSpan(text_values["of_using"])
                 ],
                 size=14
             ),
@@ -138,7 +138,7 @@ class SignupPage(AbstractPage):
             height = 44,
             disabled=True,
             content=ft.Text(
-                value="Register",
+                value=text_values["signup_button_text"],
                 size=24
             )
         )
@@ -154,7 +154,7 @@ class SignupPage(AbstractPage):
         )
         
         self.login_indicator_text = ft.Text(
-            value="Already have an account?",
+            value=text_values["already_have"],
             size=16
         )
         
@@ -168,7 +168,7 @@ class SignupPage(AbstractPage):
             width = 200,
             height = 44,
             content=ft.Text(
-                value="Log in",
+                value=text_values["login_btn_text"],
                 size=24
             )
         )
@@ -261,3 +261,6 @@ class SignupPage(AbstractPage):
     def allow_register(self, allow: bool):
         self.register_btn.disabled = (allow == False)
         self.page.update()
+    
+    def update_texts(self, texts):
+        return super().update_texts(texts)
