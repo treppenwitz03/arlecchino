@@ -51,8 +51,8 @@ class ForgotController:
         command = [
             "COMMAND_CHANGE_PASSWORD",
             code,
-            utils.encrypt(self.forgot_password_page.get_email_to_send_entry()),
-            utils.encrypt(self.forgot_password_page.get_new_password_entry()),
+            utils.encrypt(self.forgot_password_page.get_email_to_send_entry().strip()),
+            utils.encrypt(self.forgot_password_page.get_new_password_entry().strip()),
         ]
         ControllerConnector.set_command_for_email_confirmation(self.page, command)
         self.page.go("/confirm_email")

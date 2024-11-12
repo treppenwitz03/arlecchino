@@ -44,5 +44,35 @@ text_values = {
     "create_memorable": "Gumawa ng isang madaling tandaan na password sa susunod.",
     "new_password": "Bagong Password",
     "change_your_password": "Palitan ang iyong password",
-    "dont_have_account": "Wala ka pang account?"
+    "dont_have_account": "Wala ka pang account?",
+    #confirmemail
+    "confirm_email": "Kumpirmahin ang Email",
+    "a_code_was_sent": "Isang code ang ipinadala sa iyong email.",
+    "code_sent": "Code naipadala",
+    "cant_register": "Hindi makapagrehistro",
+    #home
+    "proof": "Patunay ng Pagbabayad",
+    #account
+    "account_center": "Sentro ng Account",
+    "accountview_subtitle": "Kailangan mo bang baguhin ang ilang personal na impormasyon? I-update ito sa pamamagitan ng mga setting sa ibaba.",
+    "account": "Account",
+    "change_pfp": "Palitan ang Profile Picture",
+    "edit_username": "I-edit ang Username",
+    "security": "Seguridad",
+    "gcash": "GCash",
+    "logout": "Mag-Log Out",
+    #feedback
+    "help_support": "Tulong at Suporta",
+    "feedbackview_subtitle": "May problema sa app? Mangyaring tingnan ang mga opsyon sa ibaba kung paano ka matutulungan.",
+    "describe_issue": "Ilarawan ang Isyu",
+    "send_report": "Magpadala ng Ulat",
+    "get_help": "Humingi ng Tulong",
+    "contact_us": "Makipag-ugnayan sa Amin",
+    "help_this_project": "Tulungan ang proyektong ito na maging mas mahusay",
+    "contribute_code": "Mag-ambag ng Code",
+    "get_involved": "Makilahok sa proyekto",
+    #grouplistview
+    "grouplistview_subtitle": "I-click ang iyong sinalihang grupo upang makita ang mga transaksyon nito. Kung wala ka pang grupo, magdagdag ng isa.",
+    "group_empty_warning": "Wala ka pang sinalihang grupo. I-click ang kahon upang makalikha ng isa."
+
 }

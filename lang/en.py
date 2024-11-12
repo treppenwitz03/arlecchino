@@ -44,5 +44,34 @@ text_values = {
     "create_memorable": "Create a memorable password next time.",
     "new_password": "New Password",
     "change_your_password": "Change your password",
-    "dont_have_account": "Don't have an account yet?"
+    "dont_have_account": "Don't have an account yet?",
+    #confirmemail
+    "confirm_email": "Confirm Email",
+    "a_code_was_sent": "A code was sent to your email.",
+    "code_sent": "Code sent",
+    "cant_register": "Can't Register",
+    #home
+    "proof": "Proof of Payment",
+    #accountview
+    "account_center": "Account Center",
+    "accountview_subtitle": "Do you need to change a personal infomation provided? Update through the settings below.",
+    "account": "Account",
+    "change_pfp": "Change Profile Picture",
+    "edit_username": "Edit Username",
+    "security": "Security",
+    "gcash": "GCash",
+    "logout": "Log Out",
+    #feedback
+    "help_support": "Help and Support",
+    "feedbackview_subtitle": "Having problems with the app? Please refer to the options below on how we can help you.",
+    "describe_issue": "Describe Issue",
+    "send_report": "Send Report",
+    "get_help": "Get Help",
+    "contact_us": "Contact Us",
+    "help_this_project": "Help this project become better",
+    "contribute_code": "Contribute Code",
+    "get_involved": "Get involved with the project",
+    #grouplistview
+    "grouplistview_subtitle": "Click on your joined group to see its transactions. If you don't have any, add one.",
+    "group_empty_warning": "You have not joined a group as of yet. Click the box to create one."
 }

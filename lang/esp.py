@@ -44,5 +44,34 @@ text_values = {
     "create_memorable": "Crea una contraseña memorable la próxima vez.",
     "new_password": "Nueva Contraseña",
     "change_your_password": "Cambia tu contraseña",
-    "dont_have_account": "¿No tienes una cuenta aún?"
+    "dont_have_account": "¿No tienes una cuenta aún?",
+    #confirmemail
+    "confirm_email": "Confirmar Correo Electrónico",
+    "a_code_was_sent": "Se envió un código a tu correo electrónico.",
+    "code_sent": "Código enviado",
+    "cant_register": "No se puede registrar",
+    #home
+    "proof": "Prueba de Pago",
+    #account
+    "account_center": "Centro de Cuenta",
+    "accountview_subtitle": "¿Necesitas cambiar alguna información personal proporcionada? Actualízalo a través de los ajustes a continuación.",
+    "account": "Cuenta",
+    "change_pfp": "Cambiar Foto de Perfil",
+    "edit_username": "Editar Nombre de Usuario",
+    "security": "Seguridad",
+    "gcash": "GCash",
+    "logout": "Cerrar Sesión",
+    #feedback
+    "help_support": "Ayuda y Soporte",
+    "feedbackview_subtitle": "¿Tienes problemas con la aplicación? Consulta las opciones a continuación sobre cómo podemos ayudarte.",
+    "describe_issue": "Describir Problema",
+    "send_report": "Enviar Informe",
+    "get_help": "Obtener Ayuda",
+    "contact_us": "Contáctanos",
+    "help_this_project": "Ayuda a mejorar este proyecto",
+    "contribute_code": "Contribuir Código",
+    "get_involved": "Participar en el proyecto",
+    #glv
+    "grouplistview_subtitle": "Haz clic en el grupo al que te has unido para ver sus transacciones. Si no tienes ninguno, añade uno.",
+    "group_empty_warning": "Aún no te has unido a ningún grupo. Haz clic en el cuadro para crear uno."
 }

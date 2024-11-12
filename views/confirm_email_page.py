@@ -25,7 +25,7 @@ class ConfirmEmailPage(AbstractPage):
         )
         
         self.confirm_email_indicator_text = ft.Text(
-            value="Confirm Email",
+            value=text_values["confirm_email"],
             weight=ft.FontWeight.W_700,
             size=54
         )
@@ -37,7 +37,7 @@ class ConfirmEmailPage(AbstractPage):
         confirm_email_indicator_row.controls.append(self.confirm_email_indicator_text)
         
         self.code_sent_indicator_text = ft.Text(
-            value="A code was sent to your email.",
+            value=text_values["a_code_was_sent"],
             size = 24
         )
         
@@ -48,7 +48,7 @@ class ConfirmEmailPage(AbstractPage):
         )
         
         self.code_sent_textfield = ft.TextField(
-            label = "Code sent",
+            label = text_values["code_sent"],
             border_radius = 25,
             expand=True,
             label_style = ft.TextStyle()
@@ -65,7 +65,7 @@ class ConfirmEmailPage(AbstractPage):
             height = 44,
             disabled=True,
             content=ft.Text(
-                value="Confirm Email",
+                value=text_values["confirm_email"],
                 size=24
             )
         )
@@ -81,7 +81,7 @@ class ConfirmEmailPage(AbstractPage):
         )
         
         self.login_indicator_text = ft.Text(
-            value="Already have an account?",
+            value=text_values["already_have"],
             weight=ft.FontWeight.W_200,
             size=16
         )
@@ -96,7 +96,7 @@ class ConfirmEmailPage(AbstractPage):
             width = 200,
             height = 44,
             content=ft.Text(
-                value="Log in",
+                value=text_values["login_button_text"],
                 size=24
             )
         )
@@ -163,7 +163,7 @@ class ConfirmEmailPage(AbstractPage):
         
         self.warning_dialog = ft.AlertDialog(
             title=ft.Text(
-                value="Can't Register",
+                value=text_values["cant_register"],
                 size=20
             ),
             content=self.dialog_text

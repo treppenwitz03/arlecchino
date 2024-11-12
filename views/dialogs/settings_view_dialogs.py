@@ -127,7 +127,7 @@ class LanguageDialog(ft.AlertDialog):
                 ft.Radio("Tagalog", value="tag"),
                 ft.Radio("Cebuano", value="ceb"),
                 ft.Radio("Español", value="esp"),
-                ft.Radio("日本語", value="jp")
+                ft.Radio("にほんご", value="jp")
             ], height=250, spacing=16)
         )
         

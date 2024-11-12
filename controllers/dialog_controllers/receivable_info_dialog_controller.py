@@ -36,12 +36,7 @@ class ReceivableInfoDialogController:
     
     # preview the proof sent of payor
     def show_proof(self, picture_id: str):
-        image = self.repository.download_image(picture_id)
-        
-        root = tk.Tk()
-        root.title("PROOF OF PAYMENT")
-        photo = ImageTk.PhotoImage(Image.open(image))
-        label = tk.Label(root, image=photo)
-        label.image = photo
-        label.pack(ipadx= 20, pady=20)
-        root.mainloop()
+        image = utils.convert_to_base64(self.repository.download_image(picture_id))
+
+        self.home_page.proof_dialog.content.src_base64 = image
+        self.home_page.show_proof_dialog()

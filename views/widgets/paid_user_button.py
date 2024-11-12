@@ -4,7 +4,7 @@ class PaidUserButton(ft.Container):
     def __init__(self, email: str):
         super().__init__()
         # Make the UI for the buttons per paid user
-        image = ft.Image("/empty_user_image.png", width=36, height=36)
+        image = ft.Icon(ft.icons.PERSON, size=32)
         user_label = ft.Text(
             email
         )

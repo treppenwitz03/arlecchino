@@ -3,7 +3,7 @@ from views.widgets.group_button import GroupButton, AddGroupButton
 from views.subviews.items_view import ItemsView
 
 class GroupListView(ft.AnimatedSwitcher):
-    def __init__(self, homepage):
+    def __init__(self, text_values: dict):
         super().__init__(
             offset=ft.transform.Offset(0, 0),
             animate_offset = ft.animation.Animation(300),
@@ -17,8 +17,6 @@ class GroupListView(ft.AnimatedSwitcher):
         ############################################################
         ## Make the UI for the group list
         ############################################################
-
-        self.homepage = homepage
         
         self.top_text = ft.Text(
             expand=True,
@@ -39,7 +37,7 @@ class GroupListView(ft.AnimatedSwitcher):
 
         self.subtitle_text = ft.Text(
             expand=True,
-            value="Click on your joined group to see its transactions. If you don't have any, add one.",
+            value=text_values["grouplistview_subtitle"],
             weight=ft.FontWeight.W_400,
             size=20
         )
@@ -56,7 +54,7 @@ class GroupListView(ft.AnimatedSwitcher):
         
         self.empty_warning_text = ft.Text(
             expand=True,
-            value="You have not joined a group as of yet. Click the box to create one.",
+            value=text_values["group_empty_warning"],
             weight=ft.FontWeight.W_400,
             size=20
         )

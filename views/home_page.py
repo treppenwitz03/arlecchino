@@ -26,10 +26,10 @@ class HomePage(AbstractPage):
         ## Make the Home Page UI containing the different views
         ########################################################
         
-        self.group_listview = GroupListView(self)
-        self.settings_view = SettingsView()
-        self.feedback_view = FeedbackView()
-        self.account_view = AccountView()
+        self.group_listview = GroupListView(text_values)
+        self.settings_view = SettingsView(text_values)
+        self.feedback_view = FeedbackView(text_values)
+        self.account_view = AccountView(text_values)
         
         self.slider_stack = ft.Stack(
             expand=True,
@@ -170,6 +170,11 @@ class HomePage(AbstractPage):
         self.appearance_dialog = AppearanceDialog()
         self.currency_dialog = CurrencyDialog()
         self.language_dialog = LanguageDialog()
+
+        self.proof_dialog = ft.AlertDialog(
+            title=ft.Text(text_values["proof"]),
+            content=ft.Image(width=400, height=400, fit=ft.ImageFit.CONTAIN)
+        )
     
     # get the view for the page
     def get_view(self, page: ft.Page, params: Params, basket: Basket):
@@ -256,5 +261,10 @@ class HomePage(AbstractPage):
     def show_language_dialog(self):
         self.page.dialog = self.language_dialog
         self.language_dialog.open = True
+        self.page.update()
+    
+    def show_proof_dialog(self):
+        self.page.dialog = self.proof_dialog
+        self.proof_dialog.open = True
         self.page.update()
     ###########################################################

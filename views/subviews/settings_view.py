@@ -2,7 +2,7 @@ import flet as ft
 from views.dialogs.settings_view_dialogs import *
 
 class SettingsView(ft.Column):
-    def __init__(self):
+    def __init__(self, text_values: dict):
         super().__init__(
             offset=ft.transform.Offset(0, 1.5),
             animate_offset=ft.animation.Animation(300)

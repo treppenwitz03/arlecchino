@@ -1,7 +1,7 @@
 import flet as ft
 
 class AccountView(ft.Container):
-    def __init__(self):
+    def __init__(self, text_values: dict):
         ####################################################
         ## Make the UI for the AccountView
         ####################################################
@@ -12,7 +12,7 @@ class AccountView(ft.Container):
 
         self.top_text = ft.Text(
             expand=True,
-            value="Account Center",
+            value=text_values["account_center"],
             weight=ft.FontWeight.W_600,
             size=54
         )
@@ -29,7 +29,7 @@ class AccountView(ft.Container):
 
         self.subtitle_text = ft.Text(
             expand=True,
-            value="Do you need to change a personal infomation provided? Update through the settings below.",
+            value=text_values["accountview_subtitle"],
             weight=ft.FontWeight.W_400,
             size=20
         )
@@ -94,7 +94,7 @@ class AccountView(ft.Container):
         )
         
         account_labeler = ft.Text(
-            "Account",
+            text_values["account"],
             size=18,
             weight=ft.FontWeight.BOLD
         )
@@ -105,7 +105,7 @@ class AccountView(ft.Container):
                     ft.Row(
                         controls=[
                             ft.Icon(ft.icons.VERIFIED_USER_ROUNDED),
-                            ft.Text("Change Profile Picture", weight=ft.FontWeight.W_400)
+                            ft.Text(text_values["change_pfp"], weight=ft.FontWeight.W_400)
                         ]
                     ),
                     ft.Icon(ft.icons.NAVIGATE_NEXT)
@@ -120,7 +120,7 @@ class AccountView(ft.Container):
                     ft.Row(
                         controls=[
                             ft.Icon(ft.icons.LOCK),
-                            ft.Text("Edit Username", weight=ft.FontWeight.W_400)
+                            ft.Text(text_values["edit_username"], weight=ft.FontWeight.W_400)
                         ]
                     ),
                     ft.Icon(ft.icons.NAVIGATE_NEXT)
@@ -130,7 +130,7 @@ class AccountView(ft.Container):
         )
         
         security_labeler = ft.Text(
-            "Security",
+            text_values["security"],
             size=18,
             weight=ft.FontWeight.BOLD
         )
@@ -141,7 +141,7 @@ class AccountView(ft.Container):
                     ft.Row(
                         controls=[
                             ft.Icon(ft.icons.LOCK),
-                            ft.Text("Change Password", weight=ft.FontWeight.W_400)
+                            ft.Text(text_values["change_your_password"], weight=ft.FontWeight.W_400)
                         ]
                     ),
                     ft.Icon(ft.icons.NAVIGATE_NEXT)
@@ -156,7 +156,7 @@ class AccountView(ft.Container):
                     ft.Row(
                         controls=[
                             ft.Icon(ft.icons.ATTACH_MONEY),
-                            ft.Text("GCash", weight=ft.FontWeight.W_400)
+                            ft.Text(text_values["gcash"], weight=ft.FontWeight.W_400)
                         ]
                     ),
                     ft.Icon(ft.icons.NAVIGATE_NEXT)
@@ -186,7 +186,7 @@ class AccountView(ft.Container):
         )
         
         self.logout_button = ft.ElevatedButton(
-            "Log Out",
+            text_values["logout"],
             width=200,
             height=36
         )

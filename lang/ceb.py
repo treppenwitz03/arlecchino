@@ -45,4 +45,33 @@ text_values = {
     "new_password": "Bag-ong Password",
     "change_your_password": "Usba ang imong password",
     "dont_have_account": "Wala pa kay account?",
+    #confirmemail
+    "confirm_email": "Kumpirmaha ang Email",
+    "a_code_was_sent": "Isang code ang gipadala sa imong email.",
+    "code_sent": "Code gipadala",
+    "cant_register": "Dili makarehistro",
+    #home
+    "proof": "Ebidensya sa Pagbayad",
+    #account
+    "account_center": "Sentro sa Account",
+    "accountview_subtitle": "Kinahanglan ba nimo nga usbon ang personal nga impormasyon nga gihatag? I-update kini pinaagi sa mga setting sa ubos.",
+    "account": "Account",
+    "change_pfp": "Usba ang Profile Picture",
+    "edit_username": "I-edit ang Username",
+    "security": "Seguridad",
+    "gcash": "GCash",
+    "logout": "Mag-Log Out",
+    #feedback
+    "help_support": "Tabang ug Suporta",
+    "feedbackview_subtitle": "Naa bay problema sa app? Palihug tan-awa ang mga opsyon sa ubos kung unsaon ka namo matabangan.",
+    "describe_issue": "Ilaraw ang Isyu",
+    "send_report": "Magpadala og Ulat",
+    "get_help": "Mangayo og Tabang",
+    "contact_us": "Kontaka Kami",
+    "help_this_project": "Tabangi ang proyekto nga mahimong mas maayo",
+    "contribute_code": "Mag-ambag og Code",
+    "get_involved": "Makig-ambit sa proyekto",
+    #glv
+    "grouplistview_subtitle": "I-klik ang imong gi-apilan nga grupo aron makita ang mga transaksyon niini. Kung wala pa kay grupo, magdugang og usa.",
+    "group_empty_warning": "Wala ka pa mag-apil og grupo. I-klik ang kahon aron maghimo og usa."
 }

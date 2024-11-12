@@ -2,7 +2,7 @@ import flet as ft
 from views.widgets.group_button import GroupButton
 
 class FeedbackView(ft.Column):
-    def __init__(self):
+    def __init__(self, text_values: dict):
         super().__init__(
             offset=ft.transform.Offset(0, 3),
             animate_offset=ft.animation.Animation(300)
@@ -13,7 +13,7 @@ class FeedbackView(ft.Column):
         
         self.top_text = ft.Text(
             expand=True,
-            value="Help and Support",
+            value=text_values["help_support"],
             weight=ft.FontWeight.W_600,
             size=54
         )
@@ -30,7 +30,7 @@ class FeedbackView(ft.Column):
 
         self.subtitle_text = ft.Text(
             expand=True,
-            value="Having problems with the app? Please refer to the options below on how we can help you.",
+            value=text_values["feedbackview_subtitle"],
             weight=ft.FontWeight.W_400,
             size=20
         )
@@ -61,7 +61,7 @@ class FeedbackView(ft.Column):
         )
 
         contact_describeissue_text = ft.Text(
-            value="Describe Issue",
+            value=text_values["describe_issue"],
             size=15
         )
 
@@ -77,7 +77,7 @@ class FeedbackView(ft.Column):
         )
 
         contact_send_report_text = ft.Text(
-            value="Send Report",
+            value=text_values["send_report"],
             size = 15
         )
 
@@ -93,7 +93,7 @@ class FeedbackView(ft.Column):
         )
 
         contact_get_help_text = ft.Text(
-            value="Get Help",
+            value=text_values["get_help"],
             size=15
         )
 
@@ -109,7 +109,7 @@ class FeedbackView(ft.Column):
         )
 
         self.button_contact_us = ft.ElevatedButton(
-            text="Contact Us"
+            text=text_values["contact_us"]
         )
 
         button_contact_us_container = ft.Container(
@@ -149,7 +149,7 @@ class FeedbackView(ft.Column):
         )
 
         contribute_helpproject_text = ft.Text(
-            value="Help  this project become better"
+            value=text_values["help_this_project"]
         )
 
         contribute_helpproject_row = ft.Row(
@@ -164,7 +164,7 @@ class FeedbackView(ft.Column):
         )
 
         contribute_contributecode_text = ft.Text(
-            value="Contribute Code"
+            value=text_values["contribute_code"]
         )
 
         contribute_contributecode_row = ft.Row(
@@ -179,7 +179,7 @@ class FeedbackView(ft.Column):
         )
 
         contribute_involve_text = ft.Text(
-            value="Get involved with the project"
+            value=text_values["get_involved"]
         )
 
         contribute_involved_row = ft.Row(
@@ -194,7 +194,7 @@ class FeedbackView(ft.Column):
         )
 
         self.button_contribute = ft.ElevatedButton(
-            text="Contribute Code"
+            text=text_values["contribute_code"]
         )
 
         button_contribute_container = ft.Container(

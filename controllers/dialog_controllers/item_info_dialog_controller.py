@@ -65,7 +65,6 @@ class ItemInfoDialogController:
             
             image_bytes = io.BytesIO()
             image = Image.open(self.image_path).convert("RGBA")
-            image = image.resize((200, 200))
             image.save(image_bytes, format="PNG")
             
             paid_proof_id = self.repository.upload_image(image_bytes)

@@ -44,5 +44,34 @@ text_values = {
     "create_memorable": "次回は覚えやすいパスワードを作成してください。",
     "new_password": "新しいパスワード",
     "change_your_password": "パスワードを変更する",
-    "dont_have_account": "まだアカウントをお持ちでないですか？"
+    "dont_have_account": "まだアカウントをお持ちでないですか？",
+    #confirmemail
+    "confirm_email": "メールを確認する",
+    "a_code_was_sent": "コードがメールに送信されました。",
+    "code_sent": "コード送信済み",
+    "cant_register": "登録できません",
+    #home
+    "proof": "支払い証明書",
+    #account
+    "account_center": "アカウントセンター",
+    "accountview_subtitle": "提供した個人情報を変更する必要がありますか？ 下記の設定から更新してください。",
+    "account": "アカウント",
+    "change_pfp": "プロフィール画像を変更",
+    "edit_username": "ユーザー名を編集",
+    "security": "セキュリティ",
+    "gcash": "GCash",
+    "logout": "ログアウト",
+    #feedback
+    "help_support": "ヘルプとサポート",
+    "feedbackview_subtitle": "アプリに問題がありますか？ 以下のオプションを参照して、どのようにお手伝いできるかをご確認ください。",
+    "describe_issue": "問題を説明",
+    "send_report": "レポートを送信",
+    "get_help": "ヘルプを取得",
+    "contact_us": "お問い合わせ",
+    "help_this_project": "このプロジェクトを改善する手助けをする",
+    "contribute_code": "コードを貢献",
+    "get_involved": "プロジェクトに参加",
+    #glv
+    "grouplistview_subtitle": "参加しているグループをクリックして、取引を見ることができます。まだグループがない場合は、1つ追加してください。",
+    "group_empty_warning": "まだグループに参加していません。作成するにはボックスをクリックしてください。"
 }

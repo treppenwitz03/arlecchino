@@ -27,8 +27,8 @@ class LoginController:
     
     # verify the credentials and login
     def login(self, event):
-        email = self.login_page.get_email_entry()
-        password = utils.encrypt(self.login_page.get_password_entry())
+        email = self.login_page.get_email_entry().strip()
+        password = utils.encrypt(self.login_page.get_password_entry().strip())
         
         user: User = None
         for user in self.repository.users:
