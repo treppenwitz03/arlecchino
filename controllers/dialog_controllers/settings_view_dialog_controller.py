@@ -2,7 +2,6 @@ import flet as ft
 
 from repository import Repository
 from views import HomePage
-from lang import Language
 
 import os
 

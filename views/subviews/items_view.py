@@ -1,5 +1,4 @@
 import flet as ft
-from views.widgets.item_button import ItemButton
 from views.widgets.group_button import AddReceivableButton
 
 class ItemsView(ft.Column):

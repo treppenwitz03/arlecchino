@@ -3,7 +3,6 @@ from .controller_connector import ControllerConnector
 import flet as ft
 import webbrowser
 from repository import Repository
-from lang import Language
 
 class OpeningController():
     def __init__(self, page: ft.Page, repository: Repository, opening_page: OpeningPage, text_values: dict):

@@ -1,5 +1,4 @@
 from repository import Repository, utils
-from lang import Language
 from views import SignupPage
 import flet as ft
 import webbrowser

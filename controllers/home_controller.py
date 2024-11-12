@@ -1,9 +1,5 @@
-from models import Member, Group, User, Transaction
-from repository import Repository, utils
+from repository import Repository
 from views import *
-from lang import Language
-
-from .controller_connector import ControllerConnector
 
 import flet as ft
 

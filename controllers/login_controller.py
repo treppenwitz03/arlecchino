@@ -1,7 +1,6 @@
 from repository import Repository, utils
 from views import LoginPage
 from models import User
-from lang import Language
 from .controller_connector import ControllerConnector
 import flet as ft
 

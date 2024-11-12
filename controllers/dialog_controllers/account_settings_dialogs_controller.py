@@ -1,7 +1,6 @@
 from views import HomePage, ProfilePictureChangeDialog, EditGcashDialog, EditUsernameDialog, EditPasswordDialog, AccountView
 from repository import Repository, utils
 from models import User
-from lang import Language
 
 from ..controller_connector import ControllerConnector
 

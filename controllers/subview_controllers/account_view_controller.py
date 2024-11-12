@@ -1,4 +1,4 @@
-from views import HomePage, GroupButton
+from views import HomePage
 from repository import Repository, utils
 from models import User
 from ..controller_connector import ControllerConnector

@@ -1,7 +1,6 @@
 from models import Transaction, Group, User
 from repository import Repository, utils
 from views import HomePage
-from lang import Language
 
 from ..controller_connector import ControllerConnector
 

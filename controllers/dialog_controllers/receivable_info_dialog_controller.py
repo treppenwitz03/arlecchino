@@ -1,10 +1,8 @@
 from models import Transaction, Group
 from repository import Repository, utils
 from views import HomePage, ShowReceivableInfoDialog
-from PIL import Image, ImageTk
 
 import flet as ft
-import tkinter as tk
 
 class ReceivableInfoDialogController:
     def __init__(self, page: ft.Page, repository: Repository, home_page: HomePage):

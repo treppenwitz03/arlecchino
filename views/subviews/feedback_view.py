@@ -1,5 +1,4 @@
 import flet as ft
-from views.widgets.group_button import GroupButton
 
 class FeedbackView(ft.Column):
     def __init__(self, text_values: dict):

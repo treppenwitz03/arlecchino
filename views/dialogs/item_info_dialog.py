@@ -1,5 +1,4 @@
 import flet as ft
-from views.widgets.item_button import ItemButton
 
 class ItemInfoDialog(ft.AlertDialog):
     group_name = None

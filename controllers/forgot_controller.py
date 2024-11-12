@@ -1,7 +1,6 @@
 from repository import Repository, utils
 from views import ForgotPasswordPage
 import flet as ft
-from lang import Language
 
 from .controller_connector import ControllerConnector
 

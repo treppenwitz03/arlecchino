@@ -1,7 +1,6 @@
 from models import Transaction, Group
 from repository import Repository, utils
 from views import HomePage, AddReceivableDialog
-from lang import Language
 
 from ..controller_connector import ControllerConnector
 

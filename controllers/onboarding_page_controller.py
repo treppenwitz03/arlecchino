@@ -1,7 +1,6 @@
 from models import User
 from repository import Repository, utils
 from views import OnboardingPage
-from lang import Language
 
 from .controller_connector import *
 
