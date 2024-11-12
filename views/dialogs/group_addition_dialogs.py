@@ -1,7 +1,7 @@
 import flet as ft
 
 class JoinGroupDialog(ft.AlertDialog):
-    def __init__(self):
+    def __init__(self, text_values: dict):
         super().__init__()
         ###################################################
         ## Make the UI for joining dialog
@@ -72,7 +72,7 @@ class JoinGroupDialog(ft.AlertDialog):
         self.check_if_exists_button.content.color = colors["ae8948"]
 
 class CreateGroupDialog(ft.AlertDialog):
-    def __init__(self):
+    def __init__(self, text_values: dict):
         super().__init__()
         ###################################################
         ## Make the UI for group adding and joining dialog
@@ -187,7 +187,7 @@ class CreateGroupDialog(ft.AlertDialog):
         self.group_desc_textfield.label_style.color = colors["black"]
 
 class SearchGroupsDialog(ft.AlertDialog):
-    def __init__(self):
+    def __init__(self, text_values: dict):
         super().__init__()
         ###################################################
         ## Make the UI for searching dialog

@@ -154,22 +154,22 @@ class HomePage(AbstractPage):
 
         self.controls = [main_row]
         
-        self.join_dialog = JoinGroupDialog()
-        self.create_new_dialog = CreateGroupDialog()
-        self.search_groups_dialog = SearchGroupsDialog()
+        self.join_dialog = JoinGroupDialog(text_values)
+        self.create_new_dialog = CreateGroupDialog(text_values)
+        self.search_groups_dialog = SearchGroupsDialog(text_values)
 
-        self.item_infos_dialog = ItemInfoDialog()
-        self.add_receivable_dialog = AddReceivableDialog()
-        self.receivable_info_dialog = ShowReceivableInfoDialog()
+        self.item_infos_dialog = ItemInfoDialog(text_values)
+        self.add_receivable_dialog = AddReceivableDialog(text_values)
+        self.receivable_info_dialog = ShowReceivableInfoDialog(text_values)
         
-        self.change_profile_picture_dialog = ProfilePictureChangeDialog()
-        self.edit_username_dialog = EditUsernameDialog()
-        self.edit_password_dialog = EditPasswordDialog()
-        self.edit_gcash_dialog = EditGcashDialog()
+        self.change_profile_picture_dialog = ProfilePictureChangeDialog(text_values)
+        self.edit_username_dialog = EditUsernameDialog(text_values)
+        self.edit_password_dialog = EditPasswordDialog(text_values)
+        self.edit_gcash_dialog = EditGcashDialog(text_values)
         
-        self.appearance_dialog = AppearanceDialog()
-        self.currency_dialog = CurrencyDialog()
-        self.language_dialog = LanguageDialog()
+        self.appearance_dialog = AppearanceDialog(text_values)
+        self.currency_dialog = CurrencyDialog(text_values)
+        self.language_dialog = LanguageDialog(text_values)
 
         self.proof_dialog = ft.AlertDialog(
             title=ft.Text(text_values["proof"]),

@@ -3,7 +3,7 @@ from views.widgets.item_button import ItemButton
 
 class ItemInfoDialog(ft.AlertDialog):
     group_name = None
-    def __init__(self):
+    def __init__(self, text_values: dict):
         super().__init__()
         #################################################
         ## Make the UI when payable/receivable is clicked

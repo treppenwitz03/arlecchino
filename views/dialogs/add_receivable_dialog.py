@@ -1,15 +1,15 @@
 import flet as ft
 
 class AddReceivableDialog(ft.AlertDialog):
-    def __init__(self):
+    def __init__(self, text_values: dict):
         super().__init__()
         ####################################################
         ## Make the Add receivable dialog
         ####################################################
         self.group = ""
         
-        self.add_item_button = ft.TextButton("Add Item", disabled=True)
-        self.cancel_button = ft.TextButton("Cancel")
+        self.add_item_button = ft.TextButton(text_values["add_item"], disabled=True)
+        self.cancel_button = ft.TextButton(text_values["cancel"])
         
         self.actions = [
             self.add_item_button,
@@ -27,7 +27,7 @@ class AddReceivableDialog(ft.AlertDialog):
             height=44,
             width=160,
             content=ft.Text(
-                value="Upload image",
+                value=text_values["upload"],
             )
         )
         
@@ -37,7 +37,7 @@ class AddReceivableDialog(ft.AlertDialog):
         )
         
         self.item_name_textfield = ft.TextField(
-            label = "Item name",
+            label = text_values["item_name"],
             border_radius = 15,
             width=230,
             height=44,
@@ -45,11 +45,11 @@ class AddReceivableDialog(ft.AlertDialog):
         )
         
         self.item_month_dropdown = ft.Dropdown(
-            hint_text = "Month",
+            hint_text = text_values["month"],
             options = [
-                ft.dropdown.Option("January"), ft.dropdown.Option("February"), ft.dropdown.Option("March"), ft.dropdown.Option("April"),
-                ft.dropdown.Option("May"), ft.dropdown.Option("June"), ft.dropdown.Option("July"), ft.dropdown.Option("August"),
-                ft.dropdown.Option("September"), ft.dropdown.Option("October"), ft.dropdown.Option("November"), ft.dropdown.Option("December")
+                ft.dropdown.Option(text_values["january"]), ft.dropdown.Option(text_values["february"]), ft.dropdown.Option(text_values["march"]), ft.dropdown.Option(text_values["april"]),
+                ft.dropdown.Option(text_values["may"]), ft.dropdown.Option(text_values["june"]), ft.dropdown.Option(text_values["july"]), ft.dropdown.Option(text_values["august"]),
+                ft.dropdown.Option(text_values["september"]), ft.dropdown.Option(text_values["october"]), ft.dropdown.Option(text_values["november"]), ft.dropdown.Option(text_values["december"])
             ],
             border_radius = 15,
             width=85,
@@ -58,14 +58,14 @@ class AddReceivableDialog(ft.AlertDialog):
         )
         
         self.item_day_dropdown = ft.Dropdown(
-            hint_text = "Day",
+            hint_text = text_values["day"],
             border_radius = 15,
             width=60,
             height=54
         )
         
         self.item_year_dropdown = ft.Dropdown(
-            hint_text = "Year",
+            hint_text = text_values["year"],
             border_radius = 15,
             width=65,
             height=54
@@ -77,7 +77,7 @@ class AddReceivableDialog(ft.AlertDialog):
         )
         
         self.item_amount_textfield = ft.TextField(
-            label = "Amount",
+            label = text_values["amount"],
             border_radius = 15,
             width=230,
             height=44,
@@ -85,7 +85,7 @@ class AddReceivableDialog(ft.AlertDialog):
         )
         
         self.item_description_textfield = ft.TextField(
-            label = "Description",
+            label = text_values["description"],
             border_radius = 15,
             width = 230,
             height = 290,

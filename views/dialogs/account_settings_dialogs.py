@@ -5,19 +5,19 @@ import flet as ft
 ##################################################
 
 class ProfilePictureChangeDialog(ft.AlertDialog):
-    def __init__(self):
+    def __init__(self, text_values: dict):
         super().__init__()
         ####################################################
         ## Make the ui for the profile picture changing
         ####################################################
 
         self.save_changes_button = ft.TextButton(
-            "Save Changes",
+            text_values["save_changes"],
             disabled=True
         )
         
         self.cancel_button = ft.TextButton(
-            "Cancel"
+            text_values["cancel"]
         )
         
         self.actions = [self.save_changes_button, self.cancel_button]
@@ -29,7 +29,7 @@ class ProfilePictureChangeDialog(ft.AlertDialog):
         )
         
         self.upload_profile = ft.ElevatedButton(
-            "Upload photo"
+            text_values["upload"]
         )
         
         content_column = ft.Column(
@@ -42,31 +42,31 @@ class ProfilePictureChangeDialog(ft.AlertDialog):
         self.content = content_column
 
 class EditUsernameDialog(ft.AlertDialog):
-    def __init__(self):
+    def __init__(self, text_values: dict):
         super().__init__()
         ######################################################
         ## Make ui for changing the username
         ######################################################
 
         self.save_changes_button = ft.TextButton(
-            "Save Changes",
+            text_values["save_changes"],
             disabled=True
         )
         
         self.cancel_button = ft.TextButton(
-            "Cancel"
+            text_values["cancel"]
         )
         
         self.actions = [self.save_changes_button, self.cancel_button]
-        self.title = ft.Text("Edit Profile")
+        self.title = ft.Text(text_values["edit_profile"])
         
         new_username = ft.Text(
-            "Enter new username:",
+            text_values["enter_new_username"],
             width=150
         )
         
         self.new_username_textfield = ft.TextField(
-            hint_text="Username"
+            hint_text=text_values["username_label"]
         )
         
         username_row = ft.Row(
@@ -83,42 +83,42 @@ class EditUsernameDialog(ft.AlertDialog):
         self.content = content_column
 
 class EditPasswordDialog(ft.AlertDialog):
-    def __init__(self):
+    def __init__(self, text_values: dict):
         super().__init__()
         ##########################################################
         ## Make the UI for editing the password
         ##########################################################
 
         self.save_changes_button = ft.TextButton(
-            "Save Changes",
+            text_values["save_changes"],
             disabled=True
         )
         
         self.cancel_button = ft.TextButton(
-            "Cancel"
+            text_values["cancel"]
         )
         
         self.actions = [self.save_changes_button, self.cancel_button]
-        self.title = ft.Text("Edit Profile")
+        self.title = ft.Text(text_values["edit_profile"])
         
         new_password = ft.Text(
-            "Enter new password:",
+            text_values["enter_new_pw"],
             width=150
         )
         
         self.new_password_textfield = ft.TextField(
-            hint_text="New Password",
+            hint_text=text_values["new_pw"],
             password=True,
             can_reveal_password=True
         )
         
         reenter_password = ft.Text(
-            "Re-enter new password:",
+            text_values["reenter_new_pw"],
             width=150       
         )
         
         self.reenter_password_textfield = ft.TextField(
-            hint_text="Confirm Password",
+            hint_text=text_values["confirm_password_label"],
             password=True,
             can_reveal_password=True
         )
@@ -141,23 +141,23 @@ class EditPasswordDialog(ft.AlertDialog):
         self.content = content_column
 
 class EditGcashDialog(ft.AlertDialog):
-    def __init__(self):
+    def __init__(self, text_values: dict):
         super().__init__()
         ####################################################
         ## Make the UI for editing the GCash Credentials
         ####################################################
 
         self.save_changes_button = ft.TextButton(
-            "Save Changes",
+            text_values["save_changes"],
             disabled=True
         )
         
         self.cancel_button = ft.TextButton(
-            "Cancel"
+            text_values["cancel"]
         )
         
         self.actions = [self.save_changes_button, self.cancel_button]
-        self.title = ft.Text("GCash Settings")
+        self.title = ft.Text(text_values["gcash_settings"])
         
         self.qr_image = ft.Image(
             src = "/sample_qr.png",
@@ -166,7 +166,7 @@ class EditGcashDialog(ft.AlertDialog):
         )
         
         self.upload_qr_button = ft.ElevatedButton(
-            "Upload QR Code"
+            text_values["upload_qr"]
         )
         
         qr_column = ft.Column(
@@ -176,11 +176,11 @@ class EditGcashDialog(ft.AlertDialog):
         )
         
         enter_gcash = ft.Text(
-            "Enter GCash number:"
+            text_values["enter_gcash"]
         )
         
         self.number_textfield = ft.TextField(
-            hint_text = "GCash number"
+            hint_text = text_values["gcash_num"]
         )
         
         number_column = ft.Column(

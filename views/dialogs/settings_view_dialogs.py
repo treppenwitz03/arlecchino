@@ -1,7 +1,7 @@
 import flet as ft
 
 class AppearanceDialog(ft.AlertDialog):
-    def __init__(self):
+    def __init__(self, text_values: dict):
         super().__init__()
         ###############################################
         ## Make the Ui for changing the app appearance
@@ -67,7 +67,7 @@ class AppearanceDialog(ft.AlertDialog):
         pass
         
 class CurrencyDialog(ft.AlertDialog):
-    def __init__(self):
+    def __init__(self, text_values: dict):
         super().__init__()
         #################################
         ## Make the UI for currency setting
@@ -107,7 +107,7 @@ class CurrencyDialog(ft.AlertDialog):
         pass
 
 class LanguageDialog(ft.AlertDialog):
-    def __init__(self):
+    def __init__(self, text_values: dict):
         super().__init__()
         #################################
         ## Make the UI for currency setting

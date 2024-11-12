@@ -2,7 +2,7 @@ import flet as ft
 
 class ShowReceivableInfoDialog(ft.AlertDialog):
     group_name = ""
-    def __init__(self):
+    def __init__(self, text_values: dict):
         super().__init__()
         ###########################################################
         ## Make the UI for when receivable button is clicked
