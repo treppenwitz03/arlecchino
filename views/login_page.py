@@ -136,7 +136,7 @@ class LoginPage(AbstractPage):
             width = 200,
             height = 44,
             content=ft.Text(
-                value="Sign up",
+                value="Register",
                 size=24
             )
         )
@@ -180,7 +180,8 @@ class LoginPage(AbstractPage):
         self.sidebar_container = ft.Container(
             expand = True,
             content = sidebar_main_column,
-            padding = 40
+            padding = 40,
+            bgcolor=ft.colors.SURFACE_VARIANT
         )
         
         main_row = ft.Row(

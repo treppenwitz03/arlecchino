@@ -85,7 +85,12 @@ class GroupListView(ft.AnimatedSwitcher):
         self.items_view = ItemsView()
         
         self.grid_view = ft.Column(
-            controls=[self.top_text_container, self.subtitle_text_container, self.empty_warning_text_container, self.grid]
+            controls=[
+                self.top_text_container,
+                self.subtitle_text_container,
+                self.empty_warning_text_container,
+                self.grid
+            ]
         )
         
         self.content = self.grid_view

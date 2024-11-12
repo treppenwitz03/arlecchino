@@ -105,6 +105,7 @@ class OnboardingController:
             bordered_image.save(self.buffered, format="JPEG")
             self.gcash_qr_base64 = base64.b64encode(self.buffered.getvalue()).decode("utf-8")
             self.onboarding_page.qr_image.src_base64 = self.gcash_qr_base64
+            self.onboarding_page.qr_image.color = None
             self.onboarding_page.qr_image.update()
             self.gcash_changed()
         else:

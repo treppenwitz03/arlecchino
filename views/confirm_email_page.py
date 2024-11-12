@@ -139,6 +139,7 @@ class ConfirmEmailPage(AbstractPage):
             expand = True,
             content = sidebar_main_column,
             padding = 40,
+            bgcolor=ft.colors.SURFACE_VARIANT
         )
         
         main_row = ft.Row(

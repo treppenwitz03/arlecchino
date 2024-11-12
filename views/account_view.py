@@ -155,7 +155,7 @@ class AccountView(ft.Container):
                 controls=[
                     ft.Row(
                         controls=[
-                            ft.Text("G", weight=ft.FontWeight.W_900, size = 32),
+                            ft.Icon(ft.icons.ATTACH_MONEY),
                             ft.Text("GCash", weight=ft.FontWeight.W_400)
                         ]
                     ),

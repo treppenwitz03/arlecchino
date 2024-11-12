@@ -1,50 +1,52 @@
 import flet as ft
 from flet_route import Params, Basket
 from views.abstract_page import AbstractPage
+from lang.en import text_values
 
 class OpeningPage(AbstractPage):
     def __init__(self, page):
         super().__init__(
-            route = "/",
+            route="/",
             padding=ft.padding.all(0)
         )
 
         self.page = page
+
         ############################################
         ## Initialize the Opening Page
         ############################################
 
         logo = ft.Image(
-            src = "/logo.png",
-            width = 48,
-            height = 48
+            src="/logo.png",
+            width=48,
+            height=48
         )
 
         app_name = ft.Text(
-            "Arlecchino",
+            text_values["app_name"],
             weight=ft.FontWeight.W_700,
             size=24
         )
 
         self.signup_button = ft.ElevatedButton(
-            width = 200,
-            height = 32,
-            content = ft.Text(
-                value = "Create Account",
-                size = 16
+            width=200,
+            height=32,
+            content=ft.Text(
+                value=text_values["signup_button_text"],
+                size=16
             ),
         )
         
         self.about_button = ft.TextButton(
-            "About"
+            text_values["about_button_text"]
         )
 
         self.support_button = ft.TextButton(
-            "Support"
+            text_values["support_button_text"]
         )
         
         logo_row = ft.Row(
-            alignment = ft.MainAxisAlignment.SPACE_BETWEEN,
+            alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
             vertical_alignment=ft.CrossAxisAlignment.CENTER,
             controls=[
                 ft.Row([
@@ -57,23 +59,23 @@ class OpeningPage(AbstractPage):
         )
 
         self.login_button = ft.ElevatedButton(
-            width = 250,
-            height = 48,
-            content = ft.Text(
-                value = "Login",
-                size = 20
+            width=250,
+            height=48,
+            content=ft.Text(
+                value=text_values["login_button_text"],
+                size=20
             ),
         )
 
         self.motto_text = ft.Text(
-            "Service Tracking, Simplified",
+            text_values["motto_text"],
             weight=ft.FontWeight.W_900,
             size=48,
             width=300
         )
 
         self.sub_text = ft.Text(
-            "Arlecchino is a special service appointment system that blends ease of use with functionality.",
+            text_values["sub_text"],
             size=16,
             width=300
         )
@@ -90,6 +92,7 @@ class OpeningPage(AbstractPage):
                         src="https://lottie.host/53a2afd7-dce6-442a-a174-486a61479fe3/5YSr4u8v83.json",
                         animate=True,
                         width=620,
+                        height=400
                     )])
                 ],
                 expand=True,
@@ -100,7 +103,7 @@ class OpeningPage(AbstractPage):
             padding=ft.padding.all(50),
             bgcolor=ft.colors.SURFACE_VARIANT,
             expand=True,
-            height=720
+            expand_loose=True
         )
 
         self.controls = [

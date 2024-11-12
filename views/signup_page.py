@@ -215,6 +215,7 @@ class SignupPage(AbstractPage):
             expand = True,
             padding = 40,
             content = sidebar_main_column,
+            bgcolor=ft.colors.SURFACE_VARIANT
         )
         
         main_row = ft.Row(

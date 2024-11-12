@@ -59,7 +59,7 @@ def generate_greeting():
         "Good times", "Blessings be yours", "Aloha", 
         "Heyo", "Hiya", "Fun day's ahead", 
         "Hola mi amigo", "Warm greetings", 
-        "Many welcomes to you", "Kind regards to you", 
+        "Many welcomes to you", "Kind regards", 
         "Hi my friend", "Hey my buddy", "Yo mate", 
         "Glad tidings", "Hello there", "Hey there", 
         "Big welcome", "Much greetings", "High five", 

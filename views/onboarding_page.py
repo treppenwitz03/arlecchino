@@ -17,7 +17,7 @@ class OnboardingPage(AbstractPage):
         ###########################################
 
         logo = ft.Image(
-            src = "/logo_filled.png",
+            src = "/logo.png",
             width = 200,
             height = 200,
         )
@@ -53,6 +53,7 @@ class OnboardingPage(AbstractPage):
             "/gcash.png",
             width = 200,
             height = 200,
+            color=ft.colors.BLUE
         )
         
         gcash_logo_row = ft.Row(
@@ -63,7 +64,8 @@ class OnboardingPage(AbstractPage):
         self.qr_image = ft.Image(
             "/sample_qr.png",
             width=100,
-            height=100
+            height=100,
+            color=ft.colors.ON_SURFACE
         )
         
         self.qr_upload_button = ft.ElevatedButton(
