@@ -7,7 +7,7 @@ from lang import Language
 import os
 
 class AppearanceDialogController:
-    def __init__(self, page: ft.Page, repository: Repository, home_page: HomePage, text_values: dict):
+    def __init__(self, page: ft.Page, repository: Repository, home_page: HomePage):
         self.page = page
         self.repository = repository
         self.home_page = home_page
@@ -36,9 +36,6 @@ class AppearanceDialogController:
             self.page.client_storage.set("dark_mode", False)
             self.page.theme_mode = ft.ThemeMode.LIGHT
         
-        # reapply the changes
-        self.page.snack_bar = ft.SnackBar(ft.Text("App restart is required for the change to fully take effect..."))
-        self.page.snack_bar.open = True
         self.page.update()
     
     # open the dialog
@@ -53,6 +50,7 @@ class CurrencyDialogController:
         self.repository = repository
         self.home_page = home_page
         self.currency_dialog = home_page.currency_dialog
+        self.text_values = text_values
         
         # handle events
         self.home_page.settings_view.currency_setting.on_click = self.handle_dialog_open
@@ -61,7 +59,7 @@ class CurrencyDialogController:
     # change the currency according to setting
     def change_currency(self, currency):
         self.page.client_storage.set("currency", currency)
-        self.page.snack_bar = ft.SnackBar(ft.Text("A reload inside group view is required for the change to take effect..."))
+        self.page.snack_bar = ft.SnackBar(ft.Text(self.text_values["currency_change_success"]))
         self.page.snack_bar.open = True
         self.page.update()
     

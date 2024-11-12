@@ -1,7 +1,7 @@
 import flet as ft
 
 class PaidUserButton(ft.Container):
-    def __init__(self, email: str):
+    def __init__(self, email: str, text_values: dict):
         super().__init__()
         # Make the UI for the buttons per paid user
         image = ft.Icon(ft.icons.PERSON, size=32)
@@ -27,4 +27,4 @@ class PaidUserButton(ft.Container):
         self.content = row
         self.padding = 10
         self.border_radius = 15
-        self.tooltip = "Show proof of payment"
+        self.tooltip = text_values["proof_tooltip"]

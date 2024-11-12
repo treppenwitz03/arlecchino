@@ -19,6 +19,7 @@ class AddReceivableDialogController:
         self.home_page = home_page
         self.add_receivable_dialog: AddReceivableDialog = home_page.add_receivable_dialog
         self.current_year = datetime.date.today().year
+        self.text_values = text_values
         
         # Set the file picker
         self.file_picker = ft.FilePicker()
@@ -41,7 +42,7 @@ class AddReceivableDialogController:
     
     # open the chooser for the receivable item
     def open_chooser(self, event: ft.ControlEvent):
-        self.file_picker.pick_files("Choose Item Image", allowed_extensions = ["png", "jpg", "jpeg", "PNG", "JPG"], file_type = ft.FilePickerFileType.CUSTOM)
+        self.file_picker.pick_files(self.text_values["item_image_choose_text"], allowed_extensions = ["png", "jpg", "jpeg", "PNG", "JPG"], file_type = ft.FilePickerFileType.CUSTOM)
     
     # preview the item image
     def set_item_image(self, event: ft.FilePickerResultEvent):

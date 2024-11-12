@@ -19,6 +19,7 @@ class ItemInfoDialogController:
         self.repository = repository
         self.home_page = home_page
         self.item_info_dialog = home_page.item_infos_dialog
+        self.text_values = text_values
         
         # Initialize the file picker
         self.file_picker = ft.FilePicker()
@@ -40,14 +41,14 @@ class ItemInfoDialogController:
     
     # opent the file chooser
     def open_chooser(self, event: ft.ControlEvent):
-        self.file_picker.pick_files("Choose Image proof", allowed_extensions = ["png", "jpg", "jpeg", "PNG", "JPG"], file_type = ft.FilePickerFileType.CUSTOM)
+        self.file_picker.pick_files(self.text_values["proof_choose_text"], allowed_extensions = ["png", "jpg", "jpeg", "PNG", "JPG"], file_type = ft.FilePickerFileType.CUSTOM)
     
     # show the payment details 
     def show_payment_details(self, event: ft.ControlEvent):
         if self.item_info_dialog.switcher.content == self.item_info_dialog.main_row:
             # show the infos of the payable
             self.item_info_dialog.show_payment_details()
-            self.item_info_dialog.pay_button.text = "Mark as paid"
+            self.item_info_dialog.pay_button.text = self.text_values["mark_paid"]
             self.item_info_dialog.pay_button.update()
         elif self.item_info_dialog.switcher.content == self.item_info_dialog.payment_row:
             # show the infos of the payment details
@@ -84,7 +85,7 @@ class ItemInfoDialogController:
                                 transaction.paid_by = [(current_email, paid_proof_id)]
                             
                             self.repository.update_group(group)
-                            self.page.snack_bar = ft.SnackBar(ft.Text(f"Your payable is marked as paid."), duration=1000)
+                            self.page.snack_bar = ft.SnackBar(ft.Text(self.text_values["mark_paid_success"]), duration=1000)
                             self.page.snack_bar.open = True
 
                             self.home_page.group_listview.items_view.on_trigger_reload(event)

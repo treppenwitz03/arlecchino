@@ -16,6 +16,7 @@ class AccountSettingsDialogsController:
         self.page = page
         self.repository = repository
         self.home_page = home_page
+        self.text_values = text_values
         
         # connect the dialogs
         self.change_dp_dialog: ProfilePictureChangeDialog = home_page.change_profile_picture_dialog
@@ -110,11 +111,11 @@ class AccountSettingsDialogsController:
     
     # open the profile image chooser
     def open_profile_image_chooser(self, event):
-        self.dp_picker.pick_files("Choose a User Image", allowed_extensions = ["png", "jpg", "jpeg", "PNG", "JPG"], file_type = ft.FilePickerFileType.CUSTOM)
+        self.dp_picker.pick_files(self.text_values["image_choose_text"], allowed_extensions = ["png", "jpg", "jpeg", "PNG", "JPG"], file_type = ft.FilePickerFileType.CUSTOM)
     
     # open the qr code chooser
     def open_qr_chooser(self, event):
-        self.qr_picker.pick_files("Choose GCash QR Code Image", allowed_extensions = ["png", "jpg", "jpeg", "PNG", "JPG"], file_type = ft.FilePickerFileType.CUSTOM)
+        self.qr_picker.pick_files(self.text_values["gcash_choose_text"], allowed_extensions = ["png", "jpg", "jpeg", "PNG", "JPG"], file_type = ft.FilePickerFileType.CUSTOM)
 
     # handle the output of choosing dp image
     def set_dp_image(self, event: ft.FilePickerResultEvent):
@@ -154,7 +155,7 @@ class AccountSettingsDialogsController:
                     
                     self.home_page.close_dialog(event)
                     
-                    self.page.snack_bar = ft.SnackBar(ft.Text("Profile Picture has been changed. Please wait for changes to take effect..."))
+                    self.page.snack_bar = ft.SnackBar(ft.Text(self.text_values["pfp_change_success"]))
                     self.page.snack_bar.open = True
                     self.page.update()
                     
@@ -171,7 +172,7 @@ class AccountSettingsDialogsController:
                 user.username = utils.encrypt(replacement)
                 self.repository.update_user(user)
                 self.account_view.trigger_reload()
-                self.home_page.group_listview.top_text.value = f"Hello, {replacement}!"
+                self.home_page.group_listview.top_text.value = f"{utils.generate_greeting(self.text_values["__LANG__"])}, {replacement}!"
                 self.home_page.group_listview.top_text.update()
                 self.account_view.user_picture.update()
                 self.account_view.username_text.update()
@@ -194,7 +195,7 @@ class AccountSettingsDialogsController:
                 
                 self.home_page.close_dialog(event)
                 
-                text = ft.Text("Your password has been successfully changed.")
+                text = ft.Text(self.text_values["pw_change_success"])
                 self.page.snack_bar = ft.SnackBar(text, duration=3000)
                 self.page.snack_bar.open = True
                 self.page.update()
@@ -211,7 +212,7 @@ class AccountSettingsDialogsController:
             
             if "com.p2pqrpay" not in data:
                 self.gcash_qr_base64 = ""
-                self.page.snack_bar = ft.SnackBar(ft.Text("The QR Code image is invalid"), duration=3000)
+                self.page.snack_bar = ft.SnackBar(ft.Text(self.text_values["qr_invalid"]), duration=3000)
                 self.page.snack_bar.open = True
                 self.page.update()
                 return

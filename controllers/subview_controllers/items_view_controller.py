@@ -1,10 +1,8 @@
 from views import HomePage, GroupButton, ItemButton, PaidUserButton
 from repository import Repository, utils
 from models import User, Group, Member, Transaction
-from lang import Language
 from ..controller_connector import ControllerConnector
 import flet as ft
-import clipboard
 
 class ItemsViewController:
     def __init__(self, page: ft.Page, repository: Repository, home_page: HomePage, text_values: dict):
@@ -13,6 +11,7 @@ class ItemsViewController:
         self.home_page = home_page
         self.group_listview = home_page.group_listview
         self.items_view = home_page.group_listview.items_view
+        self.text_values = text_values
 
         self.items_view.request_open_group = self.open_group
         self.items_view.reload_button.on_click = self.reload_listview
@@ -23,9 +22,9 @@ class ItemsViewController:
     
     def copy_code_to_clipboard(self):
         code = self.items_view.group_code_text.spans[0].text
-        clipboard.copy(code)
+        self.page.set_clipboard(code)
 
-        self.page.snack_bar = ft.SnackBar(ft.Text("Group code is now copied to clipboard."))
+        self.page.snack_bar = ft.SnackBar(ft.Text(self.text_values["code_copied"]))
         self.page.snack_bar.open = True
         self.page.update()
     
@@ -36,7 +35,7 @@ class ItemsViewController:
         
         self.items_view.payable_list.controls = []
         self.items_view.receivable_list.controls = []
-        self.page.snack_bar = ft.SnackBar(ft.Text(f"Reloading items..."), duration=3000)
+        self.page.snack_bar = ft.SnackBar(ft.Text(self.text_values["reload_items"]), duration=3000)
         self.page.snack_bar.open = True
         self.page.update()
         
@@ -66,7 +65,7 @@ class ItemsViewController:
         
         # if not from reload, notify the user
         if not from_reload:
-            self.page.snack_bar = ft.SnackBar(ft.Text("Loading group... Please wait."), duration=3000)
+            self.page.snack_bar = ft.SnackBar(ft.Text(self.text_values["group_loading"]), duration=3000)
             self.page.snack_bar.open = True
             self.page.update()
         
@@ -147,7 +146,8 @@ class ItemsViewController:
                     utils.decrypt(transaction.time_created),
                     f"{utils.currency_symbols[self.page.client_storage.get('currency')]} {utils.decrypt(transaction.price)}",
                     item_image,
-                    True
+                    True,
+                    self.text_values
                 )
 
                 item.transaction = transaction
@@ -165,15 +165,16 @@ class ItemsViewController:
                     utils.decrypt(transaction.time_created),
                     f"{utils.currency_symbols[self.page.client_storage.get('currency')]} {utils.decrypt(transaction.price)}",
                     item_image,
-                    False
+                    False,
+                    self.text_values
                 )
 
                 item.transaction = transaction
                 self.items_view.payable_list.controls.append(item)
         
         # show rundown
-        self.items_view.total_payable_text.value = f"Total Payable: {utils.currency_symbols[self.page.client_storage.get('currency')]} {total_payable}"
-        self.items_view.total_receivable_text.value = f"Total Receivable: {utils.currency_symbols[self.page.client_storage.get('currency')]} {total_receivable}"
+        self.items_view.total_payable_text.value = f"{self.text_values["total_payable"]} {utils.currency_symbols[self.page.client_storage.get('currency')]} {total_payable}"
+        self.items_view.total_receivable_text.value = f"{self.text_values["total_receivable"]} {utils.currency_symbols[self.page.client_storage.get('currency')]} {total_receivable}"
         
         # dictates whether to hide or show empty warner or list
         if payables == 0:
@@ -215,7 +216,7 @@ class ItemsViewController:
         
         self.home_page.item_infos_dialog.switcher.content = self.home_page.item_infos_dialog.main_row
         self.home_page.item_infos_dialog.title.visible = True
-        self.home_page.item_infos_dialog.pay_button.text = "Pay now"
+        self.home_page.item_infos_dialog.pay_button.text = self.text_values["pay_now"]
         self.home_page.item_infos_dialog.group_name = group.group_name
         gcash_infos = button.gcash_infos
         
@@ -255,7 +256,7 @@ class ItemsViewController:
         self.home_page.receivable_info_dialog.paid_list.controls = []
         if transaction.paid_by != "None":
             for user in transaction.paid_by:
-                paid_user_button = PaidUserButton(utils.decrypt(user[0]))
+                paid_user_button = PaidUserButton(utils.decrypt(user[0]), self.text_values)
                 
                 paid_user_button.show_proof_button.on_click = lambda e: self.home_page.receivable_info_dialog.show_proof(user[1])
                 paid_user_button.reject_button.on_click = lambda e: self.reject_received_payment(paid_user_button, group, transaction, user)

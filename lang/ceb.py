@@ -1,4 +1,5 @@
 text_values = {
+    "__LANG__": "ceb",
     "app_name": "Arlecchino",
     "signup_button_text": "Himoa ang Account",
     "about_button_text": "Mahitungod",
@@ -188,5 +189,29 @@ text_values = {
     #conopening
     "loading": "Nag-load...",
     "internet_error": "Dili mahimo ang {} tungod sa hinay nga koneksyon...",
-    "autolog_notice": "Awtomatiko kang maka-log in."
+    "autolog_notice": "Awtomatiko kang maka-log in.",
+    #condiacset
+    "pfp_change_success": "Nausab na ang imong Profile Picture. Palihug maghulat nga mag-take effect ang mga kausaban...",
+    "pw_change_success": "Malampuson nga nabag-o ang imong password.",
+    #conadredia
+    "item_image_choose_text": "Pilia ang Imahe sa Item",
+    "valid_gcode": "Valid ang group code. Pwede na ka mo-apil...",
+    "invalid_gcode": "Dili valid ang group code. Palihug sulayi pag-usab...",
+    "group_image_choose_text": "Pilia ang Imahe sa Grupo",
+    "group_desc_dia": "Deskripsyon sa Grupo: ",
+    "group_creator_dia": "Gihimo ni: ",
+    "in_chosen_alrd": "Apil na ka sa napili nga grupo...",
+    #itindia
+    "proof_choose_text": "Pilia ang Imahe sa Pagpamatuod",
+    "mark_paid": "Markahi isip nabayran",
+    "mark_paid_success": "Ang imong bayranan gi-markahi isip nabayran na.",
+    #concurdia
+    "currency_change_success": "Malampuson nga nabag-o ang currency...",
+    #conitemsview
+    "code_copied": "Ang group code kay nakopya na sa clipboard.",
+    "reload_items": "Nag-reload sa mga item...",
+    "group_loading": "Nag-load sa grupo... Palihug maghulat.",
+    #buttons
+    "amount_received": "Halaga nga Nadawat: ",
+    "proof_tooltip": "Ipakita ang ebidensya sa bayad."
 }

@@ -1,4 +1,5 @@
 text_values = {
+    "__LANG__": "en",
     "app_name": "Arlecchino",
     "signup_button_text": "Create Account",
     "about_button_text": "About",
@@ -189,4 +190,28 @@ text_values = {
     "loading": "Loading...",
     "internet_error": "Unable to {} due to slow internet connection...",
     "autolog_notice": "You will be automatically logged in.",
+    #condiacset
+    "pfp_change_success": "Profile Picture has been changed. Please wait for changes to take effect...",
+    "pw_change_success": "Your password has been successfully changed.",
+    #conadredia
+    "item_image_choose_text": "Choose Item Image",
+    "valid_gcode": "The group code is valid. You may now join...",
+    "invalid_gcode": "The group code is invalid. Please try again...",
+    "group_image_choose_text": "Choose Group Image",
+    "group_desc_dia": "Group Description: ",
+    "group_creator_dia": "Created by: ",
+    "in_chosen_alrd": "You are already in the chosen group...",
+    #itindia
+    "proof_choose_text": "Choose Image proof",
+    "mark_paid": "Mark as paid",
+    "mark_paid_success": "Your payable is marked as paid.",
+    #concurdia
+    "currency_change_success": "Currency changed successfully...",
+    #conitemsview
+    "code_copied": "Group code is now copied to clipboard.",
+    "reload_items": "Reloading items...",
+    "group_loading": "Loading group... Please wait.",
+    #buttons
+    "amount_received": "Amount Received: ",
+    "proof_tooltip": "Show proof of payment."
 }

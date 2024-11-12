@@ -1,4 +1,5 @@
 text_values = {
+    "__LANG__": "tag",
     "app_name": "Arlecchino",
     "signup_button_text": "Gumawa ng Account",
     "about_button_text": "Tungkol sa App",
@@ -188,5 +189,29 @@ text_values = {
     #conopening
     "loading": "Naglo-load...",
     "internet_error": "Hindi ma-{} dahil sa mabagal na koneksyon sa internet...",
-    "autolog_notice": "Awtomatiko kang mai-log in."
+    "autolog_notice": "Awtomatiko kang mai-log in.",
+    #condiacset
+    "pfp_change_success": "Ang iyong Profile Picture ay na-update na. Mangyaring maghintay na magkabisa ang mga pagbabago...",
+    "pw_change_success": "Ang iyong password ay matagumpay na nabago.",
+    #conadredia
+    "item_image_choose_text": "Piliin ang Imahe ng Item",
+    "valid_gcode": "Wasto ang group code. Maaari ka nang sumali...",
+    "invalid_gcode": "Mali ang group code. Pakisubukang muli...",
+    "group_image_choose_text": "Piliin ang Imahe ng Grupo",
+    "group_desc_dia": "Deskripsyon ng Grupo: ",
+    "group_creator_dia": "Ginawa ni: ",
+    "in_chosen_alrd": "Nasa napiling grupo ka na...",
+    #itindia
+    "proof_choose_text": "Piliin ang Imahe ng Patunay",
+    "mark_paid": "Itala bilang bayad na",
+    "mark_paid_success": "Ang iyong bayarin ay itinala bilang bayad na.",
+    #concurdia
+    "currency_change_success": "Matagumpay na nabago ang pera...",
+    #conitemsview
+    "code_copied": "Ang group code ay nakopya na sa clipboard.",
+    "reload_items": "Nagre-reload ng mga item...",
+    "group_loading": "Naglo-load ng grupo... Mangyaring maghintay.",
+    #buttons
+    "amount_received": "Halaga ng Natanggap: ",
+    "proof_tooltip": "Ipakita ang patunay ng bayad."
 }

@@ -3,7 +3,7 @@ import flet as ft
 class ItemButton(ft.ElevatedButton):
     transaction = None
     group = None
-    def __init__(self, group_name: str, username: str, image_string: str, transaction_name: str, transaction_description: str, transaction_creation: str, transaction_price: str, item_image_string: str, has_amount_received: bool):
+    def __init__(self, group_name: str, username: str, image_string: str, transaction_name: str, transaction_description: str, transaction_creation: str, transaction_price: str, item_image_string: str, has_amount_received: bool, text_values: dict):
         super().__init__(
             expand=True,
             style=ft.ButtonStyle(shape = ft.RoundedRectangleBorder(radius = 15))
@@ -61,7 +61,7 @@ class ItemButton(ft.ElevatedButton):
         )
         
         self.item_post_time = ft.Text(
-            value = "Date Posted: ",
+            value = text_values["date_posted"],
             spans = [ft.TextSpan(
                 transaction_creation,
                 style=ft.TextStyle(italic=True, weight=ft.FontWeight.W_300)
@@ -71,7 +71,7 @@ class ItemButton(ft.ElevatedButton):
         )
         
         self.amount_received = ft.Text(
-            value = "Amount Received: ",
+            value = text_values["amount_received"],
             spans = [ft.TextSpan(
                 f"₱ 100",
                 style=ft.TextStyle(italic=True, weight=ft.FontWeight.W_300)

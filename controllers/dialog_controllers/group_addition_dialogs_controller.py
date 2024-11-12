@@ -18,6 +18,7 @@ class JoinDialogController:
         self.repository = repository
         self.home_page = home_page
         self.join_dialog: JoinGroupDialog = home_page.join_dialog
+        self.text_values = text_values
 
         self.join_dialog.group_code_textfield.on_change = self.validate_group_code
         self.join_dialog.close_button.on_click = self.home_page.close_dialog
@@ -37,10 +38,12 @@ class JoinDialogController:
             email: str = ControllerConnector.get_email(self.page)
             
             username = ""
+            user: User = None
             for user in self.repository.users:
                 if user.email == email:
                     username = user.username
             
+            group: Group = None
             for group in self.repository.groups:
                 if group.unique_code == self.join_dialog.get_group_code_entry():
                     group.members.append(Member(username, email))
@@ -57,19 +60,21 @@ class JoinDialogController:
         code = self.join_dialog.get_group_code_entry()
         if code != "":
             exists = False
+
+            group: Group = None
             for group in self.repository.groups:
                 if code == group.unique_code:
                     exists = True
                     break
             
             if exists:
-                self.page.snack_bar = ft.SnackBar(ft.Text("The group code is valid. You may now join..."), duration=3000)
+                self.page.snack_bar = ft.SnackBar(ft.Text(self.text_values["valid_gcode"]), duration=3000)
                 self.page.snack_bar.open = True
                 self.page.update()
                 self.code_validated = True
                 self.join_dialog.join_button.disabled = False
             else:
-                self.page.snack_bar = ft.SnackBar(ft.Text("The group code is invalid. Please try again..."), duration=3000)
+                self.page.snack_bar = ft.SnackBar(ft.Text(self.text_values["invalid_gcode"]), duration=3000)
                 self.page.snack_bar.open = True
                 self.page.update()
                 self.code_validated = False
@@ -83,6 +88,7 @@ class CreateGroupDialogController:
         self.repository = repository
         self.home_page = home_page
         self.create_group_dialog: CreateGroupDialog = home_page.create_new_dialog
+        self.text_values = text_values
 
         # Initialize file picker
         self.file_picker = ft.FilePicker()
@@ -103,6 +109,7 @@ class CreateGroupDialogController:
             email: str = ControllerConnector.get_email(self.page)
             
             creator = ""
+            user: User = None
             for user in self.repository.users:
                 if user.email == email:
                     creator = user.username
@@ -147,7 +154,7 @@ class CreateGroupDialogController:
     
     # open the file chooser for group images
     def open_chooser(self, event):
-        self.file_picker.pick_files("Choose Group Image", allowed_extensions = ["png", "jpg", "jpeg", "PNG", "JPG"], file_type = ft.FilePickerFileType.CUSTOM)
+        self.file_picker.pick_files(self.text_values["group_image_choose_text"], allowed_extensions = ["png", "jpg", "jpeg", "PNG", "JPG"], file_type = ft.FilePickerFileType.CUSTOM)
     
     # preview the set image
     def set_image(self, event: ft.FilePickerResultEvent):
@@ -171,6 +178,7 @@ class SearchGroupsDialogController:
         self.repository = repository
         self.home_page = home_page
         self.search_groups_dialog: SearchGroupsDialog = home_page.search_groups_dialog
+        self.text_values = text_values
 
         self.repository.done_loading = lambda: self.populate_group_list()
 
@@ -209,8 +217,8 @@ class SearchGroupsDialogController:
             picture_link = self.chosen_group_tile._get_attr("picture_link")
 
             self.search_groups_dialog.group_name_text.value = group_name
-            self.search_groups_dialog.group_desc_text.value = "Group Description: " + group_description
-            self.search_groups_dialog.group_creator_text.value = "Creator: " + utils.decrypt(group_creator)
+            self.search_groups_dialog.group_desc_text.value = self.text_values["group_desc_dia"] + group_description
+            self.search_groups_dialog.group_creator_text.value = self.text_values["group_creator_dia"] + utils.decrypt(group_creator)
 
             self.search_groups_dialog.image_preview.src_base64 = utils.convert_to_base64(self.repository.download_image(picture_link))
             self.search_groups_dialog.switch_to_has_value()
@@ -233,7 +241,7 @@ class SearchGroupsDialogController:
                 member: Member = None
                 for member in group.members:
                     if member.email == email:
-                        self.page.snack_bar = ft.SnackBar(ft.Text(f"You are already in the chosen group..."))
+                        self.page.snack_bar = ft.SnackBar(ft.Text(self.text_values["in_chosen_alrd"]))
                         self.page.snack_bar.open = True
                         self.page.update()
 

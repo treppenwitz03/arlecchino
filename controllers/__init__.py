@@ -34,7 +34,7 @@ def initialize_controllers(page: ft.Page, repository: Repository, main_pages: Pa
     AddReceivableDialogController(page, repository, main_pages.get("HomePage"), text_values)
     AccountSettingsDialogsController(page, repository, main_pages.get("HomePage"), text_values)
     ReceivableInfoDialogController(page, repository, main_pages.get("HomePage"))
-    AppearanceDialogController(page, repository, main_pages.get("HomePage"), text_values)
+    AppearanceDialogController(page, repository, main_pages.get("HomePage"))
     CurrencyDialogController(page, repository, main_pages.get("HomePage"), text_values)
     LanguageDialogController(page, repository, main_pages.get("HomePage"), text_values)
     OpeningController(page, repository, main_pages.get("OpeningPage"), text_values)

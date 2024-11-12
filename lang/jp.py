@@ -1,4 +1,5 @@
 text_values = {
+    "__LANG__": "jp",
     "app_name": "Arlecchino",
     "signup_button_text": "アカウントを作成",
     "about_button_text": "概要",
@@ -188,5 +189,29 @@ text_values = {
     #conopening
     "loading": "読み込み中...",
     "internet_error": "インターネット接続が遅いため、{}できません...",
-    "autolog_notice": "自動的にログインします。"
+    "autolog_notice": "自動的にログインします。",
+    #condiacset
+    "pfp_change_success": "プロフィール写真が変更されました。変更が反映されるまでお待ちください...",
+    "pw_change_success": "パスワードが正常に変更されました。",
+    #conadredia
+    "item_image_choose_text": "アイテム画像を選択",
+    "valid_gcode": "グループコードは有効です。参加できます...",
+    "invalid_gcode": "グループコードが無効です。もう一度試してください...",
+    "group_image_choose_text": "グループ画像を選択",
+    "group_desc_dia": "グループ説明: ",
+    "group_creator_dia": "作成者: ",
+    "in_chosen_alrd": "選択したグループにすでに参加しています...",
+    #itindia
+    "proof_choose_text": "証明画像を選択",
+    "mark_paid": "支払い済みとしてマーク",
+    "mark_paid_success": "支払いが完了したことが記録されました。",
+    #concurdia
+    "currency_change_success": "通貨が正常に変更されました...",
+    #conitemsview
+    "code_copied": "グループコードがクリップボードにコピーされました。",
+    "reload_items": "アイテムを再読み込みしています...",
+    "group_loading": "グループを読み込んでいます... 少々お待ちください。",
+    #buttons
+    "amount_received": "受け取った金額: ",
+    "proof_tooltip": "支払いの証明を表示する。"
 }

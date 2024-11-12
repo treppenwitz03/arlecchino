@@ -1,4 +1,5 @@
 text_values = {
+    "__LANG__": "esp",
     "app_name": "Arlecchino",
     "signup_button_text": "Crear Cuenta",
     "about_button_text": "Acerca de",
@@ -188,5 +189,29 @@ text_values = {
     #conopening
     "loading": "Cargando...",
     "internet_error": "No se puede {} debido a una conexión lenta...",
-    "autolog_notice": "Se iniciará sesión automáticamente."
+    "autolog_notice": "Se iniciará sesión automáticamente.",
+    #condiacset
+    "pfp_change_success": "La foto de perfil ha sido cambiada. Por favor espera que los cambios surtan efecto...",
+    "pw_change_success": "Tu contraseña ha sido cambiada exitosamente.",
+    #conadredia
+    "item_image_choose_text": "Elige la imagen del artículo",
+    "valid_gcode": "El código del grupo es válido. Ahora puedes unirte...",
+    "invalid_gcode": "El código del grupo no es válido. Por favor intenta de nuevo...",
+    "group_image_choose_text": "Elige la imagen del grupo",
+    "group_desc_dia": "Descripción del grupo: ",
+    "group_creator_dia": "Creado por: ",
+    "in_chosen_alrd": "Ya estás en el grupo seleccionado...",
+    #itindia
+    "proof_choose_text": "Elige la imagen de prueba",
+    "mark_paid": "Marcar como pagado",
+    "mark_paid_success": "Tu pago ha sido marcado como realizado.",
+    #concurdia
+    "currency_change_success": "Moneda cambiada exitosamente...",
+    #conitemsview
+    "code_copied": "El código del grupo ha sido copiado al portapapeles.",
+    "reload_items": "Recargando artículos...",
+    "group_loading": "Cargando grupo... Por favor espera.",
+    #buttons
+    "amount_received": "Monto Recibido: ",
+    "proof_tooltip": "Mostrar prueba de pago."
 }

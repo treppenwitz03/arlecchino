@@ -11,6 +11,7 @@ class GroupListViewController:
         self.repository = repository
         self.home_page = home_page
         self.group_listview = home_page.group_listview
+        self.text_values = text_values
 
         self.group_listview.trigger_reload = self.fill_groups
         self.group_listview.start_group_filling = self.fill_groups
@@ -32,7 +33,7 @@ class GroupListViewController:
                 break
         
         # set the username inside the greeter
-        self.group_listview.set_greeting(f"{utils.generate_greeting()}, {username}!")
+        self.group_listview.set_greeting(f"{utils.generate_greeting(self.text_values["__LANG__"])}, {username}!")
         
         # get the joined groups of current member
         group_buttons = dict()
