@@ -8,6 +8,19 @@
 <br>
 Arlecchino is a special service appointment system that blends ease of use with functionality, written in Flet and Python
 
+## Features
+- Easy to use interface
+- No-nonsense design
+- Made secure by AES encryption
+- Built on MVC for Scalability
+- # Whatever you see, it works
+
+# Todo
+- Rebuild with Flutter and MVVM
+- Make it cross-platform
+- Support other payment channels
+- Move to Supabase
+
 ## Try
 Install the following dependencies using pip
 ```
