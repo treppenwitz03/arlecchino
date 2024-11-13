@@ -1,6 +1,7 @@
 from models import Transaction, Group
-from repository import Repository, utils
+from services import Database
 from views import HomePage, AddReceivableDialog
+from utils import Utils
 
 from ..controller_connector import ControllerConnector
 
@@ -12,13 +13,14 @@ import datetime
 
 class AddReceivableDialogController:
     image_path = ""
-    def __init__(self, page: ft.Page, repository: Repository, home_page: HomePage, text_values: dict):
+    def __init__(self, page: ft.Page, home_page: HomePage):
         self.page = page
-        self.repository = repository
+        self.database: Database = page.session.get("database")
         self.home_page = home_page
         self.add_receivable_dialog: AddReceivableDialog = home_page.add_receivable_dialog
         self.current_year = datetime.date.today().year
-        self.text_values = text_values
+        self.text_values: dict = page.session.get("text_values")
+        self.utils: Utils = self.page.session.get("utils")
         
         # Set the file picker
         self.file_picker = ft.FilePicker()
@@ -61,14 +63,14 @@ class AddReceivableDialogController:
     # add the receivable
     def add_receivable(self, event: ft.ControlEvent):
         email: str = ControllerConnector.get_email(self.page)
-        group_name = utils.encrypt(self.add_receivable_dialog.group)
-        item_name = utils.encrypt(self.add_receivable_dialog.get_item_name())
+        group_name = self.utils.encrypt(self.add_receivable_dialog.group)
+        item_name = self.utils.encrypt(self.add_receivable_dialog.get_item_name())
         item_month = self.add_receivable_dialog.get_item_creation_month()
         item_day = self.add_receivable_dialog.get_item_creation_day()
         item_year = self.add_receivable_dialog.get_item_creation_year()
-        item_date = utils.encrypt(f"{item_month} {item_day}, {item_year}")
-        item_amount = utils.encrypt(self.add_receivable_dialog.get_item_amount())
-        item_description = utils.encrypt(self.add_receivable_dialog.get_item_description())
+        item_date = self.utils.encrypt(f"{item_month} {item_day}, {item_year}")
+        item_amount = self.utils.encrypt(self.add_receivable_dialog.get_item_amount())
+        item_description = self.utils.encrypt(self.add_receivable_dialog.get_item_description())
         
         # convert the image to bytes
         image_bytes = io.BytesIO()
@@ -77,7 +79,7 @@ class AddReceivableDialogController:
         image.save(image_bytes, format="PNG")
         
         # upload the receivable image
-        receivable_image_id = self.repository.upload_image(image_bytes)
+        receivable_image_id = self.database.upload_image(image_bytes)
         
         # create a new transaction object for the receivable
         new_transaction = Transaction(
@@ -91,13 +93,13 @@ class AddReceivableDialogController:
         )
         
         group: Group = None
-        for group in self.repository.groups:
+        for group in self.database.groups:
             if group.group_name == group_name:
                 group.transactions.append(new_transaction)
-                self.repository.update_group(group)
+                self.database.update_group(group)
                 self.home_page.close_dialog(event)
                 
-                self.repository.update_refs()
+                self.database.update_refs()
                 self.home_page.group_listview.items_view.on_trigger_reload(event)
                 
                 break
@@ -111,7 +113,7 @@ class AddReceivableDialogController:
                     self.add_receivable_dialog.get_item_creation_year() != "",
                     self.add_receivable_dialog.get_item_amount() != "",
                     self.add_receivable_dialog.get_item_description() != "",
-                    self.add_receivable_dialog.get_item_creation_month() in utils.accepted_months,
+                    self.add_receivable_dialog.get_item_creation_month() in Utils.accepted_months,
                     int(self.add_receivable_dialog.get_item_creation_day()) in range(0, 32), # 31 days + 1
                     int(self.add_receivable_dialog.get_item_creation_year()) in range(2000, self.current_year + 1),
                     float(self.add_receivable_dialog.get_item_amount())]):

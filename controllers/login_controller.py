@@ -1,15 +1,17 @@
-from repository import Repository, utils
+from services import Database
+from utils import Utils
 from views import LoginPage
 from models import User
 from .controller_connector import ControllerConnector
 import flet as ft
 
 class LoginController:
-    def __init__(self, page: ft.Page, repository: Repository, login_page: LoginPage, text_values: dict):
+    def __init__(self, page: ft.Page, login_page: LoginPage):
         self.page = page
-        self.repository = repository
+        self.database: Database = page.session.get("database")
         self.login_page = login_page
-        self.text_values = text_values
+        self.text_values: dict = page.session.get("text_values")
+        self.utils: Utils = self.page.session.get("utils")
         
         # handle login page events
         self.login_page.email_textfield.on_change = self.validate
@@ -29,16 +31,16 @@ class LoginController:
     # verify the credentials and login
     def login(self, event):
         email = self.login_page.get_email_entry().strip()
-        password = utils.encrypt(self.login_page.get_password_entry().strip())
+        password = self.utils.encrypt(self.login_page.get_password_entry().strip())
         
         user: User = None
-        for user in self.repository.users:
-            if (utils.decrypt(user.username) == email or utils.decrypt(user.email) == email) and user.password == password:
-                if utils.decrypt(user.username) == email:
-                    email = utils.decrypt(user.email)
+        for user in self.database.users:
+            if (self.utils.decrypt(user.username) == email or self.utils.decrypt(user.email) == email) and user.password == password:
+                if self.utils.decrypt(user.username) == email:
+                    email = self.utils.decrypt(user.email)
 
-                self.page.client_storage.set("email", utils.encrypt(email))
-                ControllerConnector.set_email(self.page, utils.encrypt(email))
+                self.page.client_storage.set("email", self.utils.encrypt(email))
+                ControllerConnector.set_email(self.page, self.utils.encrypt(email))
                 if user.first_run:
                     self.page.go("/onboarding")
                 else:

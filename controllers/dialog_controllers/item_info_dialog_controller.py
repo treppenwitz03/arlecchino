@@ -1,6 +1,7 @@
-from models import Transaction, Group, User
-from repository import Repository, utils
+from models import Transaction, Group
+from services import Database
 from views import HomePage
+from utils import Utils
 
 from ..controller_connector import ControllerConnector
 
@@ -13,12 +14,13 @@ import base64
 # Initialize the Payable Info Dialog
 class ItemInfoDialogController:
     image_path = ""
-    def __init__(self, page: ft.Page, repository: Repository, home_page: HomePage, text_values: dict):
+    def __init__(self, page: ft.Page, home_page: HomePage):
         self.page = page
-        self.repository = repository
+        self.database: Database = page.session.get("database")
         self.home_page = home_page
         self.item_info_dialog = home_page.item_infos_dialog
-        self.text_values = text_values
+        self.text_values: dict = page.session.get("text_values")
+        self.utils: Utils = self.page.session.get("utils")
         
         # Initialize the file picker
         self.file_picker = ft.FilePicker()
@@ -59,7 +61,7 @@ class ItemInfoDialogController:
             # show the payment request page
             group_name = self.item_info_dialog.group_name
             current_email: str = ControllerConnector.get_email(self.page)
-            item_name = utils.encrypt(self.item_info_dialog.item_name.value)
+            item_name = self.utils.encrypt(self.item_info_dialog.item_name.value)
             
             self.item_info_dialog.open = False
             self.page.update()
@@ -68,10 +70,10 @@ class ItemInfoDialogController:
             image = Image.open(self.image_path).convert("RGBA")
             image.save(image_bytes, format="PNG")
             
-            paid_proof_id = self.repository.upload_image(image_bytes)
+            paid_proof_id = self.database.upload_image(image_bytes)
             
             group: Group = None
-            for group in self.repository.groups:
+            for group in self.database.groups:
                 if group.group_name == group_name:
                     transaction: Transaction = None
                     for transaction in group.transactions:
@@ -83,7 +85,7 @@ class ItemInfoDialogController:
                             else:
                                 transaction.paid_by = [(current_email, paid_proof_id)]
                             
-                            self.repository.update_group(group)
+                            self.database.update_group(group)
                             self.page.snack_bar = ft.SnackBar(ft.Text(self.text_values["mark_paid_success"]), duration=1000)
                             self.page.snack_bar.open = True
 

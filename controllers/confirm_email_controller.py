@@ -1,16 +1,17 @@
 from models import User
-from repository import Repository
+from services import Database
 from views import ConfirmEmailPage
 import flet as ft
 
 from .controller_connector import ControllerConnector
 
 class ConfirmEmailController:
-    def __init__(self, page: ft.Page, repository: Repository, confirm_email_page: ConfirmEmailPage, text_values: dict):
+    def __init__(self, page: ft.Page, confirm_email_page: ConfirmEmailPage):
         self.page = page
-        self.repository = repository
         self.confirm_email_page = confirm_email_page
-        self.text_values = text_values
+
+        self.text_values: dict = self.page.session.get("text_values")
+        self.database: Database = self.page.session.get("database")
         
         # handle the events in confirm email page
         self.confirm_email_page.code_sent_textfield.on_change = self.validate
@@ -51,7 +52,7 @@ class ConfirmEmailController:
         email = str(argument_list[2])
 
         user: User = None
-        for user in self.repository.users:
+        for user in self.database.users:
             if user.email == email:
                 self.confirm_email_page.display_on_dialog(self.text_values["cant_register"], self.text_values["account_exists"])
                 return
@@ -66,7 +67,7 @@ class ConfirmEmailController:
             username=str(argument_list[3])
         )
 
-        self.repository.update_user(new_user)
+        self.database.update_user(new_user)
         self.page.go("/login")
         self.page.snack_bar = ft.SnackBar(ft.Text(self.text_values["success_account_reg"]))
         self.page.snack_bar.open = True
@@ -77,10 +78,10 @@ class ConfirmEmailController:
         email = str(argument_list[2])
 
         user: User = None
-        for user in self.repository.users:
+        for user in self.database.users:
             if user.email == email:
                 user.password = str(argument_list[3])
-                self.repository.update_user(user)
+                self.database.update_user(user)
 
                 self.page.go("/login")
                 self.page.snack_bar = ft.SnackBar(ft.Text(self.text_values["success_pw_change"]))

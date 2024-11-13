@@ -4,12 +4,13 @@ import smtplib
 import ssl
 import io
 import base64
+import flet as ft
 
 from email.message import EmailMessage
 from firebase_admin import db, credentials, storage
 from googleapiclient.errors import HttpError
 from socket import gaierror
-from . import utils
+from utils import Utils
 
 from models import User, Group, Member, Transaction
 
@@ -19,10 +20,13 @@ from typing import List
 ## Repository connects to the online database to get and upload user data
 ###########################################################################
 
-class Repository:
+class Database:
+    def __init__(self, page: ft.Page):
+        self.page = page
+
     def load(self):
         try:
-            cred = credentials.Certificate("repository/database.json")
+            cred = credentials.Certificate("services/token.json")
             firebase_admin.initialize_app(cred, {
                 "databaseURL" : "https://morax-ea133-default-rtdb.asia-southeast1.firebasedatabase.app/",
                 "storageBucket": "morax-ea133.appspot.com"
@@ -30,8 +34,9 @@ class Repository:
 
             self.bucket = storage.bucket()
             blob = self.bucket.blob("ap7t10co.isus")
-            self.key = base64.b64decode(blob.download_as_bytes())
-            utils.set_key(self.key)
+            
+            utils: Utils = self.page.session.get("utils")
+            utils.set_key(base64.b64decode(blob.download_as_bytes()))
 
             mail_blob = self.bucket.blob("gapword")
             self.pw, self.em = mail_blob.download_as_text().split("\n")
@@ -198,7 +203,7 @@ class Repository:
     # function to upload image to the database
     def upload_image(self, buffer: io.BytesIO) -> str:
         try:
-            id = utils.generate_random_name()
+            id = Utils.generate_random_name()
             buffer.seek(0)
             self.bucket.blob(id).upload_from_file(buffer, content_type='application/octet-stream')
             return id

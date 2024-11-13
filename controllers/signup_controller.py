@@ -1,16 +1,18 @@
-from repository import Repository, utils
+from services import Database
 from views import SignupPage
+from utils import Utils
 import flet as ft
 import webbrowser
 
 from .controller_connector import ControllerConnector
 
 class SignupController:
-    def __init__(self, page: ft.Page, repository: Repository, signup_page: SignupPage, text_values: dict):
+    def __init__(self, page: ft.Page, signup_page: SignupPage):
         self.page = page
-        self.repository = repository
+        self.database: Database = page.session.get("database")
         self.signup_page = signup_page
-        self.text_values = text_values
+        self.text_values: dict = page.session.get("text_values")
+        self.utils: Utils = self.page.session.get("utils")
         
         # handle signup fields
         self.signup_page.email_textfield.on_change = self.validate
@@ -41,7 +43,7 @@ class SignupController:
     
     # register the user if confirmed
     def register(self, event):
-        code = self.repository.get_email_confirmation_code(self.signup_page.get_email_entry().strip())
+        code = self.database.get_email_confirmation_code(self.signup_page.get_email_entry().strip())
 
         if not code:
             self.page.snack_bar = ft.SnackBar(ft.Text(self.text_values["code_not_sent"]), action=self.text_values["try_again"])
@@ -53,9 +55,9 @@ class SignupController:
         command = [
             "COMMAND_REGISTER",
             code,
-            utils.encrypt(self.signup_page.get_email_entry().strip()),
-            utils.encrypt(self.signup_page.get_username_entry().strip()),
-            utils.encrypt(self.signup_page.get_password_entry().strip()),
+            self.utils.encrypt(self.signup_page.get_email_entry().strip()),
+            self.utils.encrypt(self.signup_page.get_username_entry().strip()),
+            self.utils.encrypt(self.signup_page.get_password_entry().strip()),
         ]
         ControllerConnector.set_command_for_email_confirmation(self.page, command)
         self.page.go("/confirm_email")

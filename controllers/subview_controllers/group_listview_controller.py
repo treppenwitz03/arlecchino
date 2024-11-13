@@ -1,16 +1,18 @@
 from views import HomePage
-from repository import Repository, utils
+from services import Database
 from models import User, Group, Member
 from ..controller_connector import ControllerConnector
 import flet as ft
+from utils import Utils
 
 class GroupListViewController:
-    def __init__(self, page: ft.Page, repository: Repository, home_page: HomePage, text_values: dict):
+    def __init__(self, page: ft.Page, home_page: HomePage):
         self.page = page
-        self.repository = repository
+        self.database: Database = page.session.get("database")
         self.home_page = home_page
         self.group_listview = home_page.group_listview
-        self.text_values = text_values
+        self.text_values: dict = page.session.get("text_values")
+        self.utils: Utils = self.page.session.get("utils")
 
         self.group_listview.trigger_reload = self.fill_groups
         self.group_listview.start_group_filling = self.fill_groups
@@ -20,29 +22,29 @@ class GroupListViewController:
     def fill_groups(self):
         email: str = ControllerConnector.get_email(self.page)
 
-        self.repository.update_refs()
+        self.database.update_refs()
         self.group_listview.refresh_grid()
 
         # retrieve usernames
         username = ""
         user: User = None
-        for user in self.repository.users:
+        for user in self.database.users:
             if user.email == email:
-                username = utils.decrypt(user.username)
+                username = self.utils.decrypt(user.username)
                 break
         
         # set the username inside the greeter
-        self.group_listview.set_greeting(f"{utils.generate_greeting(self.text_values["__LANG__"])}, {username}!")
+        self.group_listview.set_greeting(f"{Utils.generate_greeting(self.text_values["__LANG__"])}, {username}!")
         
         # get the joined groups of current member
         group_buttons = dict()
         group: Group = None
-        for group in self.repository.groups:
+        for group in self.database.groups:
             member: Member = None
             for member in group.members:
                 if member.email == email:
-                    image_string = utils.convert_to_base64(self.repository.download_image(group.picture_id))
-                    id = self.group_listview.add_group_button(utils.decrypt(group.group_name), image_string)
+                    image_string = Utils.convert_to_base64(self.database.download_image(group.picture_id))
+                    id = self.group_listview.add_group_button(self.utils.decrypt(group.group_name), image_string)
                     group_buttons[id] = group
         
         ControllerConnector.set_group_buttons(self.page, group_buttons)

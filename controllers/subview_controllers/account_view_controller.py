@@ -1,15 +1,17 @@
 from views import HomePage
-from repository import Repository, utils
+from services import Database
 from models import User
+from utils import Utils
 from ..controller_connector import ControllerConnector
 import flet as ft
 
 class AccountViewController:
-    def __init__(self, page: ft.Page, repository: Repository, home_page: HomePage):
+    def __init__(self, page: ft.Page, home_page: HomePage):
         self.page = page
-        self.repository = repository
+        self.database: Database = page.session.get("database")
         self.home_page = home_page
         self.account_view = home_page.account_view
+        self.utils: Utils = self.page.session.get("utils")
 
         self.account_view.logout_button.on_click = self.logout_account
         self.account_view.update_informations = self.update_account_view
@@ -33,12 +35,12 @@ class AccountViewController:
         username = ""
 
         user: User = None
-        for user in self.repository.users:
+        for user in self.database.users:
             if user.email == email:
-                user_image = utils.convert_to_base64(self.repository.download_image(user.picture_link))
-                username = utils.decrypt(user.username)
+                user_image = Utils.convert_to_base64(self.database.download_image(user.picture_link))
+                username = self.utils.decrypt(user.username)
                 break
 
         self.account_view.user_picture.src_base64 = user_image
         self.account_view.username_text.value = username
-        self.account_view.email_text.value = utils.decrypt(email)
+        self.account_view.email_text.value = self.utils.decrypt(email)

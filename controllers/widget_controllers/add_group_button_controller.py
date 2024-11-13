@@ -1,11 +1,9 @@
-from repository import Repository
 from views import HomePage
 import flet as ft
 
 class AddGroupButtonController:
-    def __init__(self, page: ft.Page, repository: Repository, home_page: HomePage):
+    def __init__(self, page: ft.Page, home_page: HomePage):
         self.page = page
-        self.repository = repository
         self.home_page = home_page
         self.add_button = home_page.group_listview.add_button
 

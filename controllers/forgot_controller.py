@@ -1,15 +1,17 @@
-from repository import Repository, utils
+from services import Database
+from utils import Utils
 from views import ForgotPasswordPage
 import flet as ft
 
 from .controller_connector import ControllerConnector
 
 class ForgotController:
-    def __init__(self, page: ft.Page, repository: Repository, forgot_password_page: ForgotPasswordPage, text_values: dict):
+    def __init__(self, page: ft.Page, forgot_password_page: ForgotPasswordPage):
         self.page = page
-        self.repository = repository
+        self.database: Database = page.session.get("database")
         self.forgot_password_page = forgot_password_page
-        self.text_values = text_values
+        self.text_values: dict = page.session.get("text_values")
+        self.utils: Utils = self.page.session.get("utils")
         
         ##### COntroller for the Forgot Password Page #############
         
@@ -40,7 +42,7 @@ class ForgotController:
     
     # reflect password change on database
     def change_password(self, event):
-        code = self.repository.get_email_confirmation_code_forgot(self.forgot_password_page.get_email_to_send_entry())
+        code = self.database.get_email_confirmation_code_forgot(self.forgot_password_page.get_email_to_send_entry())
 
         if not code:
             self.page.snack_bar = ft.SnackBar(ft.Text(self.text_values["code_not_send"]), action=self.text_values["try_again"])
@@ -52,8 +54,8 @@ class ForgotController:
         command = [
             "COMMAND_CHANGE_PASSWORD",
             code,
-            utils.encrypt(self.forgot_password_page.get_email_to_send_entry().strip()),
-            utils.encrypt(self.forgot_password_page.get_new_password_entry().strip()),
+            self.utils.encrypt(self.forgot_password_page.get_email_to_send_entry().strip()),
+            self.utils.encrypt(self.forgot_password_page.get_new_password_entry().strip()),
         ]
         ControllerConnector.set_command_for_email_confirmation(self.page, command)
         self.page.go("/confirm_email")

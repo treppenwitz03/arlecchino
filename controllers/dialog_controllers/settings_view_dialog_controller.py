@@ -1,14 +1,15 @@
 import flet as ft
 
-from repository import Repository
+from services import Database
 from views import HomePage
+from utils import Preferences
 
 import os
 
 class AppearanceDialogController:
-    def __init__(self, page: ft.Page, repository: Repository, home_page: HomePage):
+    def __init__(self, page: ft.Page, home_page: HomePage):
         self.page = page
-        self.repository = repository
+        self.database: Database = page.session.get("database")
         self.home_page = home_page
         self.appearance_dialog = home_page.appearance_dialog
         
@@ -44,12 +45,12 @@ class AppearanceDialogController:
         self.home_page.show_appearance_dialog()
 
 class CurrencyDialogController:
-    def __init__(self, page: ft.Page, repository: Repository, home_page: HomePage, text_values: dict):
+    def __init__(self, page: ft.Page, home_page: HomePage):
         self.page = page
-        self.repository = repository
+        self.database: Database = page.session.get("database")
         self.home_page = home_page
         self.currency_dialog = home_page.currency_dialog
-        self.text_values = text_values
+        self.text_values: dict = page.session.get("text_values")
         
         # handle events
         self.home_page.settings_view.currency_setting.on_click = self.handle_dialog_open
@@ -68,9 +69,9 @@ class CurrencyDialogController:
         self.home_page.show_currency_dialog()
 
 class LanguageDialogController:
-    def __init__(self, page: ft.Page, repository: Repository, home_page: HomePage, text_values: dict):
+    def __init__(self, page: ft.Page, home_page: HomePage):
         self.page = page
-        self.repository = repository
+        self.database: Database = page.session.get("database")
         self.home_page = home_page
         self.language_dialog = home_page.language_dialog
 

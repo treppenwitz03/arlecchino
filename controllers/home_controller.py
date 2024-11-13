@@ -1,4 +1,4 @@
-from repository import Repository
+from services import Database
 from views import *
 
 import flet as ft
@@ -6,11 +6,11 @@ import flet as ft
 class HomeController:
     code_validated = False
     image_path = ""
-    def __init__(self, page: ft.Page, repository: Repository, home_page: HomePage, text_values: dict):
+    def __init__(self, page: ft.Page, home_page: HomePage):
         self.page = page
-        self.repository = repository
+        self.database: Database = page.session.get("database")
         self.home_page = home_page
-        self.text_values = text_values
+        self.text_values: dict = page.session.get("text_values")
         
         ################### Initialize controller for home page and all its subviews ##################
         

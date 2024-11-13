@@ -1,6 +1,7 @@
 from views import HomePage, ProfilePictureChangeDialog, EditGcashDialog, EditUsernameDialog, EditPasswordDialog, AccountView
-from repository import Repository, utils
+from services import Database
 from models import User
+from utils import Utils
 
 from ..controller_connector import ControllerConnector
 
@@ -11,11 +12,12 @@ import base64
 import cv2
 
 class AccountSettingsDialogsController:
-    def __init__(self, page: ft.Page, repository: Repository, home_page: HomePage, text_values: dict):
+    def __init__(self, page: ft.Page, home_page: HomePage):
         self.page = page
-        self.repository = repository
+        self.database: Database = page.session.get("database")
         self.home_page = home_page
-        self.text_values = text_values
+        self.text_values: dict = page.session.get("text_values")
+        self.utils: Utils = self.page.session.get("utils")
         
         # connect the dialogs
         self.change_dp_dialog: ProfilePictureChangeDialog = home_page.change_profile_picture_dialog
@@ -73,11 +75,11 @@ class AccountSettingsDialogsController:
         self.email: str = ControllerConnector.get_email(self.page)
 
         user: User = None
-        for user in self.repository.users:
+        for user in self.database.users:
             if user.email == self.email:
-                self.change_gcash_dialog.number_textfield.value = utils.decrypt(user.gcash_number)
-                image_bytes = self.repository.download_image(user.qr_image_id)
-                self.change_gcash_dialog.qr_image.src_base64 = utils.convert_to_base64(image_bytes)       
+                self.change_gcash_dialog.number_textfield.value = self.utils.decrypt(user.gcash_number)
+                image_bytes = self.database.download_image(user.qr_image_id)
+                self.change_gcash_dialog.qr_image.src_base64 = Utils.convert_to_base64(image_bytes)       
 
         self.home_page.show_change_gcash_qr_dialog()
     
@@ -140,12 +142,12 @@ class AccountSettingsDialogsController:
         self.email: str = ControllerConnector.get_email(self.page)
         if self.dp_image_path != "":
             user: User = None
-            for user in self.repository.users:
+            for user in self.database.users:
                 if user.email == self.email:
-                    id = self.repository.upload_image(self.dp_image_buffer)
+                    id = self.database.upload_image(self.dp_image_buffer)
                     user.picture_link = id
                     
-                    self.repository.update_user(user)
+                    self.database.update_user(user)
                     
                     self.account_view.trigger_reload()
                     self.account_view.user_picture.update()
@@ -166,12 +168,12 @@ class AccountSettingsDialogsController:
         replacement = self.change_username_dialog.new_username_textfield.value
         
         user: User = None
-        for user in self.repository.users:
+        for user in self.database.users:
             if user.email == self.email:
-                user.username = utils.encrypt(replacement)
-                self.repository.update_user(user)
+                user.username = self.utils.encrypt(replacement)
+                self.database.update_user(user)
                 self.account_view.trigger_reload()
-                self.home_page.group_listview.top_text.value = f"{utils.generate_greeting(self.text_values["__LANG__"])}, {replacement}!"
+                self.home_page.group_listview.top_text.value = f"{Utils.generate_greeting(self.text_values["__LANG__"])}, {replacement}!"
                 self.home_page.group_listview.top_text.update()
                 self.account_view.user_picture.update()
                 self.account_view.username_text.update()
@@ -187,10 +189,10 @@ class AccountSettingsDialogsController:
         password = self.change_password_dialog.new_password_textfield.value
         
         user: User = None
-        for user in self.repository.users:
+        for user in self.database.users:
             if user.email == self.email:
-                user.password = utils.encrypt(password)
-                self.repository.update_user(user)
+                user.password = self.utils.encrypt(password)
+                self.database.update_user(user)
                 
                 self.home_page.close_dialog(event)
                 
@@ -252,12 +254,12 @@ class AccountSettingsDialogsController:
         self.email: str = ControllerConnector.get_email(self.page)
         
         user: User = None
-        for user in self.repository.users:
+        for user in self.database.users:
             if user.email == self.email:
-                id = self.repository.upload_image(self.qr_buffer)
+                id = self.database.upload_image(self.qr_buffer)
                 user.qr_image_id = id
-                user.gcash_number = utils.encrypt(self.change_gcash_dialog.number_textfield.value)
-                self.repository.update_user(user)
+                user.gcash_number = self.utils.encrypt(self.change_gcash_dialog.number_textfield.value)
+                self.database.update_user(user)
                 self.home_page.close_dialog(event)
                 
                 return

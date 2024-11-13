@@ -2,7 +2,8 @@ import flet as ft
 from views import *
 from controllers import *
 from models import *
-from repository import *
+from services import *
+from utils import Utils, Preferences
 from lang import Language
 
 def main(page: ft.Page):
@@ -11,7 +12,12 @@ def main(page: ft.Page):
     page.window.height = 768
     page.title = "Arlecchino"
 
-    utils.initialize_settings(page)
+    prefs = Preferences(page)
+    utils = Utils(page)
+
+    page.session.set("prefs", prefs)
+    page.session.set("utils", utils)
+
     lang = Language(page)
     text_values = lang.get_text_values()
 
@@ -27,11 +33,14 @@ def main(page: ft.Page):
 
     page.go(page.route)
     
-    # Initialize the Repository
-    repository = Repository()
+    # Initialize the Database
+    database = Database(page)
+
+    page.session.set("database", database)
+    page.session.set("text_values", text_values)
 
     #Initialize the controllers
-    initialize_controllers(page, repository, main_pages, text_values)
+    initialize_controllers(page, main_pages)
 
 if __name__ == "__main__":
     # Run the app with flet's method

@@ -1,6 +1,7 @@
 from models import User
-from repository import Repository, utils
+from services import Database
 from views import OnboardingPage
+from utils import Utils
 
 from .controller_connector import *
 
@@ -12,11 +13,12 @@ import cv2
 import base64
 
 class OnboardingController:
-    def __init__(self, page: ft.Page, repository: Repository, onboarding_page: OnboardingPage, text_values: dict):
+    def __init__(self, page: ft.Page, onboarding_page: OnboardingPage):
         self.page = page
-        self.repository = repository
+        self.database: Database = page.session.get("database")
         self.onboarding_page = onboarding_page
-        self.text_values = text_values
+        self.text_values: dict = page.session.get("text_values")
+        self.utils: Utils = self.page.session.get("utils")
 
         # set preliminary variables
         self.current = 0
@@ -117,7 +119,7 @@ class OnboardingController:
         email = ControllerConnector.get_email(self.page)
         
         current_user: User = None
-        for current_user in self.repository.users:
+        for current_user in self.database.users:
             if current_user.email == email:
                 break
         
@@ -139,31 +141,31 @@ class OnboardingController:
             self.onboarding_page.profile_column.offset = ft.transform.Offset(0, 0)
             self.onboarding_page.profile_column.update()
             
-            id = self.repository.upload_image(self.buffered)
+            id = self.database.upload_image(self.buffered)
             
             current_user.qr_image_id = id
-            current_user.gcash_number = utils.encrypt(self.onboarding_page.number_textfield.value)
+            current_user.gcash_number = self.utils.encrypt(self.onboarding_page.number_textfield.value)
             
-            self.repository.update_user(current_user)
+            self.database.update_user(current_user)
             
             self.onboarding_page.next_button.text = self.text_values["start_arle"]
             self.onboarding_page.next_button.update()
             self.current = 2
         elif self.current == 2: # the profile page
             if hasattr(self, "dp_image_path"):
-                id = self.repository.upload_image(self.dp_image_buffer)
+                id = self.database.upload_image(self.dp_image_buffer)
                 current_user.picture_link = id
             else:
                 image = Image.open("assets/empty_user_image.png").convert("RGBA")
                 pil_img = image.resize((200, 200))
                 buff = BytesIO()
                 pil_img.save(buff, format="PNG")
-                id = self.repository.upload_image(buff)
+                id = self.database.upload_image(buff)
                 current_user.picture_link = id
             
             # the first run is set to false after completion
             current_user.first_run = False
-            self.repository.update_user(current_user)
+            self.database.update_user(current_user)
             
             # go to home
             self.page.go("/home")

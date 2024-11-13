@@ -2,14 +2,14 @@ from views import OpeningPage
 from .controller_connector import ControllerConnector
 import flet as ft
 import webbrowser
-from repository import Repository
+from services import Database
 
 class OpeningController():
-    def __init__(self, page: ft.Page, repository: Repository, opening_page: OpeningPage, text_values: dict):
+    def __init__(self, page: ft.Page, opening_page: OpeningPage):
         self.page = page
         self.opening_page = opening_page
-        self.repository = repository
-        self.text_values = text_values
+        self.database: Database = page.session.get("database")
+        self.text_values: dict = page.session.get("text_values")
         
         # check if autologin is enabled
         self.handle_automatic_login()
@@ -25,7 +25,7 @@ class OpeningController():
         self.page.snack_bar.open = True
         self.page.update()
 
-        if not self.repository.load():
+        if not self.database.load():
             self.page.snack_bar = ft.SnackBar(ft.Text(self.text_values["internet_error"].format(activity)), action=self.text_values["try_again"])
             self.page.snack_bar.on_action = lambda e: self.load_repo(activity)
             self.page.snack_bar.open = True

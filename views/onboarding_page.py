@@ -120,10 +120,9 @@ class OnboardingPage(AbstractPage):
             animate_offset=ft.animation.Animation(300)
         )
         
-        profile_logo = ft.Image(
-            src = "/logo_filled.png",
-            width = 200,
-            height = 200,
+        profile_logo = ft.Icon(
+            ft.icons.PERSON_2_ROUNDED,
+            size=200
         )
         
         profile_logo_row = ft.Row(
