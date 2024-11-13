@@ -45,6 +45,12 @@ jobs:
       uses: subosito/flutter-action@v2
       with:
         flutter-version: ${{ env.FLUTTER_VERSION }}
+    
+    - name: Setup Java JDK
+      uses: actions/setup-java@v4.2.1
+      with:
+        distribution: 'temurin'
+        java-version: '21'
 
     - name: Setup Android SDK
       uses: android-actions/setup-android@v3
@@ -87,6 +93,12 @@ jobs:
         pip install -r requirements.txt
         pip install flet --pre
     
+    - name: Setup Java JDK
+      uses: actions/setup-java@v4.2.1
+      with:
+        distribution: 'temurin'
+        java-version: '21'
+    
     - name: Setup Android SDK
       uses: android-actions/setup-android@v3
 
@@ -125,6 +137,12 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
         pip install flet --pre
+
+    - name: Setup Java JDK
+      uses: actions/setup-java@v4.2.1
+      with:
+        distribution: 'temurin'
+        java-version: '21'
     
     - name: Setup Android SDK
       uses: android-actions/setup-android@v3
@@ -177,6 +195,13 @@ jobs:
 
     - name: Setup Android SDK
       uses: android-actions/setup-android@v3
+    
+    - name: Patch for linux build
+      run: |
+        flutter doctor
+        sudo apt-get update -y
+        sudo apt-get install -y ninja-build libgtk-3-dev
+        flutter doctor
 
     - name: Flet Build APK
       run: |
