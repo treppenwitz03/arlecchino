@@ -7,7 +7,7 @@ import flet as ft
 class HomeController:
     code_validated = False
     image_path = ""
-    def __init__(self, page: ft.Page, home_page: HomePage):
+    def __init__(self, page: ft.Page, home_page: HomeView):
         self.page = page
         self.database: Database = page.session.get("database")
         self.home_page = home_page
@@ -16,9 +16,9 @@ class HomeController:
         
         ################### Initialize controller for home page and all its subviews ##################
         
-        self.group_listview: GroupListView = self.home_page.group_listview
+        self.group_listview: GroupSubView = self.home_page.group_listview
 
-        self.items_view: ItemsView = self.group_listview.items_view
+        self.items_view: ItemsSubView = self.group_listview.items_view
         
         # Handle sidebutton events
         self.home_page.home_button.on_click = lambda _: self.location_change(self.home_page.home_button)

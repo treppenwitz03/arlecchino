@@ -1,11 +1,11 @@
 from services import Database
 from utils import Utils, Preferences
-from views import LoginPage
+from views import LoginView
 from models import User
 import flet as ft
 
 class LoginController:
-    def __init__(self, page: ft.Page, login_page: LoginPage):
+    def __init__(self, page: ft.Page, login_page: LoginView):
         self.page = page
         self.database: Database = page.session.get("database")
         self.login_page = login_page

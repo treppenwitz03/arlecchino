@@ -1,6 +1,6 @@
 import flet as ft
 
-class FeedbackView(ft.Column):
+class FeedbackSubView(ft.Column):
     def __init__(self, text_values: dict):
         super().__init__(
             offset=ft.transform.Offset(0, 3),

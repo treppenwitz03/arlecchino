@@ -1,6 +1,6 @@
 from models import Group, Member, User
 from services import Database
-from views import HomePage, JoinGroupDialog, CreateGroupDialog, SearchGroupsDialog
+from views import HomeView, JoinGroupDialog, CreateGroupDialog, SearchGroupsDialog
 from utils import Utils, Preferences
 
 from PIL import Image
@@ -11,7 +11,7 @@ import base64
     
 class JoinDialogController:
     code_validated = False
-    def __init__(self, page: ft.Page, home_page: HomePage):
+    def __init__(self, page: ft.Page, home_page: HomeView):
         self.page = page
         self.database: Database = page.session.get("database")
         self.home_page = home_page
@@ -83,7 +83,7 @@ class JoinDialogController:
             self.page.update()
 
 class CreateGroupDialogController:
-    def __init__(self, page: ft.Page, home_page: HomePage):
+    def __init__(self, page: ft.Page, home_page: HomeView):
         self.page = page
         self.database: Database = page.session.get("database")
         self.home_page = home_page
@@ -175,7 +175,7 @@ class CreateGroupDialogController:
 
 class SearchGroupsDialogController:
     chosen_group_tile: ft.ListTile = None
-    def __init__(self, page: ft.Page, home_page: HomePage):
+    def __init__(self, page: ft.Page, home_page: HomeView):
         self.page = page
         self.database: Database = page.session.get("database")
         self.home_page = home_page

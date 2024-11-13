@@ -1,11 +1,11 @@
-from views import OpeningPage
+from views import OpeningView
 import flet as ft
 import webbrowser
 from utils import Preferences
 from services import Database
 
 class OpeningController():
-    def __init__(self, page: ft.Page, opening_page: OpeningPage):
+    def __init__(self, page: ft.Page, opening_page: OpeningView):
         self.page = page
         self.opening_page = opening_page
         self.database: Database = page.session.get("database")

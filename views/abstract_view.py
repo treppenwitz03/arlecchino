@@ -3,20 +3,20 @@ import flet as ft
 
 from typing import List
 
-class AbstractPage(ft.View):
+class AbstractView(ft.View):
     route: str = ""
     should_clear: bool = True
     def get_view(self, page: ft.Page, params: Params, basket: Basket):
         pass
 
-class Pages(object):
+class Views(object):
     def __init__(self, page: ft.Page, text_values: dict):
         self.__pages = dict()
         self.flet_page = page
         self.text_values = text_values
         self.routes = []
     
-    def __add_page__(self, page: AbstractPage):
+    def __add_page__(self, page: AbstractView):
         current_page = page(self.text_values)
         self.routes.append(path(url=current_page.route, clear=current_page.should_clear, view=current_page.get_view))
         self.__pages[current_page.__class__.__name__] = current_page

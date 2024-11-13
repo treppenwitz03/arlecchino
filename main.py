@@ -27,13 +27,13 @@ def main(page: ft.Page):
     lang = Language(page)
     text_values = lang.get_text_values()
     
-    # Initialize Pages
-    main_pages = Pages(page, text_values)
+    # Initialize Views
+    main_pages = Views(page, text_values)
     main_pages.add_pages([
-        HomePage, OpeningPage,
-        OnboardingPage, LoginPage,
-        SignupPage, ForgotPasswordPage, ConfirmEmailPage,
-        ChatPage
+        HomeView, OpeningView,
+        OnboardingView, LoginView,
+        SignupView, ForgotPasswordView, ConfirmEmailView,
+        ChatView
     ])
 
     page.go(page.route)

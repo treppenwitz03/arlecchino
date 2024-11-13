@@ -1,6 +1,6 @@
 from models import Transaction, Group
 from services import Database
-from views import HomePage, AddReceivableDialog
+from views import HomeView, AddReceivableDialog
 from utils import Utils
 
 import flet as ft
@@ -11,7 +11,7 @@ import datetime
 
 class AddReceivableDialogController:
     image_path = ""
-    def __init__(self, page: ft.Page, home_page: HomePage):
+    def __init__(self, page: ft.Page, home_page: HomeView):
         self.page = page
         self.database: Database = page.session.get("database")
         self.home_page = home_page

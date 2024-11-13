@@ -1,8 +1,8 @@
 import flet as ft
 from views.widgets.group_button import GroupButton, AddGroupButton
-from views.subviews.items_view import ItemsView
+from views.subviews.items_subview import ItemsSubView
 
-class GroupListView(ft.AnimatedSwitcher):
+class GroupSubView(ft.AnimatedSwitcher):
     def __init__(self, text_values: dict):
         super().__init__(
             offset=ft.transform.Offset(0, 0),
@@ -80,7 +80,7 @@ class GroupListView(ft.AnimatedSwitcher):
             padding = 30
         )
         
-        self.items_view = ItemsView(text_values)
+        self.items_view = ItemsSubView(text_values)
         
         self.grid_view = ft.Column(
             controls=[

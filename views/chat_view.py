@@ -1,8 +1,8 @@
 import flet as ft
-from views.abstract_page import AbstractPage
+from views.abstract_view import AbstractView
 from utils import Utils
 
-class ChatPage(AbstractPage):
+class ChatView(AbstractView):
     def __init__(self, text_values: dict):
         super().__init__(
             route="/chat",

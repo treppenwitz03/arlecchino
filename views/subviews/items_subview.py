@@ -1,7 +1,7 @@
 import flet as ft
 from views.widgets.group_button import AddReceivableButton
 
-class ItemsView(ft.Column):
+class ItemsSubView(ft.Column):
     group = None
     def __init__(self, text_values: dict):
         super().__init__(

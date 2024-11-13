@@ -1,11 +1,11 @@
 from services import Database
-from views import SignupPage
+from views import SignupView
 from utils import Utils
 import flet as ft
 import webbrowser
 
 class SignupController:
-    def __init__(self, page: ft.Page, signup_page: SignupPage):
+    def __init__(self, page: ft.Page, signup_page: SignupView):
         self.page = page
         self.database: Database = page.session.get("database")
         self.signup_page = signup_page

@@ -1,10 +1,10 @@
 from models import User
 from services import Database
-from views import ConfirmEmailPage
+from views import ConfirmEmailView
 import flet as ft
 
 class ConfirmEmailController:
-    def __init__(self, page: ft.Page, confirm_email_page: ConfirmEmailPage):
+    def __init__(self, page: ft.Page, confirm_email_page: ConfirmEmailView):
         self.page = page
         self.confirm_email_page = confirm_email_page
 

@@ -1,7 +1,7 @@
 import flet as ft
 from views.dialogs.settings_view_dialogs import *
 
-class SettingsView(ft.Column):
+class SettingsSubView(ft.Column):
     def __init__(self, text_values: dict):
         super().__init__(
             offset=ft.transform.Offset(0, 1.5),

@@ -1,12 +1,12 @@
 from models import Transaction, Group
 from services import Database
 from utils import Utils
-from views import HomePage, ShowReceivableInfoDialog
+from views import HomeView, ShowReceivableInfoDialog
 
 import flet as ft
 
 class ReceivableInfoDialogController:
-    def __init__(self, page: ft.Page, home_page: HomePage):
+    def __init__(self, page: ft.Page, home_page: HomeView):
         self.page = page
         self.database: Database = page.session.get("database")
         self.home_page = home_page

@@ -1,8 +1,8 @@
-from views import HomePage
+from views import HomeView
 import flet as ft
 
 class AddGroupButtonController:
-    def __init__(self, page: ft.Page, home_page: HomePage):
+    def __init__(self, page: ft.Page, home_page: HomeView):
         self.page = page
         self.home_page = home_page
         self.add_button = home_page.group_listview.add_button

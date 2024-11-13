@@ -1,11 +1,11 @@
-from views import HomePage
+from views import HomeView
 from services import Database
 from models import User
 from utils import Utils, Preferences
 import flet as ft
 
 class AccountViewController:
-    def __init__(self, page: ft.Page, home_page: HomePage):
+    def __init__(self, page: ft.Page, home_page: HomeView):
         self.page = page
         self.database: Database = page.session.get("database")
         self.home_page = home_page

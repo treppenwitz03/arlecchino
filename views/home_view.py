@@ -1,11 +1,11 @@
 import flet as ft
 from flet_route import Params, Basket
-from views.abstract_page import AbstractPage
+from views.abstract_view import AbstractView
 
-from views.subviews.group_listview import GroupListView
-from views.subviews.settings_view import SettingsView
-from views.subviews.feedback_view import FeedbackView
-from views.subviews.account_view import AccountView
+from views.subviews.group_subview import GroupSubView
+from views.subviews.settings_subview import SettingsSubView
+from views.subviews.feedback_subview import FeedbackSubView
+from views.subviews.account_subview import AccountSubView
 
 from views.dialogs.group_addition_dialogs import *
 from views.dialogs.item_info_dialog import ItemInfoDialog
@@ -14,7 +14,7 @@ from views.dialogs.show_receivable_info_dialog import ShowReceivableInfoDialog
 from views.dialogs.account_settings_dialogs import *
 from views.dialogs.settings_view_dialogs import *
 
-class HomePage(AbstractPage):
+class HomeView(AbstractView):
     def __init__(self, text_values: dict):
         super().__init__(
             route = "/home",
@@ -23,13 +23,13 @@ class HomePage(AbstractPage):
 
         self.text_values = text_values
         ########################################################
-        ## Make the Home Page UI containing the different views
+        ## Make the Home View UI containing the different views
         ########################################################
         
-        self.group_listview = GroupListView(text_values)
-        self.settings_view = SettingsView(text_values)
-        self.feedback_view = FeedbackView(text_values)
-        self.account_view = AccountView(text_values)
+        self.group_listview = GroupSubView(text_values)
+        self.settings_view = SettingsSubView(text_values)
+        self.feedback_view = FeedbackSubView(text_values)
+        self.account_view = AccountSubView(text_values)
         
         self.slider_stack = ft.Stack(
             expand=True,

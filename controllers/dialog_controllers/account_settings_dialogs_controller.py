@@ -1,4 +1,4 @@
-from views import HomePage, ProfilePictureChangeDialog, EditGcashDialog, EditUsernameDialog, EditPasswordDialog, AccountView
+from views import HomeView, ProfilePictureChangeDialog, EditGcashDialog, EditUsernameDialog, EditPasswordDialog, AccountSubView
 from services import Database
 from models import User
 from utils import Utils
@@ -10,7 +10,7 @@ import base64
 import cv2
 
 class AccountSettingsDialogsController:
-    def __init__(self, page: ft.Page, home_page: HomePage):
+    def __init__(self, page: ft.Page, home_page: HomeView):
         self.page = page
         self.database: Database = page.session.get("database")
         self.home_page = home_page
@@ -23,7 +23,7 @@ class AccountSettingsDialogsController:
         self.change_username_dialog: EditUsernameDialog = home_page.edit_username_dialog
         self.change_password_dialog: EditPasswordDialog = home_page.edit_password_dialog
         
-        self.account_view: AccountView = home_page.account_view
+        self.account_view: AccountSubView = home_page.account_view
         
         #################### set the file pickers ##################################
         self.qr_picker = ft.FilePicker()

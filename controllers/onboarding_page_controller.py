@@ -1,6 +1,6 @@
 from models import User
 from services import Database
-from views import OnboardingPage
+from views import OnboardingView
 from utils import Utils
 
 from io import BytesIO
@@ -11,7 +11,7 @@ import cv2
 import base64
 
 class OnboardingController:
-    def __init__(self, page: ft.Page, onboarding_page: OnboardingPage):
+    def __init__(self, page: ft.Page, onboarding_page: OnboardingView):
         self.page = page
         self.database: Database = page.session.get("database")
         self.onboarding_page = onboarding_page

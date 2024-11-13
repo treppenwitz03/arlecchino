@@ -1,11 +1,11 @@
-from views import HomePage, GroupButton, ItemButton, PaidUserButton
+from views import HomeView, GroupButton, ItemButton, PaidUserButton
 from services import Database
 from models import User, Group, Transaction
 from utils import Utils, Preferences
 import flet as ft
 
 class ItemsViewController:
-    def __init__(self, page: ft.Page, home_page: HomePage):
+    def __init__(self, page: ft.Page, home_page: HomeView):
         self.page = page
         self.database: Database = page.session.get("database")
         self.home_page = home_page

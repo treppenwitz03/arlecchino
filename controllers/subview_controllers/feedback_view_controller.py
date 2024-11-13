@@ -1,9 +1,9 @@
-from views import HomePage
+from views import HomeView
 import flet as ft
 import webbrowser
 
 class FeedbackViewController:
-    def __init__(self, page: ft.Page, home_page: HomePage):
+    def __init__(self, page: ft.Page, home_page: HomeView):
         self.page = page
         self.feedback_view = home_page.feedback_view
 

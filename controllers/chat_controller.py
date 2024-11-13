@@ -7,7 +7,7 @@ import flet as ft
 class ChatController:
     code_validated = False
     image_path = ""
-    def __init__(self, page: ft.Page, chat_page: ChatPage):
+    def __init__(self, page: ft.Page, chat_page: ChatView):
         self.page = page
         self.database: Database = page.session.get("database")
         self.chat_page = chat_page

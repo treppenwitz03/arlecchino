@@ -1,17 +1,17 @@
 from services import Database
 from utils import Utils
-from views import ForgotPasswordPage
+from views import ForgotPasswordView
 import flet as ft
 
 class ForgotController:
-    def __init__(self, page: ft.Page, forgot_password_page: ForgotPasswordPage):
+    def __init__(self, page: ft.Page, forgot_password_page: ForgotPasswordView):
         self.page = page
         self.database: Database = page.session.get("database")
         self.forgot_password_page = forgot_password_page
         self.text_values: dict = page.session.get("text_values")
         self.utils: Utils = self.page.session.get("utils")
         
-        ##### COntroller for the Forgot Password Page #############
+        ##### COntroller for the Forgot Password View #############
         
         # Handle forgot password page events
         self.forgot_password_page.new_password_textfield.on_change = self.validate

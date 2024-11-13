@@ -1,8 +1,8 @@
 import flet as ft
 from flet_route import Params, Basket
-from views.abstract_page import AbstractPage
+from views.abstract_view import AbstractView
 
-class OpeningPage(AbstractPage):
+class OpeningView(AbstractView):
     def __init__(self, text_values: dict):
         super().__init__(
             route="/",
@@ -11,7 +11,7 @@ class OpeningPage(AbstractPage):
 
         self.text_values = text_values
         ############################################
-        ## Initialize the Opening Page
+        ## Initialize the Opening View
         ############################################
 
         logo = ft.Image(

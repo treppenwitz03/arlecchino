@@ -1,13 +1,13 @@
 import flet as ft
 
 from services import Database
-from views import HomePage
+from views import HomeView
 from utils import Preferences
 
 import subprocess
 
 class AppearanceDialogController:
-    def __init__(self, page: ft.Page, home_page: HomePage):
+    def __init__(self, page: ft.Page, home_page: HomeView):
         self.page = page
         self.database: Database = page.session.get("database")
         self.home_page = home_page
@@ -46,7 +46,7 @@ class AppearanceDialogController:
         self.home_page.show_appearance_dialog()
 
 class CurrencyDialogController:
-    def __init__(self, page: ft.Page, home_page: HomePage):
+    def __init__(self, page: ft.Page, home_page: HomeView):
         self.page = page
         self.database: Database = page.session.get("database")
         self.home_page = home_page
@@ -71,7 +71,7 @@ class CurrencyDialogController:
         self.home_page.show_currency_dialog()
 
 class LanguageDialogController:
-    def __init__(self, page: ft.Page, home_page: HomePage):
+    def __init__(self, page: ft.Page, home_page: HomeView):
         self.page = page
         self.database: Database = page.session.get("database")
         self.home_page = home_page

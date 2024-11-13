@@ -1,9 +1,9 @@
 import flet as ft
 
-class AccountView(ft.Container):
+class AccountSubView(ft.Container):
     def __init__(self, text_values: dict):
         ####################################################
-        ## Make the UI for the AccountView
+        ## Make the UI for the AccountSubView
         ####################################################
         super().__init__(
             offset=ft.transform.Offset(0, 4.5),

@@ -1,8 +1,8 @@
 import flet as ft
 from flet_route import Params, Basket
-from views.abstract_page import AbstractPage
+from views.abstract_view import AbstractView
 
-class SignupPage(AbstractPage):
+class SignupView(AbstractView):
     def __init__(self, text_values: dict):
         super().__init__(
             route="/signup",
