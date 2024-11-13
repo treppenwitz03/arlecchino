@@ -140,6 +140,7 @@ class HomeView(AbstractView):
         
         self.sidebar_container = ft.Container(
             content=sidebar,
+            bgcolor=ft.colors.SURFACE_VARIANT,
             padding=ft.padding.only(0, 16, 0, 0)
         )
         

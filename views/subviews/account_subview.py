@@ -185,7 +185,7 @@ class AccountSubView(ft.Container):
             padding=ft.padding.symmetric(0, 75)
         )
         
-        self.logout_button = ft.ElevatedButton(
+        self.logout_button = ft.FilledButton(
             text_values["logout"],
             width=200,
             height=36
@@ -195,7 +195,7 @@ class AccountSubView(ft.Container):
             controls=[
                 ft.Row(
                     [self.logout_button],
-                    alignment=ft.MainAxisAlignment.CENTER
+                    alignment=ft.MainAxisAlignment.END
                 )
             ],
             expand=True,
@@ -204,7 +204,8 @@ class AccountSubView(ft.Container):
         
         self.logout_button_container = ft.Container(
             logout_column,
-            expand=True
+            expand=True,
+            margin=ft.margin.only(0, 16, 32, 16)
         )
         
         self.content = ft.Column(

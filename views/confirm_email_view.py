@@ -60,7 +60,7 @@ class ConfirmEmailView(AbstractView):
         )
         code_sent_textfield_row.controls.append(self.code_sent_textfield)
         
-        self.confirm_email_button = ft.ElevatedButton(
+        self.confirm_email_button = ft.FilledButton(
             width = 250,
             height = 44,
             disabled=True,
@@ -92,7 +92,7 @@ class ConfirmEmailView(AbstractView):
             controls=[self.login_indicator_text]
         )
         
-        self.login_button = ft.ElevatedButton(
+        self.login_button = ft.OutlinedButton(
             width = 200,
             height = 44,
             content=ft.Text(

@@ -133,7 +133,7 @@ class SignupView(AbstractView):
             controls=[ self.agree_eula_check,  self.agree_eula_indicator_button]
         )
         
-        self.register_btn = ft.ElevatedButton(
+        self.register_btn = ft.FilledButton(
             width = 200,
             height = 44,
             disabled=True,
@@ -164,7 +164,7 @@ class SignupView(AbstractView):
             controls=[self.login_indicator_text]
         )
         
-        self.login_button = ft.ElevatedButton(
+        self.login_button = ft.OutlinedButton(
             width = 200,
             height = 44,
             content=ft.Text(

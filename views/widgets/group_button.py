@@ -1,7 +1,7 @@
 import flet as ft
 from models import Group
 
-class GroupButton(ft.ElevatedButton):
+class GroupButton(ft.FilledTonalButton):
     group: Group = None
     def __init__(self, group_name: str, image_string: str):
         super().__init__()
@@ -79,20 +79,8 @@ class AddGroupButton(ft.PopupMenuButton):
             ft.icons.ADD_ROUNDED,
             size = 130
         )
-            
         
-        self.image = ft.Row(
-            alignment=ft.MainAxisAlignment.CENTER,
-            controls=[group_image]
-        )
-        
-        column = ft.Column(
-            controls=[ft.Container(content=self.image, padding=10)],
-            alignment=ft.MainAxisAlignment.CENTER,
-            spacing=0
-        )
-        
-        self.content = column
+        self.content = group_image
         self.style=ft.ButtonStyle(
             shape=ft.RoundedRectangleBorder(radius=10)
         )

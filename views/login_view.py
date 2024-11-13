@@ -99,7 +99,7 @@ class LoginView(AbstractView):
             controls=[self.keep_logged_check, keep_logged_indicator_text, self.forgot_password_btn]
         )
         
-        self.login_btn = ft.ElevatedButton(
+        self.login_btn = ft.FilledButton(
             width = 200,
             height = 44,
             disabled=True,
@@ -132,7 +132,7 @@ class LoginView(AbstractView):
             controls=[self.signup_indicator_text]
         )
         
-        self.signup_button = ft.ElevatedButton(
+        self.signup_button = ft.OutlinedButton(
             width = 200,
             height = 44,
             content=ft.Text(

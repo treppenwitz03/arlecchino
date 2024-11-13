@@ -59,7 +59,7 @@ class ItemsSubView(ft.Column):
         
         self.header_container = ft.Container(
             padding = ft.padding.only(10, 10, 10, 10),
-            border_radius=ft.BorderRadius(0, 0, 15, 15),
+            bgcolor=ft.colors.TERTIARY_CONTAINER,
             content=header_row
         )
         
@@ -257,11 +257,12 @@ class ItemsSubView(ft.Column):
         
         self.info_sidebar = ft.Container(
             content = self.info_sidebar_column,
-            padding = 10
+            padding = 16,
+            margin=ft.margin.only(0, 0, 8, 0)
         )
         
         list_view_row = ft.Row(
-            controls=[self.list_switcher, self.info_sidebar],
+            controls=[self.list_switcher, ft.VerticalDivider(width=1), self.info_sidebar],
             expand=True
         )
         

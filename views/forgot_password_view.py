@@ -96,7 +96,7 @@ class ForgotPasswordView(AbstractView):
         )
         confirm_new_password_textfield_row.controls.append(self.confirm_new_password_textfield)
         
-        self.change_password_btn = ft.ElevatedButton(
+        self.change_password_btn = ft.FilledButton(
             width = 250,
             height = 44,
             disabled=True,
@@ -128,7 +128,7 @@ class ForgotPasswordView(AbstractView):
             controls=[self.signup_indicator_text]
         )
         
-        self.signup_button = ft.ElevatedButton(
+        self.signup_button = ft.OutlinedButton(
             width = 200,
             height = 44,
             content=ft.Text(

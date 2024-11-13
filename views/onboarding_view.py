@@ -68,7 +68,7 @@ class OnboardingView(AbstractView):
             color=ft.colors.ON_SURFACE
         )
         
-        self.qr_upload_button = ft.ElevatedButton(
+        self.qr_upload_button = ft.FilledTonalButton(
             width = 200,
             height = 44,
             content=ft.Text(
@@ -136,7 +136,7 @@ class OnboardingView(AbstractView):
             height=100
         )
         
-        self.profile_upload_button = ft.ElevatedButton(
+        self.profile_upload_button = ft.FilledButton(
             width = 150,
             height = 32,
             content=ft.Text(
@@ -168,7 +168,7 @@ class OnboardingView(AbstractView):
             controls=[self.main_column, self.gcash_column, self.profile_column]
         )
         
-        self.next_button = ft.ElevatedButton(
+        self.next_button = ft.FilledButton(
             text_values["next_button"],
             width=200,
         )

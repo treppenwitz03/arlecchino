@@ -11,6 +11,11 @@ class Preferences:
             page.client_storage.set("dark_mode", False)
         if page.client_storage.get("accent_color") is None:
             page.client_storage.set("accent_color", "#8C161E")
+        
+        if bool(self.get_preference("dark_mode")):
+            page.theme_mode = ft.ThemeMode.DARK
+        else:
+            page.theme_mode = ft.ThemeMode.LIGHT
     
     def set_preference(self, key: str, value: any):
         try:
@@ -20,7 +25,7 @@ class Preferences:
             #never surrender
             self.set_preference(key, value)
     
-    def get_preference(self, key: str, default_value: any):
+    def get_preference(self, key: str, default_value: any = None):
         try:
             result = self.page.client_storage.get(key)
             return result

@@ -54,7 +54,8 @@ class SettingsSubView(ft.Column):
                 self.appearance_setting,
                 self.currency_setting,
                 self.language_setting
-            ]
+            ],
+            spacing=16
         )
         
         self.setting_container = ft.Container(
@@ -73,7 +74,7 @@ class SettingsSubView(ft.Column):
         self.offset = ft.transform.Offset(0, delta)
         self.update()
 
-class SettingButton(ft.ElevatedButton):
+class SettingButton(ft.FilledTonalButton):
     def __init__(self, setting_name: str, setting_description: str, additonal_state: str):
         super().__init__(
             style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(16))

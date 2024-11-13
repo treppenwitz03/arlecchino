@@ -26,9 +26,9 @@ class OpeningView(AbstractView):
             size=24
         )
 
-        self.signup_button = ft.ElevatedButton(
-            width=200,
-            height=32,
+        self.signup_button = ft.FilledTonalButton(
+            width=150,
+            height=48,
             content=ft.Text(
                 value=text_values["signup_button_text"],
                 size=16
@@ -56,12 +56,12 @@ class OpeningView(AbstractView):
                 self.signup_button]
         )
 
-        self.login_button = ft.ElevatedButton(
+        self.login_button = ft.FilledButton(
             width=250,
             height=48,
             content=ft.Text(
                 value=text_values["login_button_text"],
-                size=20
+                size=24,
             ),
         )
 

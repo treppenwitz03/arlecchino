@@ -25,7 +25,7 @@ class AppearanceDialogController:
         color = event.control.value
         self.prefs.set_preference("accent_color", color)
 
-        self.page.theme = ft.Theme(color_scheme_seed=color)
+        self.page.theme = ft.Theme(color_scheme_seed=color, font_family="Product Sans")
         self.page.update()
     
     # change the dark mode setting

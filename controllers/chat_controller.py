@@ -14,7 +14,7 @@ class ChatController:
         self.text_values: dict = page.session.get("text_values")
         self.prefs: Preferences = page.session.get("prefs")
 
-        self.chat_page.appbar.leading.on_click = self.return_to_itemsview
+        self.chat_page.back_button.on_click = self.return_to_itemsview
     
     def return_to_itemsview(self, event):
         self.page.go("/home")
