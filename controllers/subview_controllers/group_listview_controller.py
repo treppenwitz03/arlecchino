@@ -1,7 +1,6 @@
 from views import HomePage
 from services import Database
 from models import User, Group, Member
-from ..controller_connector import ControllerConnector
 import flet as ft
 from utils import Utils
 
@@ -20,7 +19,7 @@ class GroupListViewController:
     
     # fills the group list view
     def fill_groups(self):
-        email: str = ControllerConnector.get_email(self.page)
+        email: str = self.page.session.get("email")
 
         self.database.update_refs()
         self.group_listview.refresh_grid()
@@ -46,8 +45,8 @@ class GroupListViewController:
                     image_string = Utils.convert_to_base64(self.database.download_image(group.picture_id))
                     id = self.group_listview.add_group_button(self.utils.decrypt(group.group_name), image_string)
                     group_buttons[id] = group
-        
-        ControllerConnector.set_group_buttons(self.page, group_buttons)
+
+        self.page.session.set("group_buttons", group_buttons)
         
         # if joined_groups is 0, show warning
         if len(group_buttons.values()) == 0:

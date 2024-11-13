@@ -1,5 +1,4 @@
 from views import OpeningPage
-from .controller_connector import ControllerConnector
 import flet as ft
 import webbrowser
 from utils import Preferences
@@ -50,7 +49,7 @@ class OpeningController():
     def handle_automatic_login(self):
         automatic_login = self.prefs.get_preference("keep_signed_in", False)
         email = self.prefs.get_preference("email", None)
-        ControllerConnector.set_email(self.page, email)
+        self.page.session.set("email", email)
         
         if all([automatic_login, email, email != ""]):
             self.page.snack_bar = ft.SnackBar(ft.Text(self.text_values["autolog_notice"]))

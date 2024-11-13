@@ -3,8 +3,6 @@ from services import Database
 from views import ConfirmEmailPage
 import flet as ft
 
-from .controller_connector import ControllerConnector
-
 class ConfirmEmailController:
     def __init__(self, page: ft.Page, confirm_email_page: ConfirmEmailPage):
         self.page = page
@@ -31,7 +29,7 @@ class ConfirmEmailController:
 
     # confirm the email
     def confirm_email(self, event):
-        argument_list = ControllerConnector.get_command_for_email_confirmation(self.page)
+        argument_list = self.page.session.get("command_for_confirmation_email")
         command_type = argument_list[0]
         code = argument_list[1]
         if code == int(self.confirm_email_page.code_sent_textfield.value): # if the confirmation is requested by register

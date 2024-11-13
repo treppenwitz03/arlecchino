@@ -6,6 +6,7 @@ from .forgot_password_page import ForgotPasswordPage
 from .confirm_email_page import ConfirmEmailPage
 from .home_page import HomePage
 from .onboarding_page import OnboardingPage
+from .chat_page import ChatPage
 
 # Homepage views
 

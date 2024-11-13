@@ -11,6 +11,12 @@ def main(page: ft.Page):
     page.window.width = 1100
     page.window.height = 768
     page.title = "Arlecchino"
+    page.fonts = {"Product Sans" : "fonts/Product Sans Regular.ttf"}
+
+    page.theme = ft.Theme(
+        color_scheme_seed=page.client_storage.get("accent_color"),
+        font_family="Product Sans"
+    )
 
     prefs = Preferences(page)
     utils = Utils(page)
@@ -20,15 +26,14 @@ def main(page: ft.Page):
 
     lang = Language(page)
     text_values = lang.get_text_values()
-
-    page.theme = ft.Theme(color_scheme_seed=page.client_storage.get("accent_color"))
     
     # Initialize Pages
     main_pages = Pages(page, text_values)
     main_pages.add_pages([
         HomePage, OpeningPage,
         OnboardingPage, LoginPage,
-        SignupPage, ForgotPasswordPage, ConfirmEmailPage
+        SignupPage, ForgotPasswordPage, ConfirmEmailPage,
+        ChatPage
     ])
 
     page.go(page.route)

@@ -23,7 +23,6 @@ class AppearanceDialogController:
     
     def accent_color_changed(self, event: ft.ControlEvent):
         color = event.control.value
-        # self.page.client_storage.set("accent_color", color)
         self.prefs.set_preference("accent_color", color)
 
         self.page.theme = ft.Theme(color_scheme_seed=color)
@@ -32,11 +31,9 @@ class AppearanceDialogController:
     # change the dark mode setting
     def change_darkmode(self, event: ft.ControlEvent):
         if event.data == "true":
-            # self.page.client_storage.set("dark_mode", True)
             self.prefs.set_preference("dark_mode", True)
             self.page.theme_mode = ft.ThemeMode.DARK
         else:
-            # self.page.client_storage.set("dark_mode", False)
             self.prefs.set_preference("dark_mode", False)
             self.page.theme_mode = ft.ThemeMode.LIGHT
         
@@ -44,9 +41,7 @@ class AppearanceDialogController:
     
     # open the dialog
     def handle_dialog_open(self, event):
-        # self.appearance_dialog.accent_color_radio.value = self.page.client_storage.get("accent_color")
         self.appearance_dialog.accent_color_radio.value = self.prefs.get_preference("accent_color", "#8C161E")
-        # self.appearance_dialog.dark_mode_switch.value = bool(self.page.client_storage.get("dark_mode"))
         self.appearance_dialog.dark_mode_switch.value = self.prefs.get_preference("dark_mode", False)
         self.home_page.show_appearance_dialog()
 
@@ -65,7 +60,6 @@ class CurrencyDialogController:
     
     # change the currency according to setting
     def change_currency(self, currency):
-        # self.page.client_storage.set("currency", currency)
         self.prefs.set_preference("currency", currency)
         self.page.snack_bar = ft.SnackBar(ft.Text(self.text_values["currency_change_success"]))
         self.page.snack_bar.open = True
@@ -73,7 +67,6 @@ class CurrencyDialogController:
     
     # open dialog
     def handle_dialog_open(self, event: ft.ControlEvent):
-        # self.currency_dialog.currency_choices.value = self.page.client_storage.get("currency")
         self.currency_dialog.currency_choices.value = self.prefs.get_preference("currency", "PHP")
         self.home_page.show_currency_dialog()
 
@@ -89,17 +82,13 @@ class LanguageDialogController:
         self.language_dialog.on_change = self.change_language
     
     def handle_dialog_open(self, event):
-        # self.language_dialog.language_choices.value = self.page.client_storage.get("lang")
         self.language_dialog.language_choices.value = self.prefs.get_preference("lang", "en")
         self.home_page.show_language_dialog()
     
     def change_language(self, language):
-        # if (language == self.page.client_storage.get("lang")):
-        #     return
         if (language == self.prefs.get_preference("lang", "en")):
             return
 
-        # self.page.client_storage.set("lang", language)
         self.prefs.set_preference("lang", language)
         self.page.window.close()
         subprocess.run(["python", "main.py"])

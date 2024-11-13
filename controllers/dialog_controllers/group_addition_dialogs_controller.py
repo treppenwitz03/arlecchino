@@ -3,8 +3,6 @@ from services import Database
 from views import HomePage, JoinGroupDialog, CreateGroupDialog, SearchGroupsDialog
 from utils import Utils, Preferences
 
-from ..controller_connector import ControllerConnector
-
 from PIL import Image
 
 import flet as ft
@@ -37,7 +35,7 @@ class JoinDialogController:
 
     def join_group(self, event):
         if self.code_validated:
-            email: str = ControllerConnector.get_email(self.page)
+            email: str = self.page.session.get("email")
             
             username = ""
             user: User = None
@@ -52,7 +50,6 @@ class JoinDialogController:
 
                     self.database.update_group(group)
             
-                    # self.page.client_storage.set("just_opened", False)
                     self.prefs.set_preference("just_opened", False)
                     self.home_page.group_listview.trigger_reload()
                     self.home_page.close_dialog(None)
@@ -111,7 +108,7 @@ class CreateGroupDialogController:
     # create a new group
     def create_new(self, event):
         if self.create_group_dialog.get_created_group_name() != "" and self.create_group_dialog.get_created_group_desc() != "":
-            email: str = ControllerConnector.get_email(self.page)
+            email: str = self.page.session.get("email")
             
             creator = ""
             user: User = None
@@ -141,7 +138,6 @@ class CreateGroupDialogController:
             )
             
             self.database.update_group(new_group)
-            # self.page.client_storage.set("just_opened", False)
             self.prefs.set_preference("just_opened", False)
             self.home_page.group_listview.trigger_reload()
             self.home_page.close_dialog(None)
@@ -234,7 +230,7 @@ class SearchGroupsDialogController:
             self.search_groups_dialog.update()
     
     def join_group(self, event):
-        email: str = ControllerConnector.get_email(self.page)
+        email: str = self.page.session.get("email")
             
         username = ""
         user: User = None
@@ -259,7 +255,6 @@ class SearchGroupsDialogController:
 
                 self.database.update_group(group)
         
-                # self.page.client_storage.set("just_opened", False)
                 self.prefs.set_preference("just_opened", False)
                 self.home_page.group_listview.trigger_reload()
                 self.home_page.close_dialog(None)

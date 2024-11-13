@@ -31,19 +31,25 @@ class ItemsView(ft.Column):
             controls=[self.group_image, self.group_name],
             spacing=20
         )
+
+        self.chat_button = ft.IconButton(
+            ft.icons.CHAT_ROUNDED,
+            icon_size=48,
+            padding=16
+        )
         
         self.reload_button = ft.IconButton(
             ft.icons.RESTART_ALT_OUTLINED, icon_size=48,
-            padding=15
+            padding=16
         )
         
         self.return_button = ft.IconButton(
             ft.icons.EXIT_TO_APP, icon_size=48,
-            padding=15
+            padding=16
         )
         
         end_row = ft.Row(
-            controls=[self.reload_button, self.return_button]
+            controls=[self.chat_button, self.reload_button, self.return_button]
         )
         
         header_row = ft.Row(

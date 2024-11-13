@@ -4,8 +4,6 @@ from utils import Utils
 import flet as ft
 import webbrowser
 
-from .controller_connector import ControllerConnector
-
 class SignupController:
     def __init__(self, page: ft.Page, signup_page: SignupPage):
         self.page = page
@@ -59,7 +57,7 @@ class SignupController:
             self.utils.encrypt(self.signup_page.get_username_entry().strip()),
             self.utils.encrypt(self.signup_page.get_password_entry().strip()),
         ]
-        ControllerConnector.set_command_for_email_confirmation(self.page, command)
+        self.page.session.set("command_for_confirmation_email", command)
         self.page.go("/confirm_email")
 
     # go to login

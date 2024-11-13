@@ -3,8 +3,6 @@ from services import Database
 from views import HomePage, AddReceivableDialog
 from utils import Utils
 
-from ..controller_connector import ControllerConnector
-
 import flet as ft
 from PIL import Image
 import io
@@ -62,7 +60,7 @@ class AddReceivableDialogController:
 
     # add the receivable
     def add_receivable(self, event: ft.ControlEvent):
-        email: str = ControllerConnector.get_email(self.page)
+        email: str = self.page.session.get("email")
         group_name = self.utils.encrypt(self.add_receivable_dialog.group)
         item_name = self.utils.encrypt(self.add_receivable_dialog.get_item_name())
         item_month = self.add_receivable_dialog.get_item_creation_month()

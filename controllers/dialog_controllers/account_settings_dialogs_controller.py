@@ -3,8 +3,6 @@ from services import Database
 from models import User
 from utils import Utils
 
-from ..controller_connector import ControllerConnector
-
 from PIL import Image
 from io import BytesIO
 import flet as ft
@@ -72,7 +70,7 @@ class AccountSettingsDialogsController:
     
     # shows the gcash dialog with preliminary settings
     def show_change_gcash_dialog(self, event: ft.ControlEvent):
-        self.email: str = ControllerConnector.get_email(self.page)
+        self.email: str = self.page.session.get("email")
 
         user: User = None
         for user in self.database.users:
@@ -139,7 +137,7 @@ class AccountSettingsDialogsController:
     
     # save the changed dp
     def save_changed_dp(self, event: ft.ControlEvent):
-        self.email: str = ControllerConnector.get_email(self.page)
+        self.email: str = self.page.session.get("email")
         if self.dp_image_path != "":
             user: User = None
             for user in self.database.users:
@@ -164,7 +162,7 @@ class AccountSettingsDialogsController:
     
     # save the changed username
     def save_changed_username(self, event: ft.ControlEvent):
-        self.email: str = ControllerConnector.get_email(self.page)
+        self.email: str = self.page.session.get("email")
         replacement = self.change_username_dialog.new_username_textfield.value
         
         user: User = None
@@ -185,7 +183,7 @@ class AccountSettingsDialogsController:
     
     # save the changed password
     def save_changed_password(self, event: ft.ControlEvent):
-        self.email: str = ControllerConnector.get_email(self.page)
+        self.email: str = self.page.session.get("email")
         password = self.change_password_dialog.new_password_textfield.value
         
         user: User = None
@@ -251,7 +249,7 @@ class AccountSettingsDialogsController:
     
     # save the changed gcash infos
     def save_changed_gcash_infos(self, event: ft.ControlEvent):
-        self.email: str = ControllerConnector.get_email(self.page)
+        self.email: str = self.page.session.get("email")
         
         user: User = None
         for user in self.database.users:

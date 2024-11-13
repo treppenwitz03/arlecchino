@@ -2,7 +2,6 @@ from services import Database
 from utils import Utils, Preferences
 from views import LoginPage
 from models import User
-from .controller_connector import ControllerConnector
 import flet as ft
 
 class LoginController:
@@ -41,7 +40,7 @@ class LoginController:
                     email = self.utils.decrypt(user.email)
 
                 self.prefs.set_preference("email", self.utils.encrypt(email))
-                ControllerConnector.set_email(self.page, self.utils.encrypt(email))
+                self.page.session.set("email", self.utils.encrypt(email))
                 if user.first_run:
                     self.page.go("/onboarding")
                 else:

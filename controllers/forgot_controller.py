@@ -3,8 +3,6 @@ from utils import Utils
 from views import ForgotPasswordPage
 import flet as ft
 
-from .controller_connector import ControllerConnector
-
 class ForgotController:
     def __init__(self, page: ft.Page, forgot_password_page: ForgotPasswordPage):
         self.page = page
@@ -57,5 +55,5 @@ class ForgotController:
             self.utils.encrypt(self.forgot_password_page.get_email_to_send_entry().strip()),
             self.utils.encrypt(self.forgot_password_page.get_new_password_entry().strip()),
         ]
-        ControllerConnector.set_command_for_email_confirmation(self.page, command)
+        self.page.session.set("command_for_confirmation_email", command)
         self.page.go("/confirm_email")

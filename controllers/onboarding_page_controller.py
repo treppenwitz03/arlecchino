@@ -3,8 +3,6 @@ from services import Database
 from views import OnboardingPage
 from utils import Utils
 
-from .controller_connector import *
-
 from io import BytesIO
 from PIL import Image
 
@@ -116,7 +114,7 @@ class OnboardingController:
     
     # handle progression of onboarding
     def switch_view(self, event: ft.ControlEvent):
-        email = ControllerConnector.get_email(self.page)
+        email = self.page.session.get("email")
         
         current_user: User = None
         for current_user in self.database.users:

@@ -2,7 +2,6 @@ from views import HomePage
 from services import Database
 from models import User
 from utils import Utils, Preferences
-from ..controller_connector import ControllerConnector
 import flet as ft
 
 class AccountViewController:
@@ -20,8 +19,6 @@ class AccountViewController:
     
         # logs current user out of the account
     def logout_account(self, event: ft.ControlEvent):
-        # self.page.client_storage.set("keep_signed_in", False)
-        # self.page.client_storage.set("recent_set_keep_signed_in", False)
         self.prefs.set_preference("keep_signed_in", False)
         self.prefs.set_preference("recent_set_keep_signed_in", False)
 
@@ -32,7 +29,7 @@ class AccountViewController:
     
         # update the account view with the new infos
     def update_account_view(self):
-        email: str = ControllerConnector.get_email(self.page)
+        email: str = self.page.session.get("email")
         
         user_image = ""
         username = ""
