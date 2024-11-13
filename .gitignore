@@ -6,4 +6,4 @@ lang/__pycache__/
 utils/__pycache__/
 services/__pycache__/
 __pycache__/
-services/database.json
+services/token.json

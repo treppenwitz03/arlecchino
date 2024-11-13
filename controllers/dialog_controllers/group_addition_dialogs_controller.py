@@ -1,7 +1,7 @@
 from models import Group, Member, User
 from services import Database
 from views import HomePage, JoinGroupDialog, CreateGroupDialog, SearchGroupsDialog
-from utils import Utils
+from utils import Utils, Preferences
 
 from ..controller_connector import ControllerConnector
 
@@ -20,6 +20,7 @@ class JoinDialogController:
         self.join_dialog: JoinGroupDialog = home_page.join_dialog
         self.text_values: dict = page.session.get("text_values")
         self.utils: Utils = self.page.session.get("utils")
+        self.prefs: Preferences = self.page.session.get("prefs")
 
         self.join_dialog.group_code_textfield.on_change = self.validate_group_code
         self.join_dialog.close_button.on_click = self.home_page.close_dialog
@@ -51,7 +52,8 @@ class JoinDialogController:
 
                     self.database.update_group(group)
             
-                    self.page.client_storage.set("just_opened", False)
+                    # self.page.client_storage.set("just_opened", False)
+                    self.prefs.set_preference("just_opened", False)
                     self.home_page.group_listview.trigger_reload()
                     self.home_page.close_dialog(None)
                     self.page.update()
@@ -91,6 +93,7 @@ class CreateGroupDialogController:
         self.create_group_dialog: CreateGroupDialog = home_page.create_new_dialog
         self.text_values: dict = page.session.get("text_values")
         self.utils: Utils = self.page.session.get("utils")
+        self.prefs: Preferences = self.page.session.get("prefs")
 
         # Initialize file picker
         self.file_picker = ft.FilePicker()
@@ -138,7 +141,8 @@ class CreateGroupDialogController:
             )
             
             self.database.update_group(new_group)
-            self.page.client_storage.set("just_opened", False)
+            # self.page.client_storage.set("just_opened", False)
+            self.prefs.set_preference("just_opened", False)
             self.home_page.group_listview.trigger_reload()
             self.home_page.close_dialog(None)
             self.new_image_string == ""
@@ -182,6 +186,7 @@ class SearchGroupsDialogController:
         self.search_groups_dialog: SearchGroupsDialog = home_page.search_groups_dialog
         self.text_values: dict = page.session.get("text_values")
         self.utils: Utils = self.page.session.get("utils")
+        self.prefs: Preferences = self.page.session.get("prefs")
 
         self.database.done_loading = lambda: self.populate_group_list()
 
@@ -254,7 +259,8 @@ class SearchGroupsDialogController:
 
                 self.database.update_group(group)
         
-                self.page.client_storage.set("just_opened", False)
+                # self.page.client_storage.set("just_opened", False)
+                self.prefs.set_preference("just_opened", False)
                 self.home_page.group_listview.trigger_reload()
                 self.home_page.close_dialog(None)
                 self.page.update()

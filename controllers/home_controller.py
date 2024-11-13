@@ -1,4 +1,5 @@
 from services import Database
+from utils import Preferences
 from views import *
 
 import flet as ft
@@ -11,6 +12,7 @@ class HomeController:
         self.database: Database = page.session.get("database")
         self.home_page = home_page
         self.text_values: dict = page.session.get("text_values")
+        self.prefs: Preferences = page.session.get("prefs")
         
         ################### Initialize controller for home page and all its subviews ##################
         
@@ -50,15 +52,15 @@ class HomeController:
         self.home_page.account_view.update_informations()
 
         # if keep_signed_in, notify the user of autologin
-        if self.page.client_storage.get("keep_signed_in") is True and self.page.client_storage.get("recent_set_keep_signed_in") is False and self.page.client_storage.get("just_opened") is True:
+        if self.prefs.get_preference("keep_signed_in", False) is True and self.prefs.get_preference("recent_set_keep_signed_in", False) is False and self.prefs.get_preference("just_opened", False) is True:
             self.page.snack_bar = ft.SnackBar(ft.Text(self.text_values["autologged_in"]), duration=1000)
             self.page.snack_bar.open = True
             self.page.update()
-        elif self.page.client_storage.get("recent_set_keep_signed_in") is True:
-            self.page.client_storage.set("recent_set_keep_signed_in", False)
-            self.page.client_storage.set("just_opened", True)
+        elif self.prefs.get_preference("recent_set_keep_signed_in", False) is True:
+            self.prefs.set_preference("recent_set_keep_signed_in", False)
+            self.prefs.set_preference("just_opened", True)
         
-        self.home_page.settings_view.currency_setting.setting_with_current.value = self.text_values["current_currency_setting"].format(self.page.client_storage.get('currency'))
+        self.home_page.settings_view.currency_setting.setting_with_current.value = self.text_values["current_currency_setting"].format(self.prefs.get_preference('currency', "PHP"))
     
     # returns to group_listview
     def return_to_grid(self, event: ft.ControlEvent = None):

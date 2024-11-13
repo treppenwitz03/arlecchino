@@ -2,6 +2,7 @@ from views import OpeningPage
 from .controller_connector import ControllerConnector
 import flet as ft
 import webbrowser
+from utils import Preferences
 from services import Database
 
 class OpeningController():
@@ -10,6 +11,7 @@ class OpeningController():
         self.opening_page = opening_page
         self.database: Database = page.session.get("database")
         self.text_values: dict = page.session.get("text_values")
+        self.prefs: Preferences = page.session.get("prefs")
         
         # check if autologin is enabled
         self.handle_automatic_login()
@@ -46,8 +48,8 @@ class OpeningController():
     
     # handle automatic logging in
     def handle_automatic_login(self):
-        automatic_login = self.page.client_storage.get("keep_signed_in")
-        email = self.page.client_storage.get("email")
+        automatic_login = self.prefs.get_preference("keep_signed_in", False)
+        email = self.prefs.get_preference("email", None)
         ControllerConnector.set_email(self.page, email)
         
         if all([automatic_login, email, email != ""]):

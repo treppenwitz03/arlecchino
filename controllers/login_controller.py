@@ -1,5 +1,5 @@
 from services import Database
-from utils import Utils
+from utils import Utils, Preferences
 from views import LoginPage
 from models import User
 from .controller_connector import ControllerConnector
@@ -12,6 +12,7 @@ class LoginController:
         self.login_page = login_page
         self.text_values: dict = page.session.get("text_values")
         self.utils: Utils = self.page.session.get("utils")
+        self.prefs: Preferences = page.session.get("prefs")
         
         # handle login page events
         self.login_page.email_textfield.on_change = self.validate
@@ -39,7 +40,7 @@ class LoginController:
                 if self.utils.decrypt(user.username) == email:
                     email = self.utils.decrypt(user.email)
 
-                self.page.client_storage.set("email", self.utils.encrypt(email))
+                self.prefs.set_preference("email", self.utils.encrypt(email))
                 ControllerConnector.set_email(self.page, self.utils.encrypt(email))
                 if user.first_run:
                     self.page.go("/onboarding")
@@ -56,8 +57,8 @@ class LoginController:
     # handle if autologin is enabled
     def handle_automatic_login(self, event):
         setting = self.login_page.get_keep_signed_in()
-        self.page.client_storage.set("keep_signed_in", setting)
-        self.page.client_storage.set("recent_set_keep_signed_in", setting)
+        self.prefs.set_preference("keep_signed_in", setting)
+        self.prefs.set_preference("recent_set_keep_signed_in", setting)
     
     # show signup page
     def go_to_signup(self, event):

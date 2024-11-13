@@ -1,7 +1,7 @@
 from views import HomePage, GroupButton, ItemButton, PaidUserButton
 from services import Database
 from models import User, Group, Transaction
-from utils import Utils
+from utils import Utils, Preferences
 from ..controller_connector import ControllerConnector
 import flet as ft
 
@@ -14,6 +14,7 @@ class ItemsViewController:
         self.items_view = home_page.group_listview.items_view
         self.text_values: dict = page.session.get("text_values")
         self.utils: Utils = self.page.session.get("utils")
+        self.prefs: Preferences = page.session.get("prefs")
 
         self.items_view.request_open_group = self.open_group
         self.items_view.reload_button.on_click = self.reload_listview
@@ -146,7 +147,8 @@ class ItemsViewController:
                     self.utils.decrypt(transaction.name),
                     self.utils.decrypt(transaction.description),
                     self.utils.decrypt(transaction.time_created),
-                    f"{Utils.currency_symbols[self.page.client_storage.get('currency')]} {self.utils.decrypt(transaction.price)}",
+                    # f"{Utils.currency_symbols[self.page.client_storage.get('currency')]} {self.utils.decrypt(transaction.price)}",
+                    f"{Utils.currency_symbols[self.prefs.get_preference('currency', "PHP")]} {self.utils.decrypt(transaction.price)}",
                     item_image,
                     True,
                     self.text_values
@@ -165,7 +167,8 @@ class ItemsViewController:
                     self.utils.decrypt(transaction.name),
                     self.utils.decrypt(transaction.description),
                     self.utils.decrypt(transaction.time_created),
-                    f"{Utils.currency_symbols[self.page.client_storage.get('currency')]} {self.utils.decrypt(transaction.price)}",
+                    # f"{Utils.currency_symbols[self.page.client_storage.get('currency')]} {self.utils.decrypt(transaction.price)}",
+                    f"{Utils.currency_symbols[self.prefs.get_preference('currency', "PHP")]} {self.utils.decrypt(transaction.price)}",
                     item_image,
                     False,
                     self.text_values
@@ -175,8 +178,10 @@ class ItemsViewController:
                 self.items_view.payable_list.controls.append(item)
         
         # show rundown
-        self.items_view.total_payable_text.value = f"{self.text_values["total_payable"]} {Utils.currency_symbols[self.page.client_storage.get('currency')]} {total_payable}"
-        self.items_view.total_receivable_text.value = f"{self.text_values["total_receivable"]} {Utils.currency_symbols[self.page.client_storage.get('currency')]} {total_receivable}"
+        # self.items_view.total_payable_text.value = f"{self.text_values["total_payable"]} {Utils.currency_symbols[self.page.client_storage.get('currency')]} {total_payable}"
+        # self.items_view.total_receivable_text.value = f"{self.text_values["total_receivable"]} {Utils.currency_symbols[self.page.client_storage.get('currency')]} {total_receivable}"
+        self.items_view.total_payable_text.value = f"{self.text_values["total_payable"]} {Utils.currency_symbols[self.prefs.get_preference('currency', "PHP")]} {total_payable}"
+        self.items_view.total_receivable_text.value = f"{self.text_values["total_receivable"]} {Utils.currency_symbols[self.prefs.get_preference('currency', "PHP")]} {total_receivable}"
         
         # dictates whether to hide or show empty warner or list
         if payables == 0:
@@ -232,7 +237,8 @@ class ItemsViewController:
                 user = username
 
         self.home_page.item_infos_dialog.item_name.value = self.home_page.item_infos_dialog.payment_item_name.spans[0].text = item_name
-        self.home_page.item_infos_dialog.price.value = self.home_page.item_infos_dialog.item_price.spans[0].text = f"{Utils.currency_symbols[self.page.client_storage.get('currency')]} {self.utils.decrypt(button.transaction.price)}"
+        # self.home_page.item_infos_dialog.price.value = self.home_page.item_infos_dialog.item_price.spans[0].text = f"{Utils.currency_symbols[self.page.client_storage.get('currency')]} {self.utils.decrypt(button.transaction.price)}"
+        self.home_page.item_infos_dialog.price.value = self.home_page.item_infos_dialog.item_price.spans[0].text = f"{Utils.currency_symbols[self.prefs.get_preference('currency', "PHP")]} {self.utils.decrypt(button.transaction.price)}"
         self.home_page.item_infos_dialog.item_image.src_base64 = button.item_image.src_base64
         self.home_page.item_infos_dialog.item_post_time.spans[0].text = self.utils.decrypt(button.transaction.time_created)
         self.home_page.item_infos_dialog.account_name_info.value = self.home_page.item_infos_dialog.account_name_payment.value = user
