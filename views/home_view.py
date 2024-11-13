@@ -6,6 +6,7 @@ from views.subviews.group_subview import GroupSubView
 from views.subviews.settings_subview import SettingsSubView
 from views.subviews.feedback_subview import FeedbackSubView
 from views.subviews.account_subview import AccountSubView
+from views.subviews.about_subview import AboutSubView
 
 from views.dialogs.group_addition_dialogs import *
 from views.dialogs.item_info_dialog import ItemInfoDialog
@@ -29,11 +30,12 @@ class HomeView(AbstractView):
         self.group_listview = GroupSubView(text_values)
         self.settings_view = SettingsSubView(text_values)
         self.feedback_view = FeedbackSubView(text_values)
+        self.about_view = AboutSubView(text_values)
         self.account_view = AccountSubView(text_values)
         
         self.slider_stack = ft.Stack(
             expand=True,
-            controls=[self.group_listview, self.settings_view, self.feedback_view, self.account_view]
+            controls=[self.group_listview, self.settings_view, self.feedback_view, self.about_view, self.account_view]
         )
         
         content_area_row = ft.Row(
@@ -102,6 +104,20 @@ class HomeView(AbstractView):
             controls=[self.feedback_button],
             alignment=ft.MainAxisAlignment.CENTER
         )
+
+        self.about_button = ft.IconButton(
+            selected=False,
+            icon=ft.icons.INFO_OUTLINED,
+            selected_icon=ft.icons.INFO,
+            width = 50,
+            height = 50,
+            icon_size=36
+        )
+        
+        about_button_row = ft.Row(
+            controls=[self.about_button],
+            alignment=ft.MainAxisAlignment.CENTER
+        )
         
         self.profile_button = ft.IconButton(
             selected=False,
@@ -127,7 +143,7 @@ class HomeView(AbstractView):
             expand=True,
             spacing=20,
             alignment=ft.MainAxisAlignment.START,
-            controls=[logo_row, home_button_row, settings_button_row, feedback_button_row]
+            controls=[logo_row, home_button_row, settings_button_row, feedback_button_row, about_button_row]
         )
     
         sidebar = ft.Column(

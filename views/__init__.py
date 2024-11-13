@@ -13,7 +13,8 @@ from .chat_view import ChatView
 from .subviews.account_subview import AccountSubView
 from .subviews.group_subview import GroupSubView
 from .subviews.feedback_subview import FeedbackSubView
-from .subviews.settings_subview import *
+from .subviews.settings_subview import SettingsSubView
+from .subviews.about_subview import AboutSubView
 
 # Dialogs
 

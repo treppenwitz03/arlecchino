@@ -4,7 +4,7 @@ from views.dialogs.settings_view_dialogs import *
 class SettingsSubView(ft.Column):
     def __init__(self, text_values: dict):
         super().__init__(
-            offset=ft.transform.Offset(0, 1.5),
+            offset=ft.transform.Offset(0, 2),
             animate_offset=ft.animation.Animation(300)
         )
         ##############################################################

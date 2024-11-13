@@ -3,7 +3,7 @@ import flet as ft
 class FeedbackSubView(ft.Column):
     def __init__(self, text_values: dict):
         super().__init__(
-            offset=ft.transform.Offset(0, 3),
+            offset=ft.transform.Offset(0, 4),
             animate_offset=ft.animation.Animation(300)
         )
         ######################################################

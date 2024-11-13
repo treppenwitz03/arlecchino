@@ -6,7 +6,7 @@ class AccountSubView(ft.Container):
         ## Make the UI for the AccountSubView
         ####################################################
         super().__init__(
-            offset=ft.transform.Offset(0, 4.5),
+            offset=ft.transform.Offset(0, 8),
             animate_offset=ft.animation.Animation(300)
         )
 

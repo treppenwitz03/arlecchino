@@ -24,6 +24,7 @@ class HomeController:
         self.home_page.home_button.on_click = lambda _: self.location_change(self.home_page.home_button)
         self.home_page.settings_button.on_click = lambda _: self.location_change(self.home_page.settings_button)
         self.home_page.feedback_button.on_click = lambda _: self.location_change(self.home_page.feedback_button)
+        self.home_page.about_button.on_click = lambda _: self.location_change(self.home_page.about_button)
         self.home_page.profile_button.on_click = lambda _: self.location_change(self.home_page.profile_button)
         
         # Handle group items view events
@@ -38,6 +39,7 @@ class HomeController:
             self.home_page.home_button,
             self.home_page.settings_button,
             self.home_page.feedback_button,
+            self.home_page.about_button,
             self.home_page.profile_button
         ]
 
