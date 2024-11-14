@@ -213,5 +213,30 @@ text_values = {
     "group_loading": "Nag-load sa grupo... Palihug maghulat.",
     #buttons
     "amount_received": "Halaga nga Nadawat: ",
-    "proof_tooltip": "Ipakita ang ebidensya sa bayad."
+    "proof_tooltip": "Ipakita ang ebidensya sa bayad.",
+    #about
+    "about_app": "        Ang Arlecchino nakabase sa MORAX, ang proyekto nga akong gipang-share sa akong mga amigo sa among 2nd year. Original nga gi-disenyo kini ingon usa ka shared financial manager para sa mga grupo sa mga tawo, apan akong gi-improve kini aron mohaom sa tema sa Techtopia. Nakuha nako ang ilang permiso sa wala pa nako ipasa kini nga proyekto tungod kay ako ang lead developer kaniadto. Kini ang gi-improved nga version sa MORAX nga adunay akong kaugalingong personal nga touch ug mga panan-aw nga nagpakita sa aplikasyon.",
+    "developer": "Developer",
+    "main_dev": "Owen David P. Malicsi - (Arlecchino ug MORAX)",
+    "dev1": "Emmanuel James H. Comprendio - (MORAX)",
+    "dev2": "Achilles Maximus M. Fernandez - (MORAX)",
+    "dev3": "Ralph John H. Paña - (MORAX)",
+    "dev4": "Tristan Kirby E. Torino - (MORAX)",
+    "based_on": "Nakabase sa",
+    "morax": "MORAX",
+    "inspired": "Gikuha gikan sa",
+    "arle_from_gi": "Arlecchino para sa Genshin Impact",
+    "special_thanks": "Espesyal nga Pasalamat sa:",
+    "img_own": "Mga tag-iya sa imahe",
+    "flet_dev": "Mga developer sa Flet",
+    "genshin": "Genshin Impact alang sa inspirasyon",
+    "neji": "ANG BABAYE GIKAN SA M.E. PARA SA LABING INSPIRASYON",
+    "used_tech": "Mga Teknolohiya nga Gigamit",
+    "flet_ui": "FLET - UI Toolkit",
+    "python": "Python - Wika sa Pag-programa",
+    "firebase": "Firebase - Database",
+    "opencv": "OpenCV - Pagproseso sa Imahe",
+    "credits": "Pagpasalamat sa mga Tag-iya",
+    "to_god": "Sa Diyos ang Tanan nga Himaya",
+    "all_rights": "Tanan nga Katungod Gidugos 2024"
 }

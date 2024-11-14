@@ -213,5 +213,30 @@ text_values = {
     "group_loading": "Loading group... Please wait.",
     #buttons
     "amount_received": "Amount Received: ",
-    "proof_tooltip": "Show proof of payment."
+    "proof_tooltip": "Show proof of payment.",
+    #about
+    "about_app": "        Arlecchino is based on MORAX, the project I shared with my friends during our 2nd year days. It was originally designed to be a shared financial manager for groups of people, but I improved it so it fits into the theme of Techtopia. I got their permission before passing this project as I was the lead developer back then. This is the improved version of MORAX with my own personal touch and perspectives reflecting the application.",
+    "developer": "Developer",
+    "main_dev": "Owen David P. Malicsi - (Arlecchino and MORAX)",
+    "dev1": "Emmanuel James H. Comprendio - (MORAX)",
+    "dev2": "Achilles Maximus M. Fernandez - (MORAX)",
+    "dev3": "Ralph John H. Paña - (MORAX)",
+    "dev4": "Tristan Kirby E. Torino - (MORAX)",
+    "based_on": "Based on",
+    "morax": "MORAX",
+    "inspired": "Inspired from",
+    "arle_from_gi": "Arlecchino fo Genshin Impact",
+    "special_thanks": "Special Thanks to:",
+    "img_own": "Image owners",
+    "flet_dev": "Flet developers",
+    "genshin": "Genshin Impact for the inspiration",
+    "neji": "THAT GIRL FROM M.E. FOR THE EXTRA INSPIRATION",
+    "used_tech": "Technologies Used",
+    "flet_ui": "FLET - UI Toolkit",
+    "python": "Python - Programming Language",
+    "firebase": "Firebase - Database",
+    "opencv": "OpenCV - Image Processing",
+    "credits": "Credits to the Owners",
+    "to_god": "To God be all the Glory",
+    "all_rights": "All Rights Reserved 2024"
 }

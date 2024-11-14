@@ -213,5 +213,30 @@ text_values = {
     "group_loading": "Cargando grupo... Por favor espera.",
     #buttons
     "amount_received": "Monto Recibido: ",
-    "proof_tooltip": "Mostrar prueba de pago."
+    "proof_tooltip": "Mostrar prueba de pago.",
+    #about
+    "about_app": "        Arlecchino está basado en MORAX, el proyecto que compartí con mis amigos durante nuestro segundo año. Originalmente, fue diseñado para ser un administrador financiero compartido para grupos de personas, pero lo mejoré para que encajara en el tema de Techtopia. Obtuve su permiso antes de presentar este proyecto, ya que fui el desarrollador principal en ese entonces. Esta es la versión mejorada de MORAX con mi propio toque personal y perspectivas que reflejan la aplicación.",
+    "developer": "Desarrollador",
+    "main_dev": "Owen David P. Malicsi - (Arlecchino y MORAX)",
+    "dev1": "Emmanuel James H. Comprendio - (MORAX)",
+    "dev2": "Achilles Maximus M. Fernandez - (MORAX)",
+    "dev3": "Ralph John H. Paña - (MORAX)",
+    "dev4": "Tristan Kirby E. Torino - (MORAX)",
+    "based_on": "Basado en",
+    "morax": "MORAX",
+    "inspired": "Inspirado de",
+    "arle_from_gi": "Arlecchino para Genshin Impact",
+    "special_thanks": "Agradecimientos especiales a:",
+    "img_own": "Propietarios de imágenes",
+    "flet_dev": "Desarrolladores de Flet",
+    "genshin": "Genshin Impact por la inspiración",
+    "neji": "ESA CHICA DE M.E. POR LA INSPIRACIÓN EXTRA",
+    "used_tech": "Tecnologías Utilizadas",
+    "flet_ui": "FLET - UI Toolkit",
+    "python": "Python - Lenguaje de Programación",
+    "firebase": "Firebase - Base de Datos",
+    "opencv": "OpenCV - Procesamiento de Imágenes",
+    "credits": "Créditos a los Propietarios",
+    "to_god": "A Dios sea toda la Gloria",
+    "all_rights": "Todos los Derechos Reservados 2024"
 }

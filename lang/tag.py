@@ -213,5 +213,30 @@ text_values = {
     "group_loading": "Naglo-load ng grupo... Mangyaring maghintay.",
     #buttons
     "amount_received": "Halaga ng Natanggap: ",
-    "proof_tooltip": "Ipakita ang patunay ng bayad."
+    "proof_tooltip": "Ipakita ang patunay ng bayad.",
+    #about
+    "about_app": "        Ang Arlecchino ay batay sa MORAX, ang proyekto na ibinahagi ko sa mga kaibigan ko noong 2nd year kami. Orihinal itong dinisenyo bilang isang shared financial manager para sa mga grupo ng tao, ngunit pinaganda ko ito upang umangkop sa tema ng Techtopia. Nakuha ko ang kanilang pahintulot bago ipasa ang proyektong ito dahil ako ang lead developer noon. Ito ang pinahusay na bersyon ng MORAX na may aking sariling personal na touch at mga pananaw na nagpapakita ng aplikasyon.",
+    "developer": "Developer",
+    "main_dev": "Owen David P. Malicsi - (Arlecchino at MORAX)",
+    "dev1": "Emmanuel James H. Comprendio - (MORAX)",
+    "dev2": "Achilles Maximus M. Fernandez - (MORAX)",
+    "dev3": "Ralph John H. Paña - (MORAX)",
+    "dev4": "Tristan Kirby E. Torino - (MORAX)",
+    "based_on": "Batay sa",
+    "morax": "MORAX",
+    "inspired": "Inspired mula sa",
+    "arle_from_gi": "Arlecchino para sa Genshin Impact",
+    "special_thanks": "Espesyal na Pasasalamat sa:",
+    "img_own": "Mga may-ari ng imahe",
+    "flet_dev": "Mga developer ng Flet",
+    "genshin": "Genshin Impact para sa inspirasyon",
+    "neji": "YUNG NAPAKAGANDANG BINIBINI MULA SA M.E. PARA SA KARAGDAGANG INSPIRASYON",
+    "used_tech": "Mga Teknolohiyang Ginamit",
+    "flet_ui": "FLET - UI Toolkit",
+    "python": "Python - Wika ng Pag-programa",
+    "firebase": "Firebase - Database",
+    "opencv": "OpenCV - Pagproseso ng Imahe",
+    "credits": "Pagkilala sa mga May-ari",
+    "to_god": "Sa Diyos ang Lahat ng Kaluwalhatian",
+    "all_rights": "Lahat ng Karapatan ay Nakalaan 2024"
 }

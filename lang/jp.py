@@ -213,5 +213,30 @@ text_values = {
     "group_loading": "グループを読み込んでいます... 少々お待ちください。",
     #buttons
     "amount_received": "受け取った金額: ",
-    "proof_tooltip": "支払いの証明を表示する。"
+    "proof_tooltip": "支払いの証明を表示する。",
+    #about
+    "about_app": "        ArlecchinoはMORAXを基にしています。これは、私が2年生の時に友人たちと共有したプロジェクトです。元々はグループのための共用財務管理ツールとして設計されていましたが、Techtopiaのテーマに合うように改善しました。このプロジェクトを提出する前に、私は当時のリード開発者だったので、彼らの許可を得ました。これは私自身の個人的なタッチとアプリケーションに反映された視点を持つMORAXの改良版です。",
+    "developer": "開発者",
+    "main_dev": "Owen David P. Malicsi - (Arlecchino と MORAX)",
+    "dev1": "Emmanuel James H. Comprendio - (MORAX)",
+    "dev2": "Achilles Maximus M. Fernandez - (MORAX)",
+    "dev3": "Ralph John H. Paña - (MORAX)",
+    "dev4": "Tristan Kirby E. Torino - (MORAX)",
+    "based_on": "基にしている",
+    "morax": "MORAX",
+    "inspired": "インスパイアされた",
+    "arle_from_gi": "Genshin ImpactのためのArlecchino",
+    "special_thanks": "特別な感謝:",
+    "img_own": "画像の所有者",
+    "flet_dev": "Fletの開発者",
+    "genshin": "Genshin Impactのインスピレーション",
+    "neji": "M.E.からのあの女の子、さらなるインスピレーションのために",
+    "used_tech": "使用された技術",
+    "flet_ui": "FLET - UIツールキット",
+    "python": "Python - プログラミング言語",
+    "firebase": "Firebase - データベース",
+    "opencv": "OpenCV - 画像処理",
+    "credits": "オーナーへのクレジット",
+    "to_god": "すべての栄光は神に帰すべき",
+    "all_rights": "すべての権利を保留 2024"
 }
