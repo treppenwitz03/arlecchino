@@ -3,7 +3,6 @@ from .login_controller import LoginController
 from .signup_controller import SignupController
 from .forgot_controller import ForgotController
 from .confirm_email_controller import ConfirmEmailController
-from .chat_controller import ChatController
 from .home_controller import HomeController
 from .dialog_controllers.group_addition_dialogs_controller import JoinDialogController, CreateGroupDialogController, SearchGroupsDialogController
 from .dialog_controllers.item_info_dialog_controller import ItemInfoDialogController
@@ -42,4 +41,3 @@ def initialize_controllers(page: ft.Page, main_pages: Views):
     SignupController(page, main_pages.get("SignupView"))
     ForgotController(page, main_pages.get("ForgotPasswordView"))
     ConfirmEmailController(page, main_pages.get("ConfirmEmailView"))
-    ChatController(page, main_pages.get("ChatView"))

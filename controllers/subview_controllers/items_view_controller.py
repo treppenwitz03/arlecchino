@@ -18,15 +18,9 @@ class ItemsViewController:
         self.items_view.request_open_group = self.open_group
         self.items_view.reload_button.on_click = self.reload_listview
         self.items_view.copy_group_code = self.copy_code_to_clipboard
-        self.items_view.chat_button.on_click = self.go_to_chat
 
         # handle reload requests
         self.items_view.on_trigger_reload = self.reload_listview
-    
-    def go_to_chat(self, e):
-
-        self.page.go("/chat")
-        self.page.update()
     
     def copy_code_to_clipboard(self):
         code = self.items_view.group_code_text.spans[0].text

@@ -32,8 +32,7 @@ def main(page: ft.Page):
     main_pages.add_pages([
         HomeView, OpeningView,
         OnboardingView, LoginView,
-        SignupView, ForgotPasswordView, ConfirmEmailView,
-        ChatView
+        SignupView, ForgotPasswordView, ConfirmEmailView
     ])
 
     page.go(page.route)

@@ -6,7 +6,6 @@ from .forgot_password_view import ForgotPasswordView
 from .confirm_email_view import ConfirmEmailView
 from .home_view import HomeView
 from .onboarding_view import OnboardingView
-from .chat_view import ChatView
 
 # Homepage views
 
