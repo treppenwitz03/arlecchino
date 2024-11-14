@@ -1,6 +1,6 @@
 flet
 flet-route
-pyrebase
+pyrebase4
 pillow
 opencv-python
 pycryptodome
