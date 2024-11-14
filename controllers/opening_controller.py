@@ -50,6 +50,7 @@ class OpeningController():
         automatic_login = self.prefs.get_preference("keep_signed_in", False)
         email = self.prefs.get_preference("email", None)
         self.page.session.set("email", email)
+        self.page.session.set("from_chats", False)
         
         if all([automatic_login, email, email != ""]):
             self.page.snack_bar = ft.SnackBar(ft.Text(self.text_values["autolog_notice"]))

@@ -1,5 +1,7 @@
 import flet as ft
 from views.abstract_view import AbstractView
+from views.widgets.message_bubble import MessageBubble
+from views.widgets.participant_bubble import ParticipantBubble
 from utils import Utils
 
 class ChatView(AbstractView):
@@ -20,97 +22,109 @@ class ChatView(AbstractView):
             height=48
         )
 
-        self.app_name = ft.Text(
-            text_values["app_name"],
+        participants_text = ft.Text(
+            "Group Participants",
+            weight=ft.FontWeight.W_700,
+            size=24,
+            width=256
+        )
+
+        chat_text = ft.Text(
+            "Chat with the Service Provider",
             weight=ft.FontWeight.W_700,
             size=24
         )
-
-        self.signup_button = ft.ElevatedButton(
-            width=200,
-            height=32,
-            content=ft.Text(
-                value=text_values["signup_button_text"],
-                size=16
-            ),
-        )
-        
-        self.about_button = ft.TextButton(
-            text_values["about_button_text"]
-        )
-
-        self.support_button = ft.TextButton(
-            text_values["support_button_text"]
-        )
         
         logo_row = ft.Row(
-            alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
+            alignment=ft.MainAxisAlignment.START,
             vertical_alignment=ft.CrossAxisAlignment.CENTER,
             controls=[
-                ft.Row([
-                    self.back_button, 
-                    self.app_name, 
-                    self.about_button,
-                    self.support_button
-                ], vertical_alignment=ft.CrossAxisAlignment.CENTER),
-                self.signup_button]
+                self.back_button, 
+                participants_text,
+            ]
         )
 
-        self.login_button = ft.ElevatedButton(
-            width=250,
-            height=48,
-            content=ft.Text(
-                value=text_values["login_button_text"],
-                size=20
-            ),
+        chat_top_row = ft.Row(
+            alignment=ft.MainAxisAlignment.START,
+            vertical_alignment=ft.CrossAxisAlignment.CENTER,
+            controls=[
+                chat_text
+            ],
+            height=48
         )
 
-        self.motto_text = ft.Text(
-            text_values["motto_text"],
-            weight=ft.FontWeight.W_900,
-            size=48,
-            width=300
-        )
-
-        self.sub_text = ft.Text(
-            text_values["sub_text"],
-            size=16,
-            width=300
-        )
+        self.messages_box = ft.Column(expand=True, scroll=ft.ScrollMode.ALWAYS, auto_scroll=True, spacing=0)
 
         main_row = ft.Container(
-            ft.Row(
-                controls=[
-                    ft.Column([
-                        self.motto_text,
-                        self.sub_text,
-                        self.login_button
-                    ], spacing=32),
-                    ft.Column([ft.Lottie(
-                        src="https://lottie.host/53a2afd7-dce6-442a-a174-486a61479fe3/5YSr4u8v83.json",
-                        animate=True,
-                        width=620,
-                        height=400
-                    )])
-                ],
-                expand=True,
-                alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
-                vertical_alignment=ft.CrossAxisAlignment.CENTER,
-                spacing=50
-            ),
-            padding=ft.padding.all(50),
+            ft.Row([self.messages_box], expand=True),
             bgcolor=ft.colors.SURFACE_VARIANT,
+            margin=ft.margin.only(0, 0, 8, 0),
+            expand=True
+        )
+
+        self.chat_box = ft.TextField(
+            "Send a message...",
             expand=True,
-            expand_loose=True
+            border_radius=32,
+            border_color=ft.colors.ON_SURFACE
+        )
+
+        self.send_button = ft.IconButton(
+            ft.icons.SEND_ROUNDED,
+            ft.colors.PRIMARY,
+            48
+        )
+        
+        chat_row = ft.Row(
+            alignment=ft.MainAxisAlignment.END,
+            vertical_alignment=ft.CrossAxisAlignment.CENTER,
+            controls=[ 
+                self.chat_box,
+                self.send_button
+            ],
+            height=80
+        )
+
+        self.participants_column = ft.Column(
+            width=300, 
+            spacing=8,
         )
 
         self.controls = [
-            ft.Container(
-                logo_row,
-                padding=ft.padding.only(16, 16, 16, 8)
-            ), 
-            main_row
+            ft.Row([
+                ft.Column([
+                    ft.Container(
+                        logo_row,
+                        padding=ft.padding.only(16, 16, 16, 8)
+                    ),
+                    self.participants_column
+                ], width=300),
+                ft.VerticalDivider(1),
+                ft.Column([
+                    ft.Container(
+                        chat_top_row,
+                        padding=ft.padding.only(16, 16, 16, 8)
+                    ),
+                    ft.Column([
+                        main_row,
+                        chat_row,
+                    ], 
+                    expand=True)
+                ], expand=True)
+            ], expand=True)
         ]
     
     def get_view(self, page: ft.Page, params, basket):
+        self.chat_page_drawn()
         return self
+    
+    def chat_page_drawn(self):
+        pass
+
+    def add_participant(self, username, email, image, current_user: bool):
+        new_bubble = ParticipantBubble(username, email, image)
+        if current_user:
+            self.participants_column.controls.insert(0, new_bubble)
+            return
+        
+        self.participants_column.controls.append(0, new_bubble)

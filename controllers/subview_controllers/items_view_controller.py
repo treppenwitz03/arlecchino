@@ -24,6 +24,7 @@ class ItemsViewController:
         self.items_view.on_trigger_reload = self.reload_listview
     
     def go_to_chat(self, e):
+
         self.page.go("/chat")
         self.page.update()
     
@@ -126,6 +127,7 @@ class ItemsViewController:
         })
 
         self.items_view.group = group
+        self.page.session.set("active_group", group)
         
         #clear the payable and receivable lists
         self.items_view.payable_list.controls = []

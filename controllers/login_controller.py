@@ -41,6 +41,7 @@ class LoginController:
 
                 self.prefs.set_preference("email", self.utils.encrypt(email))
                 self.page.session.set("email", self.utils.encrypt(email))
+                self.page.session.set("from_chats", False)
                 if user.first_run:
                     self.page.go("/onboarding")
                 else:

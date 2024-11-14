@@ -54,7 +54,10 @@ class HomeController:
         self.home_page.account_view.update_informations()
 
         # if keep_signed_in, notify the user of autologin
-        if self.prefs.get_preference("keep_signed_in", False) is True and self.prefs.get_preference("recent_set_keep_signed_in", False) is False and self.prefs.get_preference("just_opened", False) is True:
+        if all([self.prefs.get_preference("keep_signed_in", False),
+                not self.prefs.get_preference("recent_set_keep_signed_in", False),
+                self.prefs.get_preference("just_opened", False),
+                not self.page.session.get("from_chats")]):
             self.page.snack_bar = ft.SnackBar(ft.Text(self.text_values["autologged_in"]), duration=1000)
             self.page.snack_bar.open = True
             self.page.update()
