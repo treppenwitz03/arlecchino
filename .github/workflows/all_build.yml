@@ -210,10 +210,10 @@ jobs:
         echo "y" | sdkmanager --install "ndk;$NDK_VERSION" --channel=3
         pip3 install git+https://github.com/flet-dev/python-for-android.git@3.11.6
         pip install --upgrade cython
-        p4a create --requirements opencv-python,pillow,pycryptodome,pyrebase --arch arm64-v8a --arch armeabi-v7a --sdk-dir $ANDROID_SDK_ROOT --ndk-dir $ANDROID_SDK_ROOT/ndk/$NDK_VERSION --dist-name mydist
+        p4a create --requirements opencv-python,pillow,pycryptodome,pyrebase --arch arm64-v8a --sdk-dir $ANDROID_SDK_ROOT --ndk-dir $ANDROID_SDK_ROOT/ndk/$NDK_VERSION --dist-name mydist
         export SERIOUS_PYTHON_P4A_DIST=$HOME/.python-for-android/dists/mydist
-        mv requirements.txt > requirements_old.txt
-        mv requirements_android.txt > requirements.txt
+        mv requirements.txt requirements_old.txt
+        mv requirements_android.txt requirements.txt
 
     - name: Flet Build APK
       run: |
