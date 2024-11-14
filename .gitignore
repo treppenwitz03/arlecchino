@@ -7,3 +7,6 @@ utils/__pycache__/
 services/__pycache__/
 __pycache__/
 services/token.json
+services/config.json
+services/service_acct.json
+topkl.py
