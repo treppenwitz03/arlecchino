@@ -1,4 +1,5 @@
 import requests
+import random
 import smtplib
 import ssl
 import io
@@ -183,3 +184,23 @@ class Database:
             return True
         except smtplib.SMTPException:
             return False
+
+    def get_email_confirmation_code(self, email):
+        code = random.randrange(100000, 999999)
+        subject = "Do you want to reset your password with Arlecchino? "
+        body = f"""
+Someone is trying to change your password within the Arlecchino Application.
+If this is you, enter the following code on the app prompt:
+    {code}
+Ignore this message if not.
+        """
+        email_message = EmailMessage()
+        email_message["From"] = self.em
+        email_message["To"] = email
+        email_message["Subject"] = subject
+        email_message.set_content(body)
+        context = ssl.create_default_context()
+        with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as smtp:
+            smtp.login(self.em, self.wp)
+            smtp.sendmail(self.em, email, email_message.as_string())
+        return code
