@@ -60,6 +60,7 @@ class ItemsViewController:
         for group_in in self.database.groups:
             if self.utils.decrypt(group_in.group_name) == group_name:
                 group = group_in
+                break
         
         # if the call is from reload, update the buttons
         button: GroupButton = None
