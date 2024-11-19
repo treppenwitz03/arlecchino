@@ -1,6 +1,6 @@
 flet
 flet-route
-pyrebase4
+firebase_admin
 pillow
 opencv-python
 pycryptodome
