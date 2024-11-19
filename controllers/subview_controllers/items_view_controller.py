@@ -46,9 +46,8 @@ class ItemsViewController:
 
         group: Group = None
         for group in self.database.groups:
-            if self.utils.decrypt(group.group_name) == group_name:
+            if self.utils.decrypt(group.group_name) == self.items_view.group.group_name:
                 self.open_group(group_name, image_string, True)
-                self.items_view.group = group
                 break
     
     def open_group(self, group_name: str, image_string: str, from_reload: bool):
@@ -148,7 +147,7 @@ class ItemsViewController:
                     self.utils.decrypt(transaction.name),
                     self.utils.decrypt(transaction.description),
                     self.utils.decrypt(transaction.time_created),
-                    f"{Utils.currency_symbols[self.prefs.get_preference('currency', "PHP")]} {self.utils.decrypt(transaction.price)}",
+                    Utils.currency_symbols[self.prefs.get_preference('currency', "PHP")]+" "+self.utils.decrypt(transaction.price),
                     item_image,
                     True,
                     self.text_values
@@ -167,7 +166,7 @@ class ItemsViewController:
                     self.utils.decrypt(transaction.name),
                     self.utils.decrypt(transaction.description),
                     self.utils.decrypt(transaction.time_created),
-                    f"{Utils.currency_symbols[self.prefs.get_preference('currency', "PHP")]} {self.utils.decrypt(transaction.price)}",
+                    Utils.currency_symbols[self.prefs.get_preference('currency', "PHP")]+" "+self.utils.decrypt(transaction.price),
                     item_image,
                     False,
                     self.text_values
@@ -177,8 +176,8 @@ class ItemsViewController:
                 self.items_view.payable_list.controls.append(item)
         
         # show rundown
-        self.items_view.total_payable_text.value = f"{self.text_values["total_payable"]} {Utils.currency_symbols[self.prefs.get_preference('currency', "PHP")]} {total_payable}"
-        self.items_view.total_receivable_text.value = f"{self.text_values["total_receivable"]} {Utils.currency_symbols[self.prefs.get_preference('currency', "PHP")]} {total_receivable}"
+        self.items_view.total_payable_text.value = self.text_values["total_payable"]+" "+Utils.currency_symbols[self.prefs.get_preference('currency', "PHP")]+" "+total_payable
+        self.items_view.total_receivable_text.value = self.text_values["total_receivable"]+" "+Utils.currency_symbols[self.prefs.get_preference('currency', "PHP")]+" "+total_receivable
         
         # dictates whether to hide or show empty warner or list
         if payables == 0:
@@ -234,7 +233,7 @@ class ItemsViewController:
                 user = username
 
         self.home_page.item_infos_dialog.item_name.value = self.home_page.item_infos_dialog.payment_item_name.spans[0].text = item_name
-        self.home_page.item_infos_dialog.price.value = self.home_page.item_infos_dialog.item_price.spans[0].text = f"{Utils.currency_symbols[self.prefs.get_preference('currency', "PHP")]} {self.utils.decrypt(button.transaction.price)}"
+        self.home_page.item_infos_dialog.price.value = self.home_page.item_infos_dialog.item_price.spans[0].text = Utils.currency_symbols[self.prefs.get_preference('currency', "PHP")]+" "+self.utils.decrypt(button.transaction.price)
         self.home_page.item_infos_dialog.item_image.src_base64 = button.item_image.src_base64
         self.home_page.item_infos_dialog.item_post_time.spans[0].text = self.utils.decrypt(button.transaction.time_created)
         self.home_page.item_infos_dialog.account_name_info.value = self.home_page.item_infos_dialog.account_name_payment.value = user

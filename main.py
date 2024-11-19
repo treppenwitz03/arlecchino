@@ -10,7 +10,7 @@ def main(page: ft.Page):
     # Set window parameters
     page.window.width = 1100
     page.window.height = 768
-    page.title = "Arlecchino"
+    page.title = "Arlecchino _"
     page.fonts = {"Product Sans" : "fonts/Product Sans Regular.ttf"}
 
     page.theme = ft.Theme(
