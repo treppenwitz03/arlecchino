@@ -46,7 +46,7 @@ class ItemsViewController:
 
         group: Group = None
         for group in self.database.groups:
-            if self.utils.decrypt(group.group_name) == self.items_view.group.group_name:
+            if self.utils.decrypt(group.group_name) == group_name:
                 self.open_group(group_name, image_string, True)
                 break
     
@@ -55,7 +55,11 @@ class ItemsViewController:
 
         group_buttons = self.page.session.get("group_buttons")
 
-        group: Group = group_buttons[str(group_name.__hash__())]
+        # group: Group = group_buttons[str(group_name.__hash__())]
+        group: Group = None
+        for group_in in self.database.groups:
+            if self.utils.decrypt(group_in.group_name) == group_name:
+                group = group_in
         
         # if the call is from reload, update the buttons
         button: GroupButton = None
@@ -176,8 +180,8 @@ class ItemsViewController:
                 self.items_view.payable_list.controls.append(item)
         
         # show rundown
-        self.items_view.total_payable_text.value = self.text_values["total_payable"]+" "+Utils.currency_symbols[self.prefs.get_preference('currency', "PHP")]+" "+total_payable
-        self.items_view.total_receivable_text.value = self.text_values["total_receivable"]+" "+Utils.currency_symbols[self.prefs.get_preference('currency', "PHP")]+" "+total_receivable
+        self.items_view.total_payable_text.value = self.text_values["total_payable"]+" "+Utils.currency_symbols[self.prefs.get_preference('currency', "PHP")]+" "+str(total_payable)
+        self.items_view.total_receivable_text.value = self.text_values["total_receivable"]+" "+Utils.currency_symbols[self.prefs.get_preference('currency', "PHP")]+" "+str(total_receivable)
         
         # dictates whether to hide or show empty warner or list
         if payables == 0:
