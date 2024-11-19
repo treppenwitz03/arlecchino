@@ -171,7 +171,7 @@ class AccountSettingsDialogsController:
                 user.username = self.utils.encrypt(replacement)
                 self.database.update_user(user)
                 self.account_view.trigger_reload()
-                self.home_page.group_listview.top_text.value = f"{Utils.generate_greeting(self.text_values["__LANG__"])}, {replacement}!"
+                self.home_page.group_listview.top_text.value = Utils.generate_greeting(self.text_values["__LANG__"])+", "+replacement+"!"
                 self.home_page.group_listview.top_text.update()
                 self.account_view.user_picture.update()
                 self.account_view.username_text.update()

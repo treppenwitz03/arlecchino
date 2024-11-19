@@ -33,7 +33,7 @@ class GroupListViewController:
                 break
         
         # set the username inside the greeter
-        self.group_listview.set_greeting(f"{Utils.generate_greeting(self.text_values["__LANG__"])}, {username}!")
+        self.group_listview.set_greeting(Utils.generate_greeting(self.text_values["__LANG__"])+", "+username+"!")
         
         # get the joined groups of current member
         group_buttons = dict()
