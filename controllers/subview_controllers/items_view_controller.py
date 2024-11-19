@@ -48,6 +48,7 @@ class ItemsViewController:
         for group in self.database.groups:
             if self.utils.decrypt(group.group_name) == group_name:
                 self.open_group(group_name, image_string, True)
+                self.items_view.group = group
                 break
     
     def open_group(self, group_name: str, image_string: str, from_reload: bool):
